@@ -1,0 +1,172 @@
+@font-face {
+    /* font-properties */
+    font-family: pictos;
+    src:url('/fonts/customFont/DINCondenseBold.ttf')
+}
+@media screen and (max-width: 414px){
+.alertMSG_text p span{font-size: 16px;}
+.alertMSG_text p span label{font-size: 16px;}
+.msg_tooip{bottom: 23%;}
+}
+@media screen and (max-width: 375px){
+.alertMSG_text p span{font-size: 16px;}
+.alertMSG_text p span label{font-size: 16px;}
+.msg_tooip{bottom: 23%;}
+}
+@media screen and (max-width: 320px){
+.alertMSG_text p span{font-size: 14px;}
+.alertMSG_text p span label{font-size: 14px;}
+.msg_tooip{bottom: 20%;}
+}
+/*客控系统*/
+.homeHeaderList{width: 90%;height: 20%;margin: 5% auto;padding: 0px 10px;border-radius: 8px;outline: none;background: white;position: relative;top: -2%;}
+.homeHeaderList>div{height: 100%;}
+.homeHeaderList a{width: 100%;height: 100%;display: inline-block;position: relative;}
+.homeHeaderList a>label{color: #000;}
+.confirmation .col-100{color: #51545A;font-size: 16px;letter-spacing: 2px;position: relative;top: 1.4rem; margin: 0px 0px 10px 0;white-space: nowrap;}
+.confirmation p{position: relative;}
+/*.confirmation p:nth-child(2):after{content: "";position: absolute;right: 1%;top: 10%;width: 1px;height: 80%;background: #eee;}*/
+.toBeComfirmContainer,.ComfirmContainer{display: inline-block;text-align: left;}
+.confirmation p span{color: #BEBFC1;font-size: 0.8rem;display: block;}
+.confirmation p span{color: #BEBFC1;font-size: 0.8rem;display: block;}
+.homeConfirm>div,.messageConfirm>div,.noticeConfirm>div{position: relative;}
+.homeConfirm>div p:nth-child(2),.messageConfirm>div p:nth-child(2),.noticeConfirm>div p:nth-child(2){width: 1px;height: 30px;border-right: 1px solid  #BEBFC1;margin: 15px 20px;}
+.uploadImg a img,.isImg a img{width: 100%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);}
+.homeSection{width: 90%;height: 50%;margin: -4% auto;}
+.homeSection ul{height: 100%;}
+.homeSection ul li{height: 30%;margin-bottom: 3%;list-style: none;}
+.homeSection ul li a{font-size: 1rem;color: white;width: 100%;height: 100%; padding-top: 10%;text-align: right;padding-right: 10%;display: inline-block;background: url(/image/home/hourse.png) no-repeat top center/100% 100%;}
+.homeSection ul li a p{margin: 0 0 5px 0;}
+.homeSection ul li a i{font-size: 1.5rem;}
+@media screen and (max-height: 569px){.homeConfirm>div p:nth-child(2),.messageConfirm>div p:nth-child(2),.noticeConfirm>div p:nth-child(2){margin: 15px!important;} .msg_comfig{font-size: 14px!important;height: 35px!important;line-height: 35px!important;} .confirmation .col-100{top: 0.7rem!important;margin: 0;} .newNotice:after{left: 18%!important;} .homeSection ul li a{padding-top: 5%;}}
+/*@media screen and (max-height: 569px)*/
+/*客控详情*/
+.homeHeaderDetalisList{width: 90%;height: 100%;margin: 5% auto;background: white;position: relative;    top: -10%;background: url(/Image/home/d_top_details.png) no-repeat top center/100% 100%;}
+.homeDeatils_setBg{height: 12%;}
+.homeHeaderDetalisList>div{height: 100%;}
+.homeHeaderDetalisList .col-75,.homeHeaderDetalisList .col-25{font-size: 18px;color: #6B93FA;white-space: nowrap;position: relative;}
+.homeHeaderDetalisList .col-75 span{left: 40%!important;}
+.homeHeaderDetalisList .col-25 i{font-size: 1.5rem;}
+.homeHeaderDetalisList>div a{width: 100%;height: 100%;display: inline-block;}
+.homeHeaderDetalisList>div img{height: 100%;}
+.positionCenter{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);}
+.homeDeatilsContext{width: 100%; height: 88%; margin: 20px auto 0; overflow-y: auto; background: #F8F8FB; padding: 0px 5% 10% 5%;}
+.homeDeatilstitle{font-size: 16px;font-weight: 600;color: #51545A;width: 100%;height: 40px;line-height: 40px;}
+.homeDeatilstitle i{width: 5px;height: 40%;background: #6B93FA;display: inline-block;margin-right: 10px;position: relative;top: 6%;border-radius: 20px;outline: none;}
+/*.homeDeatilsContext dl dd{margin-bottom: 2rem;}*/
+.lightingDD{padding-right: 10%;}
+.lightingDD>div,.curtainsDD>div{text-align: center;vertical-align: middle;padding: 10px 0;}
+.lightingDD>div a,.curtainsDD>div a{width: 90px;height: 90px;display: inline-block;}
+/*.lightingControl1 a{background: url(/image/home/d_close.png) no-repeat top center/100% 100%;}
+.lightingControl1 a:active{background: url(/image/home/d_open.png) no-repeat top center/100% 100%;}
+.lightingControl2 a{background: url(/image/home/d_close.png) no-repeat top center/100% 100%;}
+.lightingControl2 a:active{background: url(/image/home/d_open.png) no-repeat top center/100% 100%;}*/
+
+/*.curtainsControl1 a{background: url(/image/home/d_curtains_close0.png) no-repeat top center/100% 100%;}
+.curtainsControl1 a:active{background: url(/image/home/d_curtains_close1.png) no-repeat top center/100% 100%;}
+.curtainsControl2 a{background: url(/image/home/d_tz_0.png) no-repeat top center/100% 100%;}
+.curtainsControl2 a:active{background: url(/image/home/d_tz_1.png) no-repeat top center/100% 100%;}
+.curtainsControl3 a{background: url(/image/home/d_curtains_open0.png) no-repeat top center/100% 100%;}
+.curtainsControl3 a:active{background: url(/image/home/d_curtains_open1.png) no-repeat top center/100% 100%;}
+*/
+.lightingDD>div a img,.curtainsDD>div a img{width: 80%;}
+.lightingDD>div p,.curtainsDD>div p{font-size: 14px;letter-spacing: 2px;color: #6B93FA;margin: 0;position: relative;top: -10px;}
+.soundControlDD{border-radius: 10px;outline: none;padding: 10px;}
+.soundControlDD>div img{width: 100%; height: 60px;}
+.conditionerControl1{width: 100%;margin: 10px auto;background: #779BF8;padding: 20px;position: relative;border-radius: 10px;outline: none;}
+.conditionerControl1 span{height: 70px;padding-left: 4%;}
+.conditionerControl1 span:nth-child(1) i{font-size: 4rem;    position: relative;top: -0.5rem;font-family: pictos!important;}
+.conditionerControl1 span:nth-child(1) sup{    font-size: 1.5rem; position: relative; top: -1rem; left: -0.5rem;}
+.wd_conditioner{font-size: 3rem;color: white;position: relative;border-right: 1px solid #ddd;}
+.wd_conditioner sup{font-size: 1rem;}
+.wd_conditioner label{font-size: 0.8rem;position: absolute; right: 20%;bottom: 14%;}
+.conditioner_view_p1,.conditioner_view_p2{color: white;margin: 0;white-space: nowrap;}
+.conditioner_view_p1 em{color: #92AFF9;width: 5px;display: inline-block;margin: 0 2px;background: #92AFF9;}
+.app_fs_1{height: 10px;}
+.app_fs_2{height: 15px;}
+.app_fs_3{height: 20px;}
+.app_fs_4{height: 25px;}
+.app_fs_5{height: 30px;}
+.conditioner_view_p1 i,.conditioner_view_p2 i{font-size: 1.2rem;margin: 0px 5px;color: #92AFF9;}
+.conditionerControl2{width: 100%;border-radius: 10px;outline: none;padding: 5px;}
+.conditionerControl2 a{width: 60px;height: 60px;text-align: center;display: inline-block;}
+.conditionerControl2 div{text-align: center;}
+.conditionerControl2 div img{width: 100%;}
+/*.conditionerControl2 div:nth-child(1) a{background: url(/image/home/d_close.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(1) a:active{background: url(/image/home/d_open.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(2) a{background: url(/image/home/d_sw_0.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(2) a:active{background: url(/image/home/d_sw_1.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(3) a{background: url(/image/home/d_jw_0.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(3) a:active{background: url(/image/home/d_jw_1.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(4) a{background: url(/image/home/d_fs_0.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(4) a:active{background: url(/image/home/d_fs_1.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(5) a{background: url(/image/home/d_msqh_0.png) no-repeat top center/100% 100%;}
+.conditionerControl2 div:nth-child(5) a:active{background: url(/image/home/d_msqh_1.png) no-repeat top center/100% 100%;}
+
+.soundControl1 a,.soundControl2 a{height: 60px;}
+.soundControl1 a:nth-child(1){background: url(/image/home/d_prev_0.png) no-repeat top center/100% 100%;}
+.soundControl1 a:nth-child(1):active{background: url(/image/home/d_prev_1.png) no-repeat top center/100% 100%;}
+.soundControl1 a:nth-child(2){background: url(/image/home/d_play_0.png) no-repeat top center/100% 100%;}
+.soundControl1 a:nth-child(2):active{background: url(/image/home/d_play_1.png) no-repeat top center/100% 100%;}
+.soundControl1 a:nth-child(3){background: url(/image/home/d_next_0.png) no-repeat top center/100% 100%;}
+.soundControl1 a:nth-child(3):active{background: url(/image/home/d_next_1.png) no-repeat top center/100% 100%;}
+.soundControl2 a:nth-child(1){background: url(/image/home/d_sound_js_0.png) no-repeat top center/100% 100%;}
+.soundControl2 a:nth-child(1):active{background: url(/image/home/d_sound_js_1.png) no-repeat top center/100% 100%;}
+.soundControl2 a:nth-child(2){background: url(/image/home/d_zj_0.png) no-repeat top center/100% 100%;}
+.soundControl2 a:nth-child(2):active{background: url(/image/home/d_zj_1.png) no-repeat top center/100% 100%;}
+*/
+/*.soundControl1,.soundControl2{background: url(/image/home/d_musi_bg.png) no-repeat top center/100% 100%;padding-bottom: 5px;}*/
+.displayNone{display: none!important;}
+.selectFontWhite{color: white!important;}
+.selectBackgroundWhite{background: white!important;}
+/*消息*/
+.messageSection{width: 90%;height: 72%;margin: auto;overflow-y: auto;    position: relative;top: -2%;}
+.ios .list,.md .list{margin: 0!important;}
+.list ul:before,.list ul:after,.list .item-inner:after,.simple-list li:nth-child(1):after,.simple-list li:nth-child(3):after{height: 0!important;}
+/*.list ul{background: #eee!important;}*/
+.messageInfoList div.item-title-row{margin-bottom: 5px;}
+.messageInfoList .item-title,.noticeInfoList .item-title,.allInfoList .item-title,.hourseInfoList .item-title,.kitchenInfoList .item-title,.waterInfoList .item-title,.swimmingInfoList .item-title{color: #51545A;}
+.messageInfoList li,.noticeInfoList li,.allInfoList li,.hourseInfoList li,.kitchenInfoList li,.waterInfoList li,.swimmingInfoList li{width: 100%;position: relative;margin-bottom: 10px;background: white;border-radius: 8px;}
+.messageInfoList li a label,.noticeInfoList li a label,.allInfoList li a label,.hourseInfoList li a label,.kitchenInfoList li a label,.waterInfoList li a label,.swimmingInfoList li a label{font-size: 12px;color: white;display: inline-block;background: #EE5863;padding: 5px;border-radius: 50%;outline: none;position: absolute;right: 5%;top: 40%;}
+/*通知*/
+.newNotice:after{content: "";display: inline-block;background: #EE5863;padding: 6px;border-radius: 50%;outline: none;position: absolute;left: 15%;top: 15%;}
+.alertMSG{width: 100%;height: 100%;display: none;background: rgba(207,207,209,0.5);position: absolute;left: 0;top: 0;z-index: 9999;}
+.alertMSG_context{height: 45%;}
+.alertMSG_context img{width: 100%;position: absolute;left: 0;top: -9%;z-index: 9999999;}
+.alertMSG_context{width: 90%;position: absolute;left: 5%;top: 45%;transform: translateY(-50%);}
+.alertMSG_text{width: 100%;height: 100%;padding-top: 20%;background: white;}
+.alertMSG_text p{padding: 0px 30px;}
+.alertMSG_text p span{color: #999;}
+.alertMSG_text p span label{color: #222;margin-left: 20px;}
+.msg_tooip{font-size: 14px;color: #222222;text-align:center;margin-top: 30px;}
+.md .msg_tooip{margin: 0;}
+.msg_tooip{width: 100%;position: absolute;left: 0;}
+.msg_comfig{color: white!important;font-size: 18px;text-align: center;width: 90%;height: 50px; line-height: 50px;border-radius: 6px;display: inline-block;position: absolute;left: 5%;bottom: 5%;background: #6B93FA;}
+.msg_close{position: absolute;bottom: -45%;left: 50%;transform: translate(-50%,-50%);}
+.msg_close i{color: #fff;font-size: 3rem;}
+.alertMSG_text p b{font-size: 12px;color: #FFA337;font-weight: 100;margin: 5px 0;display: block;}
+.messageInfoList .item-after{font-size: 12px;}
+/*通讯*/
+.navbarChat{background: linear-gradient(#748BF6,#659DF2)!important;}
+.userListDetails{width: 100%;height: 100%; overflow-y: auto;background-color: #eee;}
+.userListDetails .item-content{background: white;border-bottom: 1px solid #eee;}
+.icon-app_search{font-size: 1.2rem;margin-right: 10px;}
+.searchbar-backdrop{position: fixed;}
+/*panel*/
+.panel{background: #659DF1!important;}
+.panel li{color: white;background: #659DF1;}
+/*设置*/
+.initSetContainer{height: 100%;background: #eee;}
+.ios .list ul{background: #F8F8FB;}
+.initSetContainer ul li{color: #51545A;height: 60px!important;line-height: 60px!important;background: white;}
+.initSetContainer ul li a{color: #51545A;width: 100%;height: 100%;display: inline-block;}
+.exitLogin{font-size: 1.2rem;width: 90%;height: 50px!important;position: absolute;left: 5%;bottom: 10%;}
+/*历史通知*/
+.segmented .button{border-radius: 0!important;}
+.historyInfoContainer>div.segmented{height:8%;background: #fff;border-bottom: 1px solid #fff;border-radius: 0;}
+.tab-link-active{background: transparent;}
+.historyInfoContainer>div.segmented a{font-size: 1.2rem;color: #51545A;line-height: 40px;height: 40px;border: 0;}
+.historyInfoContainer>div.segmented a.tab-link-active{color: #007aff;background: transparent;border-bottom: 2px solid #007aff;}
+.historyInfoSection{height: 92%;padding: 5%;background: #F8F8FB;}
+#allInfo,#twoInfo,#threeInfo,#fourInfo,#fiveInfo{height: 100%;overflow-y: auto;}
+.ios .segmented .button:first-child{border-left-width: 0;}
