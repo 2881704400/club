@@ -1,12 +1,11 @@
 ﻿//websocket测试服务器
-var url, receiveUser, radioBroadcast, viewClass, connection, isData;
+var url, receiveUser, radioBroadcast,  connection, isData;
 
 function shortMessage() {
     var chatObject = myApp.views.main.history,
         urlLength = chatObject.length - 1;
     var chatTime = chatObject[urlLength].split("?")[1].split(",")[1];
     receiveUser = window.localStorage.receiveUser = chatObject[urlLength].split("?")[1].split(",")[0];
-    console.log(chatObject); //对象和该天日期
     //init 
     $(".tabbar").addClass("displayNone");
     $(".auth_name_msg").html(window.localStorage.receiveUser);
@@ -35,7 +34,6 @@ function send_msg() {
             return;
         }
         inputInfo = userName + "@" + receiveUser + ":::" + inputInfo;
-        console.log(inputInfo);
         try {
             ws.send(inputInfo);
         } catch (e) {

@@ -17,6 +17,7 @@
 .alertMSG_text p span{font-size: 14px;}
 .alertMSG_text p span label{font-size: 14px;}
 .msg_tooip{bottom: 20%;}
+.conditionerControl1 span{padding-left: 0!important;}
 }
 /*客控系统*/
 .homeHeaderList{width: 90%;height: 20%;margin: 5% auto;padding: 0px 10px;border-radius: 8px;outline: none;background: white;position: relative;top: -2%;}
@@ -50,31 +51,27 @@
 .homeHeaderDetalisList>div a{width: 100%;height: 100%;display: inline-block;}
 .homeHeaderDetalisList>div img{height: 100%;}
 .positionCenter{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);}
-.homeDeatilsContext{width: 100%; height: 88%; margin: 20px auto 0; overflow-y: auto; background: #F8F8FB; padding: 0px 5% 10% 5%;}
-.homeDeatilstitle{font-size: 16px;font-weight: 600;color: #51545A;width: 100%;height: 40px;line-height: 40px;}
-.homeDeatilstitle i{width: 5px;height: 40%;background: #6B93FA;display: inline-block;margin-right: 10px;position: relative;top: 6%;border-radius: 20px;outline: none;}
-/*.homeDeatilsContext dl dd{margin-bottom: 2rem;}*/
-.lightingDD{padding-right: 10%;}
-.lightingDD>div,.curtainsDD>div{text-align: center;vertical-align: middle;padding: 10px 0;}
-.lightingDD>div a,.curtainsDD>div a{width: 90px;height: 90px;display: inline-block;}
-/*.lightingControl1 a{background: url(/image/home/d_close.png) no-repeat top center/100% 100%;}
-.lightingControl1 a:active{background: url(/image/home/d_open.png) no-repeat top center/100% 100%;}
-.lightingControl2 a{background: url(/image/home/d_close.png) no-repeat top center/100% 100%;}
-.lightingControl2 a:active{background: url(/image/home/d_open.png) no-repeat top center/100% 100%;}*/
-
-/*.curtainsControl1 a{background: url(/image/home/d_curtains_close0.png) no-repeat top center/100% 100%;}
-.curtainsControl1 a:active{background: url(/image/home/d_curtains_close1.png) no-repeat top center/100% 100%;}
-.curtainsControl2 a{background: url(/image/home/d_tz_0.png) no-repeat top center/100% 100%;}
-.curtainsControl2 a:active{background: url(/image/home/d_tz_1.png) no-repeat top center/100% 100%;}
-.curtainsControl3 a{background: url(/image/home/d_curtains_open0.png) no-repeat top center/100% 100%;}
-.curtainsControl3 a:active{background: url(/image/home/d_curtains_open1.png) no-repeat top center/100% 100%;}
-*/
+.homeDeatilsContext{width: 100%; height: 88%; margin: 20px auto 0; overflow-y: auto; background: #F8F8FB; padding: 0px 5% 20% 5%;}
+.homeDeatilstitle{font-size: 16px;font-weight: 600;color: #51545A;width: 100%;}
+.leftRectangle{width: 5px;height: 1rem;background: #6B93FA;display: inline-block;margin-right: 10px;position: relative;top: 6%;border-radius: 20px;outline: none;}
+.homeDeatilsContext .item-after{font-size: 0.8rem;color: #C7C6CB;font-weight: 500;}
+.homeDeatilsContext .item-title{color: #51545A;font-size: 1rem;font-weight: 600;}
+.homeDeatilsContext .item-content{border-bottom: 1px solid #eee;}
+.smart-select-page .page-content .list{height: 100%;padding: 35px 0;background: white;}
+.smart-select-page .page-content .list .item-inner{border-bottom: 1px solid #eee;}
+.lightingBtn{overflow-y: auto;white-space: nowrap;}
+.lightingBtn span{width: 72px;height: 72px;display: inline-block;text-align: center;}
+.lightingDD>div{text-align: left;vertical-align: middle;  margin: 5px 0;}
+.curtainsDD>div{text-align: center;vertical-align: middle;}
+.lightingDD>div a,.curtainsDD>div a{width: 72px;height: 72px;display: inline-block;}
 .lightingDD>div a img,.curtainsDD>div a img{width: 80%;}
 .lightingDD>div p,.curtainsDD>div p{font-size: 14px;letter-spacing: 2px;color: #6B93FA;margin: 0;position: relative;top: -10px;}
+.lightingDD>div.col-25{  text-align: center;}
 .soundControlDD{border-radius: 10px;outline: none;padding: 10px;}
 .soundControlDD>div img{width: 100%; height: 60px;}
-.conditionerControl1{width: 100%;margin: 10px auto;background: #779BF8;padding: 20px;position: relative;border-radius: 10px;outline: none;}
+.conditionerControl1{width: 100%;margin: 10px auto;background: #779BF8;padding: 20px 10px;position: relative;border-radius: 10px;outline: none;}
 .conditionerControl1 span{height: 70px;padding-left: 4%;}
+
 .conditionerControl1 span:nth-child(1) i{font-size: 4rem;    position: relative;top: -0.5rem;font-family: pictos!important;}
 .conditionerControl1 span:nth-child(1) sup{    font-size: 1.5rem; position: relative; top: -1rem; left: -0.5rem;}
 .wd_conditioner{font-size: 3rem;color: white;position: relative;border-right: 1px solid #ddd;}

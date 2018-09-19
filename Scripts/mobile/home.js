@@ -1,9 +1,7 @@
 ﻿//首页事件
 function onHomePage() {
-	// myApp.router.navigate('/userList/'); 
+	// myApp.router.navigate('/Message/'); 
 	$(".tabbar").css("top", window.screen.height + "px");
-	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
-
 	if(sUserAgentFlag) {
 		$(".mobileUser").hide();
 		$(".mobileSet").hide();

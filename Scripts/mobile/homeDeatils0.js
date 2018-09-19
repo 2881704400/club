@@ -1,5 +1,6 @@
-﻿var kt_index = 1,windSpeedLevel = 1;
-function homeDeatils() {
+﻿
+function homeDeatils0() {
+    var kt_index = 1,windSpeedLevel = 1;
    airConditionerControl(windSpeedLevel);
    homeDeatilsDataunCheck.forEach(function(item,index){
         $("."+item.className).unbind();
@@ -28,16 +29,6 @@ function homeDeatils() {
                 kt_index = $(".conditioner_view_p2 i.selectFontWhite").attr("aircondiIndex");
                 kt_index>=4?kt_index = 1:++kt_index;
                 $(".conditioner_view_p2 i[aircondiIndex='"+kt_index+"']").addClass("selectFontWhite").siblings().removeClass("selectFontWhite");
-                // if(kt_index == 3)
-                // {
-                //   $(".conditioner_view_p1 i").addClass("selectFontWhite");
-                //   airConditionerControl(windSpeedLevel);
-                // }
-                // else
-                // {
-                //   $(".conditioner_view_p1 i").removeClass("selectFontWhite");
-                //   $(".conditioner_view_p1 em").removeClass("selectBackgroundWhite").removeClass("selectFontWhite");
-                // }
              }
              else if(item.className == "kt_fstd")
              {
@@ -51,8 +42,20 @@ function homeDeatils() {
 
         });         
    });
-}
+   //选择灯光照明后者模式
 
+   
+
+}
+//选择灯光照明后者模式
+function onLightingList0(){
+   window.localStorage.LightingList0 = $("#lighting_0").find("option:selected").attr("value");
+   if(window.localStorage.LightingList0 == 0)
+    {$(".lightingAndPattern_0").removeClass("displayNone");$(".lightingAndPattern_1").addClass("displayNone");}
+   else
+    {$(".lightingAndPattern_1").removeClass("displayNone");$(".lightingAndPattern_0").addClass("displayNone");}
+
+}
 //遥信表
 function getStatus(){ //检测实时状态，1为开，0为关
     var jsonData = {

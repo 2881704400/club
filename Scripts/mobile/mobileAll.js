@@ -11,9 +11,10 @@ var myApp = new Framework7({
 		swipe: 'left',
 		swipeOnlyClose: true,
 	},
-	statusbar: {
-		iosOverlaysWebView: true,
-	},
+      statusbar: {
+        enabled: true,
+        overlay: true,
+      }, 
 	// Add default routes
 	routes: [{
 		path: '/home/',
@@ -34,9 +35,26 @@ var myApp = new Framework7({
 		path: '/UserInfor/',
 		url: 'UserInfor.html',
 	}, {
-		path: '/homeDeatils/',
-		url: 'homeDeatils.html',
-	}, {
+		path: '/homeDeatils0/',
+		url: 'homeDeatils0.html',
+	},
+    {
+		path: '/homeDeatils1/',
+		url: 'homeDeatils1.html',
+	},
+	 {
+		path: '/homeDeatils2/',
+		url: 'homeDeatils2.html',
+	},
+	 {
+		path: '/homeDeatils3/',
+		url: 'homeDeatils3.html',
+	},
+	 {
+		path: '/homeDeatils4/',
+		url: 'homeDeatils4.html',
+	},
+	 {
 		path: '/userList/',
 		url: 'userList.html',
 	}, {
@@ -102,16 +120,9 @@ var $$ = Framework7.$;
 initLoads();
 
 function initLoads() {
+
 	loadNameMobile();
-	setTimeout(function() {
-		$("#homeContents").show();
-	}, 3000);
-	$(".toolbar-inner").removeClass("disabled");
 	initWebSocket();//socket
-	try {
-		//myJavaFun.GetAppVersion(); //获取App版本信息
-		// myJavaFun.GetSystemInfor(); //获取系统信息
-	} catch(ex) {}
 
 }
 $$(document).on('ajaxError', function() {
@@ -442,47 +453,66 @@ function getValueByKey(str, key) {
 }
 //载入界面
 function loadNameMobile() {
- if (location.search) {
+    if (location.search) {
         try {
             var urlSearch = location.search.split('?')[1];
-            var urlSearchSplit = urlSearch.split('&');
-            var terminalVar = urlSearchSplit[0].split('=')[1];
-            var userNameVar = urlSearchSplit[1].split('=')[1];
-            var service_urlVar = urlSearchSplit[2].split('=')[1];
-            window.localStorage.terminal = terminalVar;
-            window.localStorage.userName = decodeURIComponent(userNameVar);
-            window.localStorage.service_url = service_urlVar;
+            var terminal = getValueByKey(urlSearch, "terminal");
+            var ac_appkey = getValueByKey(urlSearch, "appkey");
+            var ac_infokey = getValueByKey(urlSearch, "infokey");
+            var service_url = getValueByKey(urlSearch, "service_url");
+            var jsonString = {
+                "terminalString": terminal,
+                "ac_appkeyString": ac_appkey,
+                "ac_infokeyString": ac_infokey,
+                "service_urlString": service_url
+            };
+            window.localStorage.ac_appkey = ac_appkey;
+            window.localStorage.terminal = terminal;
+            window.localStorage.ac_infokey = ac_infokey;
+            window.localStorage.service_url = service_url;
+            myJavaFuntion.SetCookie(JSON.stringify(jsonString));
+        } catch (ex) {
+            window.localStorage.terminal = '';
+            window.localStorage.ac_appkey = '';
+            window.localStorage.ac_infokey = '';
+            window.localStorage.service_url = '';
         }
-        catch (ex) {
-
-        }
-        //location.search = "";
+    } else {
+        myJavaFuntion.GetCookie();
     }
-    try{
-        if (window.localStorage.userName != "" && window.localStorage.userName != null) {
-            $("#userName").html("我(" + window.localStorage.userName + ")");
-            InitEnsure();
-            AppShows();
-            onHomePage();
-        }
-        else {
-            try {
-                var terminal = window.localStorage.terminal.split('.')[1];
-                if (terminal == "App") {
-                    myJavaFun.OpenLocalUrl("login");
-                }
-                else {
-                    window.location.href = "/Views/login.html";
-                }
+    setTimeout(function() {
+        var jsonData = {
+            "url": "/api/GWServiceWebAPI/getClientTypeInfo",
+            "success": _success,
+            "error": _error,
+            "complete": _complete
+        };
+        jQuery.axpost(jsonData);
+        function _success(dt) {
+            var codeString = dt.HttpData;
+            if (codeString.code == 200) {
+                window.localStorage.userName = codeString.data.userName;
+            } else {
+                window.localStorage.userName = '';
             }
-            catch (ex) {
-                window.location.href = "/Views/login.html";
+        }
+        function _error(e) {
+            window.localStorage.userName = '';
+            myJavaFuntion.OpenLocalUrl("login");
+            console.log(e);
+        }
+        function _complete(XMLHttpRequest, status) {
+            if (window.localStorage.userName != "" && window.localStorage.userName != null) {
+                $("#userName").html("我(" + window.localStorage.userName + ")");
+                InitEnsure();
+                AppShows();
+                onHomePage();
+                $("#app").show();
+            } else {
+                myJavaFuntion.OpenLocalUrl("login");
             }
         }
-    }
-    catch (ex) {
-        window.location.href = "/Views/login.html";
-    }
+    }, 100);
 }
 
 function pageLists() {
@@ -829,19 +859,7 @@ $$(document).on("page:beforein", ".page[data-page='initSet']", function(e) {
 		initPageJS('initSet', '');
 	}
 });
-//客控系统详情
-$$(document).on("page:beforein", ".page[data-page='homeDeatils']", function(e) {
-	if($(this).hasClass("page-on-left")) {
-		var ids = $(this).next().attr("id");
-		if(ids == "home") {
-			toolbarActive('homeTool');
-		} else {
-			initPageJS(ids, '');
-		}
-	} else {
-		initPageJS('homeDeatils', '');
-	}
-});
+
 //欢迎词
 $$(document).on("page:beforein", ".page[data-page='welcomeWords']", function(e) {
 	if($(this).hasClass("page-on-left")) {
@@ -1163,7 +1181,7 @@ function loadJs(url, callback, id) {
 	}
 }
 //创建websocket
-var userName = window.localStorage.userName,fileUrl = "C:\\MsgChat";
+var viewClass,userName = window.localStorage.userName,fileUrl = "C:\\MsgChat";
 function createws(value) {
 	url = "ws://192.168.0.165:8001?" + value;
 	if('WebSocket' in window) ws = new WebSocket(url);
@@ -1183,19 +1201,20 @@ function initWebSocket() {
 		console.log(event.data);
 		//单聊: 发送者@接收者@当次广播对象(admin@zkx@admin)-(admin@zkx@zkx)
 		//群聊: 发送者@接收者@当次广播对象(admin@All0@admin)-(admin@All0@zkx)-(admin@All0@zkx2018)
-		var connectionString = event.data.split(":")[0],broadcastObj = connectionString.split("@");
+		var connectionString = event.data.split("<f7-userName:>")[1].split("<f7-time:>")[0],broadcastObj = connectionString.split("@");
 		//fileUrl,sendUser,receiveUser,DateTime,concentext 
 		if(broadcastObj[0] == userName)
 		  writeFile(fileUrl, broadcastObj[0],broadcastObj[1], GetDateStr(0, 0),event.data.replace("@"+broadcastObj[1],""));
 		try {
 			//判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
-			//群聊                  单聊    
-			var msg_board = document.getElementsByClassName(viewClass)[0];                       
-			if((broadcastObj[0] == userName || broadcastObj[1] == userName) && msg_board) {
-				var received_msg = broadcastObj[0] + event.data.replace(connectionString, ""); //新信息
-				var old_msg = msg_board.innerHTML;
-				msg_board.innerHTML = old_msg + received_msg + "<br>";
-				msg_board.scrollTop = msg_board.scrollTop + 40;
+			//群聊                  单聊 
+			var received_msg,old_msg,msg_board = document.getElementsByClassName(viewClass)[0];                       
+			if(msg_board) {
+				if(broadcastObj[0] == userName)
+				  received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>'+event.data.split("<f7-Content:>")[1]+"</span></p>"; //新信息
+				else
+				  received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>'+event.data.split("<f7-Content:>")[1]+"</span></p>"; //新信息
+				addRecord(msg_board,received_msg);
 			}
 		} catch(e) {
 			//推送
@@ -1256,8 +1275,8 @@ function readerFile(fileUrl, sendUser, receiveUser, DateTime, isFlase) {
 	jQuery.axpost(jsonData);
 
 	function _success(dt) {
-		document.getElementsByClassName(viewClass)[0].innerHTML = dt.HttpData.data.concenTxt;
-		console.log(dt);
+		// document.getElementsByClassName(viewClass)[0].innerHTML = dt.HttpData.data.concenTxt;
+		formatRecord(dt.HttpData.data.concenTxt);
 	}
 
 	function _error(e) {
@@ -1284,10 +1303,37 @@ function exitLogin(){
 	try	{
 		  myJavaFun.OpenLocalUrl("login");
 		}
-		catch(e){
-            if(window.localStorage.terminal != "Mobile.App")
-               window.location.href = "/Views/login.html";
-            else
-                myApp.dialog.alert("退出登陆异常");
-		}
+	catch(e){
+        if(window.localStorage.terminal != "Mobile.App")
+           window.location.href = "/Views/login.html";
+        else
+            myApp.dialog.alert("退出登陆异常");
+	}
+}
+
+//处理记录
+function formatRecord(str){
+    var strArray = str.split("<br />");  
+	var received_msg,msg_board = document.getElementsByClassName(viewClass)[0];       
+	strArray.forEach(function(item,index){
+		console.log(item);
+       	if(item !="" && item.split("<f7-userName:>")[1].split("<f7-time:>")[0] == userName)
+		  {
+		  	received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>'+item.split("<f7-Content:>")[1]+"</span></p>"; 
+            addRecord(msg_board,received_msg);
+		  }//新信息
+		else if(item !="")
+		  {
+		    received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>'+item.split("<f7-Content:>")[1]+"</span></p>";
+            addRecord(msg_board,received_msg);
+		  } //新信息
+
+	});                
+}
+
+//添加记录
+function addRecord(msg_board,received_msg){
+	var old_msg = msg_board.innerHTML;
+	msg_board.innerHTML = old_msg + received_msg + "<br />";
+	msg_board.scrollTop = msg_board.scrollTop + 60;
 }

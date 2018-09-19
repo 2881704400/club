@@ -27,7 +27,7 @@ app.all('*', function(req, res, next) {
 var server = ws.createServer(function(conn) {
     stringAll = conn.path.replace("/?", "").trim();
     stringAllUser = getValueByKeystr(stringAll,"userName").trim(), stringAllKey = getValueByKeystr(stringAll, "key");
-    console.log(stringAllUser);
+    //console.log(stringAllUser);
     //通道保存在session
     session[stringAllUser] = conn;
     //用户ID，根据ID查询全部成员通道
@@ -52,7 +52,7 @@ function radioBroadcast(str) {
 
     userInfo.forEach(function(item, index) {
         try {  //组合发送: 发送者@接收者
-            session[item].sendText(publicString[0]+":" + "[" + GetDateStrValue(0) + "]:" + publicString[1]);
+            session[item].sendText("<f7-userName:>" +publicString[0]+ "<f7-time:>" + GetDateStrValue(0) +"<f7-Content:>"+publicString[1]);
         } catch (e) {
             console.log(item+"的session是临时的，没保存该通道，错误为： "+e);
         }

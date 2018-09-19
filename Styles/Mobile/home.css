@@ -18,6 +18,8 @@ html.with-statusbar.device-android .framework7-root{padding-top: 0!important;}
 .md .statusbar{display: none!important;}
 html.with-statusbar.device-android .panel{height: 100%!important;top: 0!important;}
 .ios .navbar-inner{padding-left: 5%;padding-right: 5%;}
+html.with-statusbar.device-iphone-x .framework7-root{padding-top: 20px;}
+html.device-ios.device-iphone-x .statusbar{height: 20px;}
 /*iphoneX*/
 @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
     body {height: 812px !important;       
@@ -26,40 +28,31 @@ html.with-statusbar.device-android .panel{height: 100%!important;top: 0!importan
         padding-right: constant(safe-area-inset-right);
         padding-bottom: constant(safe-area-inset-bottom); 
     }
-    .navbar {height: 88px!important;top: -44px!important;}
-    .navbar-inner {padding: 44px 5% 0 5% !important;}
-
-    .toolbar {height: 70px!important;}
+    .toolbar {height: 70px !important;}
     .toolbar .toolbar-inner {padding-bottom: 20px;}
-    .page>div.page-content {
-        padding-top: 44px !important;
-        padding-bottom: 70px !important;
-    }
-    .panel>.list-page>ul {
-        padding-top: 60px;
-    }
+    .page>div.page-content { padding-bottom: 70px !important; }
+    .panel>.list-page>ul {padding-top: 60px; }
     .toolbar-inner{height: 100%!important;}
-    .confirmation .col-100{top: 1.8rem!important;}
 }
-    .page-content {
-        padding-bottom: 55px;overflow: hidden;
-        background: url(/image/home/bg.png) no-repeat top center/100% auto,#F8F8FB;
-    }
-    #homeDeatils_content{background: url(/image/home/bgChild.png) no-repeat top center/100% auto,#F8F8FB!important;}
-    .ios .tabbar-labels{height: 55px;}
-    .md .navbar {
-        height: 44px!important;
-    }
-    .md .navbar-inner{padding: 0 5%;}
-    .md .page-content {
-        padding: 44px 0 50px 0!important;
-    }
-    .md .tabbar {
-        height: 55px;
-    }
-    .md .list .item-media+.item-inner {
-        margin-left: 5px;
-    }
+.page-content {
+    padding-bottom: 55px;overflow: hidden;
+    background: url(/image/home/bg.png) no-repeat top center/100% auto,#F8F8FB;
+}
+#homeDeatils_content{background: url(/image/home/bgChild.png) no-repeat top center/100% auto,#F8F8FB!important;}
+.ios .tabbar-labels{height: 55px;}
+.md .navbar {
+    height: 44px!important;
+}
+.md .navbar-inner{padding: 0 5%;}
+.md .page-content {
+    padding: 44px 0 50px 0!important;
+}
+.md .tabbar {
+    height: 55px;
+}
+.md .list .item-media+.item-inner {
+    margin-left: 5px;
+}
 /*左侧panel*/
 @media screen and (device-width: 1024px) and (device-height: 768px)
 {
@@ -1520,11 +1513,16 @@ input:focus::-webkit-input-placeholder {
 }
 /*信息交流*/
 .shortContainer{width: 100%;height: 100%;position: relative;overflow: hidden;}
-/*.shortContainer header{width: 100%;height: 10%;overflow: auto;}
-.shortContainer header ul{width: 100%;margin: 0!important;white-space: nowrap;}
-.shortContainer header ul li{display: inline-block;}*/
 .ios .list .item-inner:after{height: 0;}
-.shortContainer section{position: absolute; left: 0;top: 0;right: 0;bottom: 48px;background: #fff;overflow-y: auto;word-break: break-all;}
+.shortContainer section{position: absolute; left: 0;top: 0;right: 0;bottom: 48px;padding: 20px 40px;background: #fff;overflow-y: auto;word-break: break-all;}
+.shortContainer section p{position: relative;margin: 0;}
+.img_left{text-align: left;}
+.img_left img{width: 30px;height: auto;position: absolute;left: -35px;top: 0px;}
+.img_left span,.img_right span{text-align: left;padding: 5px 10px;display: inline-block;border-radius: 8px;}
+.img_left span{background-color: #9ce69c;}
+.img_right span{background-color: #d0dad0;}
+.img_right{text-align: right;}
+.img_right img{width: 30px;height: auto;position: absolute;right: -35px;top: 0px;}
 .shortContainer footer{width: 100%;height: 48px;position: absolute;bottom: 0;left: 0;background: white;box-shadow: -2px 0px 10px #999;}
 .inputInfo{font-size: 17px!important;height: 100%;line-height: 40px;cursor: pointer;text-indent: 20px;white-space: nowrap;}
 .shortContainer footer button{font-size: 1rem;height: 100%!important;background: transparent;border: 0;}
