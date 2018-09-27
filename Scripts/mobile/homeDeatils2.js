@@ -1,8 +1,9 @@
 ﻿
 function homeDeatils2() {
-    var kt_index = 1,windSpeedLevel = 1;
-   airConditionerControl(windSpeedLevel);
+
    homeDeatilsDataunCheck.forEach(function(item,index){
+    if(item.className != "")
+    {
         $("."+item.className).unbind();
         $("."+item.className).bind("click",function(){
             var that = $(this);
@@ -13,38 +14,23 @@ function homeDeatils2() {
                     that.removeClass("displayNone").siblings("a").addClass("displayNone");
                 },300);
              }
-             var realConditioner = parseInt($(".wd_conditioner").find("i").text());
-             if(item.className == "kt_wdzd" && realConditioner< 34) //空调温度上调
-             {
-                get_no(this, item.equipNo, item.setNo,++realConditioner);
-                $(".wd_conditioner").find("i").text(realConditioner); //回调成功再执行
+             if(item.Independent) //排斥同类唯一
+             {    
+                 that.parent().siblings().find("a").addClass("displayNone");
+                 that.parent().siblings().find("a:eq(0)").removeClass("displayNone");
              }
-             else if(item.className == "kt_wdjx" && realConditioner>16) //空调温度下调
-             {
-                get_no(this, item.equipNo, item.setNo,--realConditioner);
-                $(".wd_conditioner").find("i").text(realConditioner);
-             }
-             else if(item.className == "kt_msqh")
-             {
-                kt_index = $(".conditioner_view_p2 i.selectFontWhite").attr("aircondiIndex");
-                kt_index>=4?kt_index = 1:++kt_index;
-                $(".conditioner_view_p2 i[aircondiIndex='"+kt_index+"']").addClass("selectFontWhite").siblings().removeClass("selectFontWhite");
-             }
-             else if(item.className == "kt_fstd")
-             {
-                windSpeedLevel>=6?windSpeedLevel=1:windSpeedLevel++;
-                airConditionerControl(windSpeedLevel);
-             }
-             else
-             {
-                get_no(this, item.equipNo, item.setNo,"");
-             }
-
-        });         
+            //空调
+              airConHandle2(item.className);
+            //音乐
+             musicHandle2(item.className);
+             //发送命令
+              if(item.equip_no)
+            get_no(this, item.equip_no, item.setNo, "");
+        });  
+    }
    });
-   //选择灯光照明后者模式
 
-   
+
 
 }
 //选择灯光照明后者模式
@@ -56,47 +42,56 @@ function onLightingList2(){
     {$(".lightingAndPattern_1").removeClass("displayNone");$(".lightingAndPattern_0").addClass("displayNone");}
 
 }
-//遥信表
-function getStatus(){ //检测实时状态，1为开，0为关
-    var jsonData = {
-        "url": "/api/real/equip_yxp_state",
-        "data":{ equip_no: equipNo_1,ycp_no: ycp_no_1},
-        "success": _successfYxp,
-        "error": _errorfYxp,
-        "complete": _completefYxp
-    };
-    jQuery.axpost(jsonData);
-    function _successfYxp(data) {  
-      var resultJs = data.HttpData; 
-      if(resultJs.code == 200)
-      {
-         //设备号 50 ，状态 开--
-      }
-    }
-    function _errorfYxp(e) {}
-    function _completefYxp(XMLHttpRequest, status) { }   
-}
+
 
 //初始化
-function initGustRoomEquip(){
-//获取灯光、空调、音乐、窗帘设备状态，循环设备号和homeDeatilsDataunCheck 相等且 为几项开关，则根据该状态设置显隐藏
+function initGustRoomEquip2(){
+     airConditionerControl(3);
 
 }
 
-//空调控制风速
-function airConditionerControl(windSpeedLevel){
- 
-    $(".conditioner_view_p1 em").removeClass("selectBackgroundWhite");
-    for(var j=1;j<=windSpeedLevel;j++)
+//空调专属处理
+function airConHandle2(className){
+  switch(className){
+    case "kt3_yl_zj": get_no("", 300, 183, 26);temperatureHandle("#homeDeatils2",className);break;
+    case "kt3_yl_jx": get_no("", 300, 183, 26);temperatureHandle("#homeDeatils2",className);break;
+    case "kt3_fs_td": windSpeendAir2(returnIndex("#homeDeatils2 em.selectFontWhite"));airConditionerControl("#homeDeatils2",returnIndex("#homeDeatils2 em.selectFontWhite"));break;
+    case "kt3_ms_qh": moduleAir2(returnIndex("#homeDeatils2 i.selectFontWhite"));airConditionerModul("#homeDeatils2",returnIndex("#homeDeatils2 i.selectFontWhite"));break;         
+  }
+}
+
+//音乐处理
+function musicHandle2(className){
+    if(className == "yy3_ylzd" || className == "yy3_yljx")
     {
-       $(".conditioner_view_p1 em[windSpeedIndex='"+j+"']").addClass("selectBackgroundWhite");
-       $(".conditioner_view_p1 em[windSpeedIndex='6']").removeClass("selectFontWhite")
-       if(j==6)
-       {
-         $(".conditioner_view_p1 em[windSpeedIndex='6']").addClass("selectFontWhite").siblings("em").removeClass("selectBackgroundWhite");
-       }
+      //设置音量值
+       get_no("", 300, 193, 26);
     }
-
 }
 
+//切换窗帘
+function switchCurtains2(){
+  var value = $(".curtains2 option:selected").val();
+  $("#homeDeatils2 .curtainsDD").removeClass("viewDisplay");
+  $("#homeDeatils2 .curtainsDD[datanumber='cl3"+value+"']").addClass("viewDisplay");
+}
 
+//风速处理
+function windSpeendAir2(index){
+  switch(index.toString()){
+    case "1": get_no("", 300, 176, "");break;
+    case "2": get_no("", 300, 177, "");break;
+    case "3": get_no("", 300, 178, "");break;
+    case "4": get_no("", 300, 175, "");break;         
+  }
+}
+
+//模式处理
+function moduleAir2(index){
+  switch(index.toString()){
+    case "1": get_no("", 300, 179, "");break;
+    case "2": get_no("", 300, 180, "");break;
+    case "3": get_no("", 300, 181, "");break;
+    case "4": get_no("", 300, 182, "");break;         
+  }
+}
