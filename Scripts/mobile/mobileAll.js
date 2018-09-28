@@ -1,4 +1,5 @@
 ﻿//移动端js主入口
+var setHomeTime,setHomeTime0,setHomeTime1,setHomeTime2,setHomeTime3,setHomeTime4;
 var myApp = new Framework7({
     // App root element
     root: '#app',
@@ -102,6 +103,12 @@ var myApp = new Framework7({
             // do something on page init
             // console.log(page)
             $(".tabbar").removeClass("displayNone");
+            clearInterval(setHomeTime);
+            clearInterval(setHomeTime0);
+            clearInterval(setHomeTime1);
+            clearInterval(setHomeTime2);
+            clearInterval(setHomeTime3);
+            clearInterval(setHomeTime4);
         },
         popupOpen: function(popup) {
             // do something on popup open
@@ -118,6 +125,8 @@ initLoads();
 function initLoads() {
     loadNameMobile();
     initWebSocket(); //socket
+
+    
 }
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
@@ -1350,20 +1359,23 @@ function publicAjaxData(equip_no_0) {
 
 
 //温度处理
-function temperatureHandle(parentId,className){
+function temperatureHandle(parentId,className,equip_noPublic,set_noPublic){
+
     var value;
     if(className =="qjkt4_yl_zj")
      value  = parseInt($(parentId+" .wd_conditioner1 i").text());
     else
-      value  = parseInt($(parentId+" .wd_conditioner i").text());  
-  if(className == "kt1_yl_zj" || className == "kt2_yl_zj" || className == "kt3_yl_zj" || className == "kt4_yl_zj" || className == "kt5_yl_zj" || className =="qjkt4_yl_zj")
-  {
+    value  = parseInt($(parentId+" .wd_conditioner i").text());  
+
+    if(className == "kt1_yl_zj" || className == "kt2_yl_zj" || className == "kt3_yl_zj" || className == "kt4_yl_zj" || className == "kt5_yl_zj" || className =="qjkt4_yl_zj")
+    {
       if(value <34) {value++;}
-  }
-  else
-  {
+    }
+    else
+    {
       if(value >16) {value--;}
-  }
+    }
+    get_no("", equip_noPublic, set_noPublic, value);
     if(className =="qjkt4_yl_zj")
       $(parentId+" .wd_conditioner1 i").html(value);
     else
@@ -1393,7 +1405,7 @@ function returnIndex(className) {
 //遥信表
 function getStatus(){ //检测实时状态，1为开，0为关
     var jsonData = {
-        "url": "/api/real/equip_yxp_state",
+        "url": "/api/real/equip_item_state",
         "data":{ equip_no: equipNo_1,ycp_no: ycp_no_1},
         "success": _successfYxp,
         "error": _errorfYxp,
@@ -1410,3 +1422,5 @@ function getStatus(){ //检测实时状态，1为开，0为关
     function _errorfYxp(e) {}
     function _completefYxp(XMLHttpRequest, status) { }   
 }
+
+

@@ -38,7 +38,8 @@ html.device-ios.device-iphone-x .statusbar{height: 20px;}
     padding-bottom: 55px;overflow: hidden;
     background: url(/image/home/bg.png) no-repeat top center/100% auto,#F8F8FB;
 }
-#homeDeatils_content{background: url(/image/home/bgChild.png) no-repeat top center/100% auto,#F8F8FB!important;}
+#homeDeatils_content,#homeDeatils_content1,#homeDeatils_content2,#homeDeatils_content3,#homeDeatils_content4{background: url(/image/home/bgChild.png) no-repeat top center/100% auto,#F8F8FB!important;}
+
 .ios .tabbar-labels{height: 55px;}
 .md .navbar {
     height: 44px!important;

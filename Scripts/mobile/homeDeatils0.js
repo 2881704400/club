@@ -25,12 +25,15 @@ function homeDeatils0() {
              musicHandle0(item.className);
             //发送命令
              if(item.equip_no)
-            get_no(this, item.equip_no, item.setNo, "");
+              get_no(this, item.equip_no, item.setNo, "");
         });  
     }
    });
-
-
+  //初始状态值
+  yxpHomeDeatils0(true);
+  setHomeTime0 =setInterval(function(){
+    yxpHomeDeatils0(false);
+  },5000);
 
 }
 //选择灯光照明后者模式
@@ -46,15 +49,14 @@ function onLightingList0(){
 
 //初始化
 function initGustRoomEquip0(){
-     airConditionerControl(3);
-
+  airConditionerControl(3);
 }
 
 //空调专属处理
 function airConHandle0(className){
   switch(className){
-    case "kt1_yl_zj": get_no("", 300, 58, 26);temperatureHandle("#homeDeatils0",className);break;
-    case "kt1_yl_jx": get_no("", 300, 58, 26);temperatureHandle("#homeDeatils0",className);break;
+    case "kt1_yl_zj": temperatureHandle("#homeDeatils0",className,300,58);break;
+    case "kt1_yl_jx": temperatureHandle("#homeDeatils0",className,300,58);break;
     case "kt1_fs_td": windSpeendAir0(returnIndex("#homeDeatils0 em.selectFontWhite"));airConditionerControl("#homeDeatils0",returnIndex("#homeDeatils0 em.selectFontWhite"));break;
     case "kt1_ms_qh": moduleAir0(returnIndex("#homeDeatils0 i.selectFontWhite"));airConditionerModul("#homeDeatils0",returnIndex("#homeDeatils0 i.selectFontWhite"));break;         
   }
@@ -62,10 +64,15 @@ function airConHandle0(className){
 
 //音乐处理
 function musicHandle0(className){
-    if(className == "yy1_ylzd" || className == "yy1_yljx")
+    if(className == "yy1_ylzd")
     {
-      //设置音量值
-      get_no("", 300, 68, 26);
+      window.localstorage.volumeValue1<100?window.localstorage.volumeValue1++:"";
+      get_no("", 300, 68, parseInt(window.localstorage.volumeValue1));
+    }
+    else if(className == "yy1_yljx")
+    {
+      window.localstorage.volumeValue1>0?window.localstorage.volumeValue1--:"";
+      get_no("", 300, 68, parseInt(window.localstorage.volumeValue1));
     }
 }
 
@@ -94,4 +101,98 @@ function moduleAir0(index){
     case "3": get_no("", 300, 56, "");break;
     case "4": get_no("", 300, 57, "");break;         
   }
+}
+
+
+//遥信遥测
+function yxpHomeDeatils0(isJudge){
+     $.ajax({
+        type: "POST",
+        url: "/api/real/equip_item_state",
+        timeout: 5000,
+        headers: {
+            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey 
+        },
+        data: {
+            equip_no: '300'
+        },
+        success: function (data) {
+            // ***yxp****
+            var yxpItem = data.HttpData.data.YXItemDict;
+            //有无人
+            handleDeatils0People(yxpItem["33"].m_YXState,yxpItem["34"].m_YXState,""); //客房1
+           
+           if(isJudge)
+           {
+
+            handleDeatils0State(1,yxpItem["1"].m_YXState); //卫生间灯光
+
+            for(var i= 2;i<=11;i++)
+             handleDeatils0State(i,yxpItem[i].m_YXState); //卧室场景灯光
+
+            for(var i= 12;i<=17;i++)
+             handleDeatils0State(i,yxpItem[i].m_YXState);  //卫生间场景灯光
+
+            handleDeatils0State(18,yxpItem["18"].m_YXState); //空调开关
+
+            for(var i= 19;i<=22;i++)
+             handleDeatils0State(i,yxpItem[i].m_YXState);//空调风速
+
+            for(var i= 23;i<=26;i++)
+              handleDeatils0State(i,yxpItem[i].m_YXState); //空调模式
+
+            handleDeatils0State(27,yxpItem["27"].m_YXState); //歌曲播放关闭
+
+            // ***ycp****
+            var ycpItem = data.HttpData.data.YCItemDict;
+            
+            $("#homeDeatils0 .wd_conditioner").find("i").text(ycpItem["14"].m_YCValue); //卧室空调温度
+
+            window.localstorage.volumeValue1 = ycpItem["15"].m_YCValue;
+
+          }
+        }
+    });
+}
+
+
+//处理状态值
+function handleDeatils0State(parntIndex,status){
+
+    if(status == "灯开" || status == "是" || status == "开启" )
+    {
+       homeDeatilsDataunCheck.forEach(function(item,index){
+          if(item.yx_no == 19 || item.yx_no == 20 || item.yx_no == 21 || item.yx_no == 22)//风速
+          {
+            $("."+className).addClass("selectFontWhite").siblings("em").removeClass("displayNone");
+          }
+          else if(item.yx_no == 23 || item.yx_no == 24 || item.yx_no == 25 || item.yx_no == 26)//模式
+          {
+            $("."+className).addClass("selectFontWhite").siblings("i").removeClass("selectFontWhite");
+          }          
+          else if(item.yx_no == parntIndex){ //其它
+            $("."+className).addClass("displayNone").siblings().removeClass("displayNone");
+          }
+       });
+    }
+    // else
+    // {
+    //    homeDeatilsDataunCheck.forEach(function(item,index){
+    //       if(item.setNo == parntIndex){
+    //         $("."+className).removeClass("displayNone").siblings().addClass("displayNone");
+    //       }
+    //    });
+    // }
+}
+
+//处理状态值
+function handleDeatils0People(judgePeople1,judgePeople2,judgePeople3){
+   if(judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人")
+   {
+      $("#homeDeatils0").find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
+   }
+   else
+   {
+      $("#homeDeatils0").find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
+   }
 }

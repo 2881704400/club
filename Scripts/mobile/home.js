@@ -43,7 +43,13 @@ function onHomePage() {
 		$(".ipad-home-toolbar").hide();
 		$('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
 	}
+	//初始化状态值
+	yxpHome();
+	setHomeTime =setInterval(function(){
+	  yxpHome();
+	},3000);
 }
+
 
 function sceneCustomHuanChart(id) {
 	var myChart = echarts.init(document.getElementById(id));
@@ -736,4 +742,41 @@ function tipsInformtion(tipsStr,tipsEvent){
 			}
 		}]
 	}).open();
+}
+
+
+//遥信遥测
+function yxpHome(){
+     $.ajax({
+        type: "POST",
+        url: "/api/real/equip_item_state",
+        timeout: 5000,
+        headers: {
+            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey 
+        },
+        data: {
+            equip_no: '300'
+        },
+        success: function (data) {
+            var yxpItem = data.HttpData.data.YXItemDict;
+            handleHomeState(1,yxpItem["33"].m_YXState,yxpItem["34"].m_YXState,""); //客房1
+            handleHomeState(2,yxpItem["68"].m_YXState,yxpItem["69"].m_YXState,""); //客房2
+            handleHomeState(3,yxpItem["103"].m_YXState,yxpItem["104"].m_YXState,""); //客房3
+            handleHomeState(4,yxpItem["164"].m_YXState,yxpItem["165"].m_YXState,yxpItem["166"].m_YXState); //客房4
+            handleHomeState(5,yxpItem["199"].m_YXState,yxpItem["200"].m_YXState,""); //客房5
+        }
+    });
+}
+
+
+//处理状态值
+function handleHomeState(index,judgePeople1,judgePeople2,judgePeople3){
+   if(judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人")
+   {
+      $(".homeSection li:eq("+index+") a").find("i").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
+   }
+   else
+   {
+      $(".homeSection li:eq("+index+") a").find("i").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
+   }
 }

@@ -74,11 +74,11 @@
 
 .conditionerControl1 span:nth-child(1) i{font-size: 4rem;    position: relative;top: -0.5rem;font-family: pictos!important;}
 .conditionerControl1 span:nth-child(1) sup{    font-size: 1.5rem; position: relative; top: -1rem; left: -0.5rem;}
-.wd_conditioner{font-size: 3rem;color: white;position: relative;border-right: 1px solid #ddd;}
-.wd_conditioner sup{font-size: 1rem;}
-.wd_conditioner label{font-size: 0.8rem;position: absolute; right: 20%;bottom: 14%;}
-.conditioner_view_p1,.conditioner_view_p2{color: white;margin: 0;white-space: nowrap;}
-.conditioner_view_p1 em{color: #92AFF9;width: 5px;display: inline-block;margin: 0 2px;background: #92AFF9;}
+.wd_conditioner,.wd_conditioner1{font-size: 3rem;color: white;position: relative;border-right: 1px solid #ddd;}
+.wd_conditioner sup,.wd_conditioner1 sup{font-size: 1rem;}
+.wd_conditioner label,.wd_conditioner1 label{font-size: 0.8rem;position: absolute; right: 20%;bottom: 14%;}
+.conditioner_view_p1,.conditioner_view_p2{color: white;margin: 0;height: 35px;line-height: 35px;white-space: nowrap;}
+.conditioner_view_p1 em{color: #92AFF9;margin: 0px 1.5px;}
 .app_fs_1{height: 10px;}
 .app_fs_2{height: 15px;}
 .app_fs_3{height: 20px;}
@@ -89,33 +89,11 @@
 .conditionerControl2 a{width: 60px;height: 60px;text-align: center;display: inline-block;}
 .conditionerControl2 div{text-align: center;}
 .conditionerControl2 div img{width: 100%;}
-/*.conditionerControl2 div:nth-child(1) a{background: url(/image/home/d_close.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(1) a:active{background: url(/image/home/d_open.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(2) a{background: url(/image/home/d_sw_0.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(2) a:active{background: url(/image/home/d_sw_1.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(3) a{background: url(/image/home/d_jw_0.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(3) a:active{background: url(/image/home/d_jw_1.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(4) a{background: url(/image/home/d_fs_0.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(4) a:active{background: url(/image/home/d_fs_1.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(5) a{background: url(/image/home/d_msqh_0.png) no-repeat top center/100% 100%;}
-.conditionerControl2 div:nth-child(5) a:active{background: url(/image/home/d_msqh_1.png) no-repeat top center/100% 100%;}
 
-.soundControl1 a,.soundControl2 a{height: 60px;}
-.soundControl1 a:nth-child(1){background: url(/image/home/d_prev_0.png) no-repeat top center/100% 100%;}
-.soundControl1 a:nth-child(1):active{background: url(/image/home/d_prev_1.png) no-repeat top center/100% 100%;}
-.soundControl1 a:nth-child(2){background: url(/image/home/d_play_0.png) no-repeat top center/100% 100%;}
-.soundControl1 a:nth-child(2):active{background: url(/image/home/d_play_1.png) no-repeat top center/100% 100%;}
-.soundControl1 a:nth-child(3){background: url(/image/home/d_next_0.png) no-repeat top center/100% 100%;}
-.soundControl1 a:nth-child(3):active{background: url(/image/home/d_next_1.png) no-repeat top center/100% 100%;}
-.soundControl2 a:nth-child(1){background: url(/image/home/d_sound_js_0.png) no-repeat top center/100% 100%;}
-.soundControl2 a:nth-child(1):active{background: url(/image/home/d_sound_js_1.png) no-repeat top center/100% 100%;}
-.soundControl2 a:nth-child(2){background: url(/image/home/d_zj_0.png) no-repeat top center/100% 100%;}
-.soundControl2 a:nth-child(2):active{background: url(/image/home/d_zj_1.png) no-repeat top center/100% 100%;}
-*/
 /*.soundControl1,.soundControl2{background: url(/image/home/d_musi_bg.png) no-repeat top center/100% 100%;padding-bottom: 5px;}*/
 .displayNone{display: none!important;}
 .selectFontWhite{color: white!important;}
-.selectBackgroundWhite{background: white!important;}
+/*.selectBackgroundWhite{background: white!important;}*/
 /*消息*/
 .messageSection{width: 90%;height: 72%;margin: auto;overflow-y: auto;    position: relative;top: -2%;}
 .ios .list,.md .list{margin: 0!important;}
@@ -167,3 +145,11 @@
 .historyInfoSection{height: 92%;padding: 5%;background: #F8F8FB;}
 #allInfo,#twoInfo,#threeInfo,#fourInfo,#fiveInfo{height: 100%;overflow-y: auto;}
 .ios .segmented .button:first-child{border-left-width: 0;}
+/*底部弹窗*/
+.modal-in .toolbar {background: url(/image/statusNav.png) no-repeat top center/100% 100%!important;}
+.modal-in .page-content{background: #fff;}
+.modal-in .page-content li{border-bottom: 1px solid #eee;background: #fff;}
+.modal-in .sheet-close{color: white;}
+/*公共*/
+.viewDisplay{display: flex!important;}
+.viewDisplayair{display: flex!important;}
