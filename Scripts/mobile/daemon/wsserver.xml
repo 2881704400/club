@@ -1,0 +1,25 @@
+<service>
+	<id>wsserver.exe</id>
+	<name>wsServer</name>
+	<description>测试项目服务器</description>
+	<executable>D:\Program Files\nodejs\node.exe</executable>
+	<logmode>rotate</logmode>
+	<argument>--harmony</argument>
+	<argument>D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js</argument>
+	<argument>--file</argument>
+	<argument>D:\club\Scripts\mobile\websocket</argument>
+	<argument>--log</argument>
+	<argument>wsServer wrapper</argument>
+	<argument>--grow</argument>
+	<argument>0.25</argument>
+	<argument>--wait</argument>
+	<argument>1</argument>
+	<argument>--maxrestarts</argument>
+	<argument>3</argument>
+	<argument>--abortonerror</argument>
+	<argument>n</argument>
+	<argument>--stopparentfirst</argument>
+	<argument>undefined</argument>
+	<stoptimeout>30sec</stoptimeout>
+	<workingdirectory>D:\club\Scripts\mobile\websocket</workingdirectory>
+</service>

@@ -1,5 +1,5 @@
 ﻿/*****************************************************************
-                  jQuery Ajax封装通用类  (linjq)       
+                  Ajax封装通用类  (linjq)       
 *****************************************************************/
 $(function () {
 	/**
@@ -18,7 +18,7 @@ $(function () {
      * error 失败回调函数
      * complete 请求完成后回调函数 (请求成功或失败之后均调用)。
      */
-	jQuery.ax = function (opt) {
+	$.fn.ax = function (opt) {
 		this.defaults = {  //默认配置
 			url: null,
 			type: "GET",
@@ -67,7 +67,7 @@ $(function () {
 		});
 	};
 
-	jQuery.axpost = function (opt) {
+	$.fn.axpost = function (opt) {
 		this.defaults = {  //默认配置
 			url: null,
 			type: "POST",
@@ -108,7 +108,7 @@ $(function () {
 		});
 	};
 
-	jQuery.axget = function (opt) {
+	$.fn.axget = function (opt) {
 		this.defaults = {  //默认配置
 			url: null,
 			type: "GET",
@@ -145,7 +145,7 @@ $(function () {
      * ajax封装文件上传
      * 包含上传进度
      */
-	jQuery.axfile = function (opt) {
+	$.fn.axfile = function (opt) {
 	    this.defaults = {  //默认配置
 	        url: null,
 	        type: "POST",
@@ -199,7 +199,7 @@ $(function () {
      * ajax封装文件上传
      * 不包含上传进度
      */
-	jQuery.axfilex = function (opt) {
+	$.fn.axfilex = function (opt) {
 	    this.defaults = {  //默认配置
 	        url: null,
 	        type: "POST",
@@ -240,4 +240,55 @@ $(function () {
 	        }
 	    });
 	};
+
+	/*
+     * ajax封装并发请求
+     *新接口使用
+     *$.when并发请求，参数必须为deferred对象
+     */
+   $.fn.XmlRequset = {
+    httpPost: function(url,n){
+        var i = $.Deferred();
+        return $.ajax({
+            url: url,
+            data: n.data,
+            type: "POST",
+            dataType:"JSON",
+            headers: {
+	            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey,
+	        },            
+            async: !1 !== n.async,
+            timeout: n.timeout || 5000,
+            success: function(e) {
+                i.resolveWith(this, [e])
+            },
+            error: function(e, n) {
+                i.rejectWith(this, ["网络异常，请稍候重试"])
+            }
+        }),
+        i.promise()
+     },
+     httpGet:function(url,n){
+        var i = $.Deferred();
+        $.ajax({
+            url: url,
+            data: $.param(n.data),
+            type: "GET",
+            dataType:"JSON",
+            headers: {
+	            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey,
+	        },                
+            async: !1 !== n.async,
+            timeout: n.timeout || 5000,
+            success: function(e) {
+                i.resolveWith(this, [e])
+            },
+            error: function(e, n) {
+                i.rejectWith(this, ["网络异常，请稍候重试"])
+            }
+        });
+        return i.promise()
+     }
+   }
+
 });

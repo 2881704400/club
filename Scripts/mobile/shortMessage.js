@@ -25,6 +25,7 @@ function shortMessage() {
         },300);
     })
     readerFile(fileUrl, userName, receiveUser, handleString(chatTime), true);
+    console.log(chatObject); // 1.5 1500 *4 = 6000
 }
 
 function send_msg() {

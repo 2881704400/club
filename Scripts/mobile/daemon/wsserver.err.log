@@ -1,0 +1,220 @@
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+          ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177:11)
+    at emitOne (events.js:116:13)
+    at process.emit (events.js:211:7)
+    at process.exit (internal/process.js:157:15)
+    at monitor (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:99:17)
+    at ChildProcess.<anonymous> (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:170:5)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+          ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177:11)
+    at emitOne (events.js:116:13)
+    at process.emit (events.js:211:7)
+    at process.exit (internal/process.js:157:15)
+    at monitor (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:99:17)
+    at ChildProcess.<anonymous> (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:170:5)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+          ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177:11)
+    at emitOne (events.js:116:13)
+    at process.emit (events.js:211:7)
+    at process.exit (internal/process.js:157:15)
+    at monitor (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:99:17)
+    at ChildProcess.<anonymous> (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:170:5)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+          ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177:11)
+    at emitOne (events.js:116:13)
+    at process.emit (events.js:211:7)
+    at process.exit (internal/process.js:157:15)
+    at monitor (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:99:17)
+    at ChildProcess.<anonymous> (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:170:5)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module 'D:\club\Scripts\mobile\websocket'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177
+    child.send('shutdown');
+          ^
+
+TypeError: Cannot read property 'send' of null
+    at process.killkid (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:177:11)
+    at emitOne (events.js:116:13)
+    at process.emit (events.js:211:7)
+    at process.exit (internal/process.js:157:15)
+    at monitor (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:99:17)
+    at ChildProcess.<anonymous> (D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js:170:5)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)

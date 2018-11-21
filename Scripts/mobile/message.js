@@ -5,12 +5,11 @@ function Message() {
   $(".messageInfoList").html(''); AllTime.length =  AllName.length = 0;  
   $(".auth_name_get").text(window.localStorage.auth_name_title);
   $('.messageConfirm p:eq(0)').text("服务员 "+window.localStorage.userName);
-  readerTxt("C:\\MsgChat","admin","zkx","20180912",true);
-   //readyFile(fileUrl);
-  // for(var i=0;i<10;i++)
-  //   initmessageHTML("Alony","09:00","Database Scientist...","2018-08-16 09:00")
+  // readerTxt("C:\\MsgChat","admin","zkx","20180912",true);
+   readyFile(fileUrl);
+   // 通知待确认和已确认
+    confirmNotice();
 }
-
 
 function readyFile(fileURL) {
     var Record_url = "/GWService.asmx/GetFileStructure";
@@ -28,15 +27,40 @@ function readyFile(fileURL) {
     }
     function Record_error(e){}
     function Record_complete(xmlhttprequest,status){}
+
+    // $.when($.fn.XmlRequset.httpPost("/GWService.asmx/GetFileStructure", {
+    //     data: {
+    //         filePath: fileURL,
+    //         fileName: '.txt',
+    //     },
+    //     async: false
+    // })).done(function(n, l) {
+    //   var dt = $(data).find("string").html(),result = JSON.parse(dt);
+
+    //   if(result != null)
+    //   {
+    //     result.forEach(function(item,index){var dTime = item.replace(fileUrl+"\\","");AllTime.push(dTime);});
+    //     AllTime=AllTime.sort(sortNumber);
+    //     AllTime.forEach(function(item,index){readyFileTxt(item);});
+    //   }       
+    // }).fail(function(e){
+         
+    // });
+
+
+
+
 }
 
 function readyFileTxt(value) {
+
     var Record_url = "/GWService.asmx/GetFileStructure";
     var Record_data = "filePath=" + fileUrl+"\\"+value + "&&fileName=" + ".txt";
     JQajaxo("post", Record_url, true, Record_data,Record_success,Record_error,Record_complete);
     function Record_success(data) {
         var dt = $(data).find("string").html();
         var result = JSON.parse(dt);
+
         if(result != null)
         {
             var AllStr="",localUsr = window.localStorage.userName; 
@@ -63,7 +87,6 @@ function readyFileTxt(value) {
                   }
             });
         }
-        
     }
     function Record_error(e){}
     function Record_complete(xmlhttprequest,status){}
@@ -71,40 +94,35 @@ function readyFileTxt(value) {
 
 //读记录
 function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
-    var jsonData = {
-        "url": "/api/GWServiceWebAPI/ReadChatInfo",
-        "data": {
-            "fileUrl": fileUrl,
-            "fileName": sendUser+"-"+receiveUser,
-            "DateTime": DateTime,
-        },
-        "success": _success,
-        "error": _error,
-        "complete": _complete,
-    };
-    jQuery.axpost(jsonData);
 
-    function _success(dt) {
-      // myApp.dialog.alert(JSON.stringify(dt));
-      if(dt.HttpData.code == 200)
-      {
-        var allStr,userStr,strLength,chatObjec,endChatObject,chatDate,chatContent,chatTime;
-        allStr = dt.HttpData.data.concenTxt.split("<br />");
-        strLength= allStr.length;
-        userStr = allStr[strLength-2];
-        if(sendUser == userName)
-         {chatObjec = receiveUser;}
-        else
-          {chatObjec = sendUser;}
-        endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
-        chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
-        chatContent= userStr.split("<f7-Content:>")[1];
-        chatDate= chatTime.split(" ")[0].replace("-","");
-        initmessageHTML(chatObjec,chatTime,endChatObject+": "+chatContent,chatDate);//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期        
-      }
-    }
-    function _error(e) {}
-    function _complete(XMLHttpRequest, status) {}
+    // 请求 
+    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/ReadChatInfo", {
+        data: {
+            fileUrl: fileUrl,
+            fileName: sendUser+"-"+receiveUser,
+            DateTime: DateTime,
+        },
+        async: false
+    })).done(function(n, l) {
+        let rt = n.HttpData;
+        if (rt.code == 200) {
+          var allStr,userStr,strLength,chatObjec,endChatObject,chatDate,chatContent,chatTime;
+          allStr = rt.data.concenTxt.split("<br />");
+          strLength= allStr.length;
+          userStr = allStr[strLength-2];
+          if(sendUser == userName)
+           {chatObjec = receiveUser;}
+          else
+            {chatObjec = sendUser;}
+          endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
+          chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
+          chatContent= userStr.split("<f7-Content:>")[1];
+          chatDate= chatTime.split(" ")[0].replace("-","");
+          initmessageHTML(chatObjec,chatTime,endChatObject+": "+chatContent,chatDate);//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
+        }
+    }).fail(function(e) {});
+
+
 }
 
 //升序

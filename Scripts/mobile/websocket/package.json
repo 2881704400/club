@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "node-windows": "^0.1.14"
+  }
+}

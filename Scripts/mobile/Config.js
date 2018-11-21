@@ -623,3 +623,16 @@ var homeDeatilsDataunCheck =[
 {equip_no:null,setNo:null,yx_no: null,value:null,name:"音量增大",className:"yy5_ylzd",isFlag: true,Independent: 0},
     ];
 
+
+
+
+
+//排班人员
+var userName_work = [{
+ name: "zkx",
+},
+{
+ name: 'admin',
+}
+];
+

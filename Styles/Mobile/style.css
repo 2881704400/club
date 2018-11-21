@@ -153,3 +153,7 @@
 /*公共*/
 .viewDisplay{display: flex!important;}
 .viewDisplayair{display: flex!important;}
+/*用户*/
+.userlistContainer>div.list-group{display: none;}
+.userlistContainer li.list-group-title{color: #666!important;}
+.userListView ul li>a{color: #000;}

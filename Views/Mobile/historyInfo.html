@@ -2,7 +2,7 @@
     <div class="navbar " >
         <div class="navbar-inner">
             <div class="left">
-              <a href="#" class="link back"><i class="iconfont icon-backAPP"></i></a>
+              <a href="#" class="link back"><i class="iconfont icon-back"></i></a>
             </div>                                      
             <div class="center sliding title auth_name_msg">历史通知</div>
             <div class="right"></div>          
@@ -11,11 +11,11 @@
     <div class="page-content historyInfoContainer">
 
           <div class="segmented segmented-raised">
-            <a class="button tab-link tab-link-active" href="#allInfo">全部</a>
-            <a class="button tab-link" href="#twoInfo">客房</a>
-            <a class="button tab-link" href="#threeInfo">厨房</a>
-            <a class="button tab-link" href="#fourInfo">水吧</a>
-            <a class="button tab-link" href="#fiveInfo">泳池</a>
+            <a class="button tab-link tab-link-active" href="#allInfo" data_number = "0">全部</a>
+            <a class="button tab-link" href="#twoInfo" data_number = "1">客房</a>
+            <a class="button tab-link" href="#threeInfo" data_number = "2">厨房</a>
+            <a class="button tab-link" href="#fourInfo" data_number = "3">水吧</a>
+            <a class="button tab-link" href="#fiveInfo" data_number = "4">泳池</a>
           </div>
 
         <div class="tabs historyInfoSection">
@@ -61,18 +61,18 @@
                 <img src="/Image/notice/noticeDetails.png" alt="">
                 <div class="alertMSG_text">
                     <p class="row">
-                        <span class="col-50">楼层: <label>18</label></span>
-                        <span  class="col-50">位置: <label>18</label></span>
+                        <span class="col-50 msgFloor">楼层: <label>18</label></span>
+                        <span  class="col-50 msgPosition">位置: <label>18</label></span>
                     </p>
                     <p class="row">
-                        <span class="col-100">时间: <label>2018/07/02 15:00</label></span>
+                        <span class="col-100 msgCallTime">时间: <label>2018/07/02 15:00</label></span>
                       
                     </p>
                     <p class="msg_tooip">呼叫服务人员<b>请确认后立即前往处理</b></p>
                      
                      <a href="#" class="msg_comfig">确认通知</a>
                 </div>
-                <a href="#" class="msg_close"><i class="iconfont icon-app_close"></i></a>
+                <a href="#" class="msg_close" ><i class="iconfont icon-app_close"></i></a>
             </div>
         </div>
 

@@ -23,6 +23,35 @@ $(".searchInput").bind("blur",function(){
     $(".userListDetails").css("overflow-y","auto");
 });
 
+// 请求 
+$.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/get_JMdata",{
+            data:{tableName:"GWUser"},
+            async:false
+        })).done(function(n,l){
+        let rt = n.HttpData;
+        if (rt.code ==200) {
+           $(".userListView").find("ul").html("");
+          rt.data.forEach(function(item,index){
+              let html = '<li >'+
+                          '<a class="item-content" href="/shortMessage/?zkx,201811-19">'+
+                            '<div class="item-media"><img src="/image/ic_launcher.png" width="60"></div>'+
+                            '<div class="item-inner">'+
+                              '<div class="item-title">'+item.name+'</div>'+
+                            '</div>'+
+                          '</a>'+
+                        '</li>'; 
+              $(".userListView").find("ul").append(html).parents("div.list-group").css("display","block");
+              $("html").find("a").unbind();
+              $("html").find("a").bind("click",function(){
+                  
+              });
+          });
+        }
+    }).fail(function(e){
+});
+
+
+
 }
 
 //获取时间
@@ -34,3 +63,4 @@ function GetDateString() {
   var d = dd.getDate();
   return y + "" + addZero(m) + "" + addZero(d);
 }
+
