@@ -17,8 +17,8 @@
 		<link rel="stylesheet" href="/Scripts/plug/1.5.0/framework7.ios.colors.min.css">
 		<!--图标字体样式-->
 		<!-- <link rel="stylesheet" type="text/css" href="/fonts/iconfont.css" /> -->
-		<!-- <link rel="stylesheet" type="text/css" href="/fonts/comIndex/iconfont.css" /> -->
-		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_784725_zbyb7zj8i5m.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_784725_07m0a29147zd.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_784725_9pkrg69gg0s.css" /> -->
 		<!--声波动画-->
 		<link rel="stylesheet" type="text/css" href="/Styles/Plugin/waveAnimation.css" />
 		<!--本页样式-->
@@ -30,8 +30,8 @@
 	</head>
 
 	<body>
-		
-		<div id="app" style="display: none;">
+		<!-- App root element -->
+		<div id="app">
 			<div class="statusbar"></div>
 			<div class="panel panel-left layout-dark panel-cover">
 				<div class="list">
@@ -46,7 +46,7 @@
 								</div>
 							</a>
 						</li>
-						<li id="appCacheClearLi" style="display:none;">
+						<li id="appCacheClearLi" style="display:block;">
 							<a href="#" class="item-link item-content" onclick="onAppCacheClear()">
 								<div class="item-content">
 									<div class="item-media"><i class="iconfont icon-huancun"></i></div>
@@ -69,7 +69,6 @@
 					</ul>
 				</div>
 			</div>
-
 			<div class="view view-main">
 				<div data-page="home" class="page" id="home">
 					<!-- Top Navbar -->
@@ -77,8 +76,9 @@
 						<div class="navbar-inner">
 							<div class="left auth_name_get">
 								<a href="#" class="iconfont icon-indexExit" onclick="onUserLogout()" id="exitOut">注销</a>
+								<a href="#" class="iconfont icon-indexExit" onclick="onAppCacheClear()" id="exitOut">注销</a>
 							</div>
-							<div class="center sliding title homeCenterTitleId" id="homeCenterTitleId">首页</div>
+							<div class="center sliding title homeCenterTitleId" id="homeCenterTitleId">系统总览</div>
 							<div class="right homeRightTitleId" id="homeRightTitleId">
 								<a href="/userList/" class="link icon-only mobileUser"><i class="iconfont icon-conversation"></i></a>
 								<a href="/initSet/" class="link icon-only mobileSet"><i class="iconfont icon-appSet"></i></a>
@@ -118,23 +118,23 @@
 							<section class="homeSection">
 								<ul class="row">
 									<li class="col-50">
-										<a href="/homeDeatils0/">
+										<a href="/homeDeatils/">
 											<p>客房101</p><i class="iconfont icon-peopleBlock"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils1/">
+										<a href="/homeDeatils/">
 											<p>客房102</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils2/">
+										<a href="/homeDeatils/">
 											<p>客房103</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils3/">
+										<a href="/homeDeatils/">
 											<p>客房104</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils4/">
+										<a href="/homeDeatils/">
 											<p>客房105</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 								</ul>
@@ -143,28 +143,36 @@
 						<div class="ipad-homeContents" style="display: none;">
 							<div class="main">
 								<div class="main-box">
-									<a href="/guestControl/" class="main-chart">
-										<p>客控系统</p>
-										<section id="fiveHalfChartId"></section>
-									</a>
+									<div class="main-chart" onclick="goPage('/guestControl/',this)" style="top: 25%;">
+										<img src="../../Image/Ipad/customConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>客控系统</p>-->
+										<!--<section id="fiveHalfChartId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/bgMusic/" class="main-chart">
-										<p>背景音乐系统</p>
-										<section id="bgMusicId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/bgMusic/',this)" style="top: 25%;">
+										<img src="../../Image/Ipad/musicConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>音乐系统</p>-->
+										<!--<section id="bgMusicId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/electManager/" class="main-chart">
-										<p>机电管理</p>
-										<section id="electManagerId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/electManager/',this)" style="top: 25%;">
+										<img src="../../Image/Ipad/enginConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>机电管理</p>-->
+										<!--<section id="electManagerId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/serviceCall/" class="main-chart">
-										<p>服务呼叫</p>
-										<section id="roomCallId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/serviceCall/',this)" >
+										<img src="../../Image/Ipad/serverConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>服务呼叫</p>-->
+										<!--<section id="roomCallId"></section>-->
+									</div>
 								</div>
 								<!--<div class="main-box">
 									<a href="/serviceManage/" class="main-chart">
@@ -173,16 +181,21 @@
 									</a>
 								</div>-->
 								<div class="main-box">
-									<a href="/infoComm/" class="main-chart">
-										<p>信息沟通</p>
-										<section id="infoCommId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/infoComm/',this)" >
+										<img src="../../Image/Ipad/messageConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>信息沟通</p>-->
+										<!--<section id="infoCommId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="#" class="main-chart">
-										<p>场景定制</p>
-										<section id="sceneCustomId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/scenceCus/',this)" >
+										<!--<img src="../../Image/Ipad/customNoBg.png"/>-->
+										<img src="../../Image/Ipad/senceConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>场景定制</p>-->
+										<!--<section id="sceneCustomId"></section>-->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -243,11 +256,16 @@
 							<img src="../../Image/Ipad/infoComm_light.png" />
 							<span class="tabbar-label">信息沟通</span>
 						</a>
-						<a href="#" class="link no-animation" id="sceneCustomTool">
+						<a href="/scenceCus/" class="link no-animation" id="sceneCustomTool">
 							<img src="../../Image/Ipad/sceneCustom_dark.png" />
 							<img src="../../Image/Ipad/sceneCustom_light.png" />
-							<span class="tabbar-label">场景定制</span>
+							<span class="tabbar-label">场景控制</span>
 						</a>
+						<!--<a href="/curtainSys/" class="link no-animation" id="curtainControlTool">
+							<img src="../../Image/Ipad/curtain_dark.png" />
+							<img src="../../Image/Ipad/curtain_light.png" />
+							<span class="tabbar-label">窗帘系统</span>
+						</a>-->
 					</div>
 				</div>
 			</div>
@@ -291,8 +309,7 @@
 		<script type="text/javascript" src="/Scripts/mobile/PageJs.js"></script>
 		<!-- 插件-->
 		<script type="text/javascript" src="/Scripts/mobile/plugin/appPopup.js"></script>
-        <!-- 全屏设置 -->
-		<script type="text/javascript" src="/Scripts/plug/1.5.0/onorientationchange.js"></script>
+
 	</body>
 
 </html>

@@ -23,13 +23,13 @@ function onHomePage() {
             $(this).find("img").eq(0).hide();
             $(this).find("img").eq(1).show();
         });
-        toolbarActiveImg("ipadHomeTool")
-        fiveHalfPieChart('fiveHalfChartId');
-        bgMusicPieChart('bgMusicId', 28);
-        electManagerPieChart('electManagerId', 28);
-        roomCallPieChart('roomCallId');
-        infoCommPieChart('infoCommId');
-        sceneCustomHuanChart('sceneCustomId');
+//      toolbarActiveImg("ipadHomeTool")
+//      fiveHalfPieChart('fiveHalfChartId');
+//      bgMusicPieChart('bgMusicId', 28);
+//      electManagerPieChart('electManagerId', 28);
+//      roomCallPieChart('roomCallId');
+//      infoCommPieChart('infoCommId');
+//      sceneCustomHuanChart('sceneCustomId');
     } else {
         authorizationName();
         $(".homeCenterTitleId").html(" ");
@@ -52,7 +52,15 @@ function onHomePage() {
     // 检测是否呼叫
     // sendNotice(1005,1);
 }
-
+function goPage(url,dom){
+	$(dom).find("img").eq(0).hide();
+	$(dom).find("img").eq(1).show();
+	setTimeout(function(){
+		$(dom).find("img").eq(1).hide();
+		$(dom).find("img").eq(0).show();
+	},200)
+	myApp.router.navigate(url);
+}
 function sceneCustomHuanChart(id) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {
