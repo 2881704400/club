@@ -73,7 +73,7 @@
 								<a href="#" class="iconfont icon-indexExit ipadViews" onclick="onUserLogout()" id="exitOut">注销</a>
 								<a href="#" class="iconfont icon-indexExit" onclick="onAppCacheClear()" id="exitOut">注销</a>
 							</div>
-							<div class="center sliding title homeCenterTitleId ipadViews" id="homeCenterTitleId">首页</div>
+							<div class="center sliding title homeCenterTitleId ipadViews" id="homeCenterTitleId">系统总览</div>
 							<div class="right homeRightTitleId" id="homeRightTitleId">
 								<a href="/userList/" class="link icon-only mobileUser phoneViews"><i class="iconfont icon-conversation"></i></a>
 								<a href="/initSet/" class="link icon-only mobileSet phoneViews"><i class="iconfont icon-appSet"></i></a>
@@ -82,7 +82,7 @@
 						</div>
 					</div>
 					<!-- Scrollable page content -->
-					<div class="page-content homeContainer" id="homeContents">
+					<div class="page-content homeContainer" id="homeContents" >
 						<div class="mobile-homeContents phoneViews">
 							<div class="row homeHeaderList">
 								<div class="col-30 uploadImg">
@@ -204,7 +204,7 @@
 							<i class="iconfont icon-noticeTool" cls="home"></i>
 						</a>
 					</div>
-					<div class="toolbar-inner ipad-home-toolbar ipadViews" >
+					<div class="toolbar-inner ipad-home-toolbar ipadViews"  style="display: none;">
 						<a href="/home/" class="link active no-animation" id="ipadHomeTool">
 							<img src="../../Image/Ipad/home_dark.png" />
 							<img src="../../Image/Ipad/home_light.png" />
@@ -279,28 +279,7 @@
 				// 检测是否呼叫
 				// sendNotice(1005,1);
 			}
-//			var sUserAgent = navigator.userAgent.toLowerCase();
-//			var sUserAgentFlag = true;
-//			if(sUserAgent.match(/ipad/i) == "ipad" || sUserAgent.match(/ipad/i) == "Ipad") {
-//				$("#homeRightTitleId a").eq(0).hide();
-//				$("#homeRightTitleId a").eq(1).hide();
-//				$("#homeRightTitleId a").eq(2).show();
-//				$(".mobile-homeContents").hide();
-//				$(".ipad-homeContents").show();
-//				$(".mobile-home-toolbar").hide();
-//				$(".ipad-home-toolbar").show();
-//				sUserAgentFlag = true;
-//			} else {
-//				$("#homeCenterTitleId").html("");
-//				$("#homeRightTitleId a").eq(0).show();
-//				$("#homeRightTitleId a").eq(1).show();
-//				$("#homeRightTitleId a").eq(2).hide();
-//				$(".mobile-homeContents").show();
-//				$(".ipad-homeContents").hide();
-//				$(".mobile-home-toolbar").show();
-//				$(".ipad-home-toolbar").hide();
-//				sUserAgentFlag = false;
-//			}
+
 		</script>		
 	</body>
 </html>

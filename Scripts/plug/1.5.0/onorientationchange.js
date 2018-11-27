@@ -1,6 +1,14 @@
 var windowWidth = window.screen.width;
 var windowHeight = window.screen.height;
-$("html").height(windowHeight);
+
+var sUserAgent = navigator.userAgent.toLowerCase();
+if(sUserAgent.match(/ipad/i) == "ipad" || sUserAgent.match(/ipad/i) == "Ipad") {
+  $("html").height(windowWidth);
+} else {
+	$("html").height(windowHeight);
+
+	
+}
 window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
 	if(window.orientation == 180 || window.orientation == 0) {
 		var timer = setTimeout(function() {
