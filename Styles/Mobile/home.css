@@ -92,7 +92,7 @@ html.device-ios.device-iphone-x .statusbar{height: 20px;}
     background: transparent!important;
     color: #fff;
 }
-.auth_name_get{    font-size: 18px;margin-left: 5%;}
+.auth_name_get{    font-size: 18px;margin: 0;}
 .navbar a {
     color: #fff;
 }
@@ -1532,4 +1532,8 @@ input:focus::-webkit-input-placeholder {
 
 /*底部菜单*/
 /*.ios .tabbar-labels~* .page-content, .ios .tabbar-labels~.page-content{padding-bottom: 55px;}*/
+
+/* 新增IPad和phone区别 */
+.ipadSetViews .ipadViews{display: none!important;}
+
 

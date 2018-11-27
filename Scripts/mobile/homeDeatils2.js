@@ -123,7 +123,7 @@ function yxpHomeDeatils2(isJudge){
         success: function (data) {
             var yxpItem = data.HttpData.data.YXItemDict;
             //有无人
-            handleDeatils2People(yxpItem["103"].m_YXState,yxpItem["104"].m_YXState,""); 
+            // handleDeatils2People(yxpItem["103"].m_YXState,yxpItem["104"].m_YXState,""); 
            
            if(isJudge)
            {
@@ -152,7 +152,7 @@ function yxpHomeDeatils2(isJudge){
             
             $("#homeDeatils2 .wd_conditioner").find("i").text(ycpItem["44"].m_YCValue); //卧室空调温度
 
-            window.localstorage.volumeValue3 = ycpItem["45"].m_YCValue;
+            window.localStorage.volumeValue3 = ycpItem["45"].m_YCValue;
             }
         }
     });
@@ -164,39 +164,34 @@ function handleDeatils2State(parntIndex,status){
 
     if(status == "灯开" || status == "是" || status == "开启" )
     {
+
        homeDeatilsDataunCheck.forEach(function(item,index){
+          if(item.className)
           if(item.yx_no == 19 || item.yx_no == 20 || item.yx_no == 21 || item.yx_no == 22)//风速
           {
-            $("."+className).addClass("selectFontWhite").siblings("em").removeClass("displayNone");
+            $("."+item.className).addClass("selectFontWhite").siblings("em").removeClass("displayNone");
           }
           else if(item.yx_no == 23 || item.yx_no == 24 || item.yx_no == 25 || item.yx_no == 26)//模式
           {
-            $("."+className).addClass("selectFontWhite").siblings("i").removeClass("selectFontWhite");
+            $("."+item.className).addClass("selectFontWhite").siblings("i").removeClass("selectFontWhite");
           }          
           else if(item.yx_no == parntIndex){ //其它
-            $("."+className).addClass("displayNone").siblings().removeClass("displayNone");
+            console.log(item);
+            $("."+item.className).addClass("displayNone").siblings().removeClass("displayNone");
           }
        });
     }
-    // else
-    // {
-    //    homeDeatilsDataunCheck.forEach(function(item,index){
-    //       if(item.setNo == parntIndex){
-    //         $("."+className).removeClass("displayNone").siblings().addClass("displayNone");
-    //       }
-    //    });
-    // }
 }
 
 
 //处理状态值
-function handleDeatils2People(judgePeople1,judgePeople2,judgePeople3){
-   if(judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人")
-   {
-      $("#homeDeatils2").find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
-   }
-   else
-   {
-      $("#homeDeatils2").find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
-   }
-}
+// function handleDeatils2People(judgePeople1,judgePeople2,judgePeople3){
+//    if(judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人")
+//    {
+//       $("#homeDeatils2").find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
+//    }
+//    else
+//    {
+//       $("#homeDeatils2").find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
+//    }
+// }

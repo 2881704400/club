@@ -106,12 +106,12 @@ var myApp = new Framework7({
     on: {
         pageInit: function(page) {
             $(".tabbar").removeClass("displayNone");
-            clearInterval(setHomeTime);
-            clearInterval(setHomeTime0);
-            clearInterval(setHomeTime1);
-            clearInterval(setHomeTime2);
-            clearInterval(setHomeTime3);
-            clearInterval(setHomeTime4);
+            // clearInterval(setHomeTime);
+            // clearInterval(setHomeTime0);
+            // clearInterval(setHomeTime1);
+            // clearInterval(setHomeTime2);
+            // clearInterval(setHomeTime3);
+            // clearInterval(setHomeTime4);
         },
         popupOpen: function(popup) {
         },
@@ -123,7 +123,6 @@ var mainView = myApp.views.create('.view-main');
 var service = "/GWService.asmx";
 var $$ = Framework7.$;
 initLoads();
-
 function initLoads() {
     loadNameMobile();
     // initWebSocket(); //socket
@@ -144,7 +143,6 @@ $$(document).on('ajaxError', function() {
         }]
     }).open();
 });
-
 function onPages() {
     if (!$(".navbar").hasClass("navbar-hidden")) {
         $(".navbar").addClass("navbar-hidden");
@@ -154,7 +152,6 @@ function onPages() {
         $(".toolbar").removeClass("toolbar-hidden");
     }
 }
-
 function JQajaxo(_type, _url, _asycn, _data, _success) {
     var ajaxs = $.ajax({
         type: _type,
@@ -187,7 +184,6 @@ function JQajaxo(_type, _url, _asycn, _data, _success) {
         }
     });
 }
-
 function ajaxService(_type, _url, _asycn, _data, _success, _error) {
     var ajaxs = $.ajax({
         type: _type,
@@ -409,7 +405,6 @@ function Control_SetItem_List(equips, num) {
     }
     return equipBool;
 }
-
 function getValueByKey(str, key) {
     var urlSearchSplit = str.split('&');
     for (var i = 0; i < urlSearchSplit.length; i++) {
@@ -457,7 +452,6 @@ function loadNameMobile() {
             "complete": _complete
         };
         $.fn.axpost(jsonData);
-
         function _success(dt) {
             var codeString = dt.HttpData;
             if (codeString.code == 200) {
@@ -466,27 +460,24 @@ function loadNameMobile() {
                 window.localStorage.userName = '';
             }
         }
-
         function _error(e) {
             window.localStorage.userName = '';
             myJavaFuntion.OpenLocalUrl("login");
             console.log(e);
         }
-
         function _complete(XMLHttpRequest, status) {
             if (window.localStorage.userName != "" && window.localStorage.userName != null) {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
-                InitEnsure();
-                AppShows();
-                onHomePage();
-                $("#app").show();
+                InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
+                //初始化状态值-房间有无人
+                yxpHome();
+                setHomeTime =setInterval(function(){yxpHome();},3000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }
         }
     }, 100);
 }
-
 function pageLists() {
     $(".page_list").find("a").each(function() {
         if ($(this).attr("href") != "#") {
@@ -577,7 +568,6 @@ function onAppCacheClear() {
         }]
     }).open();
 }
-
 function AppCacheClearCallback(dt) {
     if (dt == "true") {
         location.reload();
@@ -601,7 +591,6 @@ function AppCacheClearCallback(dt) {
         // }).open();
     }
 }
-
 function toolbarActive(ids) {
     $(".toolbar-inner").find("a").each(function() {
         if ($(this).hasClass("active")) {
@@ -618,7 +607,6 @@ function toolbarActive(ids) {
         $("#" + ids).find("i").addClass("icon-" + cls + "_a");
     }
 }
-
 function toolbarActiveImg(ids) {
     $(".toolbar-inner a").each(function() {
         $(this).removeClass("active");
@@ -667,7 +655,6 @@ function onAbout() {
     }
     JQajaxo("get", _url, true, "", _success);
 }
-
 function backss() {
     var mainView = myApp.addView('.view-main');
     var pages = new Array();
@@ -911,7 +898,6 @@ function initPageJS(dt, ext) { //ext扩展界面地址
     }
 }
 //微信分享id
-//var wxShareStr = "wx7a6d8624593a51e3";
 var wxShareStr = "wxd2a573967e43f6c6";
 //div分享到微信
 function divShareToWX(byID) {
@@ -957,7 +943,6 @@ function rd(n, m) {
     var c = m - n + 1;
     return Math.floor(Math.random() * c + n);
 }
-
 function TimeJSONToString2(dt) {
     var timeDate = new Date(dt * 1000).format("yyyy-MM-dd hh:mm:ss");
     return timeDate.toLocaleString();
@@ -978,7 +963,6 @@ Date.prototype.format = function(fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-
 function evil(fn) {
     var Fn = Function; //一个变量指向Function，防止有些前端编译工具报错
     return new Fn('return ' + fn)();
@@ -1061,7 +1045,6 @@ function get_no(dt, set_equip, set_no, values) {
         }
     });
 }
-
 function onSetCommand11(dt, equip_no, main_instr, mino_instr, valueset) {
     // console.log(equip_no + "," + main_instr + "," + mino_instr + "," + valueset);
     $.ajax({
@@ -1108,7 +1091,6 @@ $.fn.isOnScreen = function() {
     bounds.bottom = bounds.top + this.outerHeight();
     return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
 };
-
 function _errorfSet(that) {
     if ($(that).hasClass("volumebtn1") || $(that).hasClass("volumebtn2") || $(that).hasClass("volumebtn3") || $(that).hasClass("volumebtn4")) {} else if ($(that).attr("id") == "viewsSave") //照相
         $(that).attr("disabled", false);
@@ -1154,7 +1136,6 @@ function createws(value) {
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     else console.log("浏览器太旧，不支持");
 }
-
 function initWebSocket() {
     createws("userName=" + window.localStorage.userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
@@ -1329,8 +1310,6 @@ function publicAjaxData(equip_no_0) {
         }
     }
 }
-
-
 //温度处理
 function temperatureHandle(parentId,className,equip_noPublic,set_noPublic){
 
@@ -1355,17 +1334,14 @@ function temperatureHandle(parentId,className,equip_noPublic,set_noPublic){
       $(parentId+" .wd_conditioner i").html(value);
   
 }
-
 //空调控制风速
 function airConditionerControl(parentId, windSpeedLevel) {
     $(parentId + " .conditioner_view_p1 em[windSpeedIndex='" + windSpeedLevel + "']").addClass("selectFontWhite").siblings("em").removeClass("selectFontWhite");
 }
-
 function airConditionerModul(parentId, windSpeedLevel) {
 
     $(parentId + " .conditioner_view_p2 i[windSpeedIndex='" + windSpeedLevel + "']").addClass("selectFontWhite").siblings("i").removeClass("selectFontWhite");
 }
-
 function returnIndex(className) {
     var windspeedIndex = parseInt($(className).attr("windSpeedIndex"));
     windspeedIndex++;
@@ -1374,7 +1350,6 @@ function returnIndex(className) {
     }
     return windspeedIndex;
 }
-
 //遥信表
 function getStatus(){ //检测实时状态，1为开，0为关
     var jsonData = {
@@ -1414,7 +1389,6 @@ function getStatus(){ //检测实时状态，1为开，0为关
 
 
 }
-
 //检测消息发送
 function sendNotice(equipNo_1,ycp_no_1){
     $.when($.fn.XmlRequset.httpPost("/api/real/equip_item_state", {
@@ -1429,7 +1403,7 @@ function sendNotice(equipNo_1,ycp_no_1){
                 //推送 
                 $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
                     data: {
-                        tableName: 'GW_PushMessage',
+                        getDataTable: 'GW_PushMessage',
                     },
                     async: false
                     })).done(function(n, l) {
@@ -1467,7 +1441,7 @@ function sendNotice(equipNo_1,ycp_no_1){
                         //查询最新一条记录
                         $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
                             data: {
-                                tableName: 'gw_historicalNotice order by id desc',
+                                getDataTable: 'gw_historicalNotice order by id desc',
                             },
                             async: false
                             })).done(function(n, l) {
@@ -1547,7 +1521,7 @@ function confirmNotice(){
         //插入数据库
         $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
             data: {
-                tableName: "gw_historicalNotice",
+                getDataTable: "gw_historicalNotice",
             },
             async: false
         })).done(function(n, l) {
@@ -1570,8 +1544,53 @@ function getDateTime_res(AddDayCount){
 function beforeAddZero(val){
   return val<10?('0'+val):val;
 }
-
 //通知跳转
 function locationNotice(){
     myApp.router.navigate('/notice/');    
 }
+//房间内部有无人
+function handleDeatilsPeople(id,judgePeople1, judgePeople2, judgePeople3) {
+    // console.log(id+","+judgePeople1+","+ judgePeople2+","+ judgePeople3);
+    if (judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人") {
+        $("#"+id).find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
+    } else {
+        $("#"+id).find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
+    }
+}
+function handleHomeState(index, judgePeople1, judgePeople2, judgePeople3) {
+    if (judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人") {
+        $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
+    } else {
+        $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
+    }
+}
+//遥信遥测
+function yxpHome() {
+    $.ajax({
+        type: "POST",
+        url: "/api/real/equip_item_state",
+        timeout: 5000,
+        headers: {
+            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey
+        },
+        data: {
+            equip_no: '300'
+        },
+        success: function(data) {
+            var yxpItem = data.HttpData.data.YXItemDict;
+            handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
+            handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
+            handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
+            handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
+            handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, ""); //客房5
+
+            try{handleDeatilsPeople("homeDeatils0",yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); }catch(e){}
+            try{handleDeatilsPeople("homeDeatils1",yxpItem["68"].m_YXState,yxpItem["69"].m_YXState,""); }catch(e){}
+            try{handleDeatilsPeople("homeDeatils2",yxpItem["103"].m_YXState,yxpItem["104"].m_YXState,"");  }catch(e){}
+            try{handleDeatilsPeople("homeDeatils3",yxpItem["164"].m_YXState,yxpItem["165"].m_YXState,yxpItem["166"].m_YXState); }catch(e){}
+            try{handleDeatilsPeople("homeDeatils4",yxpItem["199"].m_YXState,yxpItem["200"].m_YXState,""); }catch(e){}
+
+        }
+    });
+}
+

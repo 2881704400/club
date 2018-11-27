@@ -25,7 +25,7 @@ $(".searchInput").bind("blur",function(){
 
 // 请求 
 $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/get_JMdata",{
-            data:{tableName:"GWUser"},
+            data:{getDataTable:"GWUser"},
             async:false
         })).done(function(n,l){
         let rt = n.HttpData;

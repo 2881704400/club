@@ -3180,7 +3180,6 @@ html.with-statusbar.device-android .panel {
 	float: left;
 	padding-top: 15px;
 	padding-bottom: 8px;
-	color: #666;
 	margin-bottom: 8px;
 	margin-right: 25px;
 }
@@ -3220,7 +3219,7 @@ html.with-statusbar.device-android .panel {
 
 .scenceCus .right-pannel .half-pannel .half-left-pannel .room-scene-box .pannel-imginfo span {
 	width: 65px;
-	color: #9d9d9d;
+	color: #666666;
 	font-size: 14px;
 }
 
@@ -3239,7 +3238,7 @@ html.with-statusbar.device-android .panel {
 .scenceCus .right-pannel .half-pannel .half-left-pannel .top-control-box .pannel-title {
 	width: 100%;
 	padding-top: 15px;
-	color: #666;
+	color: #676767;
 	font-size: 14px;
 	text-align: left;
 	overflow: hidden;
@@ -3420,7 +3419,6 @@ html.with-statusbar.device-android .panel {
 
 .scenceCus .right-pannel .half-pannel .half-right-pannel .top-right-pannel .pannel-title {
 	text-align: left;
-	color: #666;
 	padding: 20px 0;
 }
 
@@ -3454,7 +3452,6 @@ html.with-statusbar.device-android .panel {
 
 .scenceCus .right-pannel .half-pannel .half-right-pannel .top-right-pannel ul li span {
 	position: relative;
-	color: #9d9d9d;
 	left: 10px;
 	top: 1px;
 }

@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html class="with-statusbar">
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
@@ -16,9 +15,7 @@
 		<link rel="stylesheet" href="/Scripts/plug/1.5.0/framework7.min.css">
 		<link rel="stylesheet" href="/Scripts/plug/1.5.0/framework7.ios.colors.min.css">
 		<!--图标字体样式-->
-		<!-- <link rel="stylesheet" type="text/css" href="/fonts/iconfont.css" /> -->
-		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_784725_07m0a29147zd.css" />
-		<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_784725_9pkrg69gg0s.css" /> -->
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_784725_zbyb7zj8i5m.css" />
 		<!--声波动画-->
 		<link rel="stylesheet" type="text/css" href="/Styles/Plugin/waveAnimation.css" />
 		<!--本页样式-->
@@ -28,10 +25,8 @@
 		<link rel="stylesheet" type="text/css" href="/Styles/Ipad/rangeslider.css" media="screen and (min-width: 767px)"/>
 		<link rel="stylesheet" type="text/css" href="/Styles/Ipad/layout.css" media="screen and (min-width: 767px)"/>
 	</head>
-
-	<body>
-		<!-- App root element -->
-		<div id="app">
+	<body >
+		<div id="app" style="visibility: hidden;" >
 			<div class="statusbar"></div>
 			<div class="panel panel-left layout-dark panel-cover">
 				<div class="list">
@@ -75,21 +70,20 @@
 					<div class="navbar">
 						<div class="navbar-inner">
 							<div class="left auth_name_get">
-								<a href="#" class="iconfont icon-indexExit" onclick="onUserLogout()" id="exitOut">注销</a>
+								<a href="#" class="iconfont icon-indexExit ipadViews" onclick="onUserLogout()" id="exitOut">注销</a>
 								<a href="#" class="iconfont icon-indexExit" onclick="onAppCacheClear()" id="exitOut">注销</a>
 							</div>
-							<div class="center sliding title homeCenterTitleId" id="homeCenterTitleId">系统总览</div>
+							<div class="center sliding title homeCenterTitleId ipadViews" id="homeCenterTitleId">首页</div>
 							<div class="right homeRightTitleId" id="homeRightTitleId">
-								<a href="/userList/" class="link icon-only mobileUser"><i class="iconfont icon-conversation"></i></a>
-								<a href="/initSet/" class="link icon-only mobileSet"><i class="iconfont icon-appSet"></i></a>
-								<a href="/noticeSet/" class="link icon-only ipadSet"><i class="iconfont icon-appSet"></i></a>
+								<a href="/userList/" class="link icon-only mobileUser phoneViews"><i class="iconfont icon-conversation"></i></a>
+								<a href="/initSet/" class="link icon-only mobileSet phoneViews"><i class="iconfont icon-appSet"></i></a>
+								<a href="/noticeSet/" class="link icon-only ipadViews"><i class="iconfont icon-appSet"></i></a>
 							</div>
 						</div>
 					</div>
-
 					<!-- Scrollable page content -->
 					<div class="page-content homeContainer" id="homeContents">
-						<div class="mobile-homeContents" style="height: 100%;width: 100%;">
+						<div class="mobile-homeContents phoneViews">
 							<div class="row homeHeaderList">
 								<div class="col-30 uploadImg">
 									<a href="#"><img src="/image/ic_launcher.png" alt="" /></a>
@@ -98,10 +92,10 @@
 									<p class="col-100"></p>
 									<div class="row">
 									<p class="toBeComfirmContainer" style="text-align: left;font-size: 14px;">
-										 <a href="/notice/">
+										<a href="/notice/">
 		                                 <span>待确认</span>
 		                                 <label class="toBeComfirm">42</label>
-		                                 </a>
+		                                </a>
 									</p>
 									<p></p>
 									<p class="ComfirmContainer" style="text-align: left;font-size: 14px;">
@@ -118,60 +112,56 @@
 							<section class="homeSection">
 								<ul class="row">
 									<li class="col-50">
-										<a href="/homeDeatils/">
-											<p>客房101</p><i class="iconfont icon-peopleBlock"></i></a>
+										<a href="/homeDeatils0/">
+											<p>客房1</p><i class="iconfont icon-peopleBlock"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils/">
-											<p>客房102</p><i class="iconfont icon-peopleNone"></i></a>
+										<a href="/homeDeatils1/">
+											<p>客房2</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils/">
-											<p>客房103</p><i class="iconfont icon-peopleNone"></i></a>
+										<a href="/homeDeatils2/">
+											<p>客房3</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils/">
-											<p>客房104</p><i class="iconfont icon-peopleNone"></i></a>
+										<a href="/homeDeatils3/">
+											<p>客房4</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 									<li class="col-50">
-										<a href="/homeDeatils/">
-											<p>客房105</p><i class="iconfont icon-peopleNone"></i></a>
+										<a href="/homeDeatils4/">
+											<p>客房5</p><i class="iconfont icon-peopleNone"></i></a>
 									</li>
 								</ul>
 							</section>
 						</div>
-						<div class="ipad-homeContents" style="display: none;">
+						<div class="ipad-homeContents ipadViews" >
 							<div class="main">
 								<div class="main-box">
 									<div class="main-chart" onclick="goPage('/guestControl/',this)" style="top: 25%;">
 										<img src="../../Image/Ipad/customConSys.png"/>
 										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
-										<!--<p>客控系统</p>-->
-										<!--<section id="fiveHalfChartId"></section>-->
+										
 									</div>
 								</div>
 								<div class="main-box">
 									<div  class="main-chart" onclick="goPage('/bgMusic/',this)" style="top: 25%;">
 										<img src="../../Image/Ipad/musicConSys.png"/>
 										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
-										<!--<p>音乐系统</p>-->
-										<!--<section id="bgMusicId"></section>-->
+										
 									</div>
 								</div>
 								<div class="main-box">
 									<div  class="main-chart" onclick="goPage('/electManager/',this)" style="top: 25%;">
 										<img src="../../Image/Ipad/enginConSys.png"/>
 										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
-										<!--<p>机电管理</p>-->
-										<!--<section id="electManagerId"></section>-->
+										
 									</div>
 								</div>
 								<div class="main-box">
 									<div  class="main-chart" onclick="goPage('/serviceCall/',this)" >
 										<img src="../../Image/Ipad/serverConSys.png"/>
 										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
-										<!--<p>服务呼叫</p>-->
-										<!--<section id="roomCallId"></section>-->
+										
 									</div>
 								</div>
 								<!--<div class="main-box">
@@ -184,26 +174,20 @@
 									<div  class="main-chart" onclick="goPage('/infoComm/',this)" >
 										<img src="../../Image/Ipad/messageConSys.png"/>
 										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
-										<!--<p>信息沟通</p>-->
-										<!--<section id="infoCommId"></section>-->
 									</div>
 								</div>
 								<div class="main-box">
 									<div  class="main-chart" onclick="goPage('/scenceCus/',this)" >
-										<!--<img src="../../Image/Ipad/customNoBg.png"/>-->
 										<img src="../../Image/Ipad/senceConSys.png"/>
 										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
-										<!--<p>场景定制</p>-->
-										<!--<section id="sceneCustomId"></section>-->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Toolbar -->
 				<div class="toolbar tabbar tabbar-labels">
-					<div class="toolbar-inner mobile-home-toolbar" style="display: none;">
+					<div class="toolbar-inner mobile-home-toolbar phoneViews"  style="display: none;">
 						<a href="/home/" class="link active animation-no" id="homeTool">
 							<!-- <i class="iconfont icon-home_a" cls="home"></i>
 	                    <span >客房</span> -->
@@ -220,7 +204,7 @@
 							<i class="iconfont icon-noticeTool" cls="home"></i>
 						</a>
 					</div>
-					<div class="toolbar-inner ipad-home-toolbar" style="display: none;">
+					<div class="toolbar-inner ipad-home-toolbar ipadViews" style="display: none;">
 						<a href="/home/" class="link active no-animation" id="ipadHomeTool">
 							<img src="../../Image/Ipad/home_dark.png" />
 							<img src="../../Image/Ipad/home_light.png" />
@@ -246,11 +230,6 @@
 							<img src="../../Image/Ipad/serviceCall_light.png" />
 							<span class="tabbar-label">服务呼叫</span>
 						</a>
-						<!--<a href="/serviceManage/" class="link no-animation" id="serviceManageTool">
-							<img src="../../Image/Ipad/serviceManage_dark.png" />
-							<img src="../../Image/Ipad/serviceManage_light.png" />
-							<span class="tabbar-label">服务管理</span>
-						</a>-->
 						<a href="/infoComm/" class="link no-animation" id="infoCommTool">
 							<img src="../../Image/Ipad/infoComm_dark.png" />
 							<img src="../../Image/Ipad/infoComm_light.png" />
@@ -272,30 +251,6 @@
 		</div>
 		<!-- 框架js-->
 		<script src="/Scripts/plug/jquery-1.10.1.min.js"></script>
-		<script type="text/javascript">
-			var sUserAgent = navigator.userAgent.toLowerCase();
-			var sUserAgentFlag = true;
-			if(sUserAgent.match(/ipad/i) == "ipad" || sUserAgent.match(/ipad/i) == "Ipad") {
-				$("#homeRightTitleId a").eq(0).hide();
-				$("#homeRightTitleId a").eq(1).hide();
-				$("#homeRightTitleId a").eq(2).show();
-				$(".mobile-homeContents").hide();
-				$(".ipad-homeContents").show();
-				$(".mobile-home-toolbar").hide();
-				$(".ipad-home-toolbar").show();
-				sUserAgentFlag = true;
-			} else {
-				$("#homeCenterTitleId").html("");
-				$("#homeRightTitleId a").eq(0).show();
-				$("#homeRightTitleId a").eq(1).show();
-				$("#homeRightTitleId a").eq(2).hide();
-				$(".mobile-homeContents").show();
-				$(".ipad-homeContents").hide();
-				$(".mobile-home-toolbar").show();
-				$(".ipad-home-toolbar").hide();
-				sUserAgentFlag = false;
-			}
-		</script>
 		<script src="/Scripts/plug/jq.ajax.js"></script>
 		<script src="/Scripts/plug/echarts-all-3.js"></script>
 		<script src="/Scripts/Ipad/rangeslider.min.js" type="text/javascript" charset="utf-8"></script>
@@ -309,7 +264,43 @@
 		<script type="text/javascript" src="/Scripts/mobile/PageJs.js"></script>
 		<!-- 插件-->
 		<script type="text/javascript" src="/Scripts/mobile/plugin/appPopup.js"></script>
+        <!-- 全屏设置 -->
+		<script type="text/javascript" src="/Scripts/plug/1.5.0/onorientationchange.js"></script>
+		<script type="text/javascript">
+			var sUserAgent = navigator.userAgent.toLowerCase(),sUserAgentFlag = true;
+			if(sUserAgent.match(/ipad/i) == "ipad" || sUserAgent.match(/ipad/i) == "Ipad") {
+                 $("body").removeClass().addClass("phoneSetViews");
+				sUserAgentFlag = true;
+			} else {
+				$("body").removeClass().addClass("ipadSetViews");
+				sUserAgentFlag = false;
+				
 
+				// 检测是否呼叫
+				// sendNotice(1005,1);
+			}
+//			var sUserAgent = navigator.userAgent.toLowerCase();
+//			var sUserAgentFlag = true;
+//			if(sUserAgent.match(/ipad/i) == "ipad" || sUserAgent.match(/ipad/i) == "Ipad") {
+//				$("#homeRightTitleId a").eq(0).hide();
+//				$("#homeRightTitleId a").eq(1).hide();
+//				$("#homeRightTitleId a").eq(2).show();
+//				$(".mobile-homeContents").hide();
+//				$(".ipad-homeContents").show();
+//				$(".mobile-home-toolbar").hide();
+//				$(".ipad-home-toolbar").show();
+//				sUserAgentFlag = true;
+//			} else {
+//				$("#homeCenterTitleId").html("");
+//				$("#homeRightTitleId a").eq(0).show();
+//				$("#homeRightTitleId a").eq(1).show();
+//				$("#homeRightTitleId a").eq(2).hide();
+//				$(".mobile-homeContents").show();
+//				$(".ipad-homeContents").hide();
+//				$(".mobile-home-toolbar").show();
+//				$(".ipad-home-toolbar").hide();
+//				sUserAgentFlag = false;
+//			}
+		</script>		
 	</body>
-
 </html>
