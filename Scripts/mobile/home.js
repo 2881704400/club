@@ -1,21 +1,43 @@
 ﻿//首页事件
 function onHomePage() {
     // myApp.router.navigate('/Message/'); 
+    $(".tabbar").css("top", window.screen.height + "px");
+	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
     if (sUserAgentFlag)
     {
-        // toolbarActiveImg("ipadHomeTool")
-        // fiveHalfPieChart('fiveHalfChartId');
-        // bgMusicPieChart('bgMusicId', 28);
-        // electManagerPieChart('electManagerId', 28);
-        // roomCallPieChart('roomCallId');
-        // infoCommPieChart('infoCommId');
-        // sceneCustomHuanChart('sceneCustomId');
+//      toolbarActiveImg("ipadHomeTool")
+//      fiveHalfPieChart('fiveHalfChartId');
+//      bgMusicPieChart('bgMusicId', 28);
+//      electManagerPieChart('electManagerId', 28);
+//      roomCallPieChart('roomCallId');
+//      infoCommPieChart('infoCommId');
+//      sceneCustomHuanChart('sceneCustomId');
+		$(".mobileUser").hide();
+		$(".mobileSet").hide();
+		$(".ipadSet").show();
+		$(".mobile-homeContents").hide();
+		$(".ipad-homeContents").show();
+		$(".mobile-home-toolbar").hide();
+		$(".ipad-home-toolbar").show();
+		$(".ipad-home-toolbar a").bind('click', function() {
+			$(".ipad-home-toolbar a").each(function() {
+				$(this).removeClass("active");
+			})
+			$(this).addClass("active");
+			var flag = $(this).find('img').eq(1).is(':visible');
+			$(".ipad-home-toolbar a").each(function() {
+				$(this).find("img").eq(0).show();
+				$(this).find("img").eq(1).hide();
+			})
+			$(this).find("img").eq(0).hide();
+			$(this).find("img").eq(1).show();
+		});
     }
     else
      {
-         authorizationName();//授权名称			
-		 confirmNotice();// 通知待确认和已确认
-         $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
+        authorizationName();//授权名称			
+        confirmNotice();// 通知待确认和已确认
+        $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
      }
 }
 function goPage(url,dom){
