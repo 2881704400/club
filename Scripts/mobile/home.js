@@ -35,16 +35,17 @@ function onHomePage() {
     }
     else
      {
-       authorizationName();
+        authorizationName();
+		confirmNotice();// 通知待确认和已确认
 
-		$(".homeCenterTitleId").html(" ");
-		$(".mobileUser").show();
-		$(".mobileSet").show();
-		$(".ipadSet").hide();
-		$(".mobile-homeContents").show();
-		$(".ipad-homeContents").hide();
-		$(".mobile-home-toolbar").show();
-		$(".ipad-home-toolbar").hide();
+//		$(".homeCenterTitleId").html(" ");
+//		$(".mobileUser").show();
+//		$(".mobileSet").show();
+//		$(".ipadSet").hide();
+//		$(".mobile-homeContents").show();
+//		$(".ipad-homeContents").hide();
+//		$(".mobile-home-toolbar").show();
+//		$(".ipad-home-toolbar").hide();
 		$('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
      }
    

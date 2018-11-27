@@ -10,8 +10,8 @@ var isOpen=false;
 function scenceCus(){
 	toolbarActiveImg('sceneCustomTool');
 //	console.log("场景定制");
-	getEquipSta()
-	getEquipStayx()
+	getEquipSta();
+	getEquipStayx();
 	loadCurtain(0,0);
 	loadScence(0,0);
 	loadLoop(0,0);
@@ -19,7 +19,7 @@ function scenceCus(){
 	loadAirControl(0,0);
 	loadAirMs(0,0);
 	loadAirFs(0,0);	
-	loadAirWd(0,0)
+	loadAirWd(0,0);
 	$(".listWrap .simple-list li").each(function(){
 		$(this).click(function(){
 			openCurtain=[],stopCurtain=[],closeCurtain=[];
@@ -32,7 +32,7 @@ function scenceCus(){
 			removeFsAc();
 			parInd=$(this).parents(".accordion-item").index();
 			thisInd=$(this).index();
-			loadTitle(thisInd,parInd)
+			loadTitle(thisInd,parInd);
 			loadCurtain(thisInd,parInd);
 			loadScence(thisInd,parInd);
 			loadLoop(thisInd,parInd);
