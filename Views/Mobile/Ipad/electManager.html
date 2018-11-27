@@ -13,7 +13,11 @@
 	<div id="electManager_content" class="page-content">
 		<div class="electManager">
 			<div class="long-pannel">
-				<p>1#除湿机</p>
+				<p class="eleOneTap">
+					<img src="../../Image/Ipad/normal_open.png"/>
+					<img src="../../Image/Ipad/warn_close.png"/>
+					<span>1#除湿机</span> 
+				</p>
 				<ul>
 					<li>运行状态</li>
 					<li>送风温度</li>
@@ -22,24 +26,34 @@
 					<li>回风湿度</li>
 					<li>新风阀反馈</li>
 					<li>新风阀控制</li>
-					<li>新风温度</li>
-					<li>新风湿度</li>
+					<!--<li>新风温度</li>
+					<li>新风湿度</li>-->
 				</ul>
-				<ul>
+				<ul class="eleOne">
 					<li><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></li>
 					<li>22°C</li>
 					<li>18°C</li>
 					<li>50%</li>
 					<li>40%</li>
-					<li>100%</li>
-					<li><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></li>
-					<li>0°C</li>
-					<li>0%</li>
+					<li class="res">100</li>
+					<li class="edict">
+						<div id="" class="inpWrap">
+							<input type="" name="" id="" value="100" oninput="changeVal(this,0)"/>
+						</div>%
+						
+					</li>
+					<!--<li><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></li>-->
+					<!--<li>0°C</li>
+					<li>0%</li>-->
 				</ul>
 			</div>
 			<div class="long-pannel">
-				<p>2#除湿机</p>
-				<ul>
+				<p class="eleTwoTap">
+					<img src="../../Image/Ipad/normal_open.png"/>
+					<img src="../../Image/Ipad/warn_close.png"/>
+					<span>2#除湿机</span> 
+				</p>
+				<ul >
 					<li>运行状态</li>
 					<li>送风温度</li>
 					<li>回风温度</li>
@@ -50,14 +64,18 @@
 					<li>新风温度</li>
 					<li>新风湿度</li>
 				</ul>
-				<ul>
+				<ul class="eleTwo">
 					<li><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></li>
 					<li>22°C</li>
 					<li>18°C</li>
 					<li>50%</li>
 					<li>40%</li>
-					<li>0%</li>
-					<li><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></li>
+					<li class="res">100</li>
+					<li class="edict">
+						<div id="" class="inpWrap">
+							<input type="" name="" id="" value="100" oninput="changeVal(this,1)"/>
+						</div>%
+					</li>
 					<li>25°C</li>
 					<li>40%</li>
 				</ul>
@@ -68,33 +86,33 @@
 						<span>编号</span>
 						<span>运行状态</span>
 					</div>
-					<ul>
+					<ul class="botLef">
 						<li>
 							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泳池过滤泵</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泳池过滤泵</span></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>2#泳池过滤泵</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泳池过滤泵</span></p>
-							<p><img src="../../Image/Ipad/sb_open.png"/><img src="../../Image/Ipad/sb_close.png"/></p>
-						</li>
-						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泳池过滤泵</span></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#加热循环泵</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泳池过滤泵</span></p>
-							<p><img src="../../Image/Ipad/sb_open.png"/><img src="../../Image/Ipad/sb_close.png"/></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>2#加热循环泵</span></p>
+							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/warn_close.png"/><img src="../../Image/Ipad/normal_open.png"/><span>1#泳池过滤泵</span></p>
-							<p><img src="../../Image/Ipad/sb_open.png"/><img src="../../Image/Ipad/sb_close.png"/></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#臭氧增加泵</span></p>
+							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泳池过滤泵</span></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#除湿机排风</span></p>
+							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
+						</li>
+						<li>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>2#除湿机排风</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 						</li>
 					</ul>
@@ -104,18 +122,22 @@
 						<span>编号</span>
 						<span>运行状态</span>
 					</div>
-					<ul>
+					<ul class="botMod">
 						<li>
-							<p><span>1臭氧发生器</span></p>
-							<p><img src="../../Image/Ipad/kg_on.png"/><img src="../../Image/Ipad/kg_off.png"/></p>
+							<p><span>臭氧发生器</span></p>
+							<p>
+								<a href="#" class="stop">停止</a>
+							</p>
 						</li>
 						<li>
 							<p><span>水下灯</span></p>
-							<p><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></p>
+							<p>
+								<a href="#" class="stop">停止</a>
+							</p>
 						</li>
 						<li>
 							<p><span>絮凝投药</span></p>
-							<p><img src="../../Image/Ipad/kg_off.png"/><img src="../../Image/Ipad/kg_on.png"/></p>
+							<p><a href="#" class="stop">停止</a></p>
 						</li>
 					</ul>
 				</div>
@@ -126,21 +148,21 @@
 						<span>启停</span>
 						<span>手自动状态</span>
 					</div>
-					<ul>
+					<ul class="botRig">
 						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泵</span></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#循环泵</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 							<p class="right-three-btn"><img src="../../Image/Ipad/btn_close.png"/><img src="../../Image/Ipad/btn_open.png"/></p>
 							<p class="right-four-btn"><a href="#">手动</a></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/warn_close.png"/><img src="../../Image/Ipad/normal_open.png"/><span>1#泵</span></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>2#循环泵</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 							<p class="right-three-btn"><img src="../../Image/Ipad/btn_close.png"/><img src="../../Image/Ipad/btn_open.png"/></p>
 							<p class="right-four-btn"><a href="#">手动</a></p>
 						</li>
 						<li>
-							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>1#泵</span></p>
+							<p><img src="../../Image/Ipad/normal_open.png"/><img src="../../Image/Ipad/warn_close.png"/><span>3#循环泵</span></p>
 							<p><img src="../../Image/Ipad/sb_close.png"/><img src="../../Image/Ipad/sb_open.png"/></p>
 							<p class="right-three-btn"><img src="../../Image/Ipad/btn_close.png"/><img src="../../Image/Ipad/btn_open.png"/></p>
 							<p class="right-four-btn"><a href="#">手动</a></p>

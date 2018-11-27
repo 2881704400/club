@@ -96,7 +96,13 @@ var myApp = new Framework7({
     }, {
         path: '/electManager/',
         url: '/Views/Mobile/Ipad/electManager.html',
-    }],
+    },{
+		path:'/scenceCus/',
+		url: '/Views/Mobile/Ipad/scenceCus.html',
+	},{
+		path:'/sysOverview/',
+		url: '/Views/Mobile/Ipad/sysOverview.html',
+	}],
     on: {
         pageInit: function(page) {
             $(".tabbar").removeClass("displayNone");

@@ -57,3 +57,15 @@ $$(document).on("page:beforein", ".page[data-page='infoComm']", function (e) {
 $$(document).on("page:beforein", ".page[data-page='electManager']", function (e) {
     initPageJS('electManager', '/Scripts/Ipad/');
 });
+// 窗帘系统
+$$(document).on("page:beforein", ".page[data-page='curtainSys']", function (e) {
+    initPageJS('curtainSys', '/Scripts/Ipad/');
+});
+// 场景定制
+$$(document).on("page:beforein", ".page[data-page='scenceCus']", function (e) {
+    initPageJS('scenceCus', '/Scripts/Ipad/');
+});
+// 系统总览
+$$(document).on("page:beforein", ".page[data-page='sysOverview']", function (e) {
+    initPageJS('sysOverview', '/Scripts/Ipad/');
+});

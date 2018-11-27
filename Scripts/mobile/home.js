@@ -19,6 +19,15 @@ function onHomePage() {
      }
    
 }
+function goPage(url,dom){
+	$(dom).find("img").eq(0).hide();
+	$(dom).find("img").eq(1).show();
+	setTimeout(function(){
+		$(dom).find("img").eq(1).hide();
+		$(dom).find("img").eq(0).show();
+	},200)
+	myApp.router.navigate(url);
+}
 function sceneCustomHuanChart(id) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {

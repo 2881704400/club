@@ -41,7 +41,7 @@
 								</div>
 							</a>
 						</li>
-						<li id="appCacheClearLi" style="display:none;">
+						<li id="appCacheClearLi" style="display:block;">
 							<a href="#" class="item-link item-content" onclick="onAppCacheClear()">
 								<div class="item-content">
 									<div class="item-media"><i class="iconfont icon-huancun"></i></div>
@@ -136,40 +136,53 @@
 						<div class="ipad-homeContents ipadViews" >
 							<div class="main">
 								<div class="main-box">
-									<a href="/guestControl/" class="main-chart">
-										<p>客控系统</p>
-										<section id="fiveHalfChartId"></section>
-									</a>
+									<div class="main-chart" onclick="goPage('/guestControl/',this)" style="top: 25%;">
+										<img src="../../Image/Ipad/customConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>客控系统</p>-->
+										<!--<section id="fiveHalfChartId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/bgMusic/" class="main-chart">
-										<p>背景音乐系统</p>
-										<section id="bgMusicId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/bgMusic/',this)" style="top: 25%;">
+										<img src="../../Image/Ipad/musicConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>音乐系统</p>-->
+										<!--<section id="bgMusicId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/electManager/" class="main-chart">
-										<p>机电管理</p>
-										<section id="electManagerId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/electManager/',this)" style="top: 25%;">
+										<img src="../../Image/Ipad/enginConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>机电管理</p>-->
+										<!--<section id="electManagerId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/serviceCall/" class="main-chart">
-										<p>服务呼叫</p>
-										<section id="roomCallId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/serviceCall/',this)" >
+										<img src="../../Image/Ipad/serverConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>服务呼叫</p>-->
+										<!--<section id="roomCallId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="/infoComm/" class="main-chart">
-										<p>信息沟通</p>
-										<section id="infoCommId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/infoComm/',this)" >
+										<img src="../../Image/Ipad/messageConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>信息沟通</p>-->
+										<!--<section id="infoCommId"></section>-->
+									</div>
 								</div>
 								<div class="main-box">
-									<a href="#" class="main-chart">
-										<p>场景定制</p>
-										<section id="sceneCustomId"></section>
-									</a>
+									<div  class="main-chart" onclick="goPage('/scenceCus/',this)" >
+										<!--<img src="../../Image/Ipad/customNoBg.png"/>-->
+										<img src="../../Image/Ipad/senceConSys.png"/>
+										<img class="activeBg" src="../../Image/Ipad/activebg.png"/>
+										<!--<p>场景定制</p>-->
+										<!--<section id="sceneCustomId"></section>-->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -224,11 +237,16 @@
 							<img src="../../Image/Ipad/infoComm_light.png" />
 							<span class="tabbar-label">信息沟通</span>
 						</a>
-						<a href="#" class="link no-animation" id="sceneCustomTool">
+						<a href="/scenceCus/" class="link no-animation" id="sceneCustomTool">
 							<img src="../../Image/Ipad/sceneCustom_dark.png" />
 							<img src="../../Image/Ipad/sceneCustom_light.png" />
-							<span class="tabbar-label">场景定制</span>
+							<span class="tabbar-label">场景控制</span>
 						</a>
+						<!--<a href="/curtainSys/" class="link no-animation" id="curtainControlTool">
+							<img src="../../Image/Ipad/curtain_dark.png" />
+							<img src="../../Image/Ipad/curtain_light.png" />
+							<span class="tabbar-label">窗帘系统</span>
+						</a>-->
 					</div>
 				</div>
 			</div>

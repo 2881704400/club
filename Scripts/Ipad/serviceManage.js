@@ -2,7 +2,7 @@ function serviceManage(){
 	toolbarActiveImg('serviceManageTool');
 	
 	$("#needConfirmNoticeId>li .swipeout-content").bind('click',function(){
-		console.log(1)
+//		console.log(1)
 		myApp.router.navigate('/noticeDetails/#not#1');
 	})
 }

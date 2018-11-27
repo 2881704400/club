@@ -7,25 +7,241 @@
 				</a> -->
 			</div>
 			<div class="center sliding title">客控系统</div>
-			<div class="right"><a href="/noticeSet/" class="link icon-only" ><i class="iconfont icon-appSet"></i></a></div>
+			<div class="right">
+				<a href="/noticeSet/" class="link icon-only"><i class="iconfont icon-appSet"></i></a>
+			</div>
 		</div>
 	</div>
 	<div id="guestControl_content" class="page-content">
+		
 		<div class="guestControl">
 			<div class="left-pannel">
 				<div class="pannel-header">
 					客房管理
 				</div>
 				<ul>
-					<li class="pannel-down">一号客房<i class="iconfont icon-web-person"></i></li>
-					<li>二号客房</li>
-					<li>三号客房<i class="iconfont icon-web-person"></i></li>
-					<li>四号客房</li>
-					<li>五号客房</li>
+					<li class="pannel-down">
+						一号客房
+						<!--<i class="iconfont icon-web-person"></i>-->
+					</li>
+					<li>
+						二号客房
+					</li>
+					<li>
+						三号客房
+						<!--<i class="iconfont icon-web-person"></i>-->
+					</li>
+					<li>
+						四号客房
+					</li>
+					<li>
+						五号客房
+					</li>
 				</ul>
 			</div>
 			<div class="right-pannel">
 				<div class="half-pannel">
+					<div class="half-left-pannel">
+						<div class="pannel-title">
+							灯光控制
+						</div>
+						<div class="room-scene-box" id="roomSceneId">
+							<ul class="scene-box-title">
+									<li class="check">卧室场景模式</li>
+									<li style="display: none;">起居室场景模式</li>
+							</ul>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/open.png" /><img src="../../Image/Ipad/close.png" /></p>
+								<span>全开</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p>
+									<img src="../../Image/Ipad/open.png" />
+									<img src="../../Image/Ipad/close.png" />
+								</p>
+								<span>全关</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/yingbin.png" /><img src="../../Image/Ipad/yinbin_down.png" /></p>
+								<span>迎宾</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p>
+									<img src="../../Image/Ipad/light.png" />
+									<img src="../../Image/Ipad/light_down.png" />
+								</p>
+								<span>明亮</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/soft.png" /><img src="../../Image/Ipad/soft_down.png" /></p>
+								<span>柔和</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/xiuxian.png" /><img src="../../Image/Ipad/xiuxian_down.png" /></p>
+								<span>休闲</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/shuimian.png" /><img src="../../Image/Ipad/shuimian_down.png" /></p>
+								<span>睡眠</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/darkup.png" /><img src="../../Image/Ipad/darkup_down.png" /></p>
+								<span>夜起</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/chenqi.png" /><img src="../../Image/Ipad/chenqi_down.png" /></p>
+								<span>晨起</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/read.png" /><img src="../../Image/Ipad/read_down.png" /></p>
+								<span>阅读</span>
+							</div>
+						</div>
+						
+
+						<div class="room-scene-box" id="toiletSceneId" >
+							<ul class="scene-box-title">
+								<li class="check">卧室卫生间场景</li>
+								<li style="display: none;">起居室卫生间场景</li>
+							</ul>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/open.png" /><img src="../../Image/Ipad/close.png" /></p>
+								<span>全开</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/open.png" /><img src="../../Image/Ipad/close.png" /></p>
+								<span>全关</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/light.png" /><img src="../../Image/Ipad/light_down.png" /></p>
+								<span>明亮</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/soft.png" /><img src="../../Image/Ipad/soft_down.png" /></p>
+								<span>柔和</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/muyu.png" /><img src="../../Image/Ipad/muyu_down.png" /></p>
+								<span>淋浴</span>
+							</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/yinyue.png" /><img src="../../Image/Ipad/yinyue_down.png" /></p>
+								<span>音乐</span>
+							</div>
+						</div>
+						<div class="room-scene-box" id="lightLoopSceneId">
+							<div class="scene-box-title" style="float: left;margin-right: 8px;text-align: left;">照明回路</div>
+							<div class="pannel-imginfo">
+								<p><img src="../../Image/Ipad/open.png" /><img src="../../Image/Ipad/close.png" /></p>
+								<span>防雾灯</span>
+							</div>
+							
+						</div>
+					</div>
+					<div class="half-right-pannel">
+						<div class="top-control-box" id="ktControl">
+							<ul class="pannel-title" style="width: 100%;">
+								<li class="check">卧室空调</li>
+								<li style="display: none;">起居室空调</li>
+							</ul>
+							<div class="air-scene-box">
+								<div class="air-box-title">
+									<font id="airTemperatureId">26</font><span>°C</span><label>设置温度</label>
+								</div>
+								<div class="air-box-iconinfo">
+									
+									<ul class="air-iconinfo-content" id="windchoose">
+										<li>风速</li>
+										<li><i class="iconfont icon-disu"></i></li>
+										<li><i class="iconfont icon-zhongsu"></i></li>
+										<li><i class="iconfont icon-gaosu"></i></li>
+										<li><i class="iconfont icon-zidong"></i></li>
+									</ul>
+									<ul class="air-iconinfo-content" id="airModelContentId">
+										<li>模式</li>
+										<li><i class="iconfont icon-zhileng"></i></li>
+										<li><i class="iconfont icon-app_zr"></i></li>
+										<li><i class="iconfont icon-songfeng"></i></li>
+										<li><i class="iconfont icon-chushi1"></i></li>
+									</ul>
+								</div>
+							</div>
+							<ul class="air-pannel-pattern" id="airSceneId">
+								<li>
+									<img src="../../Image/Ipad/light_open.png" /><img src="../../Image/Ipad/close.png" />
+								</li>
+								<li>
+									<img src="../../Image/Ipad/kt_up_open.png" /><img src="../../Image/Ipad/kt_up_down.png" />
+								</li>
+								<li>
+									<img src="../../Image/Ipad/kt_d_open.png" /><img src="../../Image/Ipad/kt_d_down.png" />
+								</li>
+								<li>
+									<img src="../../Image/Ipad/fresh_open.png" /><img src="../../Image/Ipad/fresh_down.png" />
+								</li>
+								<li>
+									<img src="../../Image/Ipad/air_moshi.png" /><img src="../../Image/Ipad/air_moshi_down.png" />
+								</li>
+							</ul>
+						</div>
+						<div class="middle-control-box">
+							<div class="pannel-title" style="float: left;width: auto;">
+								窗帘控制
+							</div>
+							<div class="curtain-picker-box" id="curtainPickerId">
+								<!--<input type="text" placeholder="请选择" readonly="readonly" id="curtainPickerValueId"/>
+								-->
+								<span>请选择</span>
+								<ul>
+									<li>卧室布帘1</li>
+									<li>卧室纱帘1</li>
+									<li>卧室布帘2</li>
+									<li>卧室纱帘2</li>
+									<li>卫生间卷帘1</li>
+									<li>卫生间卷帘2</li>
+								</ul>
+							</div>
+							<div class="curtain-pannel-pattern" id="curtainSceneId">
+								<div class="pannel-imginfo">
+									<p><img src="../../Image/Ipad/audio_c_open.png" /><img src="../../Image/Ipad/audio_c_down.png" /></p>
+									<span>开启</span>
+								</div>
+								<div class="pannel-imginfo">
+									<p><img src="../../Image/Ipad/audio_ss_open.png" /><img src="../../Image/Ipad/audio_ss_down.png" /></p>
+									<span>停止</span>
+								</div>
+								<div class="pannel-imginfo">
+									<p><img src="../../Image/Ipad/audio_s_open.png" /><img src="../../Image/Ipad/audio_s_down.png" /></p>
+									<span>关闭</span>
+								</div>
+							</div>
+							
+						</div>
+						<div class="bottom-control-box">
+							<div class="pannel-title" id="musicVal" num="20">
+								音乐控制
+							</div>
+							<div class="music-pannel-pattern" id="musicSceneId">
+								<div class="pannel-imginfo" >
+									<img src="../../Image/Ipad/pre.png" /><img src="../../Image/Ipad/pre_down.png" />
+								</div>
+								<div class="pannel-imginfo" >
+									<img src="../../Image/Ipad/stopmusic.png" /><img src="../../Image/Ipad/stopmusic_down.png" />
+								</div>
+								<div class="pannel-imginfo" >
+									<img src="../../Image/Ipad/next.png" /><img src="../../Image/Ipad/next_down.png" />
+								</div>
+								<div class="pannel-imginfo" >
+									<img src="../../Image/Ipad/jian.png" /><img src="../../Image/Ipad/jian_down.png" />
+								</div>
+								<div class="pannel-imginfo">
+									<img src="../../Image/Ipad/jia.png" /><img src="../../Image/Ipad/jia_down.png" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div class="half-pannel">
 					<div>
 						<span>灯光控制</span>
 						<div class="pannel-imginfo">
@@ -84,7 +300,7 @@
 							<p><img src="../../Image/Ipad/music_next_open.png" /><img src="../../Image/Ipad/music_next_down.png" /></p>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>

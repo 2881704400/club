@@ -1,6 +1,9 @@
 //首页事件
 function onHomePage() {
 	//myApp.router.navigate('/serviceManage/');
+//	myApp.router.navigate('/guestControl/');
+
+	
 	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
 
 	$(".toolbar-inner a").bind('click', function() {
@@ -30,15 +33,15 @@ function onHomePage() {
 	}
 
 	function home_error(e) {
-		console.log(e);
+//		console.log(e);
 		myJavaFun.OpenLocalUrl("login");
 	}
-	fiveHalfPieChart('fiveHalfChartId');
-	bgMusicPieChart('bgMusicId', 28);
-	electManagerPieChart('electManagerId', 28);
-	roomCallPieChart('roomCallId');
-	infoCommPieChart('infoCommId');
-	sceneCustomHuanChart('sceneCustomId');
+//	fiveHalfPieChart('fiveHalfChartId');
+//	bgMusicPieChart('bgMusicId', 28);
+//	electManagerPieChart('electManagerId', 28);
+//	roomCallPieChart('roomCallId');
+//	infoCommPieChart('infoCommId');
+//	sceneCustomHuanChart('sceneCustomId');
 }
 
 function sceneCustomHuanChart(id) {
