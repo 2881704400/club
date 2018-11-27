@@ -3,13 +3,13 @@ function onHomePage() {
     // myApp.router.navigate('/Message/'); 
     if (sUserAgentFlag)
     {
-        toolbarActiveImg("ipadHomeTool")
-        fiveHalfPieChart('fiveHalfChartId');
-        bgMusicPieChart('bgMusicId', 28);
-        electManagerPieChart('electManagerId', 28);
-        roomCallPieChart('roomCallId');
-        infoCommPieChart('infoCommId');
-        sceneCustomHuanChart('sceneCustomId');
+        // toolbarActiveImg("ipadHomeTool")
+        // fiveHalfPieChart('fiveHalfChartId');
+        // bgMusicPieChart('bgMusicId', 28);
+        // electManagerPieChart('electManagerId', 28);
+        // roomCallPieChart('roomCallId');
+        // infoCommPieChart('infoCommId');
+        // sceneCustomHuanChart('sceneCustomId');
     }
     else
      {
@@ -17,7 +17,6 @@ function onHomePage() {
 		 confirmNotice();// 通知待确认和已确认
          $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
      }
-   
 }
 function goPage(url,dom){
 	$(dom).find("img").eq(0).hide();
