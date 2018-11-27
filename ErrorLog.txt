@@ -4917,3 +4917,197 @@ System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中�
    在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
 -------------------------------------
 
+----------2018/11/27 14:20:31----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:34----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:37----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:40----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:43----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:46----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:49----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:52----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:55----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:20:58----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:01----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:04----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:07----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:10----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:13----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:16----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:19----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:22----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:25----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:28----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:31----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:34----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:37----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:40----------
+System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.ThrowHelper.ThrowKeyNotFoundException()
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 177
+-------------------------------------
+
+----------2018/11/27 14:21:43----------
+System.ServiceModel.CommunicationException: 写入管道时出错: 管道正在被关闭。 (232, 0xe8)。 ---> System.IO.PipeException: 写入管道时出错: 管道正在被关闭。 (232, 0xe8)。
+   在 System.ServiceModel.Channels.PipeConnection.StartSyncWrite(Byte[] buffer, Int32 offset, Int32 size, Object& holder)
+   在 System.ServiceModel.Channels.PipeConnection.StartSyncWrite(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.ServiceModel.Channels.PipeConnection.Write(Byte[] buffer, Int32 offset, Int32 size, Boolean immediate, TimeSpan timeout, BufferManager bufferManager)
+   --- 内部异常堆栈跟踪的结尾 ---
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.PipeConnection.Write(Byte[] buffer, Int32 offset, Int32 size, Boolean immediate, TimeSpan timeout, BufferManager bufferManager)
+   在 System.ServiceModel.Channels.BufferedConnection.WriteNow(Byte[] buffer, Int32 offset, Int32 size, TimeSpan timeout, BufferManager bufferManager)
+   在 System.ServiceModel.Channels.BufferedConnection.Write(Byte[] buffer, Int32 offset, Int32 size, Boolean immediate, TimeSpan timeout, BufferManager bufferManager)
+   在 System.ServiceModel.Channels.FramingDuplexSessionChannel.OnSendCore(Message message, TimeSpan timeout)
+   在 System.ServiceModel.Channels.TransportDuplexSessionChannel.OnSend(Message message, TimeSpan timeout)
+   在 System.ServiceModel.Channels.OutputChannel.Send(Message message, TimeSpan timeout)
+   在 System.ServiceModel.Dispatcher.DuplexChannelBinder.Request(Message message, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 AlarmCenterWcfServiceLibrary.IAlarmCenterService.GetUserName2SF()
+   在 GWServiceAPI.Net.LibClass.ServerLib.ConnectService(String user_name) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\ServerLib.cs:行号 129
+-------------------------------------
+
