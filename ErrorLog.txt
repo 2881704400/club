@@ -7191,3 +7191,19 @@ Exception rethrown at [0]:
    在 GWServiceAPI.Net.LibClass.ServerLib.ConnectService(String user_name) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\ServerLib.cs:行号 129
 -------------------------------------
 
+----------2018/11/27 17:23:13----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName)
+-------------------------------------
+
+----------2018/11/27 17:51:56----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName)
+-------------------------------------
+
