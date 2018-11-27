@@ -9,7 +9,36 @@
             WebService1 的摘要说明
             </summary>
         </member>
-        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.set_dataList(Newtonsoft.Json.Linq.JObject)">
+        <member name="M:GWServiceAPI.Net.Controllers.GWgenerateCaptchaCodeController.GenerateCaptchaCode">
+            -----------------------------------------------------------------------------------------------------------------------------------------------
+             实时快照及定时任务接口
+            -----------------------------------------------------------------------------------------------------------------------------------------------
+             <summary>
+             生成随机数
+             </summary>
+             <param >
+             
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWgenerateCaptchaCodeController.CreateValidateGraphicCore">
+            <summary>
+            验证码
+            </summary>
+            <param>
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWgenerateCaptchaCodeController.set_GenerateImageData">
+            <summary>
+            生成验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.get_JMdata(Newtonsoft.Json.Linq.JObject)">
+            -----------------------------------------------------------------------------------------------------------------------------------------------
+             实时快照及定时任务接口
+            -----------------------------------------------------------------------------------------------------------------------------------------------
             <summary>
             解析用户名称
             </summary>
@@ -20,20 +49,20 @@
         </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.set_DeleteTableData(Newtonsoft.Json.Linq.JObject)">
             <summary>
-            删除数据 DELETE FROM tableName where tableVlue
+            删除数据 DELETE FROM getDataTable where tableVlue
             </summary>
             <param name="jb">
-            tableName 报表名称
+            getDataTable 报表名称
             tableVlue 报表数据
             </param>
             <returns></returns>
         </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.set_InsertNewTable(Newtonsoft.Json.Linq.JObject)">
             <summary>
-            插入新数据 insert into tableName select tableVlue
+            插入新数据 insert into getDataTable select tableVlue
             </summary>
             <param name="jb">
-            tableName 报表名称
+            getDataTable 报表名称
             tableVlue 报表数据
             </param>
             <returns></returns>
@@ -43,7 +72,7 @@
             批量更新数据
             </summary>
             <param name="jb">
-            tableName 报表名称
+            getDataTable 报表名称
             cellDataList 更新数据
             ifDataList 检索数据
             </param>
@@ -54,7 +83,7 @@
             获取循环任务
             </summary>
             <param name="jb">
-            TableID 报表编码
+            dataTableIndex 报表编码
             </param>
             <returns></returns>
         </member>
@@ -63,7 +92,7 @@
             获取普通任务:设备控制
             </summary>
             <param name="jb">
-            TableID 报表编码
+            dataTableIndex 报表编码
             </param>
             <returns></returns>
         </member>
@@ -72,8 +101,8 @@
             根据表名、ID查询数据
             </summary>
             <param name="jb">
-            TableName 报表名称
-            TableID 报表编码
+            getDataTable 报表名称
+            dataTableIndex 报表编码
             </param>
             <returns></returns>
         </member>
@@ -82,7 +111,7 @@
             根据表名查询数据
             </summary>
             <param name="jb">
-            TableName 报表名称
+            getDataTable 报表名称
             </param>
             <returns></returns>
         </member>
@@ -252,7 +281,7 @@
             <summary>
             查询设备配置表
             </summary>
-            <param name="tableName">表名</param>
+            <param name="getDataTable">表名</param>
         </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.updateEquipGroup(Newtonsoft.Json.Linq.JObject)">
             <summary>
@@ -332,6 +361,54 @@
             <summary>
             获取client信息
             </summary>
+        </member>
+        <member name="P:GWServiceAPI.Net.Controllers.ValidateCode.MaxLength">
+            <summary>
+            验证码的最大长度
+            </summary>
+        </member>
+        <member name="P:GWServiceAPI.Net.Controllers.ValidateCode.MinLength">
+            <summary>
+            验证码的最小长度
+            </summary>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.ValidateCode.CreateValidateCode(System.Int32)">
+            <summary>
+            生成验证码
+            </summary>
+            <param name="length">指定验证码的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.ValidateCode.Str_char(System.Int32,System.Boolean)">
+            <summary>
+            生成随机纯字母随机数
+            </summary>
+            <param name="Length">生成长度</param>
+            <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.ValidateCode.CreateValidateGraphicOne(System.String)">
+            <summary>
+            创建验证码的图片
+            </summary>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.ValidateCode.GetImageWidth(System.Int32)">
+            <summary>
+            得到验证码图片的长度
+            </summary>
+            <param name="validateNumLength">验证码的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.ValidateCode.GetImageHeight">
+            <summary>
+            得到验证码的高度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.ValidateCode.CreateValidateGraphic(System.String)">
+            <summary>
+            创建验证码的图片
+            </summary>
+            <param name="validateNum">验证码</param>
         </member>
     </members>
 </doc>

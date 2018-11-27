@@ -1,4 +1,4 @@
-﻿var AllTime = new Array();
+var AllTime = new Array();
 var AllName = new Array();
 function Message() {
   toolbarActive('MessageTool');
@@ -38,7 +38,7 @@ function readyFile(fileURL) {
     //   var dt = $(data).find("string").html(),result = JSON.parse(dt);
 
     //   if(result != null)
-    //   {
+    //   {   
     //     result.forEach(function(item,index){var dTime = item.replace(fileUrl+"\\","");AllTime.push(dTime);});
     //     AllTime=AllTime.sort(sortNumber);
     //     AllTime.forEach(function(item,index){readyFileTxt(item);});

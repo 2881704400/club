@@ -1,28 +1,8 @@
 ﻿//首页事件
 function onHomePage() {
     // myApp.router.navigate('/Message/'); 
-    $(".tabbar").css("top", window.screen.height + "px");
-    if (sUserAgentFlag) {
-        $(".mobileUser").hide();
-        $(".mobileSet").hide();
-        $(".ipadSet").show();
-        $(".mobile-homeContents").hide();
-        $(".ipad-homeContents").show();
-        $(".mobile-home-toolbar").hide();
-        $(".ipad-home-toolbar").show();
-        $(".ipad-home-toolbar a").bind('click', function() {
-            $(".ipad-home-toolbar a").each(function() {
-                $(this).removeClass("active");
-            })
-            $(this).addClass("active");
-            var flag = $(this).find('img').eq(1).is(':visible');
-            $(".ipad-home-toolbar a").each(function() {
-                $(this).find("img").eq(0).show();
-                $(this).find("img").eq(1).hide();
-            })
-            $(this).find("img").eq(0).hide();
-            $(this).find("img").eq(1).show();
-        });
+    if (sUserAgentFlag)
+    {
         toolbarActiveImg("ipadHomeTool")
         fiveHalfPieChart('fiveHalfChartId');
         bgMusicPieChart('bgMusicId', 28);
@@ -30,29 +10,15 @@ function onHomePage() {
         roomCallPieChart('roomCallId');
         infoCommPieChart('infoCommId');
         sceneCustomHuanChart('sceneCustomId');
-    } else {
-        authorizationName();
-        $(".homeCenterTitleId").html(" ");
-        $(".mobileUser").show();
-        $(".mobileSet").show();
-        $(".ipadSet").hide();
-        $(".mobile-homeContents").show();
-        $(".ipad-homeContents").hide();
-        $(".mobile-home-toolbar").show();
-        $(".ipad-home-toolbar").hide();
-        $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
     }
-    //初始化状态值-房间有无人
-    // yxpHome();
-    // setHomeTime =setInterval(function(){
-    //   yxpHome();
-    // },3000);
-    // 通知待确认和已确认
-    // confirmNotice();
-    // 检测是否呼叫
-    // sendNotice(1005,1);
+    else
+     {
+         authorizationName();//授权名称			
+		 confirmNotice();// 通知待确认和已确认
+         $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
+     }
+   
 }
-
 function sceneCustomHuanChart(id) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {
@@ -135,7 +101,6 @@ function sceneCustomHuanChart(id) {
     };
     myChart.setOption(option);
 }
-
 function infoCommPieChart(id) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {
@@ -183,7 +148,6 @@ function infoCommPieChart(id) {
     };
     myChart.setOption(option);
 }
-
 function roomCallPieChart(id) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {
@@ -266,7 +230,6 @@ function roomCallPieChart(id) {
     };
     myChart.setOption(option);
 }
-
 function electManagerPieChart(id, sumnum) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {
@@ -387,7 +350,6 @@ function electManagerPieChart(id, sumnum) {
     };
     myChart.setOption(option);
 }
-
 function bgMusicPieChart(id, sumnum) {
     var myChart = echarts.init(document.getElementById(id));
     var option = {
@@ -507,7 +469,6 @@ function bgMusicPieChart(id, sumnum) {
     };
     myChart.setOption(option);
 }
-
 function fiveHalfPieChart(id) {
     var myChart = echarts.init(document.getElementById(id));
 
@@ -692,7 +653,6 @@ function onResizeCustomized() {
         }
     }
 }
-
 function authorizationName() {
     var ajaxVar = $.ajax({
         type: "POST",
@@ -731,33 +691,4 @@ function tipsInformtion(tipsStr, tipsEvent) {
         }]
     }).open();
 }
-//遥信遥测
-function yxpHome() {
-    $.ajax({
-        type: "POST",
-        url: "/api/real/equip_item_state",
-        timeout: 5000,
-        headers: {
-            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey
-        },
-        data: {
-            equip_no: '300'
-        },
-        success: function(data) {
-            var yxpItem = data.HttpData.data.YXItemDict;
-            handleHomeState(1, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
-            handleHomeState(2, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
-            handleHomeState(3, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
-            handleHomeState(4, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
-            handleHomeState(5, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, ""); //客房5
-        }
-    });
-}
-//处理状态值
-function handleHomeState(index, judgePeople1, judgePeople2, judgePeople3) {
-    if (judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人") {
-        $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
-    } else {
-        $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
-    }
-}
+
