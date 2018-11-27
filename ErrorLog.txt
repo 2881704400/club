@@ -279,3 +279,62 @@ System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中�
    在 GWService.Net.ClassLib.GetRealTimeData(String equip_no, String table_name)
 -------------------------------------
 
+----------2018/11/27 17:00:28----------
+System.ServiceModel.CommunicationObjectAbortedException: 无法将通信对象 System.ServiceModel.Channels.ServiceChannel 用于通信，因为它已经被中止。
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   在 System.ServiceModel.Channels.ServiceChannel.EnsureOpened(TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 AlarmCenterWcfServiceLibrary.IAlarmCenterService.GetUserName2SF()
+   在 GWServiceAPI.Net.LibClass.ServerLib.ConnectService(String user_name) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\ServerLib.cs:行号 129
+-------------------------------------
+
+----------2018/11/27 17:00:28----------
+System.ServiceModel.CommunicationObjectAbortedException: 无法将通信对象 System.ServiceModel.Channels.ServiceChannel 用于通信，因为它已经被中止。
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   在 System.ServiceModel.Channels.ServiceChannel.EnsureOpened(TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 AlarmCenterWcfServiceLibrary.IAlarmCenterService.GetUserName2SF()
+   在 GWServiceAPI.Net.LibClass.ServerLib.ConnectService(String user_name) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\ServerLib.cs:行号 129
+-------------------------------------
+
+----------2018/11/27 17:00:28----------
+System.ServiceModel.CommunicationObjectAbortedException: 无法将通信对象 System.ServiceModel.Channels.ServiceChannel 用于通信，因为它已经被中止。
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   在 System.ServiceModel.Channels.ServiceChannel.EnsureOpened(TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 AlarmCenterWcfServiceLibrary.IAlarmCenterService.GetUserName2SF()
+   在 GWServiceAPI.Net.LibClass.ServerLib.ConnectService(String user_name) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\ServerLib.cs:行号 129
+-------------------------------------
+
+----------2018/11/27 17:01:02----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\workspace\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
