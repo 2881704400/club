@@ -265,6 +265,12 @@ function guestControl() {
 //	getInfor(0)
 	$(".left-pannel ul li").bind('click', function() {
 		var ind=$(this).index();
+		$(".left-pannel ul li").each(function() {
+			$(this).removeClass("pannel-down");
+		
+		})
+		$(".left-pannel ul li").eq(ind).addClass("pannel-down");
+		
 		if(roomId != ind) {
 			roomId = ind;
 			curtId = -1;
@@ -306,11 +312,8 @@ function guestControl() {
 			var html = `<li>${arr[i]}</li>`
 			$("#curtainPickerId ul").append(html)
 		}
-		$(".left-pannel ul li").each(function() {
-			$(this).removeClass("pannel-down");
 		
-		})
-		$(".left-pannel ul li").eq(ind).addClass("pannel-down");
+		
 		loadCheck(roomId)
 			
 	});
