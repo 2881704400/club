@@ -23,14 +23,14 @@ function initnoticeHTML(index, newNotice) {
 }
 
 function ajaxRequestXml_notice(className_child, className_parent) {
-    $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
+    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gwFixeddateNotice", {
         data: {
-            tableName: 'gw_historicalNotice where Format(Date(),"yyyy/mm/dd") = Left(callTime,10) order by callTime desc',
+            // tableName: 'gw_historicalNotice where Format(Date(),"yyyy/mm/dd") = Left(callTime,10) order by callTime desc',
         },
         async: false
     })).done(function(n, l) {
         let rt = n.HttpData;
-        if (rt.code == 200) {
+        if (rt.code == 200 && rt.data) {
             rt.data.forEach(function(item, index) {
                 inithistoryInfoHTML_notice(item, className_child, className_parent);
             });

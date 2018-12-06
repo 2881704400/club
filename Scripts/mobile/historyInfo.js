@@ -14,10 +14,8 @@
 
 function ajaxRequestXml(num, className_child, className_parent) {
     // 请求 
-    $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
-        data: {
-            tableName: "gw_historicalNotice order by callTime desc"
-        },
+    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice", {
+        data: {},
         async: false
     })).done(function(n, l) {
         let rt = n.HttpData;

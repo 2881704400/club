@@ -1402,10 +1402,8 @@ function sendNotice(equipNo_1,ycp_no_1){
             if(rt.data.YXItemDict[ycp_no_1].m_YXState == "打开")
               {
                 //推送 
-                $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
-                    data: {
-                        getDataTable: 'GW_PushMessage',
-                    },
+                $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_push_message", {
+                    data: {},
                     async: false
                     })).done(function(n, l) {
                         let rt = n.HttpData;
@@ -1440,10 +1438,8 @@ function sendNotice(equipNo_1,ycp_no_1){
                         //存储成功后，如果为本页则插入，否则继续发送
                          try{$(".toBeComfirm").html(parseInt($(".toBeComfirm").html())+1); } catch(e){}
                         //查询最新一条记录
-                        $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
-                            data: {
-                                getDataTable: 'gw_historicalNotice order by id desc',
-                            },
+                        $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice_id", {
+                            data: {},
                             async: false
                             })).done(function(n, l) {
                                 let rt = n.HttpData;
@@ -1520,14 +1516,12 @@ function inithistoryInfoHTML_all(obj, className_child, className_parent) {
 // 通知待确认和已确认
 function confirmNotice(){
         //插入数据库
-        $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
-            data: {
-                getDataTable: "gw_historicalNotice",
-            },
+        $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice_all", {
+            data: {},
             async: false
         })).done(function(n, l) {
             let rt = n.HttpData;
-            if (rt.code == 200) {
+            if (rt.code == 200 && rt.data) {
               let totalQuantity = rt.data.length,Confirmed = rt.data.filter(item=>{if(item.confirmTime) return item;}).length;
               $(".toBeComfirm").text(totalQuantity-Confirmed);
               $(".ComfirmContainer>label").text(Confirmed);
