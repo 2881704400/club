@@ -125,7 +125,7 @@ var $$ = Framework7.$;
 initLoads();
 function initLoads() {
     loadNameMobile();
-    // initWebSocket(); //socket
+    initWebSocket(); //socket
     try {
         myJavaFun.GetAppVersion(); //获取App版本信息
         myJavaFun.GetSystemInfor(); //获取系统信息
@@ -1128,7 +1128,7 @@ function loadJs(url, callback, id) {
 }
 //创建websocket
 var viewClass, userName = window.localStorage.userName,
-    fileUrl = "C:\\MsgChat";
+    fileUrl = "c:\\MsgChat";
 
 function createws(value) {
     url = "ws://192.168.0.165:8001?" + value;
@@ -1195,22 +1195,21 @@ function writeFile(fileUrl, sendUser, receiveUser, DateTime, concentext) {
 
 }
 //读记录
-function readerFile(fileUrl, sendUser, receiveUser, DateTime, isFlase) {
-
-    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/ReadChatInfo", {
+function readerFile(path,isFlag) {
+    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/readUrlRecord", {
         data: {
-            fileUrl: fileUrl,
-            fileName: sendUser + "-" + receiveUser,
-            DateTime: DateTime
+            Url: path,
         },
         async: false
-    })).done(function(n, l) {
-        let rt = n.HttpData;
-        if (rt.code == 200) {
-            formatRecord(rt.data.concenTxt);
-        }
+    })).done(function(n) {
+        let rt = n.HttpData.concenTxt;
+        formatRecord(rt);
     }).fail(function(e){
-         isFlase ? readerFile(fileUrl, receiveUser, sendUser, DateTime, false) : "";
+
+        if(isFlag){
+            var filUrlStr = result.split("\\");
+            readerFile(path,false);
+        }
     });
 
 }
@@ -1236,7 +1235,7 @@ function formatRecord(str) {
     var strArray = str.split("<br />");
     var received_msg, msg_board = document.getElementsByClassName(viewClass)[0];
     strArray.forEach(function(item, index) {
-        console.log(item);
+        // console.log(item);
         if (item != "" && item.split("<f7-userName:>")[1].split("<f7-time:>")[0] == userName) {
             received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + item.split("<f7-Content:>")[1] + "</span></p>";
             addRecord(msg_board, received_msg);
@@ -1314,7 +1313,7 @@ function publicAjaxData(equip_no_0) {
 function temperatureHandle(parentId,className,equip_noPublic,set_noPublic){
 
     var value;
-    if(className =="qjkt4_yl_zj")
+    if(className =="qjkt4_yl_zj" || className =="qjkt4_yl_jx")
      value  = parseInt($(parentId+" .wd_conditioner1 i").text());
     else
      value  = parseInt($(parentId+" .wd_conditioner i").text());  
@@ -1328,7 +1327,7 @@ function temperatureHandle(parentId,className,equip_noPublic,set_noPublic){
       if(value >16) {value--;}
     }
     get_no("", equip_noPublic, set_noPublic, value);
-    if(className =="qjkt4_yl_zj")
+    if(className =="qjkt4_yl_zj" || className =="qjkt4_yl_jx")
       $(parentId+" .wd_conditioner1 i").html(value);
     else
       $(parentId+" .wd_conditioner i").html(value);

@@ -32,8 +32,10 @@ $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/get_JMdata",{
         if (rt.code ==200) {
            $(".userListView").find("ul").html("");
           rt.data.forEach(function(item,index){
+            if(item.name != window.localStorage.userName)
+            {
               let html = '<li >'+
-                          '<a class="item-content" href="/shortMessage/?zkx,201811-19">'+
+                          '<a class="item-content" href="/shortMessage/?'+item.name+'">'+
                             '<div class="item-media"><img src="/image/ic_launcher.png" width="60"></div>'+
                             '<div class="item-inner">'+
                               '<div class="item-title">'+item.name+'</div>'+
@@ -45,6 +47,7 @@ $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/get_JMdata",{
               $("html").find("a").bind("click",function(){
                   
               });
+            }
           });
         }
     }).fail(function(e){

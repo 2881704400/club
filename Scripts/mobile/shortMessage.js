@@ -1,16 +1,11 @@
 ﻿//websocket测试服务器
-var url, receiveUser, radioBroadcast,  connection, isData;
-
+var url, receiveUser, radioBroadcast, connection, isData;
 function shortMessage() {
     var chatObject = myApp.views.main.history,
-        urlLength = chatObject.length - 1;
-    var chatTime = chatObject[urlLength].split("?")[1].split(",")[1];
-    receiveUser = window.localStorage.receiveUser = chatObject[urlLength].split("?")[1].split(",")[0];
-    //init 
+        urlLength = chatObject.length - 1,
+        receiveUser = chatObject[urlLength].split("?")[1];
     $(".tabbar").addClass("displayNone");
-    $(".auth_name_msg").html(window.localStorage.receiveUser);
-    viewClass = "InfoView_" + userName + "_" + window.localStorage.receiveUser;
-    $(".shortContainer section").removeClass().addClass(viewClass);
+    $(".auth_name_msg").html(receiveUser);
     $(".buttonSend,input[name='info-checkbox'],.back").unbind();
     $(".buttonSend").bind("click", function() {
         send_msg();
@@ -19,22 +14,43 @@ function shortMessage() {
     $(".shortMessageBack").bind("click", function() {
         $(".tabbar").removeClass("displayNone");
     });
-    $(".inputInfo").bind("touchstart",function() {
-        setTimeout(function(){  
-            document.body.scrollTop = document.body.scrollHeight;  
-        },300);
+    $(".inputInfo").bind("touchstart", function() {
+        setTimeout(function() {
+            document.body.scrollTop = document.body.scrollHeight;
+        }, 300);
     })
-    readerFile(fileUrl, userName, receiveUser, handleString(chatTime), true);
-    console.log(chatObject); // 1.5 1500 *4 = 6000
+    readyFileTxt1(window.localStorage.userName, receiveUser);
+    window.localStorage.receiveUserName = receiveUser;
 }
-
+//读取最后一条记录
+function readyFileTxt1(sendName, receiveName) {
+    var Record_url = "/api/GWServiceWebAPI/readyEndRecord";
+    var Record_data = {
+        sendName: sendName,
+        receiveName: receiveName
+    };
+    JQajaxo("post", Record_url, true, Record_data, Record_success, Record_error, Record_complete);
+    function Record_success(data) {
+        var result = data.HttpData.concenTxt;
+        if (result) {
+            var filUrlStr = result.replace(fileUrl + "\\", "").split("\\"),
+                fileNameStr = filUrlStr[1].replace(".txt", ""),
+                fileDateTime = filUrlStr[0];
+            viewClass = fileNameStr + "-" + fileDateTime;
+            $(".shortContainer section").removeClass().addClass(viewClass);
+            readerFile(result, true);
+        }
+    }
+    function Record_error(e) {}
+    function Record_complete(xmlhttprequest, status) {}
+}
 function send_msg() {
     if (ws != null) {
         var inputInfo = document.getElementById("inputInfo").value.trim();
         if (inputInfo == "") {
             return;
         }
-        inputInfo = userName + "@" + receiveUser + ":::" + inputInfo;
+        inputInfo = window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
         try {
             ws.send(inputInfo);
         } catch (e) {
@@ -52,20 +68,6 @@ function closews() {
         ws.close(3005, userName);
     } catch (e) {}
 };
-function userClick(that) {
-    $("input[name='info-checkbox']").attr("checked", false);
-    $(that).find("input").attr("checked", true);
-    receiveUser = $(that).find(".item-title").html(); //item-title
-    $(".infoUserName").html(receiveUser);
-    viewClass = "InfoView_" + userName + "_" + receiveUser;
-    window.localStorage.receiveUser = receiveUser;
-    $(".shortContainer section").removeClass().addClass(viewClass);
-    //本地读取记录
-    document.getElementsByClassName(viewClass)[0].innerHTML = "";
-    try {
-        readerFile(fileUrl, userName, receiveUser, GetDateStr(0, 0), true);
-    } catch (e) {}
-}
 //判断字符是否存在数组中
 function returnIsString(value, str) {
     var array = str.split("-");
@@ -79,4 +81,3 @@ function handleString(value) {
     var str = value.replace(/\-/g, "").substring(0, 8);
     return str;
 }
-

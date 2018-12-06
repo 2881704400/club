@@ -1,149 +1,91 @@
-var AllTime = new Array();
-var AllName = new Array();
+var AllTime = new Array(),AllName = new Array();
+//init
 function Message() {
   toolbarActive('MessageTool');
   $(".messageInfoList").html(''); AllTime.length =  AllName.length = 0;  
   $(".auth_name_get").text(window.localStorage.auth_name_title);
   $('.messageConfirm p:eq(0)').text("服务员 "+window.localStorage.userName);
-  // readerTxt("C:\\MsgChat","admin","zkx","20180912",true);
-   readyFile(fileUrl);
+  
+  readyFile();
+
+  //  readyFile(fileUrl);
    // 通知待确认和已确认
     confirmNotice();
 }
-
-function readyFile(fileURL) {
-    var Record_url = "/GWService.asmx/GetFileStructure";
-    var Record_data = "filePath=" + fileURL + "&&fileName=" + ".txt";
-    JQajaxo("post", Record_url, true, Record_data,Record_success,Record_error,Record_complete);
-    function Record_success(data) {
-        var dt = $(data).find("string").html();
-        var result = JSON.parse(dt);
-        if(result != null)
+//读取文件夹结构
+function readyFile() {
+    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/get_JMdata",{
+        data:{getDataTable:"GWUser"},
+        async:false
+    })).done(function(n,l){
+    let rt = n.HttpData;
+    if (rt.code ==200) {
+      $(".userListView").find("ul").html("");
+      rt.data.forEach(function(item,index){
+        if(item.name != window.localStorage.userName)
         {
-          result.forEach(function(item,index){var dTime = item.replace(fileUrl+"\\","");AllTime.push(dTime);});
-          AllTime=AllTime.sort(sortNumber);
-          AllTime.forEach(function(item,index){readyFileTxt(item);});
+          readyFileTxt(item.name,window.localStorage.userName);
         }
+      });
     }
-    function Record_error(e){}
-    function Record_complete(xmlhttprequest,status){}
-
-    // $.when($.fn.XmlRequset.httpPost("/GWService.asmx/GetFileStructure", {
-    //     data: {
-    //         filePath: fileURL,
-    //         fileName: '.txt',
-    //     },
-    //     async: false
-    // })).done(function(n, l) {
-    //   var dt = $(data).find("string").html(),result = JSON.parse(dt);
-
-    //   if(result != null)
-    //   {   
-    //     result.forEach(function(item,index){var dTime = item.replace(fileUrl+"\\","");AllTime.push(dTime);});
-    //     AllTime=AllTime.sort(sortNumber);
-    //     AllTime.forEach(function(item,index){readyFileTxt(item);});
-    //   }       
-    // }).fail(function(e){
-         
-    // });
-
-
-
-
+    }).fail(function(e){
+    });
 }
-
-function readyFileTxt(value) {
-
-    var Record_url = "/GWService.asmx/GetFileStructure";
-    var Record_data = "filePath=" + fileUrl+"\\"+value + "&&fileName=" + ".txt";
-    JQajaxo("post", Record_url, true, Record_data,Record_success,Record_error,Record_complete);
-    function Record_success(data) {
-        var dt = $(data).find("string").html();
-        var result = JSON.parse(dt);
-
-        if(result != null)
-        {
-            var AllStr="",localUsr = window.localStorage.userName; 
-            result.forEach(function(item,index){
-                var filUrlStr = item.replace(fileUrl+"\\","").split("\\"),fileNameStr = filUrlStr[1].replace(".txt",""),fileDateTime = filUrlStr[0];
-                
-                if(fileNameStr.indexOf(window.localStorage.userName+"-") != -1 ) //把有和该人聊天且是最新记录调取出来放再列表之前
-                  { 
-                    AllStr = fileNameStr.replace(window.localStorage.userName+"-","");
-                    if(!getISarray(AllStr,AllName))//把不重复按时间罗列出来
-                    {
-                      AllName.push(AllStr); 
-                      readerTxt(value,localUsr,AllStr,fileDateTime,true);
-                    } 
-                  }
-                  else if(fileNameStr.indexOf("-"+window.localStorage.userName) != -1)
-                  {
-                    AllStr = fileNameStr.replace("-"+window.localStorage.userName,"");
-                    if(!getISarray(AllStr,AllName))//把不重复按时间罗列出来
-                    {
-                      AllName.push(AllStr);
-                      readerTxt(value,AllStr,localUsr,fileDateTime,false);
-                    }                     
-                  }
-            });
-        }
-    }
-    function Record_error(e){}
-    function Record_complete(xmlhttprequest,status){}
+//读取最后一条记录
+function readyFileTxt(sendName,receiveName) {
+  var Record_url = "/api/GWServiceWebAPI/readyEndRecord";
+  var Record_data = {sendName:sendName,receiveName:receiveName};
+  JQajaxo("post", Record_url, true, Record_data,Record_success,Record_error,Record_complete);
+  function Record_success(data) {
+    //  console.log(data);
+     var result = data.HttpData.concenTxt;
+     if(result)
+       {
+        
+         var filUrlStr = result.replace(fileUrl+"\\","").split("\\"),fileNameStr = filUrlStr[1].replace(".txt",""),fileDateTime = filUrlStr[0];
+         readerTxt(result,sendName,receiveName,fileDateTime,true); 
+       }
+  }
+  function Record_error(e){}
+  function Record_complete(xmlhttprequest,status){}
 }
 
 //读记录
 function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
-
-    // 请求 
-    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/ReadChatInfo", {
-        data: {
-            fileUrl: fileUrl,
-            fileName: sendUser+"-"+receiveUser,
-            DateTime: DateTime,
-        },
-        async: false
-    })).done(function(n, l) {
-        let rt = n.HttpData;
-        if (rt.code == 200) {
-          var allStr,userStr,strLength,chatObjec,endChatObject,chatDate,chatContent,chatTime;
-          allStr = rt.data.concenTxt.split("<br />");
-          strLength= allStr.length;
-          userStr = allStr[strLength-2];
-          if(sendUser == userName)
-           {chatObjec = receiveUser;}
-          else
-            {chatObjec = sendUser;}
-          endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
-          chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
-          chatContent= userStr.split("<f7-Content:>")[1];
-          chatDate= chatTime.split(" ")[0].replace("-","");
-          initmessageHTML(chatObjec,chatTime,endChatObject+": "+chatContent,chatDate);//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
-        }
-    }).fail(function(e) {});
-
-
+  $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/ReadChatInfo", {
+      data: {
+          fileUrl: fileUrl,
+          fileName: sendUser+"-"+receiveUser,
+          DateTime: DateTime,
+      },
+      async: false
+  })).done(function(n, l) {
+      let rt = n.HttpData;
+      if (rt.code == 200) {
+        var allStr,userStr,strLength,chatObjec,endChatObject,chatDate,chatContent,chatTime;
+        allStr = rt.data.concenTxt.split("<br />");
+        strLength= allStr.length;
+        userStr = allStr[strLength-2];
+        if(sendUser == userName)
+         {chatObjec = receiveUser;}
+        else
+          {chatObjec = sendUser;}
+        endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
+        chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
+        chatContent= userStr.split("<f7-Content:>")[1];
+        chatDate= chatTime.split(" ")[0].replace("-","");
+        initmessageHTML(chatObjec,chatTime,endChatObject+": "+chatContent,chatDate);//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
+      }
+  }).fail(function(e) {
+    if(isFlase){
+      readerTxt(fileUrlVal,receiveUser,sendUser,DateTime,false);
+    }
+  });
 }
-
-//升序
-function sortNumber(a, b)
-{
-return b - a;
-}
-
-//是否存在数组中
-function getISarray(arrayValue,arrayObject){
-   for(var index in arrayObject)
-   {
-      if(arrayObject[index] == arrayValue)
-        return 1;
-   }
-   return 0;
-}
-
+//初始化界面HTML
 function initmessageHTML(chatObject,chatTime,chatInfo,DateTime){
   var domHTML ="<li>"+
-                "<a href=\"/shortMessage/?"+chatObject+","+DateTime+"\" class=\" item-content\" >"+
+                "<a href=\"/shortMessage/?"+chatObject+"\" class=\"item-content\" >"+
                   "<div class=\"item-media\"><img src=\"/image/ic_launcher.png\" width=\"60\"/></div>"+
                   "<div class=\"item-inner\">"+
                     "<div class=\"item-title-row\">"+
