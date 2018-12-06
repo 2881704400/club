@@ -357,6 +357,21 @@
             <param name="fileName"></param>
             /// <param name="DateTime"></param>
         </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.readUrlRecord(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            读取某次聊天记录
+            </summary>
+            <param name="jb"></param>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.readyEndRecord(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            读取聊天记录c:\\MsgChat 存在的最后一条记录
+            </summary>
+            <param name="jb">
+            sendName 发送用户名
+            receiveName 接收用户名
+            </param>
+        </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.getClientTypeInfo">
             <summary>
             获取client信息
