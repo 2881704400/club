@@ -1,0 +1,788 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GWServiceOld.Net</name>
+    </assembly>
+    <members>
+        <member name="M:GWServiceOld.Data.ClassLib.String2Json(System.String)">
+            <summary>
+            过滤特殊字符
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.StringFormat(System.String,System.Type)">
+            <summary>
+            格式化字符型、日期型、布尔型
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.ErrorLog(System.String,System.String)">
+            <summary>
+            错误日志
+            </summary>
+            <param name="error">错误信息</param>
+            <param name="path">输出到目录</param>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.XMLToJson(System.String)">
+            <summary>
+            XML转json数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.JiaMI(System.String)">
+            <summary>
+            加密MD5
+            </summary>
+            <param name="JMString">需加密的字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.JieMI(System.String)">
+            <summary>
+            解密MD5
+            </summary>
+            <param name="JMString">需解密的字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.GetDataTableFromSQL(System.String)">
+            <summary>
+            访问服务器数据库
+            </summary>
+            <param name="SQL">SQL命令查询</param>
+            <returns>返回一张表</returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.ExecuteSQL(System.String)">
+            <summary>
+            执行SQL命令
+            </summary>
+            <param name="SQL">SQL命令查询</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.EnsureRunProxy(System.String,System.String)">
+            <summary>
+            连接 AlarmCenter 服务器
+            </summary>
+            <param name="pageUserNm">登录名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.getHostIp(System.Int32)">
+            <summary>
+            获取本机ip地址
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.LoginC(System.String,System.String)">
+            <summary>
+            登录接口
+            </summary>
+            <param name="name">用户名</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.GetRealtimeEvent(System.String,System.String)">
+            <summary>
+            获取实时系统快照
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.asysOK(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            请确定接口
+            </summary>
+            <param name="procMsg">处理意见</param>
+            <param name="isMsg">是否发送短信</param>
+            <param name="telStr">发送人的电话</param>
+            <param name="procName">事件名</param>
+            <param name="procTime">事件时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.GetRealtimeEventCount(System.String,System.String)">
+            <summary>
+            获取实时系统数据的总数
+            </summary>
+            <param name="SnapshotStr">报警分类</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.GetEquipTreeList">
+            <summary>
+            从XML文件获取树状列表(支持四级)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.ConfEquipList">
+            <summary>
+            获取配置列表
+            </summary>
+            <returns>json</returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SelectEqpYcpYxpConfToJson(System.String,System.String,System.String,System.String)">
+            <summary>
+            查询设备、遥测量、遥信量的配置信息
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="counts">数量</param>
+            <param name="pages">当前页数</param>
+            <param name="select_id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SelectEqpYcpYxpConfToCount(System.String,System.String,System.String)">
+            <summary>
+            查询设备、遥测量、遥信量的配置信息的总数
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="select_id">ID号</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.select_ids(System.String)">
+            <summary>
+            转换多个设备号
+            </summary>
+            <param name="selectId">设备号</param>
+            <param name="selectName">条件名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.CreateYcpYxpSetToJson(System.String,System.String)">
+            <summary>
+            创建遥测、遥信、设置
+            </summary>
+            <param name="selectedEquipNo">设备号</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.selectycpyxpNum(System.String,System.String)">
+            <summary>
+            查询ycp,yxp表的测点号
+            </summary>
+            <param name="nameNumb">需要的表的列名</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SetUpdate(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            设置按钮
+            </summary>
+            <param name="eqpnos">设备号</param>
+            <param name="mainInstr">设备属性1</param>
+            <param name="minorInstr">设备属性2</param>
+            <param name="value">设备值</param>
+            <param name="user">操作员</param>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.CreateYcxpSetSysToData(System.String,System.String,System.String)">
+            <summary>
+            创建设备、设置、系统事件
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="wheres">条件</param>
+            <param name="select_id">设备号</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.selectToId(System.String,System.String)">
+            <summary>
+            多个设备查询
+            </summary>
+            <param name="str">设备号</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.sqlStrc(System.String)">
+            <summary>
+            转换time格式
+            </summary>
+            <param name="str">原time格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.UpdateTableStr(System.String,System.String)">
+            <summary>
+            修改表数据
+            </summary>
+            <param name="dataStr">1'1'温湿度s"(设备号'字段名的位置'更改的值)</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.UpdateSystemSetParms(System.String,System.String)">
+            <summary>
+            系统配置更改数据
+            </summary>
+            <param name="dataStr">(设备号,字段名,更改的值)(设备号,遥测号,字段名,更改的值)</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.Resettings(System.String)">
+            <summary>
+            重置数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.rowName(System.String,System.String)">
+            <summary>
+            列名
+            </summary>
+            <param name="rowNameStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.GainAlarmTabs(System.String)">
+            <summary>
+            获取数据:报警排表,定时任务(普通任务,循环任务,(根据表名获取全表数据))
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.TableToJsonAll(System.String)">
+            <summary>
+            多个表查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.ResetAlarmTabs(System.String,System.String)">
+            <summary>
+            重置数据:报警排表,定时任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.TimedTask(System.String,System.String,System.String)">
+            <summary>
+            定时任务（循环任务）,增、删、改等数据
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="actType">动作类型</param>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.AlarmDispose(System.String,System.String)">
+            <summary>
+            处理表字段
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.sceneSave(System.String,System.String)">
+            <summary>
+            保存数据场景编辑
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="data">需要保存场景编辑的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.VideoConfig(System.String)">
+            <summary>
+            获取视频配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SetGW_MJ_table(System.String)">
+            <summary>
+            获取门禁表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.UpdateCardAtDoor(System.String)">
+            <summary>
+            修改GW_MJ_CardAtDoor_KingKang表数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.DoorInfoStatue(System.String)">
+            <summary>
+            修改GW_MJ_DoorInfo表，写入用户授权
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.UpdateCard_Member(System.String)">
+            <summary>
+            修改GW_MJ_Card和GW_MJ_Member表数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SQLDeleteData(System.String,System.String)">
+            <summary>
+            SQL删除表数据
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="requirement">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SQLAddData(System.String,System.String)">
+            <summary>
+            SQL增加表数据
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="requirement">条件（id,value:1,工程部;2,工程部;3,工程部）</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SQLAdd_Card_Member(System.String)">
+            <summary>
+            SQL增加GW_MJ_Member、GW_MJ_Card表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SQLUpdateData(System.String,System.String)">
+            <summary>
+            SQL修改部门表
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="requirement">条件（dept_id,dept_nm:1,工程部;2,工程部;3,工程部）</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.UpdateHoliday(System.String)">
+            <summary>
+            修改GW_MJ_Holiday表数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.SQLAdd_Holiday(System.String)">
+            <summary>
+            SQL增加GW_MJ_Holiday表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Data.ClassLib.pageConfigList">
+            <summary>
+            获取页面配置列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GWServiceOld.Net.AlarmCenter_Services">
+            <summary>
+            AlarmCenter_Services 的摘要说明
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.AssemblyInfor">
+            <summary>
+            获取程序版本信息
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.InitEnsureRunProxy(System.String,System.String)">
+            <summary>
+            获取或连接 服务器处理
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetDataTableFromSQLSer(System.String)">
+            <summary>
+            执行SQL语句查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ExecuteSQLSer(System.String)">
+            <summary>
+            执行SQL语句命令
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetName2SFService(System.String)">
+            <summary>
+            获取授权名称
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.Login(System.String,System.String)">
+            <summary>
+            登录处理
+            </summary>
+            <param name="nameKey">用户名</param>
+            <param name="passwordKey">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SysEvt(System.String,System.String)">
+            <summary>
+            获取实时系统数据
+            </summary>
+            <param name="typeStr">消息类型</param>
+            <param name="equip_nos">用户可查看的设备号，若用户为管理员则为空字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.AsysOKs(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            请确定接口
+            </summary>
+            <param name="procMsg">处理意见</param>
+            <param name="isMsg">是否发送短信</param>
+            <param name="telStr">发送人的电话</param>
+            <param name="procName">事件名</param>
+            <param name="procTime">事件时间</param>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SysEvtCount(System.String,System.String)">
+            <summary>
+            获取实时系统数据的总数
+            </summary>
+            <param name="typeStr">消息类型</param>
+            <param name="equip_nos">用户可查看的设备号，若用户为管理员则为空字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetEquipTreeLists">
+            <summary>
+            获取设备列表
+            (已作废)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetEquipTreeLists2">
+            <summary>
+            获取设备列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ConfList">
+            <summary>
+            获取配置列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ConfListName(System.String)">
+            <summary>
+            获取设备名（当列表名为空时，自动获取到数据库）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SelectEqpYcpYxpConf(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            查询设备、遥测量、遥信量的配置信息或总数
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="counts">总数</param>
+            <param name="pages">当前页</param>
+            <param name="select_id">设备号</param>
+            <param name="isCount">是否查询总数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.isProc_Module">
+            <summary>
+            是否存在短信报警和电话报警
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.RealTimeData(System.String,System.String)">
+            <summary>
+            获取实时数据ycp,yxp,set
+            </summary>
+            <param name="selectedEquipNo">当前设备号</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.RealEquipCount(System.String,System.String)">
+            <summary>
+            获取实时数据ycp,yxp,set项的总数
+            </summary>
+            <param name="equip_no">设备号</param>
+            <param name="userName">操作员</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.selectycpyxpNums(System.String,System.String)">
+            <summary>
+            查询ycp,yxp表的测点号
+            </summary>
+            <param name="selectedEquipNo"></param>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SetUpdateS(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            设置按钮（已作废，不建议使用，请使用SetupsCommand接口来替代）
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SetupsCommand(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            设备控制命令（设置按钮）
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.EqpSetSysEvt(System.String,System.String,System.String)">
+            <summary>
+            事件查询
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="wheres">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UpdateToStrF(System.String,System.String)">
+            <summary>
+            修改表数据
+            </summary>
+            <param name="dataStr"></param>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UpdateSystemSetParm(System.String,System.String)">
+            <summary>
+            系统配置更改数据
+            </summary>
+            <param name="dataStr"></param>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.Resetting(System.String)">
+            <summary>
+            重置数据
+            </summary>
+            <param name="data">0：系统配置，1：定时任务，2：设备联动</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GainAlarmTab(System.String)">
+            <summary>
+            获取数据:报警排表,定时任务(普通任务,循环任务,(根据表名获取全表数据))
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.TableToJsonAlls(System.String)">
+            <summary>
+            多表查询
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ResetAlarmTab(System.String,System.String)">
+            <summary>
+            重置数据:报警排表,定时任务(普通任务)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.TimedTaskSer(System.String,System.String,System.String)">
+            <summary>
+            定时任务（循环任务）,增、删、改等数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.sceneSaveTab(System.String,System.String)">
+            <summary>
+            保存数据场景编辑
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.VideoConfigs(System.String)">
+            <summary>
+            视频配置
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SetGW_MJ_tables(System.String)">
+            <summary>
+            获取门禁表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SetGW_MJ_MemberPhoto">
+            <summary>
+            获取门禁人员照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UpdateCardAtDoors(System.String)">
+            <summary>
+            修改GW_MJ_CardAtDoor_KingKang表数据
+            </summary>
+            <param name="prere"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.DoorInfoStatues(System.String)">
+            <summary>
+            修改GW_MJ_DoorInfo表，写入用户授权
+            </summary>
+            <param name="prere"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UpdateCard_Members(System.String)">
+            <summary>
+            修改GW_MJ_Card和GW_MJ_Member表数据
+            </summary>
+            <param name="prere"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SQLDeleteDatas(System.String,System.String)">
+            <summary>
+            SQL删除表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SQLAddDatas(System.String,System.String)">
+            <summary>
+            SQL添加表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SQLAdd_Card_Members(System.String)">
+            <summary>
+            SQL增加GW_MJ_Member、GW_MJ_Card表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UpdateHolidays(System.String)">
+            <summary>
+            修改GW_MJ_Holiday表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SQLAdd_Holidays(System.String)">
+            <summary>
+            SQL增加GW_MJ_Holiday表数据
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.pageConfigLists">
+            <summary>
+            获取页面配置列表
+            </summary>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ServiceSetVCtrol(System.String,System.String)">
+            <summary>
+            语音控制命令
+            </summary>
+            <param name="audioData">byte字符串</param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ServiceSetVCtrol1(System.String,System.String)">
+            <summary>
+            语音控制命令
+            </summary>
+            <param name="audioData">命令字符串</param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GZip_Decompress(System.Byte[])">
+            <summary>
+            解压缩字节数组
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UserPermissions(System.String)">
+            <summary>
+            用户权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.RichScan(System.String,System.String)">
+            <summary>
+            扫描二维码
+            (已作废)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.RichScan2(System.String,System.String)">
+            <summary>
+            扫描二维码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.CreateRichScan(System.String)">
+            <summary>
+            生成用户二维码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.UserPermissionsUpdage(System.String,System.String,System.String)">
+            <summary>
+            权限表更新
+            </summary>
+            <param name="updateStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ExpressionEval(System.String,System.String)">
+            <summary>
+            执行表达式
+            </summary>
+            <param name="expression">表达式字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ZCimg(System.String)">
+            <summary>
+            获取资产图片
+            (已作废)
+            </summary>
+            <param name="imgName">图片名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ZCimgUpload(System.String,System.String)">
+            <summary>
+            存储维护资产的图片
+            (已作废)
+            </summary>
+            <param name="imgUrl">图片地址</param>
+            <param name="imgName">图片名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.ZCMaintain(System.String,System.String,System.String)">
+            <summary>
+            添加资产维护记录
+            (已作废)
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.AddWeihuRecord4ZC(System.String,System.String,System.String,System.String)">
+            <summary>
+            添加资产维护记录
+            </summary>
+            <param name="ziChanID">资产ID</param>
+            <param name="name">维护人</param>
+            <param name="recordStr">维护信息</param>
+            <param name="byteStr">上传的图片</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.RemoveWeihuRecord4ZC(System.String)">
+            <summary>
+            删除一条资产维护记录
+            </summary>
+            <param name="ziChanID">资产ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.SendImageToSvr(System.String,System.String)">
+            <summary>
+            设置资产图片
+            </summary>
+            <param name="ZCID">资产ID</param>
+            <param name="bs">图片数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetImageFromSvr(System.String)">
+            <summary>
+            获取资产图片
+            </summary>
+            <param name="ZCID">资产ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetHistoryYCP(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            ycp历史数据
+            </summary>
+            <param name="beginDT">开始时间</param>
+            <param name="endDT">结束时间</param>
+            <param name="equip_no">设备id</param>
+            <param name="ycpno">ycp测点id</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.PostData(System.String,System.String)">
+            <summary>
+            执行post请求
+            </summary>
+            <param name="url">路径</param>
+            <param name="value">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceOld.Net.AlarmCenter_Services.GetSetParmItem(System.String,System.String)">
+            <summary>
+            获取设置项单个设置
+            </summary>
+            <param name="equip_no">设备号</param>
+            <param name="set_no">设置号</param>
+            <returns></returns>
+        </member>
+        <member name="T:GWServiceAPI.Net.LibClass.DES">
+            <summary>
+            字符串加密解密
+            </summary>
+        </member>
+        <member name="M:GWServiceAPI.Net.LibClass.DES.EncryptDES(System.String,System.String)">
+            <summary>
+            DES加密字符串
+            </summary>
+            <param name="encryptString">待加密的字符串</param>
+            <param name="encryptKey">加密密钥,要求为8位</param>
+            <returns>加密成功返回加密后的字符串，失败返回空串</returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.LibClass.DES.DecryptDES(System.String,System.String)">
+            <summary>
+            DES解密字符串
+            </summary>
+            <param name="decryptString">待解密的字符串</param>
+            <param name="decryptKey">解密密钥,要求为8位,和加密密钥相同</param>
+            <returns>解密成功返回解密后的字符串，失败返回空串</returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.LibClass.DES.GetGuidKeys">
+            <summary>
+            获取密钥
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GWServiceAPI.Net.LibClass.DES.GetGuidKeys(System.String)">
+            <summary>
+            解密密钥
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

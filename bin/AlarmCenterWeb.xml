@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AlarmCenterWeb</name>
+    </assembly>
+    <members>
+        <member name="M:AlarmCenterAPI.Data.ServerHub.Connect">
+            <summary>
+            测试连接
+            </summary>
+        </member>
+        <member name="M:AlarmCenterAPI.Data.ServerHub.StartListen(System.Int32)">
+            <summary>
+            获取设备ycp,yxp测点的实时状态并添加监听事件
+            </summary>
+            <param name="select">设备号</param>
+            <param name="appkey"></param>
+            <param name="infokey"></param>
+        </member>
+        <member name="M:AlarmCenterAPI.Data.ServerHub.DictEquipItem_PropertyChanged_ycp(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            ycp测点的监听事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AlarmCenterAPI.Data.ServerHub.DictEquipItem_PropertyChanged_yxp(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            yxp测点的监听事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AlarmCenterAPI.Data.ServerHub.ListenEquipAll">
+            <summary>
+            添加设备的监听事件
+            </summary>
+            <param name="appkey"></param>
+            <param name="infokey"></param>
+        </member>
+        <member name="M:AlarmCenterAPI.Data.ServerHub.EquipItem_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            设备的监听事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+    </members>
+</doc>
