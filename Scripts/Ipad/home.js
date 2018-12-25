@@ -1,9 +1,6 @@
 //首页事件
 function onHomePage() {
-	//myApp.router.navigate('/serviceManage/');
-//	myApp.router.navigate('/guestControl/');
 
-	
 	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
 
 	$(".toolbar-inner a").bind('click', function() {

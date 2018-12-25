@@ -4,6 +4,11 @@
 function bgMusic() {
 	toolbarActiveImg('bgMusicTool');
 //	vio=[],pre=[],next=[]
+	vio=[];
+	pre=[];
+	next=[];
+	ctrol=[];
+	roomArr=[];
 	$(".left-pannel p label").bind('click', function() {
 		var flag = $("#bgAreaCheckBoxId").prop('checked');
 		if(flag) {
@@ -34,34 +39,44 @@ function bgMusic() {
 			}
 		}
 	});
+
+
 	$$('.range-slider').on('range:change', function (e, range) {
 //		console.log(range.value);
 		var num=range.value;
-		for(var i=0;i<vio.length;i++){
-			var value=vio[i].split(",");
-			var param=getSetParam(value[0],value[1]);
-			var data={
-				equip_no:param.equip_no,
-				main_instruction:param.main_instruction,
-				minor_instruction:param.minor_instruction,
-				value:num,
-				user_name:window.localStorage.userName
-			}
-			JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
-			function _success(res){
-				$(res).find("string").each(function(){
-					var dat=$(this).text();
-					if(dat=="true"){
-						alertMsgSuccess.open();
-						
-					}else{
-						alertMsgError.open();
-					}
-				})
-			}
+		if(vio.length!=0){
+			return;
 		}
+				for(var i=0;i<vio.length;i++){
+				var value=vio[i].split(",");
+				var param=getSetParam(value[0],value[1]);
+				var data={
+					equip_no:param.equip_no,
+					main_instruction:param.main_instruction,
+					minor_instruction:param.minor_instruction,
+					value:num,
+					user_name:window.localStorage.userName
+				}
+				JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
+				function _success(res){
+					$(res).find("string").each(function(){
+						var dat=$(this).text();
+						if(dat=="true"){
+							alertMsgSuccess.open();
+							
+						}else{
+							alertMsgError.open();
+						}
+					})
+				}
+			}
+		
 //	  $$('.price-value').text('$'+(range.value[0])+' - $'+(range.value[1]));
 	});
+
+
+
+
 //	$$('.range-slider').on('change', function (e, range) {
 //		console.log(range);
 //		console.log(222);
@@ -112,38 +127,7 @@ function bgMusic() {
 			roomArr.remove(ind);
 			
 		}
-//		loadInterval();
-//		console.log(vio)
-//		console.log(pre)
-//		console.log(next)
-//		console.log(ctrol)
-//		{/*贵宾室*/
-//			vioce:"300,3002",
-//			next:"300,3004",
-//			pre:"300,3003",
-//			ctl:[
-//				"300,3000",/*开*/
-//				"300,3001"/*关*/
-//			]
-//		},
-//		setTimeout(function() {
-//			var arr = document.getElementsByName("my-checkbox");
-//			var arrValue = [];
-//			for(i = 0; i < arr.length; i++) {
-//				if(arr[i].checked) {
-//					arrValue.push(arr[i].value);
-//				}
-//			}
-//			console.log(arrValue);
-//		}, 1000);
-		
-		/*var test = $("input[name='my-checkbox']:checked");
-		var checkBoxValue = ""; 
-		test.each(function(){
-			checkBoxValue += $(this).val()+",";
-		})
-		checkBoxValue = checkBoxValue.substring(0,checkBoxValue.length-1);
-		*/
+
 	});
 
 	var minArr = [];
@@ -155,26 +139,7 @@ function bgMusic() {
 		}
 
 	}
-//
-//	$(".pannel-tool>ul>li>div").bind('click', function() {
-//		var flag = $(this).find("img").eq(1).is(':visible');
-//		if(flag) {
-//			$(this).find("img").eq(0).show();
-//			$(this).find("img").eq(1).hide();
-//		} else {
-//			$(this).find("img").eq(0).hide();
-//			$(this).find("img").eq(1).show();
-//		}
-//
-//		var that = $(this);
-//		var index = that.index();
-//		if(index == 0 || index == 2) {
-//			setTimeout(function() {
-//				that.find("img").eq(0).show();
-//				that.find("img").eq(1).hide();
-//			}, 300)
-//		}
-//	});
+
 
 
 	var pickerInline = myApp.picker.create({
@@ -376,11 +341,20 @@ function bgMusic() {
 		
 	});
 	getEquipStayc()
+	// $("#aa").click(function(event) {
+	// 	 set1()
+	// });
+	
 }
+// function set1(){
+// 	window.localStorage.ww=setTimeout(function(){
+// 		console.log(888);
+// 	}, 30000);
+	
+// }
 var vio=[],pre=[],next=[],ctrol=[],roomArr=[],timeMin=0,flagPlay=false,autoPlay=true;
 window.obj={};
 function loadInterval(setTime,deal){
-
 	if(flagPlay==true&&autoPlay==true){
 		alertMsgSuccess.open();
 		for(var i=0;i<roomArr.length;i++){
@@ -402,7 +376,7 @@ function loadInterval(setTime,deal){
 						var dat=$(this).text();
 						if(dat=="true"){
 							alertMsgSuccess.open();
-							
+							console.log(333);
 						}else{
 							alertMsgError.open();
 						}
@@ -456,13 +430,15 @@ function musicPre(dom){
 }
 function musicCtr(dom){
 	var flag=$(dom).find("img").eq(1).is(":visible");
+	console.log(flag)
 	var param;
 	if(flag){
-		//关
-		loadCtrol(0)
-	}else{
 		//开
 		loadCtrol(1)
+	}else{
+		loadCtrol(0)
+		//关
+		
 	}
 }
 function loadCtrol(type){

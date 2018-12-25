@@ -1,3 +1,6 @@
+
+
+
 // 		equip_no: "设备号",        
 //      
 //      main_instruction: "设备属性1",        
@@ -8,6 +11,7 @@
 //      
 //      user_name: "操作员
 //		先获取状态
+
 var guestData=[
 	{//客房一
 		"bedroom":[14,15,16,17,18,19,20,21,22,23],
@@ -771,7 +775,7 @@ var setNum=[
 ]
 
 function getStatusYc(){
-	var Number;
+	var numb;
 	 
 	$.ajax({
 	    type: "POST",
@@ -823,7 +827,7 @@ function getStatusYc(){
 						wd[4]=dat[i].m_YCValue
 					}
 				}
-				Number={
+				numb={
 					"vio":voice,
 					"wd":wd,
 					"wd2":wd2
@@ -834,7 +838,7 @@ function getStatusYc(){
 	    }
 	
 	});
-	return Number;
+	return numb;
 }
 function removeClakt(){
 		$("#airSceneId li").each(function(){
@@ -904,8 +908,13 @@ function getSetPa(equip,set_no){
 	return setParam;
 }
 function loadCheck(ind){
+	// var hasDown=[1117,1208,1210,1213,1221,1224,1226,1229,1237,1164,1167,1173,1178,1185,1191,1194,1197,1202,1242,1245,1249,1256,1264,1267,1273,1275,1285,1286,1299,1306,1315,1317,1326,1329,1335,1341,1346,1350,1358,1360,1365,1370,1374,1377,48,53,55,58,67,73,83,90,96,109,119,125,135,142,145,151,154,169,179,186,189,198,1000,1001,1002,1006,1016,1022,1024,1032,1035,1041,1046,1049,1055,1063,1066,1071,3,13,20,23,32,38,1075,1077,1082,1084,1085,1086,1087,1088,1095,1099,1108,1125,1135,1141,1146,1148,1151,1156]
 	var hasDown=getStatusYx();
-	var Number=getStatusYc();
+	var numbers=getStatusYc();
+	
+	// console.log(hasDown);
+	// console.log(numbers);
+
 
 	$("#roomSceneId .pannel-imginfo").each(function(){
 		$(this).find("p img").eq(1).hide();
@@ -950,8 +959,8 @@ function loadCheck(ind){
 
 	if(ind==0){
 //	hasDown=[1,4,12,18,19,25,27];
-		$("#airTemperatureId").text(Number.wd[0])
-		$("#musicVal").attr("num",Number.vio[0])
+		$("#airTemperatureId").text(numbers.wd[0])
+		$("#musicVal").attr("num",numbers.vio[0])
 		var bed=getItemIndex(hasDown,check.bedroom);
 		var wash=getItemIndex(hasDown,check.washroom);
 		var ligh_0=getItemIndex(hasDown,check.lightloop_0);
@@ -996,8 +1005,8 @@ function loadCheck(ind){
 		
 		
 	}else if(ind==1){
-		$("#airTemperatureId").text(Number.wd[1])
-		$("#musicVal").attr("num",Number.vio[1])
+		$("#airTemperatureId").text(numbers.wd[1])
+		$("#musicVal").attr("num",numbers.vio[1])
 		var bed=getItemIndex(hasDown,check.bedroom);
 		var wash=getItemIndex(hasDown,check.washroom);
 		var ligh_0=getItemIndex(hasDown,check.lightloop_0);
@@ -1041,8 +1050,8 @@ function loadCheck(ind){
 			$("#musicSceneId").find(".pannel-imginfo").eq(1).find("img").eq(1).show();
 		}
 	}else if(ind==2){
-		$("#airTemperatureId").text(Number.wd[2])
-		$("#musicVal").attr("num",Number.vio[2])
+		$("#airTemperatureId").text(numbers.wd[2])
+		$("#musicVal").attr("num",numbers.vio[2])
 		
 		var bed=getItemIndex(hasDown,check.bedroom);
 		var wash=getItemIndex(hasDown,check.washroom);
@@ -1087,7 +1096,7 @@ function loadCheck(ind){
 			$("#musicSceneId").find(".pannel-imginfo").eq(1).find("img").eq(1).show();
 		}
 	}else if(ind==3){
-		$("#musicVal").attr("num",Number.vio[3])
+		$("#musicVal").attr("num",numbers.vio[3])
 		var bed,wash,kt,fs,ms;
 		var ligh_0=getItemIndex(hasDown,check.lightloop_0);
 		var ligh_1=getItemIndex(hasDown,check.lightloop_1);
@@ -1105,12 +1114,12 @@ function loadCheck(ind){
 			wash=getItemIndex(hasDown,check.upwashroom)
 		}
 		if(ktId==0){
-			$("#airTemperatureId").text(Number.wd[3])
+			$("#airTemperatureId").text(numbers.wd[3])
 			kt=getItemIndex(hasDown,check.ktcontrol)
 			fs=getItemIndex(hasDown,check.fs);
 			ms=getItemIndex(hasDown,check.ms);
 		}else{
-			$("#airTemperatureId").text(Number.wd2)
+			$("#airTemperatureId").text(numbers.wd2)
 			kt=getItemIndex(hasDown,check.upktcontrol)
 			fs=getItemIndex(hasDown,check.upfs);
 			ms=getItemIndex(hasDown,check.upms);
@@ -1158,8 +1167,8 @@ function loadCheck(ind){
 			$("#musicSceneId").find(".pannel-imginfo").eq(1).find("img").eq(1).show();
 		}
 	}else if(ind==4){
-		$("#airTemperatureId").text(Number.wd[4])
-		$("#musicVal").attr("num",Number.vio[4])
+		$("#airTemperatureId").text(numbers.wd[4])
+		$("#musicVal").attr("num",numbers.vio[4])
 		var bed=getItemIndex(hasDown,check.bedroom);
 		var wash=getItemIndex(hasDown,check.washroom);
 		var ligh_0=getItemIndex(hasDown,check.lightloop_0);

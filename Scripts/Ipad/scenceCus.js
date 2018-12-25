@@ -482,6 +482,7 @@ function setScence(equip_no,set_no,dom){
 
 var setCurtain=[];
 function loadCurtain(thisInd,parInd){
+	console.log(5555);
 //	console.log(thisInd,parInd);
 	var data=curtain[parInd][thisInd],lg=data.length;
 	$("#curtainWrap").html("");
@@ -495,20 +496,67 @@ function loadCurtain(thisInd,parInd){
 			var set=value.set;
 			var sto=value.sto;
 			var clo=value.clo;
-			var html='<li onclick="loadArr(\''+set+'\',\''+sto+'\',\''+clo+'\',this)">'+
+			var html='<li set="'+set+'" sto="'+sto+'" clo="'+clo+'" onclick="loadArr(\''+set+'\',\''+sto+'\',\''+clo+'\',this)">'+
 							'<label class="checkbox">'+
 								'<input type="checkbox" name="my-checkbox" value="1" />'+
 								'<i class="icon-checkbox"></i>'+
 								'<span>'+value.label+'</span>'+
 							'</label>'+
 						'</li>';
+		
 			$("#curtainWrap").append(html);
+			
 		}
+		console.log(666);
+			var allHtml='<li  onclick="loadAllCheck(this)">'+
+							'<label class="checkbox">'+
+								'<input type="checkbox" name="my-checkbox" value="" />'+
+								'<i class="icon-checkbox"></i>'+
+								'<span>全选</span>'+
+							'</label>'+
+						'</li>';
+			$("#curtainWrap").append(allHtml);
 	}
 	
 }
+function loadAllCheck(dom){
+	var checks=$(dom).find("input").prop("checked");
+	if(checks){
+		/*全不选*/
+		$(dom).siblings('li').each(function(index, el) {
+			var check=$(this).find("input").prop("checked");
+			var set=$(this).attr("set"),
+				sto=$(this).attr("sto"),
+				clo=$(this).attr("clo");
+			if(check){
+				$(this).find("input").prop("checked",false)
+				openCurtain.remove(set);
+				stopCurtain.remove(sto);
+				closeCurtain.remove(clo);
+			}
+				
+		});
+	}else{
+		/*全选*/
+		$(dom).siblings('li').each(function(index, el) {
+			var check=$(this).find("input").prop("checked");
+			var set=$(this).attr("set"),
+				sto=$(this).attr("sto"),
+				clo=$(this).attr("clo");
+			if(!check){
+				$(this).find("input").prop("checked",true)
+				openCurtain.push(set);
+				stopCurtain.push(sto);
+				closeCurtain.push(clo);
+			}
+				
+		});
 
+	}
+
+}
 function loadArr(set,sto,clo,dom){
+	isAll()
 	var check=$(dom).find("input").prop("checked");
 //	console.log(check);
 //	console.log(set,sto,clo)
@@ -523,7 +571,17 @@ function loadArr(set,sto,clo,dom){
 		stopCurtain.push(sto);
 		closeCurtain.push(clo);
 	}
+
 //	console.log(openCurtain,stopCurtain,closeCurtain)
+}
+function isAll(){
+	var length=$("#curtainWrap").find("input:checked").length+2;
+	var liLength=$("#curtainWrap").find("input").length;
+	if(length==liLength){
+		$("#curtainWrap").find("li input").eq(liLength-1).prop("checked",true)
+	}else{
+		$("#curtainWrap").find("li input").eq(liLength-1).prop("checked",false)
+	}
 }
 function openCurtainFun(dom){
 	$(dom).find("p img").eq(0).hide();
