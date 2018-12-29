@@ -9,7 +9,6 @@ var isOpen=false;
 //eqCheck=[1004,1002,1053,1086,1014,1030,1037,1020,1015]
 function scenceCus(){
 	toolbarActiveImg('sceneCustomTool');
-//	console.log("场景定制");
 	getEquipSta();
 	getEquipStayx();
 	loadCurtain(0,0);
@@ -44,17 +43,12 @@ function scenceCus(){
 			loadAirWd(thisInd,parInd);
 		})
 	});
-//	$("#ktControl .pannel-title .item").each(function(){
-//		$(this).click(function(){
-//			console.log(1)
-//		})
-//	})
+
 	$("#ktControl .pannel-title").delegate(".item","click",function(){
 			var ind=$(this).index();
 			$(this).addClass("check");
 			$(this).siblings().removeClass("check");
 			ktInd=ind;
-//			console.log(ind)
 			loadAirControl(thisInd,parInd)
 			loadAirWd(thisInd,parInd)
 	})
@@ -62,17 +56,14 @@ function scenceCus(){
 		//开关
 		var flag = $(this).find("img").eq(1).is(':visible');
 		var that=this;
-//		console.log(flag);
 		var param
 		if(flag){
 			//关
 			var set=airControl[parInd][thisInd][ktInd].ctr[1].set.split(",");
-//			console.log(set)
 			param=getSetParam(set[0],set[1]);
 			
 		}else{
 			var set=airControl[parInd][thisInd][ktInd].ctr[0].set.split(",");
-//			console.log(set)
 			param=getSetParam(set[0],set[1]);
 			
 			//开
@@ -87,7 +78,6 @@ function scenceCus(){
 		JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
 		function _success(res){
 			$(res).find("string").each(function(){
-//				console.log($(this).text())
 				var dat=$(this).text();
 				if(dat=="true"){
 					if(flag){
@@ -115,7 +105,6 @@ function scenceCus(){
 		},1000)
 		var value=$("#airTemperatureId").text();
 		var set=airControl[parInd][thisInd][ktInd].wd[0].set.split(",");
-//		console.log(set)
 		var num=JSON.parse(value)+1 ;
 		var param=getSetParam(set[0],set[1]);
 		var data={
@@ -129,7 +118,6 @@ function scenceCus(){
 		function _success(res){
 			$(res).find("string").each(function(){
 				
-//				console.log($(this).text())
 				var dat=$(this).text();
 				if(dat=="true"){
 					alertMsgSuccess.open();
@@ -152,7 +140,6 @@ function scenceCus(){
 		},1000)
 		var value=$("#airTemperatureId").text();
 		var set=airControl[parInd][thisInd][ktInd].wd[0].set.split(",");
-//		console.log(set)
 		var num=JSON.parse(value)-1;
 		var param=getSetParam(set[0],set[1]);
 		var data={
@@ -187,16 +174,13 @@ function scenceCus(){
 			$(that).find("img").eq(0).show();
 		},1000)
 		var ind=$("#windchoose li i.active").parent().index()-1;
-//		console.log(ind)
 		if(ind==3){
 			ind=0
 		}else{
 			ind+=1
 		}
-//		console.log(ind)
 		var set=airControl[parInd][thisInd][ktInd].fs[ind].set.split(",");
 		var param=getSetParam(set[0],set[1]);
-//		console.log(param)
 		var data={
 			equip_no:param.equip_no,
 			main_instruction:param.main_instruction,
@@ -207,14 +191,12 @@ function scenceCus(){
 		JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
 		function _success(res){
 			$(res).find("string").each(function(){
-//				console.log($(this).text())
 				var dat=$(this).text();
 				if(dat=="true"){
 					alertMsgSuccess.open();
 					$("#windchoose li").each(function(){
 						$(this).find("i").removeClass("active");
 					})
-//					console.log(ind)
 					$("#windchoose li").eq(ind+1).find("i").addClass("active");
 				}else{
 					alertMsgError.open();
@@ -231,16 +213,13 @@ function scenceCus(){
 			$(that).find("img").eq(0).show();
 		},1000)
 		var ind=$("#airModelContentId li i.active").parent().index()-1;
-//		console.log(ind)
 		if(ind==3){
 			ind=0
 		}else{
 			ind+=1
 		}
-//		console.log(ind)
 		var set=airControl[parInd][thisInd][ktInd].ms[ind].set.split(",");
 		var param=getSetParam(set[0],set[1]);
-//		console.log(param)
 		var data={
 			equip_no:param.equip_no,
 			main_instruction:param.main_instruction,
@@ -251,14 +230,12 @@ function scenceCus(){
 		JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
 		function _success(res){
 			$(res).find("string").each(function(){
-//				console.log($(this).text())
 				var dat=$(this).text();
 				if(dat=="true"){
 					alertMsgSuccess.open();
 					$("#airModelContentId li").each(function(){
 						$(this).find("i").removeClass("active");
 					})
-//					console.log(ind)
 					$("#airModelContentId li").eq(ind+1).find("i").addClass("active");
 				}else{
 					alertMsgError.open();
@@ -293,8 +270,6 @@ function loadAirMs(thisInd,parInd){
 	if(isOpen&&ind!=-1){
 		$("#airModelContentId li").eq(1+ind).find("i").addClass("active")
 	}
-//	console.log()
-//	{set:"300,1046",m_iyxno:"1019"},
 }
 function loadAirFs(thisInd,parInd){
 	var fs=airControl[parInd][thisInd][ktInd].fs;
@@ -321,7 +296,6 @@ function loadAirWd(thisInd,parInd){
 //	ktInd	
 	var keyStr=wdSta[parInd][thisInd][ktInd];
 	var value=valWd[keyStr];
-//	console.log(value)
 	$("#airTemperatureId").text(value);
 }
 
@@ -395,7 +369,6 @@ function setLoop(op_equip_no,op_set_no,cl_equip_no,cl_set_no,dom){
 	JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
 	function _success(res){
 		$(res).find("string").each(function(){
-//			console.log($(this).text())
 			var dat=$(this).text();
 			if(dat=="true"){
 				if(flag){
@@ -415,7 +388,6 @@ function setLoop(op_equip_no,op_set_no,cl_equip_no,cl_set_no,dom){
 }
 //eqCheck=[1004,1026,1041,1059,1071,1092,1126,1134,1297,1315,1140,1157]
 function loadScence(thisInd,parInd){
-//	console.log(thisInd,parInd);
 //	eqCheck
 	var data=scence[parInd][thisInd],lg=data.length;
 	$("#roomSceneId .wrap").html("");
@@ -447,10 +419,7 @@ function loadScence(thisInd,parInd){
 }
 
 function setScence(equip_no,set_no,dom){
-//	console.log(equip_no,set_no);
 	var param= getSetParam(equip_no,set_no);
-//	console.log(param);
-//	JQajaxo(_type, _url, _asycn, _data, _success)
 	var data={
 		equip_no:param.equip_no,
 		main_instruction:param.main_instruction,
@@ -460,9 +429,7 @@ function setScence(equip_no,set_no,dom){
 	}
 	JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
 	function _success(res){
-//		console.log(res)
 		$(res).find("string").each(function(){
-//			console.log($(this).text())
 			var dat=$(this).text();
 			if(dat=="true"){
 				alertMsgSuccess.open();
@@ -482,8 +449,6 @@ function setScence(equip_no,set_no,dom){
 
 var setCurtain=[];
 function loadCurtain(thisInd,parInd){
-	console.log(5555);
-//	console.log(thisInd,parInd);
 	var data=curtain[parInd][thisInd],lg=data.length;
 	$("#curtainWrap").html("");
 	if(lg==0){
@@ -507,7 +472,6 @@ function loadCurtain(thisInd,parInd){
 			$("#curtainWrap").append(html);
 			
 		}
-		console.log(666);
 			var allHtml='<li  onclick="loadAllCheck(this)">'+
 							'<label class="checkbox">'+
 								'<input type="checkbox" name="my-checkbox" value="" />'+
@@ -558,8 +522,6 @@ function loadAllCheck(dom){
 function loadArr(set,sto,clo,dom){
 	isAll()
 	var check=$(dom).find("input").prop("checked");
-//	console.log(check);
-//	console.log(set,sto,clo)
 	if(check){
 		//去除该窗帘
 		openCurtain.remove(set);
@@ -572,7 +534,6 @@ function loadArr(set,sto,clo,dom){
 		closeCurtain.push(clo);
 	}
 
-//	console.log(openCurtain,stopCurtain,closeCurtain)
 }
 function isAll(){
 	var length=$("#curtainWrap").find("input:checked").length+2;
@@ -811,7 +772,6 @@ function getSetParam(equip_no,set_no){
         	set_no:set_no
 		},
 		success:function(res){
-//			console.log(res)
 			$(res).find("string").each(function(){
 				var dat=JSON.parse($(this).text());
 				param={

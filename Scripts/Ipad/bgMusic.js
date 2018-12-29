@@ -42,58 +42,37 @@ function bgMusic() {
 
 
 	$$('.range-slider').on('range:change', function (e, range) {
-//		console.log(range.value);
 		var num=range.value;
-		if(vio.length!=0){
+		if(vio.length==0){
 			return;
 		}
-				for(var i=0;i<vio.length;i++){
-				var value=vio[i].split(",");
-				var param=getSetParam(value[0],value[1]);
-				var data={
-					equip_no:param.equip_no,
-					main_instruction:param.main_instruction,
-					minor_instruction:param.minor_instruction,
-					value:num,
-					user_name:window.localStorage.userName
-				}
-				JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
-				function _success(res){
-					$(res).find("string").each(function(){
-						var dat=$(this).text();
-						if(dat=="true"){
-							alertMsgSuccess.open();
-							
-						}else{
-							alertMsgError.open();
-						}
-					})
-				}
+		for(var i=0;i<vio.length;i++){
+			var value=vio[i].split(",");
+			var param=getSetParam(value[0],value[1]);
+			var data={
+				equip_no:param.equip_no,
+				main_instruction:param.main_instruction,
+				minor_instruction:param.minor_instruction,
+				value:num,
+				user_name:window.localStorage.userName
 			}
+			JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
+			function _success(res){
+				$(res).find("string").each(function(){
+					var dat=$(this).text();
+					if(dat=="true"){
+						alertMsgSuccess.open();
+						
+					}else{
+						alertMsgError.open();
+					}
+				})
+			}
+		}
 		
 //	  $$('.price-value').text('$'+(range.value[0])+' - $'+(range.value[1]));
 	});
 
-
-
-
-//	$$('.range-slider').on('change', function (e, range) {
-//		console.log(range);
-//		console.log(222);
-////	  $$('.price-value').text('$'+(range.value[0])+' - $'+(range.value[1]));
-//	});
-//	$("#voiceRanger").change(function(){
-//		console.log(8)
-//		console.log($(this).val())
-//	})
-//	var range = app.range.create({
-//	  inputEl: '#voiceRanger',
-//	  on: {
-//	    change: function () {
-//	      console.log('Range Slider value changed')
-//	    }
-//	  }
-//	})
 	
 	$("#pickerDateIconId").bind('click', function() {
 		pickerInline.open();
@@ -110,16 +89,13 @@ function bgMusic() {
 	$(".left-pannel ul li label").bind('click', function() {
 		var checkInp=$(this).find("input").prop("checked");
 		var ind=$(this).find("input").val();
-//		console.log(ind)
 		if(!checkInp){
-//			$(this).parent("li").addClass("check")
 			vio.push(set[ind].vioce);
 			pre.push(set[ind].pre);
 			next.push(set[ind].next);
 			ctrol.push(set[ind].ctl);
 			roomArr.push(ind);
 		}else{
-//			$(this).parent("li").removeClass("check")
 			vio.remove(set[ind].vioce);
 			pre.remove(set[ind].pre);
 			next.remove(set[ind].next);
@@ -344,14 +320,14 @@ function bgMusic() {
 	// $("#aa").click(function(event) {
 	// 	 set1()
 	// });
+
 	
 }
-// function set1(){
-// 	window.localStorage.ww=setTimeout(function(){
-// 		console.log(888);
-// 	}, 30000);
-	
-// }
+
+
+
+
+
 var vio=[],pre=[],next=[],ctrol=[],roomArr=[],timeMin=0,flagPlay=false,autoPlay=true;
 window.obj={};
 function loadInterval(setTime,deal){
@@ -376,7 +352,6 @@ function loadInterval(setTime,deal){
 						var dat=$(this).text();
 						if(dat=="true"){
 							alertMsgSuccess.open();
-							console.log(333);
 						}else{
 							alertMsgError.open();
 						}
@@ -399,7 +374,6 @@ function musicPre(dom){
 	for(var i=0;i<pre.length;i++){
 		var value=pre[i].split(",");
 		var param=getSetParam(value[0],value[1]);
-//		console.log(param);
 		var data={
 			equip_no:param.equip_no,
 			main_instruction:param.main_instruction,
@@ -430,7 +404,6 @@ function musicPre(dom){
 }
 function musicCtr(dom){
 	var flag=$(dom).find("img").eq(1).is(":visible");
-	console.log(flag)
 	var param;
 	if(flag){
 		//开
@@ -442,7 +415,7 @@ function musicCtr(dom){
 	}
 }
 function loadCtrol(type){
-	if(type==0){
+	if(type==1){
 		$("#musicCtrol img").eq(0).show();
 		$("#musicCtrol img").eq(1).hide();
 	}else{

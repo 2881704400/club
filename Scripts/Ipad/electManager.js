@@ -57,7 +57,6 @@ function electManager(){
 			$(this).parent().find('p').eq(1).find("img").eq(1).hide();
 			set=getSetParam(600,dat[1]);
 			setupsCom(set.equip_no,set.main_instruction,set.minor_instruction,set.value,'');
-//			console.log("guan")
 		} else {
 			set=getSetParam(600,dat[0]);
 			setupsCom(set.equip_no,set.main_instruction,set.minor_instruction,set.value,'');
@@ -99,7 +98,6 @@ function getStatusYx(){
 	    success: function (data) {
 	        $(data).find('string').each(function() {
 				var dat=JSON.parse($(this).text())
-//				console.log(dat)
 				for(var i=0;i<dat.length;i++){
 					if(dat[i].m_YXState=="正常"&&dat[i].m_iYXNo==68){
 						$(".eleOne").find("li").eq(0).find("img").eq(1).show();
@@ -138,7 +136,6 @@ function getStatusYc(){
 	    success: function (data) {
 	        $(data).find('string').each(function() {
 				var dat=JSON.parse($(this).text())
-//				console.log(dat)
 				for(var i=0;i<dat.length;i++){
 					var num=dat[i].m_iYCNo;
 					switch (num)
@@ -207,7 +204,6 @@ function getStatusYxBeng(){
 	    	var gzArr=[],yxArr=[],autArr=[];
 	        $(data).find('string').each(function() {
 				var dat=JSON.parse($(this).text())
-//				console.log(dat)
 				for(var i=0;i<dat.length;i++){
 					var num=dat[i].m_iYXNo;
 					var txt=dat[i].m_YXState;
@@ -233,12 +229,10 @@ function getStatusYxBeng(){
 	        for(var i=0;i<gz.length;i++){
 	        	if(gzArr.indexOf(gz[i])!=-1){
 	        		if(gz[i]==67){
-//	        			console.log(2)
 	        			$(".eleOneTap").find("img").eq(1).show();
 						$(".eleOneTap").find("img").eq(0).hide();
 	        		}
 	        		if(gz[i]==88){
-//	        			console.log(2)
 	        			$(".eleTwoTap").find("img").eq(1).show();
 						$(".eleTwoTap").find("img").eq(0).hide();
 	        		}
@@ -284,7 +278,6 @@ function getStatusYxBeng(){
 	});
 }
 function setupsCom(equip_no,main_instruction,minor_instruction,value,dom){
-//	console.log(equip_no,main_instruction,minor_instruction,value,dom)
 	
 	$.ajax({
 		type:"POST",
@@ -343,6 +336,5 @@ function getSetParam(equip,set_no){
 	    }
 	    
 	});
-//	console.log(setParam);
 	return setParam;
 }

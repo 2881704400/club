@@ -1443,6 +1443,7 @@ html.with-statusbar.device-android .panel {
 	border-top-right-radius: 25px;
 	border-bottom-left-radius: 5px;
 	border-top-left-radius: 15px;
+
 }
 
 .serviceCall .right-pannel .pannel-chat .stay-right .chart-person {
@@ -1453,7 +1454,11 @@ html.with-statusbar.device-android .panel {
 	float: right;
 	background: #6b93fa;
 	color: #fff;
+	text-align: 
 }
+
+
+
 
 .serviceCall .right-pannel .pannel-footer {
 	width: 100%;
@@ -2636,6 +2641,23 @@ html.with-statusbar.device-android .panel {
 	border-bottom: 1px solid #eeeeee;
 	position: relative;
 }
+.infoComm .pannel-container .left-pannel ul li.active {
+	background:#85a5f8 ;
+}
+.infoComm .pannel-container .left-pannel ul li.active p{
+	color: #fff;
+}
+.infoComm .pannel-container .left-pannel ul li.active span{
+	color: #fff;
+}
+.infoComm .pannel-container .left-pannel ul li.active font span{
+	color: #fff;
+}
+.infoComm .pannel-container .left-pannel ul li.active  .item-title{
+	color: #fff;
+}
+
+
 
 .infoComm .pannel-container .left-pannel ul li>div {
 	width: 54px;
@@ -2837,7 +2859,7 @@ html.with-statusbar.device-android .panel {
 
 .infoComm .pannel-container .right-pannel .pannel-chat {
 	width: 100%;
-	height: 536px;
+	height:calc(100% - 132px);
 	overflow-y: auto;
 }
 
@@ -2856,6 +2878,7 @@ html.with-statusbar.device-android .panel {
 	width: 100%;
 	height: auto;
 	clear: both;
+	overflow: hidden;
 }
 
 .infoComm .pannel-container .right-pannel .pannel-chat .pannel-chat-info .chart-person {
@@ -2886,6 +2909,7 @@ html.with-statusbar.device-android .panel {
 	border-top-right-radius: 25px;
 	border-bottom-left-radius: 5px;
 	border-top-left-radius: 15px;
+	text-align: left;
 }
 
 .infoComm .pannel-container .right-pannel .pannel-chat .stay-right .chart-person {
@@ -2896,6 +2920,10 @@ html.with-statusbar.device-android .panel {
 	float: right;
 	background: #6b93fa;
 	color: #fff;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 15px;
+	border-bottom-left-radius: 25px;
+	border-top-left-radius: 25px;
 }
 
 .infoComm .pannel-container .right-pannel .pannel-footer {

@@ -29,6 +29,7 @@ function readyFile() {
       });
     }
     }).fail(function(e){
+
     });
 }
 //读取最后一条记录
@@ -43,6 +44,7 @@ function readyFileTxt(sendName,receiveName) {
        {
         
          var filUrlStr = result.replace(fileUrl+"\\","").split("\\"),fileNameStr = filUrlStr[1].replace(".txt",""),fileDateTime = filUrlStr[0];
+         
          readerTxt(result,sendName,receiveName,fileDateTime,true); 
        }
   }

@@ -912,8 +912,6 @@ function loadCheck(ind){
 	var hasDown=getStatusYx();
 	var numbers=getStatusYc();
 	
-	// console.log(hasDown);
-	// console.log(numbers);
 
 
 	$("#roomSceneId .pannel-imginfo").each(function(){

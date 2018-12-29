@@ -22,7 +22,7 @@
 			<div class="pannel-container">
 				<div class="pannel-tab active">
 					<div class="tab-content">
-						<div class="left-pannel">
+						<div class="left-pannel" style="overflow: hidden;">
 							<div class="header-search">
 								<form class="searchbar searchbar-one">
 									<div class="searchbar-inner">
@@ -35,9 +35,11 @@
 									</div>
 								</form>
 							</div>
-							<div class="list-one searchbar-found">
-								<ul class="search-here searchbar-found">
-									<li>
+							<div style="height:calc(100% - 80px);width: 100%;position: relative;">
+									<div class="searchbar-backdrop"></div>
+									<ul id="mesList" class="search-here searchbar-found list-one"  style="height: 100%;overflow: auto;">
+
+									<!-- <li>
 										<div><img src="../../Image/Ipad/person_img.png" /></div>
 										<p class="item-title">A.服务员301 <label>17:50</label></p>
 										<span>顾客有急需顾客有急需顾客有急需</span>
@@ -88,26 +90,31 @@
 										<div><img src="../../Image/Ipad/person_img.png" /></div>
 										<p>A.服务员301 <label>17:50</label></p>
 										<span>顾客有急需顾客有急需顾客有急需</span>
-									</li>
+									</li> -->
 								</ul>
+								
+								
+								
 							</div>
+							
 							<!-- Nothing found message -->
 							<div class="block searchbar-not-found">
 								<div class="block-inner">Nothing found</div>
 							</div>
 						</div>
 						<div class="right-pannel">
-							<div class="pannel-img">
+							<div class="pannel-img" style="display: none;">
 
 							</div>
-							<div class="pannel-info-detail" style="display: none;">
+							<div class="pannel-info-detail" id="mesListMesWrap" style="height: 100%;display: none;">
 								<div class="pannel-header">
 									<div><img src="/Image/Ipad/person_img.png" /></div>
-									<p>A.服务员301</p>
+									<p class="name">A.服务员301</p>
 								</div>
+
 								<div class="pannel-chat" id="chatOtherInfoId">
-									<p>中午 12:10</p>
-									<div class="pannel-chat-info">
+									<!-- <p>中午 12:10</p>
+									<div class="pannel-chat-info stay-left">
 										<div class="chart-person">
 											<img src="/Image/Ipad/person_img.png" />
 										</div>
@@ -130,7 +137,7 @@
 										<div class="chart-content">
 											输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<div class="pannel-footer">
 									<input type="text" id="chatWithOtherInfoId" placeholder="在此处输入内容" />
@@ -142,9 +149,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="pannel-tab" style="display: none;">
+				<div class="pannel-tab active"   style="display: none;">
 					<div class="tab-content">
-						<div class="left-pannel">
+						<div class="left-pannel" style="overflow:hidden;">
 							<div class="header-search">
 								<form class="searchbar searchbar-two">
 									<div class="searchbar-inner">
@@ -157,71 +164,44 @@
 									</div>
 								</form>
 							</div>
-							<div class="list contacts-list list-two searchbar-found">
-								<div class="list-group">
-									<ul>
-										<li class="list-group-title">A</li>
-										<li class="bg-dark">
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">A.服务员301</label>
-										</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">A.服务员302</label>
-										</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">A.服务员303</label>
-										</li>
-									</ul>
-								</div>
-								<div class="list-group">
-									<ul>
-										<li class="list-group-title">B</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">B.服务员401</label>
-										</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">B.服务员402</label>
-										</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">B.服务员403</label>
-										</li>
-									</ul>
-								</div>
-								<div class="list-group">
-									<ul>
-										<li class="list-group-title">C</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">C.服务员501</label>
-										</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">C.服务员502</label>
-										</li>
-										<li>
-											<div><img src="/Image/Ipad/person_img.png" /></div>
-											<label class="item-title">C.服务员503</label>
-										</li>
-									</ul>
+							<div style="height:calc(100% - 80px);width: 100%;position: relative;">
+								<div class="searchbar-backdrop"></div>
+								<div class="list contacts-list list-two searchbar-found" id="contactList" style="height: 100%;overflow: auto;">
+									
+
+									<!-- <div class="list-group">
+										<ul>
+											<li class="list-group-title">A</li>
+											<li>
+												<div><img src="/Image/Ipad/person_img.png" /></div>
+												<label class="item-title">A.服务员301</label>
+											</li>
+											<li>
+												<div><img src="/Image/Ipad/person_img.png" /></div>
+												<label class="item-title">A.服务员302</label>
+											</li>
+											<li>
+												<div><img src="/Image/Ipad/person_img.png" /></div>
+												<label class="item-title">A.服务员303</label>
+											</li>
+										</ul>
+									</div>
+									 -->
 								</div>
 							</div>
+							
 							<!-- Nothing found message -->
 							<div class="block searchbar-not-found">
 								<div class="block-inner">Nothing found</div>
 							</div>
 						</div>
-						<div class="right-pannel">
+						<div class="right-pannel" id="contactMess" style="display: none;">
 							<div class="pannel-header">
 								<div><img src="/Image/Ipad/person_img.png" /></div>
-								<p>A.服务员301</p>
+								<p class="name"></p>
 							</div>
 							<div class="pannel-chat" id="chatOtherContactId">
-								<p>中午 12:10</p>
+								<!-- <p>中午 12:10</p>
 								<div class="pannel-chat-info">
 									<div class="chart-person">
 										<img src="/Image/Ipad/person_img.png" />
@@ -245,7 +225,7 @@
 									<div class="chart-content">
 										输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容输入聊天内容
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div class="pannel-footer">
 								<input type="text" id="chatWithOtherContactId" placeholder="在此处输入内容" />
