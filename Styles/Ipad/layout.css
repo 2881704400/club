@@ -1631,7 +1631,9 @@ html.with-statusbar.device-android .panel {
 	position: relative;
 	top: 20%;
 }
-
+.serviceCall .right-pannel .pannel-main .pannel-box div a.active{
+	background: rgb(102,102,102)
+}
 .serviceCall .right-pannel .pannel-main .pannel-box:last-child {
 	margin-bottom: 20px;
 }

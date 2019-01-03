@@ -81,22 +81,6 @@ function infoComm() {
 		}
 	});
 
-	//左侧菜单栏切换效果
-	// $(".list-two ul li,.list-three ul li").bind('click', function() {
-	// 	if(!$(this).hasClass('list-group-title')) {
-	// 		$(".left-pannel ul li").each(function() {
-	// 			$(this).removeClass("bg-dark");
-	// 		})
-	// 		$(this).addClass("bg-dark");
-	// 	}
-	// });
-
-	// $("#pannelMainId .pannel-box a").bind('click', function() {
-	// 	$(this).css({
-	// 		backgroundColor: 'rgb(102,102,102)'
-	// 	});
-	// 	$(this).html('已确认');
-	// });
 
 	$(".side-nav a").bind('click', function() {
 		$(".side-nav a").each(function() {
@@ -125,11 +109,6 @@ function infoComm() {
 			})
 			
 		}
-		// if(index == 2) {
-		// 	//默认滚动到页面底部
-		// 	$("#pannelMainId").scrollTop($("#pannelMainId").height());
-
-		// }
 	})
 
 	var searchbar1 = myApp.searchbar.create({

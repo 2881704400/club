@@ -471,8 +471,8 @@ function loadNameMobile() {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
                 //初始化状态值-房间有无人
-//              yxpHome();
-//              setHomeTime =setInterval(function(){yxpHome();},3000);
+             yxpHome();
+             setHomeTime =setInterval(function(){yxpHome();},3000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }

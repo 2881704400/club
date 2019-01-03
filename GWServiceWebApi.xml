@@ -532,12 +532,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.gwFixeddateNoticeRadio(Newtonsoft.Json.Linq.JObject)">
-            <summary>
-            获取当天通知数据
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.gw_historical_notice">
             <summary>
               获取所有通知数据
