@@ -16,7 +16,7 @@
     $(".noticeInfoList").html("");
     ajaxRequestXml_notice("newNotice", "noticeInfoList");
 
-    setTimeout(function(){BackPushID("190e35f7e01171b8b4f");},10000); 
+    // setTimeout(function(){infoHandle("300-是");},10000); 
 }
 
 function initnoticeHTML(index, newNotice) {
