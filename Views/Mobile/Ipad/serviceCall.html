@@ -14,7 +14,7 @@
 	</div>
 	<div id="serviceManage_content" class="page-content">
 		<div class="serviceCall">
-			<div class="left-pannel">
+			<div class="left-pannel" style="overflow: hidden;">
 				<div class="header-search">
 					<form class="searchbar searchbar-ones">
 						<div class="searchbar-inner">
@@ -27,43 +27,105 @@
 						</div>
 					</form>
 				</div>
-				<div class="list-ones searchbar-found">
-					<ul class="search-here searchbar-found">
-						<li class="bg-dark">
-							<div><img src="/Image/Ipad/swiming.png" /></div>
-							<p class="item-title">泳池通知 <label class="item-title">12:30</label></p>
-							<span class="item-title">顾客有急需顾客有急需顾客有急需</span>
-							<font><span>22</span></font>
-						</li>
-						<li>
-							<div><img src="/Image/Ipad/shuiba.png" /></div>
-							<p>泳池通知 <label>12:30</label></p>
-							<span>顾客有急需顾客有急需顾客有急需</span>
-							<font><span>12</span></font>
-						</li>
-						<li>
+				<div class="list-ones searchbar-found"  style="height: calc(100% - 80px);overflow: auto;position: relative;">
+					<div class="searchbar-backdrop"></div>
+					<ul class="search-here searchbar-found" id="roomList" style="">
+						
+						<li id="300" onclick="loadNotice(this,300)">
 							<div><img src="/Image/Ipad/kefang.png" /></div>
-							<p>泳池通知 <label>12:30</label></p>
-							<span>顾客有急需顾客有急需顾客有急需</span>
-							<font><span>38</span></font>
+							<p>客房1-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
 						</li>
-						<li>
-							<div><img src="/Image/Ipad/movie.png" /></div>
-							<p>泳池通知 <label>12:30</label></p>
-							<span>顾客有急需顾客有急需顾客有急需</span>
-							<font><span>18</span></font>
+						<li id="301" onclick="loadNotice(this,301)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>客房2-通知  <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
 						</li>
-						<li>
-							<div><img src="/Image/Ipad/cufang.png" /></div>
-							<p>泳池通知 <label>12:30</label></p>
-							<span>顾客有急需顾客有急需顾客有急需</span>
-							<font><span>15</span></font>
+						<li id="302" onclick="loadNotice(this,302)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>客房3-通知  <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
 						</li>
-						<li>
+						<li id="303" onclick="loadNotice(this,303)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>客房4-通知  <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="304" onclick="loadNotice(this,304)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>客房5-通知  <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li  id="305" onclick="loadNotice(this,305)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>贵宾室1 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="306" onclick="loadNotice(this,306)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>贵宾室2-通知  <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="307" onclick="loadNotice(this,307)">
+							<div><img src="/Image/Ipad/pincha_down.png" /></div>
+							<p>茶室-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="308" onclick="loadNotice(this,308)">
 							<div><img src="/Image/Ipad/shuiba.png" /></div>
-							<p>泳池通知 <label>12:30</label></p>
-							<span>顾客有急需顾客有急需顾客有急需</span>
-							<font><span>22</span></font>
+							<p>酒窖-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="309" onclick="loadNotice(this,309)">
+							<div><img src="/Image/Ipad/golf_down.png" /></div>
+							<p>高尔夫-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="310" onclick="loadNotice(this,310)">
+							<div><img src="/Image/Ipad/movie.png" /></div>
+							<p>IMAX影院-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li  id="311" onclick="loadNotice(this,311)">
+							<div><img src="/Image/Ipad/KTV.png" /></div>
+							<p>KTV-通知 <label class="item-title"></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="312" onclick="loadNotice(this,312)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>棋牌室-通知<label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="313" onclick="loadNotice(this,313)">
+							<div><img src="/Image/Ipad/kefang.png" /></div>
+							<p>兵乓球-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="314" onclick="loadNotice(this,314)">
+							<div><img src="/Image/Ipad/spa_down.png" /></div>
+							<p>SPA1-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
+						</li>
+						<li id="315" onclick="loadNotice(this,315)">
+							<div><img src="/Image/Ipad/spa_down.png" /></div>
+							<p>SPA2-通知 <label></label></p>
+							<span class="sub">暂无新呼叫待处理</span>
+							<font style="display: none"><span class="nums">0</span></font>
 						</li>
 					</ul>
 				</div>
@@ -74,54 +136,6 @@
 			</div>
 			<div class="right-pannel">
 				<div class="pannel-main" id="pannelMainId">
-					<p>中午 12:30</p>
-					<div class="pannel-box">
-						<div>
-							<p>
-								<span>通知楼层</span>
-								<span>通知位置</span>
-								<span>通知时间</span>
-							</p>
-							<p>
-								<span>18层</span>
-								<span>水吧</span>
-								<span>2018/07/12</span>
-							</p>
-							<a href="#">确认通知</a>
-						</div>
-					</div>
-					<p>中午 12:30</p>
-					<div class="pannel-box">
-						<div>
-							<p>
-								<span>通知楼层</span>
-								<span>通知位置</span>
-								<span>通知时间</span>
-							</p>
-							<p>
-								<span>18层</span>
-								<span>水吧</span>
-								<span>2018/07/12</span>
-							</p>
-							<a href="#">确认通知</a>
-						</div>
-					</div>
-					<p>中午 12:30</p>
-					<div class="pannel-box">
-						<div>
-							<p>
-								<span>通知楼层</span>
-								<span>通知位置</span>
-								<span>通知时间</span>
-							</p>
-							<p>
-								<span>18层</span>
-								<span>水吧</span>
-								<span>2018/07/12</span>
-							</p>
-							<a href="#">确认通知</a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

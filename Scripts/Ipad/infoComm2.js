@@ -1,9 +1,8 @@
 function infoComm() {
-	console.log('infoComm');
 	toolbarActive('infoCommTool');
 
 	$("#chatWithOtherContactId").bind('keyup', function(event) {
-		if(event.keyCode == "13") {console.log(1)　
+		if(event.keyCode == "13") {
 			$('#chatWithOtherContactBtnId').click();　　
 		}
 	});
@@ -87,7 +86,6 @@ function infoComm() {
 		searchIn: '.item-title',
 		on: {
 			search(sb, query, previousQuery) {
-				console.log(query, previousQuery);
 			}
 		}
 	});
@@ -98,7 +96,6 @@ function infoComm() {
 		searchIn: '.item-title',
 		on: {
 			search(sb, query, previousQuery) {
-				console.log(query, previousQuery);
 			}
 		}
 	});
@@ -109,7 +106,6 @@ function infoComm() {
 		searchIn: '.item-title',
 		on: {
 			search(sb, query, previousQuery) {
-				console.log(query, previousQuery);
 			}
 		}
 	});

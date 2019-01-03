@@ -463,15 +463,14 @@ function loadNameMobile() {
         function _error(e) {
             window.localStorage.userName = '';
             myJavaFuntion.OpenLocalUrl("login");
-            console.log(e);
         }
         function _complete(XMLHttpRequest, status) {
             if (window.localStorage.userName != "" && window.localStorage.userName != null) {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
                 //初始化状态值-房间有无人
-                yxpHome();
-                setHomeTime =setInterval(function(){yxpHome();},3000);
+             yxpHome();
+             setHomeTime =setInterval(function(){yxpHome();},3000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }
@@ -665,7 +664,6 @@ function backss() {
         pages[i] = $(this).attr("data-page");
     });
     if (pages.length == 2) {
-        console.log(pages[0])
         //mainView.router.loadPage(pages[0] + ".html");
         mainView.router.back()
     }
@@ -1133,7 +1131,7 @@ var viewClass, userName = window.localStorage.userName,
     fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-    url = "ws://192.168.0.165:8001?" + value;
+    url = "ws://192.168.2.128:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(url);
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     else console.log("浏览器太旧，不支持");
@@ -1151,8 +1149,57 @@ function initWebSocket() {
         //群聊: 发送者@接收者@当次广播对象(admin@All0@admin)-(admin@All0@zkx)-(admin@All0@zkx2018)
         var connectionString = event.data.split("<f7-userName:>")[1].split("<f7-time:>")[0],
             broadcastObj = connectionString.split("@");
+
         //fileUrl,sendUser,receiveUser,DateTime,concentext 
-        if (broadcastObj[0] == userName) writeFile(fileUrl, broadcastObj[0], broadcastObj[1], GetDateStr(0, 0), event.data.replace("@" + broadcastObj[1], ""));
+        if (broadcastObj[0] == userName){
+            writeFile(fileUrl, broadcastObj[0], broadcastObj[1], GetDateStr(0, 0), event.data.replace("@" + broadcastObj[1], ""));
+        } else{
+            var value=event.data.replace(/<f7-userName:>|@|<f7-time:>|<f7-Content:>/g," ").split(" ");
+            var html= "<div class='pannel-chat-info' >" +
+                        "           <div class='chart-person'>" +
+                        "               <img src='/Image/Ipad/person_img.png' />" +
+                        "           </div>" +
+                        "           <div class='chart-content'>" +
+                        "               " + value[5] + "" +
+                        "           </div>" +
+                        "       </div>";
+            var receName=$("#chatOtherInfoId").attr("recename");//消息列表
+            var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
+            var hasClass,hasId;
+
+            hasId=$("#"+value[1]).hasClass('active');
+            hasClass=$("."+value[1]).hasClass('active');//人员列表
+
+
+            if(receName==value[1]&&hasClass){
+                $("#chatOtherInfoId").append(html);
+                $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
+                //消息列表
+                $("."+value[1]).find(".item-title label").html(value[4])
+                $("."+value[1]).find(".con").html(value[5])
+            }else{
+                $("."+value[1]).find(".item-title label").html(value[4])
+                $("."+value[1]).find(".con").html(value[5])
+                var num=parseInt($("."+value[1]).find(".num").text());
+                if(num==0){
+                    $("."+value[1]).find("font").show().find(".num").text(num+1);
+                }
+                else if(num<99){
+                     $("."+value[1]).find(".num").text(num+1);
+                }
+               
+            }
+
+            if(receNames==value[1]&&hasId){
+                $("#chatOtherContactId").append(html);
+                $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
+                // $("#"+value[1]).
+            }
+            
+
+        }
+        
+
         try {
             //判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
             //群聊                  单聊 
@@ -1162,6 +1209,11 @@ function initWebSocket() {
                 else received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + event.data.split("<f7-Content:>")[1] + "</span></p>"; //新信息
                 addRecord(msg_board, received_msg);
             }
+
+
+
+
+
         } catch (e) {
             //推送
             try {

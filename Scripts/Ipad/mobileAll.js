@@ -109,7 +109,6 @@ function JQajaxo(_type, _url, _asycn, _data, _success) {
         complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数
             if (status == 'timeout') { //超时,status还有success,error等值的情况
                 ajaxs.abort();
-                console.log("超时");
                 // myApp.hideIndicator();
                 myApp.dialog.create({
                     title: "系统提示",
@@ -146,7 +145,6 @@ function ajaxService(_type, _url, _asycn, _data, _success, _error) {
         complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数
             if (status == 'timeout') { //超时,status还有success,error等值的情况
                 ajaxs.abort();
-                console.log("超时");
                 // myApp.hideIndicator();
                 myApp.dialog.create({
                     title: "系统提示",
@@ -172,7 +170,6 @@ function InitEnsure() {
             var analyze = $(dt).children("string").text();
             if (analyze != "" || analyze != "false") {
                 $("#homeContents").show();
-                console.log("连接成功！");
                 $.ajax({
                     type: "post",
                     url: service + "/UserPermissions",
@@ -208,7 +205,6 @@ function initEnsureChonglian(fun) {
     function _success(data) {
         var analyze = $(data).children("string").text();
         if (analyze != "" || analyze != "false") {
-            console.log("重连成功！");
             if (fun != null) {
                 fun();
             }
@@ -444,7 +440,6 @@ function loadNameMobile() {
 
         function _error(e) {
             window.localStorage.userName = '';
-            console.log(e);
         }
 
         function _complete(XMLHttpRequest, status) {
