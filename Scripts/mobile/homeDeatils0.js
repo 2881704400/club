@@ -27,9 +27,9 @@
     });
     //初始状态值
     yxpHomeDeatils0(true);
-    // setHomeTime0 = setInterval(function() {
-    //     yxpHomeDeatils0(false);
-    // }, 5000);
+    setHomeTime0 = setInterval(function() {
+        yxpHomeDeatils0(false);
+    }, 5000);
 }
 //选择灯光照明后者模式
 function onLightingList0() {

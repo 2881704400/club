@@ -1,5 +1,5 @@
 ﻿function historyInfo() {
-    ajaxRequestXml(0, "newNotice", "allInfo>div>ul")
+    ajaxRequestXml(1, "newNotice", "allInfo>div>ul")
     $(".msg_close,.segmented a").unbind();
     $(".msg_close").bind("click", function() {
         $(".alertMSG").slideUp(500);
@@ -14,22 +14,30 @@
 
 function ajaxRequestXml(num, className_child, className_parent) {
     // 请求 
-    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice", {
-        data: {},
-        async: false
-    })).done(function(n, l) {
+    if(parseInt(num) == 1)
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gw_historical_notice")).done(function(n, l) {
         let rt = n.HttpData;
         if (rt.code == 200) {
             rt.data.forEach(function(item, index) {
-                let noticeId = item.positionID;
-                num == 0 ? inithistoryInfoHTML(item, className_child, className_parent) : (num == noticeId ? inithistoryInfoHTML(item, className_child, className_parent) : "");
+                let noticeId = item.set_no;
+                inithistoryInfoHTML(item, className_child, className_parent);
             });
         }
     }).fail(function(e) {});
+    else
+        $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/getSetNoData",{set_no: num})).done(function(n, l) {
+        let rt = n.HttpData;
+        if (rt.code == 200) {
+            rt.data.forEach(function(item, index) {
+                let noticeId = item.set_no;
+                inithistoryInfoHTML(item, className_child, className_parent);
+            });
+        }
+       }).fail(function(e) {});   
 }
 
 function inithistoryInfoHTML(obj, className_child, className_parent) {
-    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj=" + JSON.stringify(obj) + ">" + "<div class=\"item-media " + (obj.confirmTime ?  1: className_child) + "\"><img src=\"/image/notice/" + obj.positionID + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
+    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "'>" + "<div class=\"item-media " + (obj.confirmTime ?  1: className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
     $("#" + className_parent).append(domHTML);
     $(".historyInfoSection li a,.msg_comfig").unbind();
     $(".historyInfoSection li a").bind("click", function() {
@@ -46,7 +54,7 @@ function inithistoryInfoHTML(obj, className_child, className_parent) {
         //插入数据库
         $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_BatchUpdate", {
             data: {
-                tableName: "gw_historicalNotice",
+                getDataTable: "gw_historicalNotice",
                 cellDataList: "userName='"+window.localStorage.userName+"',confirmTime='"+getDateTime_res(0)+"'",
                 ifDataList: "id="+$(this).attr("data_id")
             },

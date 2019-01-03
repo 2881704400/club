@@ -106,12 +106,12 @@ var myApp = new Framework7({
     on: {
         pageInit: function(page) {
             $(".tabbar").removeClass("displayNone");
-            // clearInterval(setHomeTime);
-            // clearInterval(setHomeTime0);
-            // clearInterval(setHomeTime1);
-            // clearInterval(setHomeTime2);
-            // clearInterval(setHomeTime3);
-            // clearInterval(setHomeTime4);
+            clearInterval(setHomeTime);
+            clearInterval(setHomeTime0);
+            clearInterval(setHomeTime1);
+            clearInterval(setHomeTime2);
+            clearInterval(setHomeTime3);
+            clearInterval(setHomeTime4);
         },
         popupOpen: function(popup) {
         },
@@ -130,11 +130,9 @@ function initLoads() {
         myJavaFun.GetAppVersion(); //获取App版本信息
         myJavaFun.GetSystemInfor(); //获取系统信息
         myJavaFun.setOrientation();
-
     } catch (ex) {
 
     }
-    
 }
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
@@ -518,16 +516,19 @@ function BackSystemInfor(phoneName, phoneModel, phoneVersion) {
 //获取推送ID
 function BackPushID(data) {
     // 先删除记录
-    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_DeleteTableData", {
-        data: { tableName: 'GW_PushMessage',tableVlue: "name = '"+window.localStorage.userName+"' or id='"+data+"'"},
-        async: false
-    })).done(function(dt) {
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/set_DeleteTableData",{ getDataTable: 'GW_PushMessage',tableVlue: "name = '"+window.localStorage.userName+"'"})).done(function(dt) { 
         //插入新记录
+        insertPushMessage();
+    }).fail(function(e) {
+         //插入新记录
+         insertPushMessage();
+    });
+    function insertPushMessage(){
         $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_InsertNewTable", {
-            data: { tableName: 'GW_PushMessage(id,name,phoneName,phoneModel,phoneVersion)',tableVlue: "values('"+data+"','"+window.localStorage.userName+"','"+window.localStorage.phoneName+"','"+window.localStorage.phoneModel+"','"+window.localStorage.phoneVersion+"')"},
+            data: { getDataTable: 'GW_PushMessage(id,name,phoneName,phoneModel,phoneVersion)',tableVlue: "values('"+data+"','"+window.localStorage.userName+"','"+window.localStorage.phoneName+"','"+window.localStorage.phoneModel+"','"+window.localStorage.phoneVersion+"')"},
             async: false
-        })).done(function(dt) {}).fail(function(e) {});
-    }).fail(function(e) {});
+        })).done(function(dt) {}).fail(function(e) {});               
+    }
 }
 //推送消息
 function pushInfo(stringID, stringMessage, stringAuth) {
@@ -1022,7 +1023,6 @@ function get_no(dt, set_equip, set_no, values) {
         set_equipOld = set_equip;
         set_noOld = set_no;
     }
-    console.log(set_equip+","+set_no);
     $.ajax({
         type: "POST",
         url: "/GWService.asmx/GetDataTableFromSQL",
@@ -1371,112 +1371,9 @@ function getStatus(){ //检测实时状态，1为开，0为关
     function _errorfYxp(e) {}
     function _completefYxp(XMLHttpRequest, status) { }   
 
-
-    // $.when($.fn.XmlRequset.httpGet("/api/GWServiceWebAPI/SelectData", {
-    //     data: {
-    //         tableName: 'gw_historicalNotice where Format(Date(),"yyyy/mm/dd") = Left(callTime,10)',
-    //     },
-    //     async: false
-    // })).done(function(n, l) {
-    //     let rt = n.HttpData;
-    //     if (rt.code == 200) {
-    //         rt.data.forEach(function(item, index) {
-    //             inithistoryInfoHTML_notice(item, className_child, className_parent);
-    //         });
-    //     }
-    // }).fail(function(e) {});  
-
-
-
-
-}
-//检测消息发送
-function sendNotice(equipNo_1,ycp_no_1){
-    $.when($.fn.XmlRequset.httpPost("/api/real/equip_item_state", {
-        data: { equip_no: equipNo_1,ycp_no: ycp_no_1},
-        async: false
-    })).done(function(n, l) {
-        let rt = n.HttpData;
-        if (rt.code == 200) {
-            var msg = "客房401呼叫";//rt.data.YXItemDict[ycp_no_1].m_YXState;
-            if(rt.data.YXItemDict[ycp_no_1].m_YXState == "打开")
-              {
-                //推送 
-                $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_push_message", {
-                    data: {},
-                    async: false
-                    })).done(function(n, l) {
-                        let rt = n.HttpData;
-                        if (rt.code == 200) {
-                            rt.data.forEach(function(item,index){
-                                var isFlag = true;
-                                userName_work.forEach(function(item_child,index_child){
-                                    if(item.name == item_child.name && isFlag)
-                                    {
-                                        isFlag = false;
-                                        try{myJavaFun.SetAlias(item.id);myJavaFun.JPushAndroid(item.id,msg);} catch(e){}
-                                    }
-                                });
-                            });
-                        }
-                }).fail(function(e) {});
-                //存储数据库gw_historicalNotice，发送遥测指令
-                $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_InsertNewTable", {
-                    data: { tableName: 'gw_historicalNotice(`floor`,positionID,`position`,callTime)',tableVlue: "values('"+rt.data.YXItemDict[ycp_no_1].m_YXState+"',"+1+",'"+rt.data.YXItemDict[ycp_no_1].m_YXState+"','"+getDateTime_res(0)+"')"},
-                    async: false
-                }),$.fn.XmlRequset.httpPost("/api/real/setup", {
-                   data: {
-                        equip_no: equipNo_1,
-                        main_instr: 'SetYCYXValue',
-                        mino_instr: 'X_1',
-                        value: '0',
-                    },
-                    async: false
-                })).done(function(n_child,l_child) {
-                    let rt = n_child.HttpData,lt = l_child.HttpData;
-                    if ((rt.code == 200 && lt.code == 200) || (rt.code == 200 && lt.code == 201)) {
-                        //存储成功后，如果为本页则插入，否则继续发送
-                         try{$(".toBeComfirm").html(parseInt($(".toBeComfirm").html())+1); } catch(e){}
-                        //查询最新一条记录
-                        $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice_id", {
-                            data: {},
-                            async: false
-                            })).done(function(n, l) {
-                                let rt = n.HttpData;
-                                if (rt.code == 200) {
-                                  if($("#allInfo").hasClass("tab-active")) inithistoryInfoHTML_all(rt.data[0], "newNotice", "allInfoList");
-                                  else if($("#twoInfo").hasClass("tab-active")) inithistoryInfoHTML_all(rt.data[0], "newNotice", "hourseInfoList");
-                                  else if($("#threeInfo").hasClass("tab-active")) inithistoryInfoHTML_all(rt.data[0], "newNotice", "kitchenInfoList");
-                                  else if($("#fourInfo").hasClass("tab-active")) inithistoryInfoHTML_all(rt.data[0], "newNotice", "waterInfoList");
-                                  else if($("#fiveInfo").hasClass("tab-active")) inithistoryInfoHTML_all(rt.data[0], "newNotice", "swimmingInfoList");
-                                  inithistoryInfoHTML_all(rt.data[0], "newNotice", "noticeInfoList");
-                                }
-                        }).fail(function(e) {});
-                       
-                        setTimeout(function(){sendNotice(equipNo_1,ycp_no_1);},6000);
-                    }
-                    else
-                       setTimeout(function(){sendNotice(equipNo_1,ycp_no_1);},6000); 
-                }).fail(function(e) {
-                      setTimeout(function(){sendNotice(equipNo_1,ycp_no_1);},6000);
-                }); 
-               
-              }
-              else
-                 setTimeout(function(){sendNotice(equipNo_1,ycp_no_1);},6000);
-        }
-    }).fail(function(e) {
-          setTimeout(function(){sendNotice(equipNo_1,ycp_no_1);},6000);
-    });    
-}
-function judgePostion(positionName){
-    if(positionName == "客房") return 1;
-    else if(positionName == "厨房") return 2;
-    else if(positionName == "水吧") return 3;
-    else return 4;
 }
 function inithistoryInfoHTML_all(obj, className_child, className_parent) {
-    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj=" + JSON.stringify(obj) + ">" + "<div class=\"item-media " + (obj.confirmTime ? 1 : className_child) + "\"><img src=\"/image/notice/" + obj.positionID + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
+    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='"+JSON.stringify(obj)+"'>" + "<div class=\"item-media " + (obj.confirmTime ? 1 : className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
     $("." + className_parent).prepend(domHTML);
     $(".noticeInfoList  li a,.msg_comfig").unbind();
     $(".noticeInfoList  li a").bind("click", function() {
@@ -1516,7 +1413,7 @@ function inithistoryInfoHTML_all(obj, className_child, className_parent) {
 // 通知待确认和已确认
 function confirmNotice(){
         //插入数据库
-        $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice_all", {
+        $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice", {
             data: {},
             async: false
         })).done(function(n, l) {
@@ -1527,13 +1424,12 @@ function confirmNotice(){
               $(".ComfirmContainer>label").text(Confirmed);
             }
         }).fail(function(e) {});
-      
 }
 function getDateTime_res(AddDayCount){
     var dd = new Date();
     dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期 
     var y = dd.getFullYear(),m = beforeAddZero(dd.getMonth() + 1),d = beforeAddZero(dd.getDate()),h = beforeAddZero(dd.getHours()),ms = beforeAddZero(dd.getMinutes()),s = beforeAddZero(dd.getSeconds());
-    return y + "/" + m + "/" + d +" "+h+":"+ms+":"+s;
+    return y + "-" + m + "-" + d +" "+h+":"+ms+":"+s;
 }
 
 function beforeAddZero(val){
@@ -1544,18 +1440,12 @@ function locationNotice(){
     myApp.router.navigate('/notice/');    
 }
 //房间内部有无人
-function handleDeatilsPeople(id,judgePeople1, judgePeople2, judgePeople3) {
-    // console.log(id+","+judgePeople1+","+ judgePeople2+","+ judgePeople3);
-    if (judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人") {
-        $("#"+id).find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
-    } else {
-        $("#"+id).find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
-    }
-}
 function handleHomeState(index, judgePeople1, judgePeople2, judgePeople3) {
     if (judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人") {
+        $("#homeDeatils"+index).find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock"); //里面详情
         $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
     } else {
+        $("#homeDeatils"+index).find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone"); //里面详情
         $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
     }
 }
@@ -1572,28 +1462,119 @@ function yxpHome() {
             equip_no: '300'
         },
         success: function(data) {
-            var yxpItem = data.HttpData.data.YXItemDict;
-            handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
-            handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
-            handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
-            handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
-            handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, ""); //客房5
-
-            try{handleDeatilsPeople("homeDeatils0",yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); }catch(e){}
-            try{handleDeatilsPeople("homeDeatils1",yxpItem["68"].m_YXState,yxpItem["69"].m_YXState,""); }catch(e){}
-            try{handleDeatilsPeople("homeDeatils2",yxpItem["103"].m_YXState,yxpItem["104"].m_YXState,"");  }catch(e){}
-            try{handleDeatilsPeople("homeDeatils3",yxpItem["164"].m_YXState,yxpItem["165"].m_YXState,yxpItem["166"].m_YXState); }catch(e){}
-            try{handleDeatilsPeople("homeDeatils4",yxpItem["199"].m_YXState,yxpItem["200"].m_YXState,""); }catch(e){}
-
+            //房间有无人
+            try{
+                var yxpItem = data.HttpData.data.YXItemDict;
+                handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
+                handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
+                handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
+                handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
+                handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
+                //是否有信息发送
+                infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
+                infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
+                infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
+                infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
+                infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
+                infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
+                infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
+                infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
+                infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
+                infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
+                infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
+                infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
+                infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
+                infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
+                infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
+                infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
+            }catch(e){} //客房5
         }
     });
 }
+
+// 信息处理 --- 插入数据库信息，如果是通知页面，则查询；如果是历史记录，则查询
+function infoHandle(val){ 
+  switch(val){
+    case "300-是": insertNoticeHistory("300","客房1呼叫");get_no("",300,500,"");break;
+    case "301-是": insertNoticeHistory("301","客房2呼叫");get_no("",300,501,"");break;
+    case "302-是": insertNoticeHistory("302","客房3呼叫");get_no("",300,502,"");break;
+    case "303-是": insertNoticeHistory("303","客房4呼叫");get_no("",300,503,"");break;
+    case "304-是": insertNoticeHistory("304","客房5呼叫");get_no("",300,504,"");break;
+    case "305-是": insertNoticeHistory("305","贵宾室1呼叫");get_no("",300,505,"");break;
+    case "306-是": insertNoticeHistory("306","贵宾室2呼叫");get_no("",300,506,"");break;
+    case "307-是": insertNoticeHistory("307","茶室呼叫");get_no("",300,507,"");break;
+    case "308-是": insertNoticeHistory("308","酒窖呼叫");get_no("",300,508,"");break;
+    case "309-是": insertNoticeHistory("309","高尔夫室呼叫");get_no("",300,509,"");break;
+    case "310-是": insertNoticeHistory("310","IMAX影院呼叫");get_no("",300,510,"");break;
+    case "311-是": insertNoticeHistory("311","KTV呼叫");get_no("",300,511,"");break;
+    case "312-是": insertNoticeHistory("312","棋牌室呼叫");get_no("",300,512,"");break;
+    case "313-是": insertNoticeHistory("313","乒乓球室呼叫");get_no("",300,513,"");break;
+    case "314-是": insertNoticeHistory("314","SPA1呼叫");get_no("",300,514,"");break;
+    case "315-是": insertNoticeHistory("315","SPA2呼叫");get_no("",300,515,"");break;
+    default: break;
+  }
+}
+
+function insertNoticeHistory(set_no,str){
+    pushInfoMessage(set_no,str);
+    var jsonString = {userName: window.localStorage.userName,set_no: set_no, position: str,callTime: getDateTime_res(0)};
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/insertNoticeRecord",jsonString)).done(function(n) {
+        let rt = n.HttpData;
+        if (rt.code == 200 && rt.data) {
+            let idStr = $(".page-current").attr("id");
+            if(idStr == "notice"){
+                inithistoryInfoHTML_all(jsonString, "newNotice", "noticeInfoList");
+            }
+            else if(idStr == "historyInfo"){
+                if($("#allInfo").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "allInfo");
+                else if($("#guestRoom1").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom1");
+                else if($("#guestRoom2").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom2");
+                else if($("#guestRoom3").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom3");
+                else if($("#guestRoom4").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom4");
+                else if($("#guestRoom5").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom5");
+                else if($("#guestRoom6").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom6");
+                else if($("#guestRoom7").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom7");
+                else if($("#guestRoom8").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom8");
+                else if($("#guestRoom9").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom9");
+                else if($("#guestRoom10").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom10");
+                else if($("#guestRoom11").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom11");
+                else if($("#guestRoom12").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom12");
+                else if($("#guestRoom13").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom13");
+                else if($("#guestRoom14").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom14");
+                else if($("#guestRoom15").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom15");
+
+            }
+        }
+    }).fail(function(e) {});
+}
+
+function pushInfoMessage(set_no,str){
+    //推送 
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gw_push_message")).done(function(n) {
+            let rt = n.HttpData;
+            if (rt.code == 200) {
+                rt.data.forEach(function(item,index){
+                    var isFlag = true;
+                    userName_work.forEach(function(item_child,index_child){
+                        if(item.name == item_child.name && isFlag)
+                        {
+                            isFlag = false; 
+                            
+                            try{myJavaFun.SetAlias(item.id);myJavaFun.JPushAndroid(item.id,str);} catch(e){}
+                        }
+                    });
+                });
+            }
+    }).fail(function(e) {});
+}
+
 Array.prototype.indexOf = function(val) {
 	for (var i = 0; i < this.length; i++) {
 		if (this[i] == val) return i;
 	}
 	return -1;
 };
+
 Array.prototype.remove = function(val) {
 	var index = this.indexOf(val);
 	if (index > -1) {
