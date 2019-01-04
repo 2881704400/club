@@ -1544,7 +1544,7 @@ function yxpHome() {
     });
 }
 
-// 信息处理 --- 插入数据库信息，如果是通知页面，则查询；如果是历史记录，则查询
+// 信息处理
 function infoHandle(val){ 
   switch(val){
     case "300-是": insertNoticeHistory("300","客房1呼叫");get_no("",300,500,"");break;
