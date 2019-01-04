@@ -170,7 +170,7 @@ function loadNotice(dom,value){
 function sureNotice(dom,id){
 	var myDate=new Date();
 	var year=myDate.getFullYear();
-	var mon=(myDate.getMonth()+1)<10?("0"+(myDate.getMonth()+1)):(my||1Date.getMonth()+1);
+	var mon=(myDate.getMonth()+1)<10?("0"+(myDate.getMonth()+1)):(myDate.getMonth()+1);
 	var day=myDate.getDate()<10?("0"+myDate.getDate()):myDate.getDate();
 	var hours=(myDate.getHours())<10?("0"+myDate.getHours()):myDate.getHours();
 	var min=(myDate.getMinutes())<10?("0"+myDate.getMinutes()):myDate.getMinutes();
