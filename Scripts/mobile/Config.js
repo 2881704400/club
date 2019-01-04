@@ -628,7 +628,8 @@ var homeDeatilsDataunCheck =[
 
 
 //排班人员
-var userName_work = [{
+var userName_work = [
+{
  name: "zkx",
 },
 {

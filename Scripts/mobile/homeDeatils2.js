@@ -31,9 +31,9 @@ function homeDeatils2() {
    });
    //初始化状态
      yxpHomeDeatils2(true);
-  setHomeTime2 =setInterval(function(){
-    yxpHomeDeatils2(false);
-  },5000);
+    setHomeTime2 =setInterval(function(){
+      yxpHomeDeatils2(false);
+    },5000);
 
 
 }

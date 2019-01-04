@@ -111,8 +111,8 @@
 .alertMSG_context{width: 90%;position: absolute;left: 5%;top: 45%;transform: translateY(-50%);}
 .alertMSG_text{width: 100%;height: 100%;padding-top: 20%;background: white;}
 .alertMSG_text p{padding: 0px 30px;}
-.alertMSG_text p span{color: #999;}
-.alertMSG_text p span label{color: #222;margin-left: 20px;}
+.alertMSG_text p span{color: #999;    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.alertMSG_text p span label{color: #222;white-space: nowrap;}
 .msg_tooip{font-size: 14px;color: #222222;text-align:center;margin-top: 30px;}
 .md .msg_tooip{margin: 0;}
 .msg_tooip{width: 100%;position: absolute;left: 0;}
@@ -138,11 +138,11 @@
 .exitLogin{font-size: 1.2rem;width: 90%;height: 50px!important;position: absolute;left: 5%;bottom: 10%;}
 /*历史通知*/
 .segmented .button{border-radius: 0!important;}
-.historyInfoContainer>div.segmented{height:8%;background: #fff;border-bottom: 1px solid #fff;border-radius: 0;}
+.historyInfoContainer>div.segmented{height:8%;background: #fff;border-bottom: 1px solid #fff;border-radius: 0;overflow-x: auto;}
 .tab-link-active{background: transparent;}
-.historyInfoContainer>div.segmented a{font-size: 1.2rem;color: #51545A;line-height: 40px;height: 40px;border: 0;}
+.historyInfoContainer>div.segmented a{min-width: 80px;font-size: 0.9rem;color: #51545A;line-height: 40px;height: 40px;border: 0;}
 .historyInfoContainer>div.segmented a.tab-link-active{color: #007aff;background: transparent;border-bottom: 2px solid #007aff;}
-.historyInfoSection{height: 92%;padding: 5%;background: #F8F8FB;}
+.historyInfoSection{height: 92%;padding: 5% 0;background: #F8F8FB;}
 #allInfo,#twoInfo,#threeInfo,#fourInfo,#fiveInfo{height: 100%;overflow-y: auto;}
 .ios .segmented .button:first-child{border-left-width: 0;}
 /*底部弹窗*/

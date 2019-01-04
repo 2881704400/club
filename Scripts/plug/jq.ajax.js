@@ -292,3 +292,59 @@ $(function () {
    }
 
 });
+
+
+
+
+var AlarmCenterContext = {
+    get: function (url, data) {
+        var i = $.Deferred();
+        $.ajax({
+            url: url,
+            data: data,
+            type: "GET",
+            // headers: headers,
+            // contentType: "application/json; charset=UTF-8",
+            dataType: "JSON",
+            headers: {
+                Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey,
+            },             
+            timeout: 3e4,
+            success: function (e) {
+                i.resolveWith(this, [e])
+            },
+            error: function (e, n) {
+                i.rejectWith(this, ["网络异常，请稍候重试"]);
+                    // console.log(JSON.stringify(e), n)
+            }
+        });
+        return i.promise()
+    },
+    post: function (url, data) {
+        var i = $.Deferred();
+        return $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            headers: {
+                Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey,
+            },              
+			//contentType: "application/json;charset=UTF-8",
+            timeout: 3e4,
+            success: function (e) {
+                i.resolveWith(this, [e])
+            },
+            error: function (e, n) {
+                i.rejectWith(this, ["网络异常，请稍候重试"]);
+                    // console.log(JSON.stringify(e), n)
+            }
+        }), i.promise();
+    }
+}
+
+// 示例
+// $.when(AlarmCenterContext.getYCStatus(1,1)).done(function(n,l){
+//   console.log(n);
+// }).fail(function(e){
+
+// });

@@ -104,13 +104,11 @@ function onTouchEnd() {
     }, 50);
 }
 
-//接收回调数据并上传至服务器
-function callbackVoiceBuffer(dt) {
-    var _url = service + "/VoiceControlByte";
-    var _data = "audioData=" + dt + "&&userName=" + window.localStorage.userName;
-    ajaxService("post", _url, true, _data, _successf, _error);
-    function _successf(data) {
-        var rets = $(data).children("string").text();
+//接收回调数据并上传至服务器callbackVoiceBuffer
+function microsoftSpeech(dt) {
+       if(dt.status == 200)
+       {
+        var rets = dt.message;
         if (rets == "") {
             $("#voiceMessage").html("未识别！");
         }
@@ -121,7 +119,7 @@ function callbackVoiceBuffer(dt) {
         document.getElementById("voiceBtn").addEventListener('touchstart', onTouchStart);
         document.getElementById("voiceBtn").addEventListener('touchend', onTouchEnd);
     }
-    function _error(qXHR, textStatus, errorThrown) {
+    else{
         $("#voiceMessage").html("服务器出错！");
         isVoices = false;
         document.getElementById("voiceBtn").addEventListener('touchstart', onTouchStart);
@@ -131,7 +129,35 @@ function callbackVoiceBuffer(dt) {
                 $("#voiceMessage").html("按住说话");
             }
         }, 3000);
-    }
+    } 
+
+
+    // var _url = service + "/VoiceControlByte";
+    // var _data = "audioData=" + dt + "&&userName=" + window.localStorage.userName;
+    // ajaxService("post", _url, true, _data, _successf, _error);
+    // function _successf(data) {
+    //     var rets = $(data).children("string").text();
+    //     if (rets == "") {
+    //         $("#voiceMessage").html("未识别！");
+    //     }
+    //     else {
+    //         $("#voiceMessage").html(rets);
+    //     }
+    //     isVoices = false;
+    //     document.getElementById("voiceBtn").addEventListener('touchstart', onTouchStart);
+    //     document.getElementById("voiceBtn").addEventListener('touchend', onTouchEnd);
+    // }
+    // function _error(qXHR, textStatus, errorThrown) {
+    //     $("#voiceMessage").html("服务器出错！");
+    //     isVoices = false;
+    //     document.getElementById("voiceBtn").addEventListener('touchstart', onTouchStart);
+    //     document.getElementById("voiceBtn").addEventListener('touchend', onTouchEnd);
+    //     setTimeout(function () {
+    //         if (isVoices == false) {
+    //             $("#voiceMessage").html("按住说话");
+    //         }
+    //     }, 3000);
+    // }
 }
 
 function StartVoiceXF() {
