@@ -22,7 +22,7 @@ function serviceCall(){
 
 /*时间有呼叫未呼叫的时间,没有呼叫就是当前时间*/
 function loadNum(){
-	console.log(2);
+
 	var roomYcKey={
 		/*点：个数-是否-时间*/
 		'300':'0-0-00:00',
@@ -51,7 +51,6 @@ function loadNum(){
 	})
 	.done(function(e) {
 		var dat=e.HttpData.data,lg=dat.length;
-		console.log(dat);
 		if(lg>0){
 			for(var i=0;i<lg;i++){
 				var value=dat[i];
@@ -121,7 +120,6 @@ function loadNotice(dom,value){
 		var lg=dat.length,nums=0;
 		for(var i=0;i<dat.length;i++){
 			var value=dat[i];
-			console.log(value);
 			var date=value.callTime.split(" ");
 			if(!value.confirmTime){
 			   var ahtml='<a targ="'+idValue+'" onclick="sureNotice(this,'+value.id+')" href="#">确认通知</a>';
@@ -170,10 +168,9 @@ function loadNotice(dom,value){
 	
 }
 function sureNotice(dom,id){
-	console.log(id);
 	var myDate=new Date();
 	var year=myDate.getFullYear();
-	var mon=(myDate.getMonth()+1)<10?("0"+(myDate.getMonth()+1)):(myDate.getMonth()+1);
+	var mon=(myDate.getMonth()+1)<10?("0"+(myDate.getMonth()+1)):(my||1Date.getMonth()+1);
 	var day=myDate.getDate()<10?("0"+myDate.getDate()):myDate.getDate();
 	var hours=(myDate.getHours())<10?("0"+myDate.getHours()):myDate.getHours();
 	var min=(myDate.getMinutes())<10?("0"+myDate.getMinutes()):myDate.getMinutes();

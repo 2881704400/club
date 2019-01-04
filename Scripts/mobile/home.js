@@ -1,6 +1,6 @@
 ﻿//首页事件
 function onHomePage() {
-  myApp.router.navigate('/serviceCall/');
+//myApp.router.navigate('/serviceCall/');
 //    myApp.router.navigate('/guestControl/');
        // myApp.router.navigate('/bgMusic/');
     $(".tabbar").css("top", window.screen.height + "px");
