@@ -42698,3 +42698,667 @@ System.ArgumentException: 已添加了具有相同键的项。
    在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
 -------------------------------------
 
+----------2019/1/6 9:15:36----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 9:15:41----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 9:19:41----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 9:21:03----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 9:24:40----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 9:34:04----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 11:03:24----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 11:14:27----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:15:16----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:16:14----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:16:42----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:24:04----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:24:52----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:25:37----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:26:13----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:27:26----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:28:04----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:31:45----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:32:17----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:35:53----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 11:38:48----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:39:35----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:41:25----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:43:13----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 11:44:04----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:30:48----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:31:19----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:32:00----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:32:55----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:33:22----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:36:27----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 20:36:51----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:38:08----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:42:18----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:47:06----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:48:22----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 20:48:45----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:49:06----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 20:53:07----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:53:55----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 20:54:51----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 20:55:49----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 20:56:25----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:02:04----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 21:02:30----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 21:04:38----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:05:00----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:05:48----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:11:05----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:11:37----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:13:01----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:14:59----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:15:33----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 21:16:07----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 21:16:31----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:17:02----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:17:35----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:20:59----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 21:23:22----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 21:23:33----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:23:50----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:32:06----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:33:10----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:33:57----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:37:13----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:37:49----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:41:09----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:42:01----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:42:38----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 21:43:49----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:28:58----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:29:20----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:31:26----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:31:46----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:32:17----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:32:36----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:33:57----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:39:05----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:44:30----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWServiceAPI.Net.LibClass.PermissionLib.UserPermission(String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\PermissionLib.cs:行号 68
+-------------------------------------
+
+----------2019/1/6 22:51:22----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:51:54----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:53:16----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+
+----------2019/1/6 22:54:04----------
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 AlarmCenter.DataCenter.WebUserDictionary.AddUser(String Name)
+   在 GWService.Net.ClassLib.UserPermissions(String userName) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWService.Net\ClassLib.cs:行号 1339
+-------------------------------------
+

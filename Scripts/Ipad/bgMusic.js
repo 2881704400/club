@@ -1,9 +1,13 @@
+// 1.一个计时器,选择设备的时候选择关闭就关闭当前计时器
+// 2.页面加载,加载当前及时器
+// 3.当选择的时间不为空,并且为停止播放时创建及时器
+
 
 
 
 function bgMusic() {
 	toolbarActiveImg('bgMusicTool');
-//	vio=[],pre=[],next=[]
+
 	vio=[];
 	pre=[];
 	next=[];
@@ -128,11 +132,12 @@ function bgMusic() {
 				'<a href="#" class="link sheet-close popover-close">取消</a>' +
 				'</div>' +
 				'<div class="right">' +
-				'<a href="#" class="link sheet-close popover-close">确定</a>' +
+				'<a href="#" class="link sheet-close popover-close"  onclick="sureDeal()">确定</a>' +
 				'</div>' +
 				'</div>' +
 				'</div>';
 		},
+		// value:timeArr,
 		cols: [{
 				textAlign: 'left',
 				values: ('01 02 03 04 05 06 07 08 09 10 11 12').split(' ')
@@ -148,27 +153,19 @@ function bgMusic() {
 			},
 		],
 		on: {
-			open: function(picker) {
-				picker.$el.find('.toolbar-randomize-link').on('click', function() {
-					var col0Values = picker.cols[0].values;
-					var col0Random = col0Values[Math.floor(Math.random() * col0Values.length)];
-					var col1Values = picker.cols[1].values;
-					var col1Random = col1Values[Math.floor(Math.random() * col1Values.length)];
-					var col2Values = picker.cols[2].values;
-					var col2Random = col2Values[Math.floor(Math.random() * col2Values.length)];
-					picker.setValue([col0Random, col1Random, col2Random]);
+			open:function(){
+				loadTimer(5);
+				$(".defineTime").css({
+					background:'gainsboro'
 				});
-				flagPlay=true;
-				$(".pannel-box>p").each(function() {
-					$(this).removeClass("bg-dark");
-					$(this).find('i').removeClass('show-opacity');
-				})
 			},
 			change:function(picker){
 				var hours=parseInt(picker.value[0]);
 				var min=parseInt(picker.value[2]);
 				timeMin=hours*60+min;
-				loadInterval(timeMin,autoPlay);
+			// 	$("#picker-date").val(picker.value[0]+"时"+picker.value[2]+"分")
+			// 	// loadInterval(timeMin,autoPlay);
+			// 	window.localStorage.setTime=timeMin;
 			}
 		}
 	});
@@ -183,11 +180,12 @@ function bgMusic() {
 				'<a href="#" class="link sheet-close popover-close">取消</a>' +
 				'</div>' +
 				'<div class="right">' +
-				'<a href="#" class="link sheet-close popover-close">确定</a>' +
+				'<a href="#" class="link sheet-close popover-close" onclick="sureDeal()">确定</a>' +
 				'</div>' +
 				'</div>' +
 				'</div>';
 		},
+		// value:[showTxt],
 		cols: [{
 			textAlign: 'center',
 			values: ['停止播放', '继续播放']
@@ -197,13 +195,59 @@ function bgMusic() {
 				var txt=picker.value[0];
 				if(txt=="停止播放"){
 					autoPlay=true;
+				// 	window.localStorage.isTimeout=1;
 				}else{
 					autoPlay=false;
+				// 	window.localStorage.isTimeout=0;
 				}
-				loadInterval(timeMin,autoPlay);
 			}
+
 		}
 	});
+	var isTimeout=window.localStorage.isTimeout;
+	var times=window.localStorage.setTime;
+	if(isTimeout==0){
+		pickerDevice.setValue(["继续播放"]);
+		if(times==0){
+			loadTimer(0)
+		}
+	}else{
+		pickerDevice.setValue(["停止播放"])
+		if(times<61){
+			if(times==0){
+				loadTimer(0)
+			}else if(times==10){
+				loadTimer(1)
+			}else if(times==20){
+				loadTimer(2)
+			}else if(times==30){
+				loadTimer(3)
+			}else if(times==60){
+				loadTimer(4)
+			}
+		}else{
+			loadTimer(5);
+			var hours,strH,mins,strH
+			hours=Math.floor(times/60)>10?Math.floor(times/60):"0"+Math.floor(times/60);
+			strH="时";
+			mins=times%60>10?times%60:'0'+times%60;
+			strH="分"
+			$("#picker-date").val(hours+strH+mins+strH);
+			$(".defineTime").css({
+					background:'gainsboro'
+				});
+			pickerInline.setValue([hours,strH,mins,strH]);
+
+
+		}
+			
+		
+		
+
+	}
+
+
+
 
 	var $document = $(document);
 	var selector = '[data-rangeslider]';
@@ -303,35 +347,57 @@ function bgMusic() {
 			$(this).removeClass("bg-dark");
 			$(this).find('i').removeClass('show-opacity');
 		})
+		$(".defineTime").css({
+					background:'#fff'
+				});
 		$(this).addClass("bg-dark");
 		$(this).find('i').addClass('show-opacity');
-		$("#picker-date").val("");
+		$("#picker-date").val("自定义播放时间");
 		timeMin=$(this).attr("num");
-		if(timeMin=="0"){
-			flagPlay=false;
-			loadInterval(timeMin,autoPlay);
-		}else{
-			flagPlay=true;
-			loadInterval(timeMin,autoPlay);
-		}
+	// 	if(timeMin=="0"){
+	// 		flagPlay=false;
+			loadInterval();
+	// 	}else{
+	// 		flagPlay=true;			
+	// 		loadInterval(timeMin,autoPlay);
+	// 	}
 		
 	});
 	getEquipStayc()
-	// $("#aa").click(function(event) {
-	// 	 set1()
-	// });
+
 
 	
 }
+function sureDeal(){
+	loadInterval(timeMin,autoPlay);
+}
+function loadTimer(m){
+		$(".pannel-box>p").each(function(i) {
+			if(m==i){
+				$(this).addClass("bg-dark");
+				$(this).find('i').addClass('show-opacity');
+			}else{
+				$(this).removeClass("bg-dark");
+				$(this).find('i').removeClass('show-opacity');
+			}
+			
+		})	
 
+}
 
 
 
 
 var vio=[],pre=[],next=[],ctrol=[],roomArr=[],timeMin=0,flagPlay=false,autoPlay=true;
 window.obj={};
-function loadInterval(setTime,deal){
-	if(flagPlay==true&&autoPlay==true){
+function loadInterval(){
+	if(roomArr.length==0){
+		return
+	}
+
+	if(timeMin!=0&&autoPlay==true){
+		window.localStorage.setTime=timeMin;
+		window.localStorage.isTimeout=1;
 		alertMsgSuccess.open();
 		for(var i=0;i<roomArr.length;i++){
 			var ind=roomArr[i];
@@ -351,7 +417,12 @@ function loadInterval(setTime,deal){
 					$(res).find("string").each(function(){
 						var dat=$(this).text();
 						if(dat=="true"){
+							window.localStorage.setTime=0;
+							window.localStorage.isTimeout=0;
+							 loadTimer(0)
+
 							alertMsgSuccess.open();
+
 						}else{
 							alertMsgError.open();
 						}
@@ -360,6 +431,8 @@ function loadInterval(setTime,deal){
 			},timeMin*1000)
 		}
 	}else{
+		window.localStorage.setTime=0;
+		window.localStorage.isTimeout=0;
 		alertMsgSuccess.open();
 		for(var i=0;i<roomArr.length;i++){
 			var ind=roomArr[i];
