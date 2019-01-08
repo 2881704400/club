@@ -7,7 +7,7 @@
 
 function bgMusic() {
 	toolbarActiveImg('bgMusicTool');
-
+	
 	vio=[];
 	pre=[];
 	next=[];
@@ -399,6 +399,7 @@ function loadInterval(){
 		window.localStorage.setTime=timeMin;
 		window.localStorage.isTimeout=1;
 		alertMsgSuccess.open();
+		var times=parseInt(timeMin)*60*1000;
 		for(var i=0;i<roomArr.length;i++){
 			var ind=roomArr[i];
 			var set=ctrol[ind][1].split(",");
@@ -410,9 +411,10 @@ function loadInterval(){
 					value:param.value,
 					user_name:window.localStorage.userName
 				}
-			clearTimeout(obj[ind]);
-			obj[ind]=setTimeout(function(){
-				JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
+			var timeStr="call"+ind;
+			clearTimeout(obj[timeStr]);
+			obj[timeStr]=setTimeout(function(){
+				JQajaxo("post","/GWService.asmx/SetupsCommand",false,data,_success)
 				function _success(res){
 					$(res).find("string").each(function(){
 						var dat=$(this).text();
@@ -420,7 +422,8 @@ function loadInterval(){
 							window.localStorage.setTime=0;
 							window.localStorage.isTimeout=0;
 							 loadTimer(0)
-
+							 // console.log(times)
+							// timeMin(console)
 							alertMsgSuccess.open();
 
 						}else{
@@ -428,15 +431,18 @@ function loadInterval(){
 						}
 					})
 				}
-			},timeMin*1000)
+				// clearInterval(obj[timeStr]);
+			},times)
 		}
+		// console.log(times)
 	}else{
 		window.localStorage.setTime=0;
 		window.localStorage.isTimeout=0;
 		alertMsgSuccess.open();
 		for(var i=0;i<roomArr.length;i++){
 			var ind=roomArr[i];
-			clearTimeout(obj[ind]);
+			var timeStr="call"+ind;
+			clearTimeout(obj[timeStr]);
 		}
 	}
 }

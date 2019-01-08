@@ -25,6 +25,7 @@ function initnoticeHTML(index, newNotice) {
 }
 
 function ajaxRequestXml_notice(className_child, className_parent) {
+
     $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gwFixeddateNotice", {
         data: {
             // tableName: 'gw_historicalNotice where Format(Date(),"yyyy/mm/dd") = Left(callTime,10) order by callTime desc',
@@ -41,12 +42,13 @@ function ajaxRequestXml_notice(className_child, className_parent) {
 }
 
 function inithistoryInfoHTML_notice(obj, className_child, className_parent) {
+
     var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "'>" + "<div class=\"item-media " + (obj.confirmTime ? 1 : className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
     $("." + className_parent).append(domHTML);
     $(".noticeInfoList  li a,.msg_comfig").unbind();
     $(".noticeInfoList  li a").bind("click", function() {
         var that = $(this),thisObj = JSON.parse($(this).attr("data_obj"));
-        $(".msgFloor label").text(thisObj.floor);
+        $(".msgFloor label").text(getFloor(obj.set_no));
         $(".msgPosition label").text(thisObj.position);
         $(".msgCallTime label").text(thisObj.callTime.replace("T", " "));
         $(".alertMSG").toggle(500);

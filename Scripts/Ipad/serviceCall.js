@@ -51,6 +51,7 @@ function loadNum(){
 	})
 	.done(function(e) {
 		var dat=e.HttpData.data,lg=dat.length;
+		// console.log(dat);
 		if(lg>0){
 			for(var i=0;i<lg;i++){
 				var value=dat[i];
@@ -64,6 +65,12 @@ function loadNum(){
 				roomYcKey[value.set_no]=[num,str.split("-")[1],time].join("-");
 
 			}
+			var id=$(".bg-dark").attr("id");
+
+			if(window.localStorage.checkId!=""&&window.localStorage.checkId&&(window.localStorage.checkId==id)){
+				timerLoad(window.localStorage.checkId);
+			}
+			
 		}
 		for(var value in roomYcKey){
 			var str=roomYcKey[value].split("-");
@@ -91,18 +98,13 @@ function loadNum(){
 	
 	callTimer=setTimeout(function(){
 		loadNum()
-	}, 60000);
+	},30000);
 	
 }
 
 
-
-function loadNotice(dom,value){
-	if(dom){
-		$(dom).addClass('bg-dark').siblings().removeClass('bg-dark');
-	}
-	
-	$("#pannelMainId").html("")
+var messId=[];
+function timerLoad(value){
 	var idValue=value
 	$.ajax({
 		url: '/api/GWServiceWebAPI/gwFixeddateNoticeRadio',
@@ -144,6 +146,85 @@ function loadNotice(dom,value){
 								ahtml+
 							'</div>'+
 						'</div>';
+			if(messId.indexOf(value.id)==-1){
+				  $("#pannelMainId").prepend(html)
+				  messId.push(value.id);
+			}
+
+
+			// if(!value.confirmTime){
+			//    $("#pannelMainId").prepend(html)
+
+			// }else{
+			//    $("#pannelMainId").append(html)
+			// }
+			
+		}
+
+		if(nums>0){
+			$("#"+idValue).find(".nums").text(nums).parent().show();
+		}else{
+			$("#"+idValue).find(".nums").parent().hide();
+
+		}
+	})
+	.fail(function() {
+		alertMsgError.open();
+		// console.log("error");
+	})
+}
+function loadNotice(dom,value){
+	messId=[];
+	window.localStorage.checkId=value;
+	if(dom){
+		$(dom).addClass('bg-dark').siblings().removeClass('bg-dark');
+		
+	}
+	
+	$("#pannelMainId").html("")
+	var idValue=value
+	$.ajax({
+		url: '/api/GWServiceWebAPI/gwFixeddateNoticeRadio',
+		type: 'post',
+		data:{
+			set_no:value
+		},
+		headers: {
+				Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey
+			}
+		
+	})
+	.done(function(e) {
+		var dat=e.HttpData.data;
+		var lg=dat.length,nums=0;
+		for(var i=0;i<dat.length;i++){
+			var value=dat[i];
+			messId.push(value.id);
+			var date=value.callTime.split(" ");
+			if(!value.confirmTime){
+			   var ahtml='<a targ="'+idValue+'" onclick="sureNotice(this,'+value.id+')" href="#">确认通知</a>';
+			   nums++;
+			   $("#"+idValue).find("label").text(value.callTime.substring(10,16));
+			}else{
+			   var ahtml='<a class="active" href="#">已经确认</a>';
+			}
+			var html='<p>'+date[1].substring(0,5)+'</p>'+
+						'<div class="pannel-box">'+
+							'<div>'+
+								'<p>'+
+									// '<span>通知楼层</span>'+
+									'<span>通知位置</span>'+
+									'<span>通知时间</span>'+
+								'</p>'+
+								'<p>'+
+									// '<span>18层</span>'+
+									'<span>'+value.position+'</span>'+
+									'<span>'+date[0]+'</span>'+
+								'</p>'+
+								ahtml+
+							'</div>'+
+						'</div>';
+						
 			if(!value.confirmTime){
 			   $("#pannelMainId").prepend(html)
 

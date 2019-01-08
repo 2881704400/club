@@ -1,6 +1,6 @@
 ﻿//首页事件
 function onHomePage() {
-    // myApp.router.navigate("/bgMusic/");
+
     $(".tabbar").css("top", window.screen.height + "px");
 	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
     if (sUserAgentFlag)
