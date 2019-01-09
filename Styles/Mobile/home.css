@@ -1529,7 +1529,7 @@ input:focus::-webkit-input-placeholder {
 .shortContainer footer button{font-size: 1rem;height: 100%!important;background: transparent;border: 0;}
 .shortContainer i{font-size: 1.5rem;color: #6B93FA;}
 .userSel{padding-left: 0!important;margin-right: 15px;}
-
+.md .contacts-list li:not(.list-group-title){padding-left: 0;}
 /*底部菜单*/
 /*.ios .tabbar-labels~* .page-content, .ios .tabbar-labels~.page-content{padding-bottom: 55px;}*/
 

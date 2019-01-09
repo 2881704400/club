@@ -106,7 +106,7 @@ var myApp = new Framework7({
     on: {
         pageInit: function(page) {
             $(".tabbar").removeClass("displayNone");
-            clearInterval(setHomeTime);
+            //clearInterval(setHomeTime);
             clearInterval(setHomeTime0);
             clearInterval(setHomeTime1);
             clearInterval(setHomeTime2);
@@ -124,15 +124,16 @@ var service = "/GWService.asmx";
 var $$ = Framework7.$;
 initLoads();
 function initLoads() {
-    loadNameMobile();
-    initWebSocket(); //socket
-    try {
-        myJavaFun.GetAppVersion(); //获取App版本信息
-        myJavaFun.GetSystemInfor(); //获取系统信息
-        myJavaFun.setOrientation();
-    } catch (ex) {
+     loadNameMobile();
+     initWebSocket(); //socket
+     pushInfoMessage();
+    // try {
+    //     myJavaFun.GetAppVersion(); //获取App版本信息
+    //     myJavaFun.GetSystemInfor(); //获取系统信息
+    //     myJavaFun.setOrientation();
+    // } catch (ex) {
 
-    }
+    // }
 }
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
@@ -470,7 +471,7 @@ function loadNameMobile() {
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
                 //初始化状态值-房间有无人
              yxpHome();
-             setHomeTime =setInterval(function(){yxpHome();},3000);
+             setHomeTime =setInterval(function(){yxpHome();},5000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }
@@ -1131,7 +1132,7 @@ var viewClass, userName = window.localStorage.userName,
     fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-    url = "ws://192.168.2.128:8001?" + value;
+    url = "ws://10.8.80.1:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(url);
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     else console.log("浏览器太旧，不支持");
@@ -1431,7 +1432,7 @@ function inithistoryInfoHTML_all(obj, className_child, className_parent) {
     $(".noticeInfoList  li a").bind("click", function() {
         var that = $(this),
             thisObj = JSON.parse($(this).attr("data_obj"));
-        $(".msgFloor label").text(thisObj.floor);
+        $(".msgFloor label").text(getFloor(obj.set_no));
         $(".msgPosition label").text(thisObj.position);
         $(".msgCallTime label").text(thisObj.callTime.replace("T", " "));
         $(".alertMSG").toggle(500);
@@ -1514,6 +1515,7 @@ function yxpHome() {
             equip_no: '300'
         },
         success: function(data) {
+
             //房间有无人
             try{
                 var yxpItem = data.HttpData.data.YXItemDict;
@@ -1544,8 +1546,9 @@ function yxpHome() {
     });
 }
 
-// 信息处理
+// 信息处理 --- 插入数据库信息，如果是通知页面，则查询；如果是历史记录，则查询
 function infoHandle(val){ 
+
   switch(val){
     case "300-是": insertNoticeHistory("300","客房1呼叫");get_no("",300,500,"");break;
     case "301-是": insertNoticeHistory("301","客房2呼叫");get_no("",300,501,"");break;
@@ -1568,8 +1571,10 @@ function infoHandle(val){
 }
 
 function insertNoticeHistory(set_no,str){
-    pushInfoMessage(set_no,str);
+
+   
     var jsonString = {userName: window.localStorage.userName,set_no: set_no, position: str,callTime: getDateTime_res(0)};
+
     $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/insertNoticeRecord",jsonString)).done(function(n) {
         let rt = n.HttpData;
         if (rt.code == 200 && rt.data) {
@@ -1600,22 +1605,16 @@ function insertNoticeHistory(set_no,str){
     }).fail(function(e) {});
 }
 
-function pushInfoMessage(set_no,str){
+function pushInfoMessage(){
     //推送 
-    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gw_push_message")).done(function(n) {
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gwPushGroupInfo?str=GWJPush.dll")).done(function(n) {
             let rt = n.HttpData;
             if (rt.code == 200) {
-                rt.data.forEach(function(item,index){
-                    var isFlag = true;
-                    userName_work.forEach(function(item_child,index_child){
-                        if(item.name == item_child.name && isFlag)
-                        {
-                            isFlag = false; 
-                            
-                            try{myJavaFun.SetAlias(item.id);myJavaFun.JPushAndroid(item.id,str);} catch(e){}
-                        }
-                    });
-                });
+                try{
+                  var data = JSON.parse(rt.data[0].Proc_parm);
+                  jpush.SetTags(data.Audience.Tag.toString());
+                }
+                catch(e){}
             }
     }).fail(function(e) {});
 }
@@ -1633,3 +1632,18 @@ Array.prototype.remove = function(val) {
 		this.splice(index, 1);
 	}
 };
+
+
+ //返回楼层
+ function getFloor(val){
+  var result = parseInt(val);
+  if(result == 300 || result == 301 || result == 302 || result == 303 || result == 304 || result == 314 || result == 315)
+    return "49";
+  else if(result == 309 || result == 310 || result == 311 || result == 312 || result == 313)
+    return "48";
+  else if(result == 305 || result == 306 || result == 307 || result == 308)
+    return "47";
+ }
+
+
+
