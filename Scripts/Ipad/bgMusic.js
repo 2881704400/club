@@ -33,7 +33,6 @@ function bgMusic() {
 				
 			}
 		})
-		console.log(roomArr);
 	});
 	
 	// 点击每一行添加
@@ -54,9 +53,9 @@ function bgMusic() {
 					roomArr.push(liIndex);
 				}
 			}
-			console.log(roomArr);
+
 		});
-		console.log(roomArr);
+
 	})
 	// 点击复选框
 	$(".list-content label").each(function(){
@@ -185,7 +184,7 @@ function bgMusic() {
 				var hours=parseInt(picker.value[0]);
 				var min=parseInt(picker.value[2]);
 				timeMin=hours*60+min;
-				console.log(timeMin);
+
 
 			}
 		}
@@ -596,7 +595,7 @@ function getEquipStayc(){
 		},
 		success:function(res){
 			var dat=JSON.parse($(res).find("string").text());
-			console.log(dat);
+
 			for(var i=0;i<dat.length;i++){
 				var value=dat[i];
 				var ind=vioce.indexOf(value.m_iYCNo);
@@ -636,7 +635,7 @@ function getSetParam(equip_no,set_no){
 		},
 		success:function(res){
 			$(res).find("string").each(function(){
-				console.log($(this).text());
+
 				var dat=JSON.parse($(this).text());
 				param={
 					equip_no:dat[0].equip_no,
