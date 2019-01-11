@@ -78,11 +78,13 @@ function infoComm() {
 			$(this).addClass("bg-dark");
 			$(".pannel-img").hide();
 			$(".pannel-info-detail").show();
+
 		}
 	});
 
 
 	$(".side-nav a").bind('click', function() {
+		// readyFile();
 		$(".side-nav a").each(function() {
 			$(this).removeClass("active");
 		});
@@ -132,9 +134,12 @@ function send_msg(txt) {
         if (inputInfo == "") {
             return;
         }
-        inputInfo = window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
+        var dat = {sendName: window.localStorage.userName,receiveName:window.localStorage.receiveUserName,msg: inputInfo,time: GetDateStrValue(0)};
+        // inputInfo = window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
+
+
         try {
-            ws.send(inputInfo);
+            ws.send(JSON.stringify(dat) );
         } catch (e) {
             initWebSocket();
             send_msg();
@@ -143,6 +148,8 @@ function send_msg(txt) {
         myApp.dialog.alert("连接服务错误...");
     }
 };
+
+
 
 function readyFileTxtList(sendName,receiveName){
 	/*获取所有和登录者有关的聊天记录*/
@@ -192,11 +199,16 @@ function readerTxtList(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
   });
 }
 function initmessageHTMLList(arrStr,sendUser){
-		var value=arrStr.replace(/<f7-userName:>|<f7-time:>|<f7-Content:>/g," ").split(" ");
-		var name=value[1];
-		var date=value[2];
-		var time=value[3];
-		var content=value[4];
+
+
+		var value=JSON.parse(arrStr);
+
+
+		// arrStr.replace(/<f7-userName:>|<f7-time:>|<f7-Content:>/g," ").split(" ");
+		// var name=value[1];
+		// var date=value[2];
+		var time=value.time.substring(11,16);
+		var content=value.msg;
 		var html='<li onclick="loadThisMesage(this,\''+sendUser+'\')" class="'+sendUser+'">'+
 					'<div><img src="../../Image/Ipad/person_img.png" /></div>'+
 					'<p class="item-title">'+sendUser+' <label>'+time+'</label></p>'+
@@ -232,7 +244,8 @@ function readyFile() {
 
 			    var list= formatList(sortArr,"name");
 
-
+			    $("#contactList").html('')
+			    $("#mesList").html('')
 			    list.forEach(function(item,index){
 			    	loadMemList(item);
 			    })
@@ -293,7 +306,9 @@ function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase,dom) {
 }
 
 function loadMemList(item){
+
 	var liHtml='';
+
 	item.List.forEach(function(ite){
 		var name=ite.name.split(",")[1];
 		liHtml+='<li onclick="loadMessage(this,\''+name+'\')" id="'+name+'"> '+
@@ -328,11 +343,21 @@ function loadMessage(dom,name){
 function initmessageHTML(arrStr,dom){
 
 	for(var i=0;i<arrStr.length;i++){
-		var value=arrStr[i].replace(/<f7-userName:>|<f7-time:>|<f7-Content:>/g," ").split(" ");
-		var name=value[1];
-		var date=value[2];
-		var time=value[3];
-		var content=value[4];
+
+		// var value=arrStr[i].replace(/<f7-userName:>|<f7-time:>|<f7-Content:>/g," ").split(" ");
+		if(arrStr[i]!=""){
+			var value=JSON.parse(arrStr[i])
+		}else{
+			continue;
+		}
+		
+
+
+
+		var name=value.sendName;
+		// var date=value[2];
+		var time=value.time.substring(11,16);
+		var content=value.msg;
 		var html="",staClass='';
 		if(name==window.localStorage.userName){
 			staClass="stay-right"
@@ -420,4 +445,14 @@ function loadSort(data){
 
 };
 		  
-
+function GetDateStrValue(AddDayCount) {
+    var dd = new Date();
+    dd.setDate(dd.getDate() + AddDayCount);
+    var y = dd.getFullYear();
+    var m = dd.getMonth() + 1;
+    var d = dd.getDate();
+    var h = dd.getHours();
+    var mo = dd.getMinutes();
+    var s = dd.getSeconds();
+    return y + "-" + addZero(m) + "-" + addZero(d) + " " + addZero(h) + ":" + addZero(mo) + ":" + addZero(s);
+}

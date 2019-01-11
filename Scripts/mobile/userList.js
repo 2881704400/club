@@ -6,7 +6,7 @@ var searchbar = myApp.searchbar.create({
   searchIn: '.item-title',
   on: {
     search(sb, query, previousQuery) {
-      console.log(query, previousQuery);
+//    console.log(query, previousQuery);
     }
   }
 });

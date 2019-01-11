@@ -184,7 +184,7 @@ function InitEnsure() {
         complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数
             if (status == 'timeout') { //超时,status还有success,error等值的情况
                 ajaxs.abort();
-                console.log("超时");
+//              console.log("超时");
                 // myApp.hideIndicator();
                 myApp.dialog.create({
                     title: "系统提示",
@@ -535,7 +535,7 @@ function BackPushID(data) {
         },
         success: function(dt) {
             if (dt.HttpStatus == 200 && dt.HttpData.code == 200) {
-                console.log('添加推送成功');
+//              console.log('添加推送成功');
                 pushInfo(data, "你有新的消息了");
             } else {
                 alert('错误码：' + dt.HttpData.code + '\n错误信息：' + dt.HttpData.message);
@@ -670,7 +670,7 @@ function backss() {
         pages[i] = $(this).attr("data-page");
     });
     if (pages.length == 2) {
-        console.log(pages[0])
+//      console.log(pages[0])
         //mainView.router.loadPage(pages[0] + ".html");
         mainView.router.back()
     }
@@ -1049,7 +1049,7 @@ function get_no(dt, set_equip, set_no, values) {
             },
             success: function(data) {
                 var dt = $(data).find('DataTable'); //返回XML格式的DataTable
-                console.log(dt.find("main_instruction").html(), dt.find("minor_instruction").html(), dt.find("value").html());
+//              console.log(dt.find("main_instruction").html(), dt.find("minor_instruction").html(), dt.find("value").html());
                 if (dt.find("equip_no").html() != "") {
                     if (values == "") onSetCommand11(dt, set_equipOld, dt.find("main_instruction").html(), dt.find("minor_instruction").html(), dt.find("value").html());
                     else onSetCommand11(dt, set_equipOld, dt.find("main_instruction").html(), dt.find("minor_instruction").html(), values);
@@ -1062,7 +1062,7 @@ function get_no(dt, set_equip, set_no, values) {
 }
 
 function onSetCommand11(dt, equip_no, main_instr, mino_instr, valueset) {
-    console.log(equip_no + "," + main_instr + "," + mino_instr + "," + valueset);
+//  console.log(equip_no + "," + main_instr + "," + mino_instr + "," + valueset);
     var ajaxVar = $.ajax({
         type: "POST",
         url: "/GWService.asmx/SetupsCommand",
@@ -1076,7 +1076,7 @@ function onSetCommand11(dt, equip_no, main_instr, mino_instr, valueset) {
         },
         success: function(data) {
             alertMsgSuccess.open();
-            console.log("success");
+//          console.log("success");
         }
     });
 }
@@ -1150,7 +1150,7 @@ function createws(value) {
     url = "ws://192.168.0.165:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(url);
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
-    else console.log("浏览器太旧，不支持");
+//  else console.log("浏览器太旧，不支持");
 }
 
 function initWebSocket() {
@@ -1158,7 +1158,7 @@ function initWebSocket() {
     createws("userName=" + userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
     ws.onopen = function(e) {
-        console.log("websocket connected");
+//      console.log("websocket connected");
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
@@ -1189,12 +1189,12 @@ function initWebSocket() {
     };
     //服务器处理异常，通常在服务器里try-catch发生异常时或者连接异常时触发onerror事件
     ws.onerror = function(err) {
-        console.log("error: " + err);
+//      console.log("error: " + err);
         //ws.close(3500, "close after error");
     };
     //websocket连接关闭时触发onclose事件
     ws.onclose = function(event) {
-        console.log("close reason: " + event.reason);
+//      console.log("close reason: " + event.reason);
        try{document.getElementsByClassName("inputInfo")[0].innerHTML = "";} catch(e){} 
     };
 };

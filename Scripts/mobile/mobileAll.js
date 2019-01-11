@@ -254,7 +254,7 @@ function initEnsureChonglian(fun) {
     function _success(data) {
         var analyze = $(data).children("string").text();
         if (analyze != "" || analyze != "false") {
-            console.log("重连成功！");
+            // console.log("重连成功！");
             if (fun != null) {
                 fun();
             }
@@ -1132,64 +1132,96 @@ var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat
 
 function createws(value) {
     // url = "ws://10.8.80.1:8001?" + value;
-    url = "ws://192.168.0.152:8001?" + value;
+    url = "ws://192.168.3.111:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(url);
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
-    else console.log("浏览器太旧，不支持");
+    // else console.log("浏览器太旧，不支持");
 }
 function initWebSocket() {
     createws("userName=" + window.localStorage.userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
     ws.onopen = function(e) {
-        console.log("websocket connected");
+        // console.log("websocket connected");
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
 
-        console.log(event.data);
+       
         var dt = JSON.parse(event.data);
-
+//         console.log(dt);
         var fileUrl,sendUser,receiveUser,DateTime,concentext; 
         if (dt.sendName == userName){
             writeFile("c:\\MsgChat", dt.sendName, dt.receiveName, GetDateStr(0, 0), event.data, "");
-        }
-        //  else{
-        //     var html= "<div class='pannel-chat-info' >" +
-        //                 "           <div class='chart-person'>" +
-        //                 "               <img src='/Image/Ipad/person_img.png' />" +
-        //                 "           </div>" +
-        //                 "           <div class='chart-content'>" +
-        //                 "               " + dt.msg + "" +
-        //                 "           </div>" +
-        //                 "       </div>";
-        //     var receName=$("#chatOtherInfoId").attr("recename");//消息列表
-        //     var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
-        //     var hasClass,hasId;
-        //     hasId=$("#"+value[1]).hasClass('active');
-        //     hasClass=$("."+value[1]).hasClass('active');//人员列表
-        //     if(receName==value[1]&&hasClass){
-        //         $("#chatOtherInfoId").append(html);
-        //         $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
-        //         //消息列表
-        //         $("."+value[1]).find(".item-title label").html(value[4])
-        //         $("."+value[1]).find(".con").html(value[5])
-        //     }else{
-        //         $("."+value[1]).find(".item-title label").html(value[4])
-        //         $("."+value[1]).find(".con").html(value[5])
-        //         var num=parseInt($("."+value[1]).find(".num").text());
-        //         if(num==0){
-        //             $("."+value[1]).find("font").show().find(".num").text(num+1);
-        //         }
-        //         else if(num<99){
-        //              $("."+value[1]).find(".num").text(num+1);
-        //         }
-        //     }
+        }else{
+            // {"sendName":"admin","receiveName":"gis","msg":"123213213","time":"2019-01-11 14:03:41"}
+            // <f7-userName:>admin<f7-time:>2018-12-29 13:31:26<f7-Content:>12
+            // 
+            var value=dt;
+            var times=value.time.substring(11,16)
 
-        //     if(receNames==value[1]&&hasId){
-        //         $("#chatOtherContactId").append(html);
-        //         $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
-        //     }
-        // }
+            var html= "<div class='pannel-chat-info' >" +
+                        "           <div class='chart-person'>" +
+                        "               <img src='/Image/Ipad/person_img.png' />" +
+                        "           </div>" +
+                        "           <div class='chart-content'>" +
+                        "               " + dt.msg + "" +
+                        "           </div>" +
+                        "       </div>";
+
+            var receName=$("#chatOtherInfoId").attr("recename");//消息列表
+            var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
+
+            var hasClass,hasId;
+
+            hasId=$("#"+value.sendName).hasClass('active');
+            hasClass=$("."+value.sendName).hasClass('active');//人员列表
+
+            var nameArr=[];
+            $("#mesList li").each(function(index, el) {
+                var str= $(this).attr("class");
+                nameArr.push(str)   
+            }); 
+//          console.log(nameArr)
+//          console.log(value.sendName)
+//        	console.log(nameArr.indexOf(value.sendName))
+            if(nameArr.indexOf(value.sendName)==-1&&nameArr.indexOf(value.sendName+" active")==-1){
+
+                var html='<li onclick="loadThisMesage(this,\''+value.sendName+'\')" class="'+value.sendName+'">'+
+                        '<div><img src="../../Image/Ipad/person_img.png" /></div>'+
+                        '<p class="item-title">'+value.sendName+' <label>'+times+'</label></p>'+
+                        '<span class="con">'+dt.msg+'</span>'+
+                        '<font ><span class="num">0</span></font>'+
+                    '</li>';
+                $("#mesList").append(html);     
+
+            }
+
+            if(receName==value.sendName&&hasClass){
+                $("#chatOtherInfoId").append(html);
+                $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
+                //消息列表
+                $("."+value.sendName).find(".item-title label").html(times)
+                $("."+value.sendName).find(".con").html(dt.msg)
+            }else{
+                $("."+value.sendName).find(".item-title label").html(times)
+                $("."+value.sendName).find(".con").html(dt.msg)
+                var num=parseInt($("."+value.sendName).find(".num").text());
+                if(num==0){
+                    $("."+value.sendName).find("font").show().find(".num").text(num+1);
+                }
+                else if(num<99){
+                     $("."+value.sendName).find(".num").text(num+1);
+                }
+            }
+
+            if(receNames==value.sendName&&hasId){
+                $("#chatOtherContactId").append(html);
+                $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
+            }
+
+
+
+        }
         try {
             //判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
             $(".shortContainer>section").addClass(viewClass);
@@ -1209,11 +1241,11 @@ function initWebSocket() {
     };
     //服务器处理异常，通常在服务器里try-catch发生异常时或者连接异常时触发onerror事件
     ws.onerror = function(err) {
-        console.log("error: " + err);
+        // console.log("error: " + err);
     };
     //websocket连接关闭时触发onclose事件
     ws.onclose = function(event) {
-        console.log("close reason: " + event.reason);
+        // console.log("close reason: " + event.reason);
         try {
             document.getElementsByClassName("inputInfo")[0].innerHTML = "";
         } catch (e) {}
@@ -1315,7 +1347,7 @@ function publicAjaxData(equip_no_0) {
     }
 
     function _error(e) {
-        console.log(e);
+        // console.log(e);
     }
 
     function _complete(XMLHttpRequest, status) {}
