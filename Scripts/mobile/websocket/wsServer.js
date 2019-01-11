@@ -27,10 +27,11 @@ app.all('*', function(req, res, next) {
 });
 var server = ws.createServer(function(conn) {
     stringAll = conn.path.replace("/?", "").trim();
+    
     stringAllUser = getValueByKeystr(stringAll,"userName").trim(), stringAllKey = getValueByKeystr(stringAll, "key");
-    //console.log(stringAllUser);
+    // console.log(decodeURIComponent(stringAllUser));
     //通道保存在session
-    session[stringAllUser] = conn;
+    session[decodeURIComponent(stringAllUser)] = conn;
     //用户ID，根据ID查询全部成员通道
      
     conn.on("text", function(str) {
@@ -48,14 +49,20 @@ console.log("WebSocket建立完毕");
 function radioBroadcast(str) {
     var publicString = JSON.parse(str);
 
+    console.log(session[publicString.sendName]);
 
-
-    try {  //组合发送: 发送者@接收者
+    try { 
         session[publicString.sendName].sendText(str);
+    } catch (e) {
+        // console.log(publicString.sendName+"的session是临时的，没保存该通道，错误为： "+e);
+    }
+
+    try {  
+
         session[publicString.receiveName].sendText(str);
     } catch (e) {
-        console.log(publicString.receiveName+"的session是临时的，没保存该通道，错误为： "+e);
-    }
+        // console.log(publicString.receiveName+"的session是临时的，没保存该通道，错误为： "+e);
+    }  
 
 }
 

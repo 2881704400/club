@@ -42,9 +42,7 @@ function readyFileTxt(sendName,receiveName) {
      var result = data.HttpData.concenTxt;
      if(result)
        {
-        
          var filUrlStr = result.replace(fileUrl+"\\","").split("\\"),fileNameStr = filUrlStr[1].replace(".txt",""),fileDateTime = filUrlStr[0];
-         
          readerTxt(result,sendName,receiveName,fileDateTime,true); 
        }
   }
@@ -64,20 +62,12 @@ function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
   })).done(function(n, l) {
       let rt = n.HttpData;
       if (rt.code == 200) {
-        var allStr,userStr,strLength,chatObjec,endChatObject,chatDate,chatContent,chatTime;
+        var allStr,userStr,strLength;
         allStr = rt.data.concenTxt.split("<br />");
         strLength= allStr.length;
         userStr = allStr[strLength-2];
-        let dt = JSON.parse(userStr);
-        if(sendUser == userName)
-         {chatObjec = receiveUser;}
-        else
-          {chatObjec = sendUser;}
-        // endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
-        // chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
-        // chatContent= userStr.split("<f7-Content:>")[1];
-        // chatDate= chatTime.split(" ")[0].replace("-","");
-        initmessageHTML(chatObjec,dt.time,dt.sendName+": "+dt.msg,dt.time.split(" ")[0].replace("-",""));//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
+        let dt = JSON.parse(userStr),receive = (window.localStorage.userName == sendUser?receiveUser:sendUser);
+        initmessageHTML(receive,dt.time,dt.sendName+": "+dt.msg);//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
       }
   }).fail(function(e) {
     if(isFlase){
@@ -86,16 +76,16 @@ function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
   });
 }
 //初始化界面HTML
-function initmessageHTML(chatObject,chatTime,chatInfo,DateTime){
+function initmessageHTML(receive,chatTime,txt){
   var domHTML ="<li>"+
-                "<a href=\"/shortMessage/?"+chatObject+"\" class=\"item-content\" >"+
+                "<a href=\"/shortMessage/?"+receive+"\" class=\"item-content\" >"+
                   "<div class=\"item-media\"><img src=\"/image/ic_launcher.png\" width=\"60\"/></div>"+
                   "<div class=\"item-inner\">"+
                     "<div class=\"item-title-row\">"+
-                      "<div class=\"item-title\">"+chatObject+"</div>"+
+                      "<div class=\"item-title\">"+receive+"</div>"+
                       "<div class=\"item-after\">"+chatTime+"</div>"+
                     "</div>"+
-                    "<div class=\"item-text\">"+chatInfo+"</div>"+
+                    "<div class=\"item-text\">"+txt+"</div>"+
                     // "<label>99</label>"+
                   "</div>"+
                 "</a>"+

@@ -122,19 +122,9 @@ var mainView = myApp.views.create('.view-main');
 //web接口地址
 var service = "/GWService.asmx";
 var $$ = Framework7.$;
-initLoads();
-function initLoads() {
-     loadNameMobile();
-     initWebSocket(); //socket
-    
-    // try {
-    //     myJavaFun.GetAppVersion(); //获取App版本信息
-    //     myJavaFun.GetSystemInfor(); //获取系统信息
-    //     myJavaFun.setOrientation();
-    // } catch (ex) {
 
-    // }
-}
+loadNameMobile();
+
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
         title: "",
@@ -469,8 +459,10 @@ function loadNameMobile() {
             if (window.localStorage.userName != "" && window.localStorage.userName != null) {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
+                initWebSocket(); //socket
                 //初始化状态值-房间有无人
-                yxpHome(); pushInfoMessage();
+                yxpHome();
+                pushInfoMessage();
                 setHomeTime =setInterval(function(){yxpHome();},5000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
@@ -1131,26 +1123,48 @@ function loadJs(url, callback, id) {
 var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-    // url = "ws://10.8.80.1:8001?" + value;
-    url = "ws://192.168.0.105:8001?" + value;
-    if ('WebSocket' in window) ws = new WebSocket(url);
+
+    url = "ws://10.8.80.1:8001?" + value;
+    // url = "ws://192.168.0.152:8001?" + value;
+    if ('WebSocket' in window) ws = new WebSocket(encodeURI(url));
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     // else console.log("浏览器太旧，不支持");
 }
 function initWebSocket() {
     createws("userName=" + window.localStorage.userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
-    ws.onopen = function(e) {
+    ws.onopen = function(e) {     
+        if (ws != null) {
+            // console.log("websocket connected");
+            try{
+                var inputInfo = document.getElementById("inputInfo").value.trim();
+                if (inputInfo == "") {
+                    return;
+                }
+                inputInfo = {sendName: window.localStorage.userName,receiveName:window.localStorage.receiveUserName,msg: inputInfo,time: GetDateStrValue(0)};//window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
+                try {
+                    ws.send(JSON.stringify(inputInfo));
+                } catch (e) {
+                    initWebSocket();
+                    send_msg();
+                }
+                document.getElementById("inputInfo").value = "";                
+            }catch(e){}
 
-        // console.log("websocket connected");
+        } else {
+            myApp.dialog.alert("连接服务错误...");
+        }
+
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
 
+
         var dt = JSON.parse(event.data);
         var fileUrl,sendUser,receiveUser,DateTime,concentext; 
-        if (dt.sendName == userName){
+        if (dt.sendName == window.localStorage.userName){
             writeFile("c:\\MsgChat", dt.sendName, dt.receiveName, GetDateStr(0, 0), event.data, "");
+
         }else{
 
             var value=dt;
@@ -1217,16 +1231,27 @@ function initWebSocket() {
 
 
         }
+
         try {
             //判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
             $(".shortContainer>section").addClass(viewClass);
-
-            var received_msg,old_msg, msg_board = document.getElementsByClassName(viewClass)[0];
+            var received_msg,old_msg, msg_board = document.getElementsByClassName(viewClass)[0],messageView = document.getElementsByClassName("messageSection")[0];
             if (msg_board) {
-                if (dt.sendName == userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
+                if (dt.sendName == window.localStorage.userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
                 else received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' +dt.msg + "</span></p>"; //新信息
                 addRecord(msg_board, received_msg);
             }
+            if(messageView)
+             {
+
+                $(".messageInfoList li").each(function(index){
+                    if($(this).find(".item-title").text() == dt.sendName)
+                    {
+                        $(this).find(".item-after").text(dt.time);
+                        $(this).find(".item-text").text(dt.msg);
+                    }
+                });
+             }
         } catch (e) {
             //推送
             myApp.dialog.alert('222');
@@ -1306,12 +1331,12 @@ function formatRecord(str) {
         if(item)
         {
             let dt = JSON.parse(item);
-            if (dt.sendName == userName) {
-                received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
+            if (dt.sendName == window.localStorage.userName) {
+                received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
                 addRecord(msg_board, received_msg);
             }
             else {
-                received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
+                received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
                 addRecord(msg_board, received_msg);
             }
         }
@@ -1531,33 +1556,32 @@ function yxpHome() {
             equip_no: '22',//'300'
         },
         success: function(data) {
-
             //房间有无人
             try{
                 var yxpItem = data.HttpData.data.YXItemDict;
-                // handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
-                // handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
-                // handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
-                // handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
-                // handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
-                // //是否有信息发送
-                // infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
-                // infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
-                // infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
-                // infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
-                // infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
-                // infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
-                // infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
-                // infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
-                // infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
-                // infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
-                // infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
-                // infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
-                // infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
-                // infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
-                // infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
-                // infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
-                infoHandle("100-"+yxpItem["100"].m_YXState.toString().trim()); 
+                handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
+                handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
+                handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
+                handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
+                handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
+                //是否有信息发送
+                infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
+                infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
+                infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
+                infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
+                infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
+                infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
+                infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
+                infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
+                infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
+                infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
+                infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
+                infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
+                infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
+                infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
+                infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
+                infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
+                // infoHandle("100-"+yxpItem["100"].m_YXState.toString().trim()); 
             }catch(e){} //客房5
         }
     });
@@ -1583,7 +1607,7 @@ function infoHandle(val){
     case "313-是": insertNoticeHistory("313","乒乓球室呼叫");get_no("",300,513,"");break;
     case "314-是": insertNoticeHistory("314","SPA1呼叫");get_no("",300,514,"");break;
     case "315-是": insertNoticeHistory("315","SPA2呼叫");get_no("",300,515,"");break;
-    case "100-撤防": insertNoticeHistory("22","测试");get_no("",22,2,"");break;
+    // case "100-撤防": insertNoticeHistory("22","测试");get_no("",22,2,"");break;
     default: break;
   }
 }

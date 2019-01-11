@@ -10,6 +10,11 @@ function shortMessage() {
     $(".buttonSend").bind("click", function() {
         send_msg();
     });
+    $(document).keydown(function(event){ 
+     if(event.keyCode==13){            
+      $(".buttonSend").click();               
+     } 
+    });  
     $(".shortMessageBack,.inputInfo").unbind();
     $(".shortMessageBack").bind("click", function() {
         $(".tabbar").removeClass("displayNone");
@@ -46,22 +51,9 @@ function readyFileTxt1(sendName, receiveName) {
     function Record_complete(xmlhttprequest, status) {}
 }
 function send_msg() {
-    if (ws != null) {
-        var inputInfo = document.getElementById("inputInfo").value.trim();
-        if (inputInfo == "") {
-            return;
-        }
-        inputInfo = {sendName: window.localStorage.userName,receiveName:window.localStorage.receiveUserName,msg: inputInfo,time: GetDateStrValue(0)};//window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
-        try {
-            ws.send(JSON.stringify(inputInfo));
-        } catch (e) {
-            initWebSocket();
-            send_msg();
-        }
-        document.getElementById("inputInfo").value = "";
-    } else {
-        myApp.dialog.alert("连接服务错误...");
-    }
+    //每次发送消息都连接服务器
+    initWebSocket();
+    
 };
 
 function closews() {
