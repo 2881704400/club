@@ -124,16 +124,16 @@ var service = "/GWService.asmx";
 var $$ = Framework7.$;
 initLoads();
 function initLoads() {
-    loadNameMobile();
+     loadNameMobile();
      initWebSocket(); //socket
+    
+    // try {
+    //     myJavaFun.GetAppVersion(); //获取App版本信息
+    //     myJavaFun.GetSystemInfor(); //获取系统信息
+    //     myJavaFun.setOrientation();
+    // } catch (ex) {
 
-    try {
-        myJavaFun.GetAppVersion(); //获取App版本信息
-        myJavaFun.GetSystemInfor(); //获取系统信息
-        myJavaFun.setOrientation();
-    } catch (ex) {
-
-    }
+    // }
 }
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
@@ -470,8 +470,8 @@ function loadNameMobile() {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
                 //初始化状态值-房间有无人
-             yxpHome();
-             setHomeTime =setInterval(function(){yxpHome();},5000);
+                yxpHome(); pushInfoMessage();
+                setHomeTime =setInterval(function(){yxpHome();},5000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }
@@ -1128,11 +1128,11 @@ function loadJs(url, callback, id) {
     }
 }
 //创建websocket
-var viewClass, userName = window.localStorage.userName,
-    fileUrl = "c:\\MsgChat";
+var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-    url = "ws://10.8.80.1:8001?" + value;
+    // url = "ws://10.8.80.1:8001?" + value;
+    url = "ws://192.168.0.152:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(url);
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     else console.log("浏览器太旧，不支持");
@@ -1145,76 +1145,61 @@ function initWebSocket() {
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
+
         console.log(event.data);
-        //单聊: 发送者@接收者@当次广播对象(admin@zkx@admin)-(admin@zkx@zkx)
-        //群聊: 发送者@接收者@当次广播对象(admin@All0@admin)-(admin@All0@zkx)-(admin@All0@zkx2018)
-        var connectionString = event.data.split("<f7-userName:>")[1].split("<f7-time:>")[0],
-            broadcastObj = connectionString.split("@");
+        var dt = JSON.parse(event.data);
 
-        //fileUrl,sendUser,receiveUser,DateTime,concentext 
-        if (broadcastObj[0] == userName){
-            writeFile(fileUrl, broadcastObj[0], broadcastObj[1], GetDateStr(0, 0), event.data.replace("@" + broadcastObj[1], ""));
-        } else{
-            var value=event.data.replace(/<f7-userName:>|@|<f7-time:>|<f7-Content:>/g," ").split(" ");
-            var html= "<div class='pannel-chat-info' >" +
-                        "           <div class='chart-person'>" +
-                        "               <img src='/Image/Ipad/person_img.png' />" +
-                        "           </div>" +
-                        "           <div class='chart-content'>" +
-                        "               " + value[5] + "" +
-                        "           </div>" +
-                        "       </div>";
-            var receName=$("#chatOtherInfoId").attr("recename");//消息列表
-            var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
-            var hasClass,hasId;
-
-            hasId=$("#"+value[1]).hasClass('active');
-            hasClass=$("."+value[1]).hasClass('active');//人员列表
-
-
-            if(receName==value[1]&&hasClass){
-                $("#chatOtherInfoId").append(html);
-                $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
-                //消息列表
-                $("."+value[1]).find(".item-title label").html(value[4])
-                $("."+value[1]).find(".con").html(value[5])
-            }else{
-                $("."+value[1]).find(".item-title label").html(value[4])
-                $("."+value[1]).find(".con").html(value[5])
-                var num=parseInt($("."+value[1]).find(".num").text());
-                if(num==0){
-                    $("."+value[1]).find("font").show().find(".num").text(num+1);
-                }
-                else if(num<99){
-                     $("."+value[1]).find(".num").text(num+1);
-                }
-               
-            }
-
-            if(receNames==value[1]&&hasId){
-                $("#chatOtherContactId").append(html);
-                $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
-                // $("#"+value[1]).
-            }
-            
-
+        var fileUrl,sendUser,receiveUser,DateTime,concentext; 
+        if (dt.sendName == userName){
+            writeFile("c:\\MsgChat", dt.sendName, dt.receiveName, GetDateStr(0, 0), event.data, "");
         }
-        
+        //  else{
+        //     var html= "<div class='pannel-chat-info' >" +
+        //                 "           <div class='chart-person'>" +
+        //                 "               <img src='/Image/Ipad/person_img.png' />" +
+        //                 "           </div>" +
+        //                 "           <div class='chart-content'>" +
+        //                 "               " + dt.msg + "" +
+        //                 "           </div>" +
+        //                 "       </div>";
+        //     var receName=$("#chatOtherInfoId").attr("recename");//消息列表
+        //     var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
+        //     var hasClass,hasId;
+        //     hasId=$("#"+value[1]).hasClass('active');
+        //     hasClass=$("."+value[1]).hasClass('active');//人员列表
+        //     if(receName==value[1]&&hasClass){
+        //         $("#chatOtherInfoId").append(html);
+        //         $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
+        //         //消息列表
+        //         $("."+value[1]).find(".item-title label").html(value[4])
+        //         $("."+value[1]).find(".con").html(value[5])
+        //     }else{
+        //         $("."+value[1]).find(".item-title label").html(value[4])
+        //         $("."+value[1]).find(".con").html(value[5])
+        //         var num=parseInt($("."+value[1]).find(".num").text());
+        //         if(num==0){
+        //             $("."+value[1]).find("font").show().find(".num").text(num+1);
+        //         }
+        //         else if(num<99){
+        //              $("."+value[1]).find(".num").text(num+1);
+        //         }
+        //     }
 
+        //     if(receNames==value[1]&&hasId){
+        //         $("#chatOtherContactId").append(html);
+        //         $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
+        //     }
+        // }
         try {
             //判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
-            //群聊                  单聊 
-            var received_msg, old_msg, msg_board = document.getElementsByClassName(viewClass)[0];
+            $(".shortContainer>section").addClass(viewClass);
+
+            var received_msg,old_msg, msg_board = document.getElementsByClassName(viewClass)[0];
             if (msg_board) {
-                if (broadcastObj[0] == userName) received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + event.data.split("<f7-Content:>")[1] + "</span></p>"; //新信息
-                else received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + event.data.split("<f7-Content:>")[1] + "</span></p>"; //新信息
+                if (dt.sendName == userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
+                else received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' +dt.msg + "</span></p>"; //新信息
                 addRecord(msg_board, received_msg);
             }
-
-
-
-
-
         } catch (e) {
             //推送
             try {
@@ -1236,7 +1221,6 @@ function initWebSocket() {
 };
 //写记录
 function writeFile(fileUrl, sendUser, receiveUser, DateTime, concentext) {
-
     $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/insertChatInfo", {
         data: {
             fileUrl: fileUrl,
@@ -1246,8 +1230,7 @@ function writeFile(fileUrl, sendUser, receiveUser, DateTime, concentext) {
             concentext: concentext
         },
         async: false
-    })).done(function(n, l) {}).fail(function(e){});
-
+    })).done(function(n) {}).fail(function(e){});
 }
 //读记录
 function readerFile(path,isFlag) {
@@ -1290,15 +1273,18 @@ function formatRecord(str) {
     var strArray = str.split("<br />");
     var received_msg, msg_board = document.getElementsByClassName(viewClass)[0];
     strArray.forEach(function(item, index) {
-        // console.log(item);
-        if (item != "" && item.split("<f7-userName:>")[1].split("<f7-time:>")[0] == userName) {
-            received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + item.split("<f7-Content:>")[1] + "</span></p>";
-            addRecord(msg_board, received_msg);
-        } //新信息
-        else if (item != "") {
-            received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + item.split("<f7-Content:>")[1] + "</span></p>";
-            addRecord(msg_board, received_msg);
-        } //新信息
+        if(item)
+        {
+            let dt = JSON.parse(item);
+            if (dt.sendName == userName) {
+                received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
+                addRecord(msg_board, received_msg);
+            }
+            else {
+                received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
+                addRecord(msg_board, received_msg);
+            }
+        }
     });
 }
 //添加记录
@@ -1512,35 +1498,36 @@ function yxpHome() {
             Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey
         },
         data: {
-            equip_no: '300'
+            equip_no: '22',//'300'
         },
         success: function(data) {
 
             //房间有无人
             try{
                 var yxpItem = data.HttpData.data.YXItemDict;
-                handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
-                handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
-                handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
-                handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
-                handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
-                //是否有信息发送
-                infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
-                infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
-                infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
-                infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
-                infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
-                infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
-                infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
-                infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
-                infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
-                infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
-                infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
-                infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
-                infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
-                infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
-                infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
-                infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
+                // handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
+                // handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
+                // handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
+                // handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
+                // handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
+                // //是否有信息发送
+                // infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
+                // infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
+                // infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
+                // infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
+                // infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
+                // infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
+                // infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
+                // infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
+                // infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
+                // infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
+                // infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
+                // infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
+                // infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
+                // infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
+                // infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
+                // infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
+                infoHandle("100-"+yxpItem["100"].m_YXState.toString().trim()); 
             }catch(e){} //客房5
         }
     });
@@ -1566,13 +1553,14 @@ function infoHandle(val){
     case "313-是": insertNoticeHistory("313","乒乓球室呼叫");get_no("",300,513,"");break;
     case "314-是": insertNoticeHistory("314","SPA1呼叫");get_no("",300,514,"");break;
     case "315-是": insertNoticeHistory("315","SPA2呼叫");get_no("",300,515,"");break;
+    case "100-撤防": insertNoticeHistory("22","测试");get_no("",22,2,"");break;
     default: break;
   }
 }
 
 function insertNoticeHistory(set_no,str){
 
-    pushInfoMessage(set_no,str);
+   
     var jsonString = {userName: window.localStorage.userName,set_no: set_no, position: str,callTime: getDateTime_res(0)};
 
     $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/insertNoticeRecord",jsonString)).done(function(n) {
@@ -1605,22 +1593,18 @@ function insertNoticeHistory(set_no,str){
     }).fail(function(e) {});
 }
 
-function pushInfoMessage(set_no,str){
+function pushInfoMessage(){
     //推送 
-    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gw_push_message")).done(function(n) {
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gwPushGroupInfo?str=GWJPush.dll")).done(function(n) {
             let rt = n.HttpData;
             if (rt.code == 200) {
-                rt.data.forEach(function(item,index){
-                    var isFlag = true;
-                    userName_work.forEach(function(item_child,index_child){
-                        if(item.name == item_child.name && isFlag)
-                        {
-                            isFlag = false; 
-                            
-                            try{myJavaFun.SetAlias(item.id);myJavaFun.JPushAndroid(item.id,str);} catch(e){}
-                        }
-                    });
-                });
+                try{
+                  var data = JSON.parse(rt.data[0].Proc_parm);
+                  jpush.SetAlias(data.Audience.Alias.toString()); // 设置别名
+                  jpush.SetTags(data.Audience.Tag.toString()); //设置tag
+                  // jpush.SetAppId(data.masterSecret.toString(),data.AppKey.toString()); // id
+                }
+                catch(e){}
             }
     }).fail(function(e) {});
 }
@@ -1640,17 +1624,16 @@ Array.prototype.remove = function(val) {
 };
 
 
-     //返回楼层
-     function getFloor(val){
-      var result = parseInt(val);
-      if(result == 300 || result == 301 || result == 302 || result == 303 || result == 304 || result == 314 || result == 315)
-        return "49";
-      else if(result == 309 || result == 310 || result == 311 || result == 312 || result == 313)
-        return "48";
-      else if(result == 305 || result == 306 || result == 307 || result == 308)
-        return "47";
-
-     }
+ //返回楼层
+ function getFloor(val){
+  var result = parseInt(val);
+  if(result == 300 || result == 301 || result == 302 || result == 303 || result == 304 || result == 314 || result == 315)
+    return "49";
+  else if(result == 309 || result == 310 || result == 311 || result == 312 || result == 313)
+    return "48";
+  else if(result == 305 || result == 306 || result == 307 || result == 308)
+    return "47";
+ }
 
 
 

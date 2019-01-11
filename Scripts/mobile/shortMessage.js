@@ -19,6 +19,7 @@ function shortMessage() {
             document.body.scrollTop = document.body.scrollHeight;
         }, 300);
     })
+    viewClass = window.localStorage.userName + "-" + receiveUser;
     readyFileTxt1(window.localStorage.userName, receiveUser);
     window.localStorage.receiveUserName = receiveUser;
 }
@@ -50,9 +51,9 @@ function send_msg() {
         if (inputInfo == "") {
             return;
         }
-        inputInfo = window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
+        inputInfo = {sendName: window.localStorage.userName,receiveName:window.localStorage.receiveUserName,msg: inputInfo,time: GetDateStrValue(0)};//window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
         try {
-            ws.send(inputInfo);
+            ws.send(JSON.stringify(inputInfo));
         } catch (e) {
             initWebSocket();
             send_msg();
@@ -80,4 +81,17 @@ function returnIsString(value, str) {
 function handleString(value) {
     var str = value.replace(/\-/g, "").substring(0, 8);
     return str;
+}
+
+//获取几天之后的日期
+function GetDateStrValue(AddDayCount) {
+    var dd = new Date();
+    dd.setDate(dd.getDate() + AddDayCount);
+    var y = dd.getFullYear();
+    var m = dd.getMonth() + 1;
+    var d = dd.getDate();
+    var h = dd.getHours();
+    var mo = dd.getMinutes();
+    var s = dd.getSeconds();
+    return y + "-" + addZero(m) + "-" + addZero(d) + " " + addZero(h) + ":" + addZero(mo) + ":" + addZero(s);
 }

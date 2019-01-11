@@ -555,6 +555,14 @@
               获取手机存储信息
             </summary>
         </member>
+<<<<<<< HEAD
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.gwPushGroupInfo(System.String)">
+            <summary>
+              获取推送分组信息
+            </summary>
+        </member>
+=======
+>>>>>>> 647799d51fca747cb974415658fdc6e7fe640d9f
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.insertNoticeRecord(Newtonsoft.Json.Linq.JObject)">
             <summary>
               插入通知数据

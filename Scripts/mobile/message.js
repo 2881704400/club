@@ -68,15 +68,16 @@ function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
         allStr = rt.data.concenTxt.split("<br />");
         strLength= allStr.length;
         userStr = allStr[strLength-2];
+        let dt = JSON.parse(userStr);
         if(sendUser == userName)
          {chatObjec = receiveUser;}
         else
           {chatObjec = sendUser;}
-        endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
-        chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
-        chatContent= userStr.split("<f7-Content:>")[1];
-        chatDate= chatTime.split(" ")[0].replace("-","");
-        initmessageHTML(chatObjec,chatTime,endChatObject+": "+chatContent,chatDate);//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
+        // endChatObject= userStr.split("<f7-userName:>")[1].split("<f7-time:>")[0];
+        // chatTime= userStr.split("<f7-time:>")[1].split("<f7-Content:>")[0];
+        // chatContent= userStr.split("<f7-Content:>")[1];
+        // chatDate= chatTime.split(" ")[0].replace("-","");
+        initmessageHTML(chatObjec,dt.time,dt.sendName+": "+dt.msg,dt.time.split(" ")[0].replace("-",""));//聊天对象,聊天时间chatTime,聊天信息,最新聊天日期   
       }
   }).fail(function(e) {
     if(isFlase){

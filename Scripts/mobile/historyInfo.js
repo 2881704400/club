@@ -1,18 +1,24 @@
 ﻿function historyInfo() {
-    ajaxRequestXml(1, "newNotice", "allInfo>div>ul")
+    domHTML="";
+    myApp.dialog.progress('<a style="font-size: 1rem">加载中...</a>');
+    setTimeout(function(){
+        ajaxRequestXml_history(1, "newNotice", "#allInfo>div>ul");
+    },2000);
     $(".msg_close,.segmented a").unbind();
     $(".msg_close").bind("click", function() {
         $(".alertMSG").slideUp(500);
         
     });
     $(".segmented a").bind("click", function() {
-        let thiscN = $(this).attr("href").split("#")[1];
-        $("#" + thiscN + ">div>ul").html("");
-        ajaxRequestXml($(this).attr("data_number"), "newNotice", thiscN + ">div>ul");
+        domHTML="";
+        let thiscN = $(this).attr("href"),num = $(this).attr("data_number").toString();
+        $(".swimmingInfoList,.allInfoList").html(" ");
+        myApp.dialog.progress('<a style="font-size: 1rem">加载中...</a>');
+        setTimeout(function(){ajaxRequestXml_history(num,"newNotice", thiscN + ">div>ul");},2000);
     });
 }
 
-function ajaxRequestXml(num, className_child, className_parent) {
+function ajaxRequestXml_history(num, className_child, className_parent) { 
     // 请求 
     if(parseInt(num) == 1)
     $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gw_historical_notice")).done(function(n, l) {
@@ -22,6 +28,9 @@ function ajaxRequestXml(num, className_child, className_parent) {
                 let noticeId = item.set_no;
                 inithistoryInfoHTML(item, className_child, className_parent);
             });
+            myApp.dialog.close();
+
+            $(className_parent).append(domHTML);
         }
     }).fail(function(e) {});
     else
@@ -32,13 +41,15 @@ function ajaxRequestXml(num, className_child, className_parent) {
                 let noticeId = item.set_no;
                 inithistoryInfoHTML(item, className_child, className_parent);
             });
+            myApp.dialog.close();
+            $(className_parent).append(domHTML);
         }
        }).fail(function(e) {});   
 }
-
+var domHTML = "";
 function inithistoryInfoHTML(obj, className_child, className_parent) {
-    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "'>" + "<div class=\"item-media " + (obj.confirmTime ?  1: className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
-    $("#" + className_parent).append(domHTML);
+    domHTML += "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "'>" + "<div class=\"item-media " + (obj.confirmTime ?  1: className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
+    
     $(".historyInfoSection li a,.msg_comfig").unbind();
     $(".historyInfoSection li a").bind("click", function() {
         var that = $(this),thisObj = JSON.parse($(this).attr("data_obj"));

@@ -127,6 +127,7 @@ function yxpHomeDeatils2(isJudge){
            
            if(isJudge)
            {
+            try{
             handleDeatils2State(70,yxpItem["70"].m_YXState); //卧室台灯
 
             handleDeatils2State(71,yxpItem["71"].m_YXState); //防雾灯
@@ -153,6 +154,8 @@ function yxpHomeDeatils2(isJudge){
             $("#homeDeatils2 .wd_conditioner").find("i").text(ycpItem["44"].m_YCValue); //卧室空调温度
 
             window.localStorage.volumeValue3 = ycpItem["45"].m_YCValue;
+               }
+                catch(e){}
             }
         }
     });

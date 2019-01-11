@@ -42,36 +42,24 @@ var server = ws.createServer(function(conn) {
     conn.on("error", function(code, reason) {
         //console.log("异常关闭")
     });
-}).listen(8001)
+}).listen(8001);
 console.log("WebSocket建立完毕");
 //广播
 function radioBroadcast(str) {
-    var publicString = str.split(":::"),
-        userInfo = publicString[0].replace(" ","").split("@");
-        // broadcastUser = userInfo[2].split("-"); //广播全部对象
-        // contentInfo = publicString[1];
+    var publicString = JSON.parse(str);
 
-    userInfo.forEach(function(item, index) {
-        try {  //组合发送: 发送者@接收者
-            session[item].sendText("<f7-userName:>" +publicString[0]+ "<f7-time:>" + GetDateStrValue(0) +"<f7-Content:>"+publicString[1]);
-        } catch (e) {
-            console.log(item+"的session是临时的，没保存该通道，错误为： "+e);
-        }
-   });
+
+
+    try {  //组合发送: 发送者@接收者
+        session[publicString.sendName].sendText(str);
+        session[publicString.receiveName].sendText(str);
+    } catch (e) {
+        console.log(publicString.receiveName+"的session是临时的，没保存该通道，错误为： "+e);
+    }
+
 }
 
-//获取几天之后的日期
-function GetDateStrValue(AddDayCount) {
-    var dd = new Date();
-    dd.setDate(dd.getDate() + AddDayCount);
-    var y = dd.getFullYear();
-    var m = dd.getMonth() + 1;
-    var d = dd.getDate();
-    var h = dd.getHours();
-    var mo = dd.getMinutes();
-    var s = dd.getSeconds();
-    return y + "-" + addZero(m) + "-" + addZero(d) + " " + addZero(h) + ":" + addZero(mo) + ":" + addZero(s);
-}
+
 
 
 // // del data

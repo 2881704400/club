@@ -126,6 +126,7 @@ function yxpHomeDeatils4(isJudge){
 
            if(isJudge)
            {
+            try{
             handleDeatils4State(167,yxpItem["167"].m_YXState); //卫生间灯光
 
             for(var i= 168;i<=177;i++)
@@ -150,6 +151,8 @@ function yxpHomeDeatils4(isJudge){
             $("#homeDeatils4 .wd_conditioner").find("i").text(ycpItem["79"].m_YCValue); //卧室空调温度
 
             window.localStorage.volumeValue5 = ycpItem["80"].m_YCValue;
+                           }
+                catch(e){}
             }
         }
     });

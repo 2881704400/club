@@ -133,16 +133,19 @@ function yxpHomeDeatils0(isJudge) {
             //有无人
             // handleDeatils0People(yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
             if (isJudge) {
-                handleDeatils0State(1, yxpItem["1"].m_YXState); //卫生间灯光
-                for (var i = 2; i <= 11; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //卧室场景灯光
-                for (var i = 12; i <= 17; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //卫生间场景灯光
-                handleDeatils0State(18, yxpItem["18"].m_YXState); //空调开关
-                for (var i = 19; i <= 22; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //空调风速
-                for (var i = 23; i <= 26; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //空调模式
-                handleDeatils0State(27, yxpItem["27"].m_YXState); //歌曲播放关闭
-                var ycpItem = data.HttpData.data.YCItemDict;
-                $("#homeDeatils0 .wd_conditioner").find("i").text(ycpItem["14"].m_YCValue); //卧室空调温度
-                window.localStorage.volumeValue1 = ycpItem["15"].m_YCValue;
+                try{
+                    handleDeatils0State(1, yxpItem["1"].m_YXState); //卫生间灯光
+                    for (var i = 2; i <= 11; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //卧室场景灯光
+                    for (var i = 12; i <= 17; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //卫生间场景灯光
+                    handleDeatils0State(18, yxpItem["18"].m_YXState); //空调开关
+                    for (var i = 19; i <= 22; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //空调风速
+                    for (var i = 23; i <= 26; i++) handleDeatils0State(i, yxpItem[i].m_YXState); //空调模式
+                    handleDeatils0State(27, yxpItem["27"].m_YXState); //歌曲播放关闭
+                    var ycpItem = data.HttpData.data.YCItemDict;
+                    $("#homeDeatils0 .wd_conditioner").find("i").text(ycpItem["14"].m_YCValue); //卧室空调温度
+                    window.localStorage.volumeValue1 = ycpItem["15"].m_YCValue;
+                }
+                catch(e){}
             }
         }
     });
