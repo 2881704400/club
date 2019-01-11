@@ -14,7 +14,7 @@ function bgMusic() {
 	// pre=[];
 	// next=[];
 	// ctrol=[];
-	// roomArr=[];
+	roomArr=[];
 	//全选
 	$(".list-header label").click(function(event) {
 		var check=$(this).find("input").prop("checked");
