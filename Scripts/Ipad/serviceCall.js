@@ -98,7 +98,7 @@ function loadNum(){
 	
 	callTimer=setTimeout(function(){
 		loadNum()
-	},30000);
+	},3000);
 	
 }
 

@@ -3560,7 +3560,7 @@ html.with-statusbar.device-android .panel {
 }
 
 .bgMusic .left-pannel {
-	width: 17%;
+	width: 50%;
 	height: 100%;
 	box-sizing: border-box;
 	border-right: 1px solid #e1e1e3;
@@ -3607,6 +3607,12 @@ html.with-statusbar.device-android .panel {
 	margin: 0;
 	padding: 0;
 }
+.bgMusic .left-pannel ul.list-content {
+	width: 100%;
+	height: calc(100% - 48px);
+	overflow: auto;
+}
+
 
 .bgMusic .left-pannel ul li {
 	text-decoration: none;
@@ -3616,24 +3622,24 @@ html.with-statusbar.device-android .panel {
 	align-items: center;
 	text-align: left;
 	font-size: 14px;
-	color: #666666;
+	color: #676767;
 	border-bottom: 1px solid #eeeeee;
 }
 
 .bgMusic .left-pannel ul li.check {
-	background: #6a95f9;
+	background: rgb(116,139,246);
 	color: #fff;
+}
+.bgMusic .left-pannel ul li.check .icon-checkbox {
+	border:1px solid #fff;
+	background: none;
 }
 
 .bgMusic .left-pannel ul li input {
 	margin-left: 40px;
 }
 
-.bgMusic .left-pannel ul li span {
-	position: relative;
-	left: 10px;
-	top: 1px;
-}
+
 
 .bgMusic .left-pannel ul li label {
 	position: relative;
@@ -3643,10 +3649,7 @@ html.with-statusbar.device-android .panel {
 	align-items: center;
 }
 
-.bgMusic .left-pannel ul li.pannel-down {
-	background: #85a5f8;
-	color: #fff;
-}
+
 
 .bgMusic .left-pannel::-webkit-scrollbar {
 	width: 4px;
@@ -3666,20 +3669,26 @@ html.with-statusbar.device-android .panel {
 }
 
 .bgMusic .right-pannel {
-	width: 83%;
+	width: 50%;
 	height: 100%;
 	box-sizing: border-box;
 	float: right;
 	position: relative;
 	font-size: 16px;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: space-around;
+	
 }
 
 .bgMusic .right-pannel .pannel-box {
-	width: 700px;
+	width: 95%;
 	height: 400px;
-	position: absolute;
-	top: 50px;
-	left: 72px;
+	/*position: absolute;*/
+	/*top: 50px;*/
+	/*left: 72px;*/
 	border-radius: 20px;
 	background: #fff;
 }
@@ -3790,75 +3799,34 @@ html.with-statusbar.device-android .panel {
 }
 
 .bgMusic .right-pannel .pannel-tool {
-	width: 700px;
-	position: absolute;
-	left: 72px;
-	top: 470px;
-	bottom: 66px;
-	height: 150px;
+	width: 100%;
+	overflow: hidden;
+	height: auto;
+
 }
 
-.bgMusic .right-pannel .pannel-tool .pannel-left {
-	float: left;
-	width: 343px;
-	height: 180px;
-	background: #fff;
-	border-radius: 20px;
-}
 
-.bgMusic .right-pannel .pannel-tool .pannel-left .pannel-title {
-	width: 84%;
-	height: 30px;
-	color: #666666 !important;
-	font-size: 17px;
-	padding: 0;
-	margin: 15px auto;
-	margin-bottom: 0;
-	text-align: left;
-	clear: both;
-}
 
-.bgMusic .right-pannel .pannel-tool .pannel-left ul {
-	width: 84%;
-	height: 120px;
-	overflow: auto;
-	margin: 0 auto;
-}
 
-.bgMusic .right-pannel .pannel-tool .pannel-left ul li {
-	float: left;
-	height: 30px;
-	width: 60px;
-	color: #737373;
-	border: 1px solid #999;
-	text-align: center;
-	line-height: 30px;
-	border-radius: 15px;
-	margin-right: 12px;
-	margin-top: 15px;
-	font-size: 15px;
-}
 
-.bgMusic .right-pannel .pannel-tool .pannel-left ul li.check {
-	border-color: #6a95f9;
-	color: #6a95f9;
-}
+
+
 
 .bgMusic .right-pannel .pannel-tool .pannel-right {
-	float: right;
-	width: 343px;
-	height: 150px;
+	width: 100%;
+	height: auto;
+
 }
 
 .bgMusic .right-pannel .pannel-tool .pannel-right ul {
-	width: 343px;
+	width: 90%;
 	height: 100%;
+	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	float: right;
-	margin: 0;
-	padding: 0;
+	align-content: center;
+
 }
 
 .bgMusic .right-pannel .pannel-tool .pannel-right ul li {
