@@ -127,32 +127,35 @@ function yxpHomeDeatils1(isJudge){
 
            if(isJudge)
            {
-            handleDeatils1State(35,yxpItem["35"].m_YXState); //卧室台灯
+            try{
+                handleDeatils1State(35,yxpItem["35"].m_YXState); //卧室台灯
 
-            handleDeatils1State(36,yxpItem["36"].m_YXState); //防雾灯
+                handleDeatils1State(36,yxpItem["36"].m_YXState); //防雾灯
 
-            for(var i= 37;i<=46;i++)
-             handleDeatils1State(i,yxpItem[i].m_YXState); //卧室场景灯光
+                for(var i= 37;i<=46;i++)
+                 handleDeatils1State(i,yxpItem[i].m_YXState); //卧室场景灯光
 
-            for(var i= 47;i<=52;i++)
-             handleDeatils1State(i,yxpItem[i].m_YXState);  //卫生间场景灯光
+                for(var i= 47;i<=52;i++)
+                 handleDeatils1State(i,yxpItem[i].m_YXState);  //卫生间场景灯光
 
-            handleDeatils1State(53,yxpItem["53"].m_YXState); //空调开关
+                handleDeatils1State(53,yxpItem["53"].m_YXState); //空调开关
 
-            for(var i= 54;i<= 57;i++)
-             handleDeatils1State(i,yxpItem[i].m_YXState);//空调风速
+                for(var i= 54;i<= 57;i++)
+                 handleDeatils1State(i,yxpItem[i].m_YXState);//空调风速
 
-            for(var i= 58;i<=61;i++)
-              handleDeatils1State(i,yxpItem[i].m_YXState); //空调模式
+                for(var i= 58;i<=61;i++)
+                  handleDeatils1State(i,yxpItem[i].m_YXState); //空调模式
 
-            handleDeatils1State(62,yxpItem["62"].m_YXState); //歌曲播放关闭
+                handleDeatils1State(62,yxpItem["62"].m_YXState); //歌曲播放关闭
 
-            // ***ycp****
-            var ycpItem = data.HttpData.data.YCItemDict;
-            
-            $("#homeDeatils1 .wd_conditioner").find("i").text(ycpItem["29"].m_YCValue); //卧室空调温度
+                // ***ycp****
+                var ycpItem = data.HttpData.data.YCItemDict;
+                
+                $("#homeDeatils1 .wd_conditioner").find("i").text(ycpItem["29"].m_YCValue); //卧室空调温度
 
-            window.localStorage.volumeValue2 = ycpItem["30"].m_YCValue;
+                window.localStorage.volumeValue2 = ycpItem["30"].m_YCValue;
+                   }
+                catch(e){}
             }
         }
     });

@@ -153,6 +153,7 @@ function yxpHomeDeatils3(isJudge){
 
            if(isJudge)
            {
+            try{
             handleDeatils3State(105,yxpItem["105"].m_YXState); //卧室台灯
 
             handleDeatils3State(106,yxpItem["106"].m_YXState); //起居室台灯
@@ -195,6 +196,8 @@ function yxpHomeDeatils3(isJudge){
             $("#homeDeatils3 .wd_conditioner").find("i").text(ycpItem["65"].m_YCValue); //卧室空调温度
             $("#homeDeatils3 .wd_conditioner1").find("i").text(ycpItem["66"].m_YCValue); //卧室空调温度
             window.localStorage.volumeValue4 = ycpItem["67"].m_YCValue;
+                           }
+                catch(e){}
             }
         }
     });
