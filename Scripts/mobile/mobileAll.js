@@ -1123,8 +1123,8 @@ function loadJs(url, callback, id) {
 var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-    // url = "ws://10.8.80.1:8001?" + value;
-    url = "ws://192.168.0.152:8001?" + value;
+    url = "ws://10.8.80.1:8001?" + value;
+    // url = "ws://192.168.0.152:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(encodeURI(url));
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     else console.log("浏览器太旧，不支持");
