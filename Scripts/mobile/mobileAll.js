@@ -122,19 +122,9 @@ var mainView = myApp.views.create('.view-main');
 //web接口地址
 var service = "/GWService.asmx";
 var $$ = Framework7.$;
-initLoads();
-function initLoads() {
-     loadNameMobile();
-     initWebSocket(); //socket
-    
-    // try {
-    //     myJavaFun.GetAppVersion(); //获取App版本信息
-    //     myJavaFun.GetSystemInfor(); //获取系统信息
-    //     myJavaFun.setOrientation();
-    // } catch (ex) {
 
-    // }
-}
+loadNameMobile();
+
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
         title: "",
@@ -469,6 +459,7 @@ function loadNameMobile() {
             if (window.localStorage.userName != "" && window.localStorage.userName != null) {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
+                initWebSocket(); //socket
                 //初始化状态值-房间有无人
                 yxpHome(); pushInfoMessage();
                 setHomeTime =setInterval(function(){yxpHome();},5000);
@@ -1133,7 +1124,7 @@ var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat
 function createws(value) {
     // url = "ws://10.8.80.1:8001?" + value;
     url = "ws://192.168.0.152:8001?" + value;
-    if ('WebSocket' in window) ws = new WebSocket(url);
+    if ('WebSocket' in window) ws = new WebSocket(encodeURI(url));
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     else console.log("浏览器太旧，不支持");
 }
@@ -1141,65 +1132,60 @@ function initWebSocket() {
     createws("userName=" + window.localStorage.userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
     ws.onopen = function(e) {
-        console.log("websocket connected");
+        
+        if (ws != null) {
+            console.log("websocket connected");
+            try{
+                var inputInfo = document.getElementById("inputInfo").value.trim();
+                if (inputInfo == "") {
+                    return;
+                }
+                inputInfo = {sendName: window.localStorage.userName,receiveName:window.localStorage.receiveUserName,msg: inputInfo,time: GetDateStrValue(0)};//window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
+                try {
+                    ws.send(JSON.stringify(inputInfo));
+                } catch (e) {
+                    initWebSocket();
+                    send_msg();
+                }
+                document.getElementById("inputInfo").value = "";                
+            }catch(e){}
+
+        } else {
+            myApp.dialog.alert("连接服务错误...");
+        }
+
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
 
-        console.log(event.data);
+        // console.log(event.data);
         var dt = JSON.parse(event.data);
 
         var fileUrl,sendUser,receiveUser,DateTime,concentext; 
-        if (dt.sendName == userName){
+        if (dt.sendName == window.localStorage.userName){
             writeFile("c:\\MsgChat", dt.sendName, dt.receiveName, GetDateStr(0, 0), event.data, "");
         }
-        //  else{
-        //     var html= "<div class='pannel-chat-info' >" +
-        //                 "           <div class='chart-person'>" +
-        //                 "               <img src='/Image/Ipad/person_img.png' />" +
-        //                 "           </div>" +
-        //                 "           <div class='chart-content'>" +
-        //                 "               " + dt.msg + "" +
-        //                 "           </div>" +
-        //                 "       </div>";
-        //     var receName=$("#chatOtherInfoId").attr("recename");//消息列表
-        //     var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
-        //     var hasClass,hasId;
-        //     hasId=$("#"+value[1]).hasClass('active');
-        //     hasClass=$("."+value[1]).hasClass('active');//人员列表
-        //     if(receName==value[1]&&hasClass){
-        //         $("#chatOtherInfoId").append(html);
-        //         $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
-        //         //消息列表
-        //         $("."+value[1]).find(".item-title label").html(value[4])
-        //         $("."+value[1]).find(".con").html(value[5])
-        //     }else{
-        //         $("."+value[1]).find(".item-title label").html(value[4])
-        //         $("."+value[1]).find(".con").html(value[5])
-        //         var num=parseInt($("."+value[1]).find(".num").text());
-        //         if(num==0){
-        //             $("."+value[1]).find("font").show().find(".num").text(num+1);
-        //         }
-        //         else if(num<99){
-        //              $("."+value[1]).find(".num").text(num+1);
-        //         }
-        //     }
 
-        //     if(receNames==value[1]&&hasId){
-        //         $("#chatOtherContactId").append(html);
-        //         $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
-        //     }
-        // }
         try {
             //判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
             $(".shortContainer>section").addClass(viewClass);
-
-            var received_msg,old_msg, msg_board = document.getElementsByClassName(viewClass)[0];
+            var received_msg,old_msg, msg_board = document.getElementsByClassName(viewClass)[0],messageView = document.getElementsByClassName("messageSection")[0];
             if (msg_board) {
-                if (dt.sendName == userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
+                if (dt.sendName == window.localStorage.userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
                 else received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' +dt.msg + "</span></p>"; //新信息
                 addRecord(msg_board, received_msg);
             }
+            if(messageView)
+             {
+
+                $(".messageInfoList li").each(function(index){
+                    if($(this).find(".item-title").text() == dt.sendName)
+                    {
+                        $(this).find(".item-after").text(dt.time);
+                        $(this).find(".item-text").text(dt.msg);
+                    }
+                });
+             }
         } catch (e) {
             //推送
             try {
@@ -1276,12 +1262,12 @@ function formatRecord(str) {
         if(item)
         {
             let dt = JSON.parse(item);
-            if (dt.sendName == userName) {
-                received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
+            if (dt.sendName == window.localStorage.userName) {
+                received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
                 addRecord(msg_board, received_msg);
             }
             else {
-                received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
+                received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
                 addRecord(msg_board, received_msg);
             }
         }
