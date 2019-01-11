@@ -1132,7 +1132,7 @@ var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat
 
 function createws(value) {
     // url = "ws://10.8.80.1:8001?" + value;
-    url = "ws://192.168.3.111:8001?" + value;
+    url = "ws://192.168.0.105:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(url);
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     // else console.log("浏览器太旧，不支持");
@@ -1141,21 +1141,18 @@ function initWebSocket() {
     createws("userName=" + window.localStorage.userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
     ws.onopen = function(e) {
+
         // console.log("websocket connected");
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
 
-       
         var dt = JSON.parse(event.data);
-//         console.log(dt);
         var fileUrl,sendUser,receiveUser,DateTime,concentext; 
         if (dt.sendName == userName){
             writeFile("c:\\MsgChat", dt.sendName, dt.receiveName, GetDateStr(0, 0), event.data, "");
         }else{
-            // {"sendName":"admin","receiveName":"gis","msg":"123213213","time":"2019-01-11 14:03:41"}
-            // <f7-userName:>admin<f7-time:>2018-12-29 13:31:26<f7-Content:>12
-            // 
+
             var value=dt;
             var times=value.time.substring(11,16)
 
@@ -1181,9 +1178,7 @@ function initWebSocket() {
                 var str= $(this).attr("class");
                 nameArr.push(str)   
             }); 
-//          console.log(nameArr)
-//          console.log(value.sendName)
-//        	console.log(nameArr.indexOf(value.sendName))
+
             if(nameArr.indexOf(value.sendName)==-1&&nameArr.indexOf(value.sendName+" active")==-1){
 
                 var html='<li onclick="loadThisMesage(this,\''+value.sendName+'\')" class="'+value.sendName+'">'+
@@ -1234,6 +1229,7 @@ function initWebSocket() {
             }
         } catch (e) {
             //推送
+            myApp.dialog.alert('222');
             try {
                 myJavaFun.GetSystemInfor();
             } catch (ex) {}
@@ -1241,10 +1237,12 @@ function initWebSocket() {
     };
     //服务器处理异常，通常在服务器里try-catch发生异常时或者连接异常时触发onerror事件
     ws.onerror = function(err) {
+         myApp.dialog.alert('err');
         // console.log("error: " + err);
     };
     //websocket连接关闭时触发onclose事件
     ws.onclose = function(event) {
+      
         // console.log("close reason: " + event.reason);
         try {
             document.getElementsByClassName("inputInfo")[0].innerHTML = "";

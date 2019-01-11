@@ -25,7 +25,7 @@ function infoComm() {
 				"		</div>"
 			$("#chatOtherInfoId").append(str);
 			$("#chatWithOtherInfoId").val('');
-			send_msg(content);
+			send_msg(content,0);
 			$('#chatOtherInfoId').scrollTop($("#chatOtherInfoId")[0].scrollHeight);
 			// var newScrollHeight = $("#chatOtherInfoId")[0].scrollHeight;
 			// $('#chatOtherInfoId').animate({
@@ -58,7 +58,7 @@ function infoComm() {
 				"		</div>"
 			$("#chatOtherContactId").append(str);
 			$("#chatWithOtherContactId").val('');
-			send_msg(content)
+			send_msg(content,1)
 			$("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight)   
 
 
@@ -128,7 +128,7 @@ function infoComm() {
 	});
 	readyFile();
 }
-function send_msg(txt) {
+function send_msg(txt,type) {
     if (ws != null) {
         var inputInfo = txt.trim();
         if (inputInfo == "") {
@@ -139,10 +139,20 @@ function send_msg(txt) {
 
 
         try {
+        	 // myApp.dialog.alert(JSON.stringify(dat));
             ws.send(JSON.stringify(dat) );
         } catch (e) {
             initWebSocket();
-            send_msg();
+            var con="";
+            // var content = $("#chatWithOtherInfoId").val();
+            // var content = $("#chatWithOtherContactId").val();
+            if(type==1){
+            	con=$("#chatWithOtherContactId").val();
+            }else{
+            	con=$("#chatWithOtherInfoId").val();
+            }
+           
+            send_msg(con);
         }
     } else {
         myApp.dialog.alert("连接服务错误...");
