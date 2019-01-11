@@ -502,6 +502,7 @@ function musicPre(dom){
 	setTimeout(function(){
 		$(dom).find("img").eq(1).hide();
 		$(dom).find("img").eq(0).show();
+		getEquipStayc();
 	},1000)
 	
 	
@@ -523,6 +524,7 @@ function musicCtr(dom){
 		//关
 		
 	}
+	getEquipStayc();
 }
 function loadCtrol(type){
 	for(var i=0;i<roomArr.length;i++){
@@ -578,6 +580,7 @@ function musicNext(dom){
 	setTimeout(function(){
 		$(dom).find("img").eq(1).hide();
 		$(dom).find("img").eq(0).show();
+		getEquipStayc();
 	},1000)
 	
 }
