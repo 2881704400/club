@@ -1,57 +1,100 @@
 // 1.一个计时器,选择设备的时候选择关闭就关闭当前计时器
 // 2.页面加载,加载当前及时器
 // 3.当选择的时间不为空,并且为停止播放时创建及时器
-
-
+var vio=[],pre=[],next=[],ctrol=[],roomArr=[],timeMin=0,autoPlay=false,pickerDevice;
+// window.obj={};
+var closeTimer=null;
+  
 
 
 function bgMusic() {
 	toolbarActiveImg('bgMusicTool');
-	
-	vio=[];
-	pre=[];
-	next=[];
-	ctrol=[];
-	roomArr=[];
-	$(".left-pannel p label").bind('click', function() {
-		var flag = $("#bgAreaCheckBoxId").prop('checked');
-		if(flag) {
-			var arr = document.getElementsByName("my-checkbox");
-			vio=[];
-			pre=[];
-			next=[];
-			ctrol=[];
-			roomArr=[];
-			for(i = 0; i < arr.length; i++) {
-				arr[i].checked = false;
+	getEquipStayc();
+	// vio=[];
+	// pre=[];
+	// next=[];
+	// ctrol=[];
+	// roomArr=[];
+	//全选
+	$(".list-header label").click(function(event) {
+		var check=$(this).find("input").prop("checked");
+		$(".list-content li").each(function(){
+			var liIndex= $(this).index();
+			if(check){
+				$(this).find("input").prop("checked",false);
+				$(this).removeClass('check');
+					roomArr.remove(liIndex);
+			}else{
+				$(this).find("input").prop("checked",true);
+				$(this).addClass('check');
+				if(roomArr.indexOf(liIndex)==-1){
+					roomArr.push(liIndex);
+				}
+				
 			}
-		} else {
-			var arr = document.getElementsByName("my-checkbox");
-			vio=[];
-			pre=[];
-			next=[];
-			ctrol=[];
-			roomArr=[];
-			for(i = 0; i < arr.length; i++) {
-				var ind=arr[i].value;
-				arr[i].checked = true;
-				vio.push(set[ind].vioce);
-				pre.push(set[ind].pre);
-				next.push(set[ind].next);
-				ctrol.push(set[ind].ctl);
-				roomArr.push(ind);
-			}
-		}
+		})
 	});
+	
+	// 点击每一行添加
+	$(".list-content li").each(function(){
+
+		$(this).click(function(event) {
+			var liIndex= $(this).index();
+			var check=$(this).find("input").prop("checked");
+			if(check){
+				$(this).find("input").prop("checked",false);
+				$(this).removeClass('check');
+				roomArr.remove(liIndex);
+				
+			}else{
+				$(this).find("input").prop("checked",true);
+				$(this).addClass('check')
+				if(roomArr.indexOf(liIndex)==-1){
+					roomArr.push(liIndex);
+				}
+			}
+
+		});
+
+	})
+	// 点击复选框
+	$(".list-content label").each(function(){
+		$(this).click(function(event) {
+			var liIndex= $(this).parents(".row").index();
+			event.stopPropagation();
+			var check=$(this).find("input").prop("checked");
+			if(check){
+				$(this).find("input").checked=false;
+				$(this).parents(".row").removeClass('check')
+				roomArr.remove(liIndex);
+			}else{
+				$(this).find("input").checked=true;
+				$(this).parents(".row").addClass('check')
+				if(roomArr.indexOf(liIndex)==-1){
+					roomArr.push(liIndex);
+				}
+			}
+		});
+	})
+
+
+
+
+
+	
+	
+	
+	
 
 
 	$$('.range-slider').on('range:change', function (e, range) {
 		var num=range.value;
-		if(vio.length==0){
+		if(roomArr.length==0){
 			return;
 		}
-		for(var i=0;i<vio.length;i++){
-			var value=vio[i].split(",");
+		for(var i=0;i<roomArr.length;i++){
+
+			var value=set[roomArr[i]].vioce.split(",");
 			var param=getSetParam(value[0],value[1]);
 			var data={
 				equip_no:param.equip_no,
@@ -73,8 +116,7 @@ function bgMusic() {
 				})
 			}
 		}
-		
-//	  $$('.price-value').text('$'+(range.value[0])+' - $'+(range.value[1]));
+
 	});
 
 	
@@ -90,25 +132,7 @@ function bgMusic() {
 		e.stopPropagation();
 	});
 
-	$(".left-pannel ul li label").bind('click', function() {
-		var checkInp=$(this).find("input").prop("checked");
-		var ind=$(this).find("input").val();
-		if(!checkInp){
-			vio.push(set[ind].vioce);
-			pre.push(set[ind].pre);
-			next.push(set[ind].next);
-			ctrol.push(set[ind].ctl);
-			roomArr.push(ind);
-		}else{
-			vio.remove(set[ind].vioce);
-			pre.remove(set[ind].pre);
-			next.remove(set[ind].next);
-			ctrol.remove(set[ind].ctl);
-			roomArr.remove(ind);
-			
-		}
 
-	});
 
 	var minArr = [];
 	for(var i = 1; i <= 60; i++) {
@@ -132,7 +156,7 @@ function bgMusic() {
 				'<a href="#" class="link sheet-close popover-close">取消</a>' +
 				'</div>' +
 				'<div class="right">' +
-				'<a href="#" class="link sheet-close popover-close"  onclick="sureDeal()">确定</a>' +
+				'<a href="#" class="link sheet-close popover-close"  onclick="sureDeal(1)">确定</a>' +
 				'</div>' +
 				'</div>' +
 				'</div>';
@@ -155,22 +179,18 @@ function bgMusic() {
 		on: {
 			open:function(){
 				loadTimer(5);
-				$(".defineTime").css({
-					background:'gainsboro'
-				});
 			},
 			change:function(picker){
 				var hours=parseInt(picker.value[0]);
 				var min=parseInt(picker.value[2]);
 				timeMin=hours*60+min;
-			// 	$("#picker-date").val(picker.value[0]+"时"+picker.value[2]+"分")
-			// 	// loadInterval(timeMin,autoPlay);
-			// 	window.localStorage.setTime=timeMin;
+
+
 			}
 		}
 	});
 
-	var pickerDevice = myApp.picker.create({
+	pickerDevice = myApp.picker.create({
 		inputEl: '#picker-date2',
 		rotateEffect: true,
 		renderToolbar: function() {
@@ -180,7 +200,7 @@ function bgMusic() {
 				'<a href="#" class="link sheet-close popover-close">取消</a>' +
 				'</div>' +
 				'<div class="right">' +
-				'<a href="#" class="link sheet-close popover-close" onclick="sureDeal()">确定</a>' +
+				'<a href="#" class="link sheet-close popover-close" onclick="sureDeal(0)">确定</a>' +
 				'</div>' +
 				'</div>' +
 				'</div>';
@@ -188,7 +208,7 @@ function bgMusic() {
 		// value:[showTxt],
 		cols: [{
 			textAlign: 'center',
-			values: ['停止播放', '继续播放']
+			values: [ '继续播放','停止播放']
 		}],
 		on:{
 			change:function(picker){
@@ -204,45 +224,44 @@ function bgMusic() {
 
 		}
 	});
+
 	var isTimeout=window.localStorage.isTimeout;
 	var times=window.localStorage.setTime;
-	if(isTimeout==0){
-		pickerDevice.setValue(["继续播放"]);
+	if(times<61){
 		if(times==0){
 			loadTimer(0)
+		}else if(times==10){
+			loadTimer(1)
+		}else if(times==20){
+			loadTimer(2)
+		}else if(times==30){
+			loadTimer(3)
+		}else if(times==60){
+			loadTimer(4)
 		}
 	}else{
+		loadTimer(5);
+		var hours,strH,mins,strH
+		hours=Math.floor(times/60)>10?Math.floor(times/60):"0"+Math.floor(times/60);
+		strH="时";
+		mins=times%60>10?times%60:'0'+times%60;
+		strH="分"
+		$("#picker-date").val(hours+strH+mins+strH);
+		$(".defineTime").css({
+				background:'gainsboro'
+			});
+		pickerInline.setValue([hours,strH,mins,strH]);
+	}
+
+	if(isTimeout==0){
+		pickerDevice.setValue(["继续播放"]);
+		autoPlay=false;
+		// if(times==0){
+		// 	loadTimer(0)
+		// }
+	}else{
 		pickerDevice.setValue(["停止播放"])
-		if(times<61){
-			if(times==0){
-				loadTimer(0)
-			}else if(times==10){
-				loadTimer(1)
-			}else if(times==20){
-				loadTimer(2)
-			}else if(times==30){
-				loadTimer(3)
-			}else if(times==60){
-				loadTimer(4)
-			}
-		}else{
-			loadTimer(5);
-			var hours,strH,mins,strH
-			hours=Math.floor(times/60)>10?Math.floor(times/60):"0"+Math.floor(times/60);
-			strH="时";
-			mins=times%60>10?times%60:'0'+times%60;
-			strH="分"
-			$("#picker-date").val(hours+strH+mins+strH);
-			$(".defineTime").css({
-					background:'gainsboro'
-				});
-			pickerInline.setValue([hours,strH,mins,strH]);
-
-
-		}
-			
-		
-		
+		autoPlay=true;
 
 	}
 
@@ -347,111 +366,117 @@ function bgMusic() {
 			$(this).removeClass("bg-dark");
 			$(this).find('i').removeClass('show-opacity');
 		})
-		$(".defineTime").css({
-					background:'#fff'
-				});
+		$(".defineTime").css({background:'#fff'});
 		$(this).addClass("bg-dark");
 		$(this).find('i').addClass('show-opacity');
 		$("#picker-date").val("自定义播放时间");
 		timeMin=$(this).attr("num");
-	// 	if(timeMin=="0"){
-	// 		flagPlay=false;
-			loadInterval();
-	// 	}else{
-	// 		flagPlay=true;			
-	// 		loadInterval(timeMin,autoPlay);
-	// 	}
+
+		loadInterval();
+
 		
 	});
-	getEquipStayc()
+	
 
 
 	
 }
-function sureDeal(){
+function sureDeal(type){
+	if(type==1){
+		$(".defineTime").css({background:"gainsboro"})
+	}
 	loadInterval(timeMin,autoPlay);
 }
 function loadTimer(m){
-		$(".pannel-box>p").each(function(i) {
-			if(m==i){
-				$(this).addClass("bg-dark");
-				$(this).find('i').addClass('show-opacity');
-			}else{
-				$(this).removeClass("bg-dark");
-				$(this).find('i').removeClass('show-opacity');
-			}
-			
-		})	
-
+	$(".pannel-box>p").each(function(i) {
+		if(m==i){
+			$(this).addClass("bg-dark");
+			$(this).find('i').addClass('show-opacity');
+		}else{
+			$(this).removeClass("bg-dark");
+			$(this).find('i').removeClass('show-opacity');
+		}
+	})	
+	$(".defineTime").css({background:'#fff'});
+	$("#picker-date").val("自定义播放时间");
 }
 
 
 
 
-var vio=[],pre=[],next=[],ctrol=[],roomArr=[],timeMin=0,flagPlay=false,autoPlay=true;
-window.obj={};
+
 function loadInterval(){
 	if(roomArr.length==0){
 		return
 	}
+	window.localStorage.setTime=timeMin;
+	window.localStorage.timeRoom=roomArr.toString();
 
 	if(timeMin!=0&&autoPlay==true){
-		window.localStorage.setTime=timeMin;
+		clearTimeout(closeTimer);
 		window.localStorage.isTimeout=1;
-		alertMsgSuccess.open();
 		var times=parseInt(timeMin)*60*1000;
-		for(var i=0;i<roomArr.length;i++){
-			var ind=roomArr[i];
-			var set=ctrol[ind][1].split(",");
-			var param=getSetParam(set[0],set[1]);
-			var data={
-					equip_no:param.equip_no,
-					main_instruction:param.main_instruction,
-					minor_instruction:param.minor_instruction,
-					value:param.value,
-					user_name:window.localStorage.userName
-				}
-			var timeStr="call"+ind;
-			clearTimeout(obj[timeStr]);
-			obj[timeStr]=setTimeout(function(){
-				JQajaxo("post","/GWService.asmx/SetupsCommand",false,data,_success)
-				function _success(res){
-					$(res).find("string").each(function(){
-						var dat=$(this).text();
-						if(dat=="true"){
-							window.localStorage.setTime=0;
-							window.localStorage.isTimeout=0;
-							 loadTimer(0)
-							 // console.log(times)
-							// timeMin(console)
-							alertMsgSuccess.open();
-
-						}else{
-							alertMsgError.open();
-						}
-					})
-				}
-				// clearInterval(obj[timeStr]);
-			},times)
-		}
-		// console.log(times)
-	}else{
-		window.localStorage.setTime=0;
-		window.localStorage.isTimeout=0;
 		alertMsgSuccess.open();
-		for(var i=0;i<roomArr.length;i++){
-			var ind=roomArr[i];
-			var timeStr="call"+ind;
-			clearTimeout(obj[timeStr]);
-		}
+		closeTimer=setTimeout(
+			function(){
+				roomList=window.localStorage.timeRoom.split(",");
+				for(var i=0;i<roomList.length;i++){
+					var value=set[roomList[i]].ctl[1].split(",");
+					var param=getSetParam(value[0],value[1]);
+					var data={
+						equip_no:param.equip_no,
+						main_instruction:param.main_instruction,
+						minor_instruction:param.minor_instruction,
+						value:param.value,
+						user_name:window.localStorage.userName
+					}
+					JQajaxo("post","/GWService.asmx/SetupsCommand",true,data,_success)
+					function _success(res){
+						loadTimer(0)
+						pickerDevice.setValue(["继续播放"]);
+						autoPlay=false;
+						window.localStorage.timeRoom="";
+						window.localStorage.isTimeout=0;
+						window.localStorage.setTime=0;
+
+						$(res).find("string").each(function(){
+							var dat=$(this).text();
+							if(dat=="true"){
+
+								alertMsgSuccess.open();
+								
+							}else{
+
+								alertMsgError.open();
+							}
+						})
+					}
+				}
+			}, 
+			times
+		);
+
+	}else{
+		window.localStorage.timeRoom="";
+		window.localStorage.isTimeout=0;
+		window.localStorage.setTime=0;
+		clearTimeout(closeTimer);
+		pickerDevice.setValue(["继续播放"]);
+		autoPlay=false;
+		// alertMsgSuccess.open();
+		// for(var i=0;i<roomArr.length;i++){
+		// 	var ind=roomArr[i];
+		// 	var timeStr="call"+ind;
+		// 	clearTimeout(obj[timeStr]);
+		// }
 	}
 }
 function musicPre(dom){
 	$(dom).find("img").eq(0).hide();
 	$(dom).find("img").eq(1).show();
 	
-	for(var i=0;i<pre.length;i++){
-		var value=pre[i].split(",");
+	for(var i=0;i<roomArr.length;i++){
+		var value=set[roomArr[i]].pre.split(",");
 		var param=getSetParam(value[0],value[1]);
 		var data={
 			equip_no:param.equip_no,
@@ -486,25 +511,23 @@ function musicCtr(dom){
 	var param;
 	if(flag){
 		//开
+		$("#musicCtrol img").eq(0).show();
+		$("#musicCtrol img").eq(1).hide();
 		loadCtrol(1)
+
 	}else{
+		$("#musicCtrol img").eq(1).show();
+		$("#musicCtrol img").eq(0).hide();
 		loadCtrol(0)
+
 		//关
 		
 	}
 }
 function loadCtrol(type){
-	if(type==1){
-		$("#musicCtrol img").eq(0).show();
-		$("#musicCtrol img").eq(1).hide();
-	}else{
-		$("#musicCtrol img").eq(1).show();
-		$("#musicCtrol img").eq(0).hide();
-	}
-	for(var i=0;i<ctrol.length;i++){
-		var value=ctrol[i][type];
-		var set=value.split(",");
-		var param=getSetParam(set[0],set[1]);
+	for(var i=0;i<roomArr.length;i++){
+		var value=set[roomArr[i]].ctl[type].split(",");
+		var param=getSetParam(value[0],value[1]);
 		var data={
 			equip_no:param.equip_no,
 			main_instruction:param.main_instruction,
@@ -529,8 +552,8 @@ function loadCtrol(type){
 function musicNext(dom){
 	$(dom).find("img").eq(0).hide();
 	$(dom).find("img").eq(1).show();
-	for(var i=0;i<next.length;i++){
-		var value=next[i].split(",");
+	for(var i=0;i<roomArr.length;i++){
+		var value=set[roomArr[i]].next.split(",");
 		var param=getSetParam(value[0],value[1]);
 		var data={
 			equip_no:param.equip_no,
@@ -558,7 +581,9 @@ function musicNext(dom){
 	},1000)
 	
 }
-var eqVioce=[];
+// var eqVioce=[];
+
+
 function getEquipStayc(){
 	$.ajax({
 		type:"post",
@@ -570,20 +595,33 @@ function getEquipStayc(){
 		},
 		success:function(res){
 			var dat=JSON.parse($(res).find("string").text());
+
 			for(var i=0;i<dat.length;i++){
 				var value=dat[i];
-				var ind=vioce.indexOf(value.m_iYCNo)
+				var ind=vioce.indexOf(value.m_iYCNo);
 				if(ind!=-1){
-					eqVioce[ind]=value.m_YCValue;
+					var idStr=vioce[ind];
+					$("#"+idStr).find(".vioce").text(value.m_YCValue);
+					
 				}
-			}
-			eqVioce.sort(function(a,b){return a-b});
-			var min=eqVioce[0];
-			myApp.range.setValue(".range-slider",min)
 
+
+				var staInd=play.indexOf(value.m_iYCNo);
+				//空闲or正在播放
+				if(staInd!=-1){
+					var clasStr="sta-"+play[staInd];
+					$("."+clasStr).text(value.m_YCValue)
+				}
+
+			}
 		}
 	});
 }
+
+
+
+
+
 function getSetParam(equip_no,set_no){
 	var param={};
 	$.ajax({
@@ -597,6 +635,7 @@ function getSetParam(equip_no,set_no){
 		},
 		success:function(res){
 			$(res).find("string").each(function(){
+
 				var dat=JSON.parse($(this).text());
 				param={
 					equip_no:dat[0].equip_no,
@@ -620,7 +659,7 @@ function getSetParam(equip_no,set_no){
 var play=[
 	1,/*贵宾室*/
 	3,/*贵宾室2*/
-	5,/*洗手间48*/
+	5,/*茶室*/
 	2,/*料理*/
 	4,/*酒窖*/
 	15,/*公区47*/
@@ -629,7 +668,7 @@ var play=[
 	12,/*台球*/
 	21,/*公共48*/
 	10,/*棋牌*/
-	14,/*公区49*/
+	14,/*客房外围(49F)*/
 	23,/*休息*/
 	13,/*餐厅*/
 	7,/*spa1*/
@@ -639,7 +678,7 @@ var play=[
 var vioce=[
 	26,/*贵宾室*/
 	28,/*贵宾室2*/
-	30,/*洗手间48*/
+	30,/*茶室*/
 	27,/*料理*/
 	29,/*酒窖*/
 	40,/*公区47*/
@@ -648,7 +687,7 @@ var vioce=[
 	37,/*台球*/
 	46,/*公共48*/
 	35,/*棋牌*/
-	39,/*公区49*/
+	39,/*客房外围(49F)*/
 	48,/*休息*/
 	38,/*餐厅*/
 	32,/*spa1*/
@@ -676,12 +715,12 @@ var set=[
 		]
 	},
 	{/*48洗手间*/
-		vioce:"300,30012",
+		vioce:"300,3012",
 		next:"300,3014",
 		pre:"300,3013",
 		ctl:[
-			"300,30010",/*开*/
-			"300,30011"/*关*/
+			"300,3010",/*开*/
+			"300,3011"/*关*/
 		]
 	},
 	{/*料理*/

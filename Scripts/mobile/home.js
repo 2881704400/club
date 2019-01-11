@@ -1,6 +1,6 @@
 ﻿//首页事件
 function onHomePage() {
-
+    // myApp.router.navigate("/bgMusic/")
     $(".tabbar").css("top", window.screen.height + "px");
 	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
     if (sUserAgentFlag)
@@ -699,7 +699,7 @@ function authorizationName() {
                 $(".auth_name_get").text(dt);
                 window.localStorage.auth_name_title = dt;
             } else {
-                // tipsInformtion("获取授权名失败,是否退出登陆界面?",exitLogin)
+                $(".auth_name_get").text("AlarmCenter");
                 window.localStorage.auth_name_title = "AlarmCenter";
             }
         },

@@ -461,7 +461,8 @@ function loadNameMobile() {
                 InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
                 initWebSocket(); //socket
                 //初始化状态值-房间有无人
-                yxpHome(); pushInfoMessage();
+                yxpHome();
+                pushInfoMessage();
                 setHomeTime =setInterval(function(){yxpHome();},5000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
@@ -1487,33 +1488,32 @@ function yxpHome() {
             equip_no: '22',//'300'
         },
         success: function(data) {
-
             //房间有无人
             try{
                 var yxpItem = data.HttpData.data.YXItemDict;
-                // handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
-                // handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
-                // handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
-                // handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
-                // handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
-                // //是否有信息发送
-                // infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
-                // infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
-                // infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
-                // infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
-                // infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
-                // infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
-                // infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
-                // infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
-                // infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
-                // infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
-                // infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
-                // infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
-                // infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
-                // infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
-                // infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
-                // infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
-                infoHandle("100-"+yxpItem["100"].m_YXState.toString().trim()); 
+                handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
+                handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
+                handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
+                handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
+                handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
+                //是否有信息发送
+                infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
+                infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
+                infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
+                infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
+                infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
+                infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
+                infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
+                infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
+                infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
+                infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
+                infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
+                infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
+                infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
+                infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
+                infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
+                infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
+                // infoHandle("100-"+yxpItem["100"].m_YXState.toString().trim()); 
             }catch(e){} //客房5
         }
     });
@@ -1539,7 +1539,7 @@ function infoHandle(val){
     case "313-是": insertNoticeHistory("313","乒乓球室呼叫");get_no("",300,513,"");break;
     case "314-是": insertNoticeHistory("314","SPA1呼叫");get_no("",300,514,"");break;
     case "315-是": insertNoticeHistory("315","SPA2呼叫");get_no("",300,515,"");break;
-    case "100-撤防": insertNoticeHistory("22","测试");get_no("",22,2,"");break;
+    // case "100-撤防": insertNoticeHistory("22","测试");get_no("",22,2,"");break;
     default: break;
   }
 }
