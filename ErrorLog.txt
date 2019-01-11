@@ -35029,3 +35029,195 @@ System.IndexOutOfRangeException: 索引超出了数组界限。
    在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
 -------------------------------------
 
+----------2019/1/11 15:32:52----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:32:57----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:02----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:07----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:12----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:17----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:22----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:27----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:32----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:37----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:42----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:47----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:52----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:33:57----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:02----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:07----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:12----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:17----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:22----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:27----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:32----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:37----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:42----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:47----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:52----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:34:57----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:35:02----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:35:07----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:35:12----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:35:17----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:35:22----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
+----------2019/1/11 15:35:27----------
+System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 GWServiceAPI.Net.LibClass.Methods.EquipList(String str) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\Methods.cs:行号 638
+   在 GWServiceAPI.Net.LibClass.RealTimeLib.GetEquipItemState(String equip_no, String auth) 位置 D:\个别项目接口\r89_fix\AlarmCenterWeb\GWServiceAPI.Net\LibClass\RealTimeLib.cs:行号 162
+-------------------------------------
+
