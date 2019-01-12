@@ -60,3 +60,5 @@
 2019-01-10 08:39:23 - Started 5928
 2019-01-10 08:41:21 - Starting D:\Program Files\nodejs\node.exe  --harmony D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js --file D:\club\Scripts\mobile\websocket --log "wsServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
 2019-01-10 08:41:22 - Started 5836
+2019-01-12 13:27:20 - Starting D:\Program Files\nodejs\node.exe  --harmony D:\club\Scripts\mobile\websocket\node_modules\_node-windows@0.1.14@node-windows\lib\wrapper.js --file D:\club\Scripts\mobile\websocket --log "wsServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2019-01-12 13:27:21 - Started 5980
