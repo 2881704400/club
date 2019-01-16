@@ -35,9 +35,8 @@ function onHomePage() {
     }
     else
      {
-
         authorizationName();//授权名称			
-        confirmNotice();// 通知待确认和已确认
+            confirmNoticeFun(allEquipNo);//初始化确认和待确认
         $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
 
      }

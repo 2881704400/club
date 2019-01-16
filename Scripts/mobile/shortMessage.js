@@ -24,6 +24,9 @@ function shortMessage() {
             document.body.scrollTop = document.body.scrollHeight;
         }, 300);
     })
+     window.localStorage.setItem(receiveUser,0);
+
+  
     viewClass = window.localStorage.userName + "-" + receiveUser;
     readyFileTxt1(window.localStorage.userName, receiveUser);
     window.localStorage.receiveUserName = receiveUser;

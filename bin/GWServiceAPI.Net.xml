@@ -1186,7 +1186,7 @@
             <param name="event_Level_list">报警分类，多个分类请用';'符号隔开，多个值请用逗号隔开</param>
             <param name="auth">认证参数</param>
         </member>
-        <member name="M:GWServiceAPI.Net.LibClass.EventLib.EventConfirm(System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:GWServiceAPI.Net.LibClass.EventLib.EventConfirm(System.String,System.String,System.String,System.String,System.DateTime,System.String)">
             <summary>
             请确定接口
             </summary>

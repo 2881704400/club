@@ -540,29 +540,52 @@
             set_no 遥信设置号
             </param>
         </member>
-        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.gw_historical_notice">
-            <summary>
-              获取所有通知数据
-            </summary>
-        </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.getSetNoData(Newtonsoft.Json.Linq.JObject)">
             <summary>
               获取指定set_no通知数据
             </summary>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.getNoticeID">
+            <summary>
+              获取通知最大ID
+            </summary>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.getNoticeRangeID(System.Int32)">
+            <summary>
+              获取通知范围内数据
+            </summary>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.getCallRecord(System.String,System.Int32,System.String)">
+            <summary>
+             获取呼叫记录
+            </summary>
+            <param>
+            str 包含字符
+            equip_no 设备号
+            timeStr 日期字符串
+            </param>
+        </member>
+        <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.getFixedCallRecord(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+             获取固定呼叫记录
+            </summary>
+            <param>
+            str 包含字符
+            equip_no 设备号
+            set_no 遥信遥测号
+            timeStr 日期字符串
+            </param>
         </member>
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.gw_push_message">
             <summary>
               获取手机存储信息
             </summary>
         </member>
-<<<<<<< HEAD
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.gwPushGroupInfo(System.String)">
             <summary>
               获取推送分组信息
             </summary>
         </member>
-=======
->>>>>>> 647799d51fca747cb974415658fdc6e7fe640d9f
         <member name="M:GWServiceAPI.Net.Controllers.GWServiceWebAPIController.insertNoticeRecord(Newtonsoft.Json.Linq.JObject)">
             <summary>
               插入通知数据

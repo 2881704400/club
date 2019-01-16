@@ -10,72 +10,41 @@
         $(".alertMSG").slideUp(500);
         if ($(this).hasClass("msg_comfig")) {}
     });
-    // 通知待确认和已确认
-    confirmNotice();
     //初始化
     $(".noticeInfoList").html("");
-    ajaxRequestXml_notice("newNotice", "noticeInfoList");
-
-    // setTimeout(function(){infoHandle("300-是");},10000); 
+    ajaxRequestXml_notice("newNotice", ".noticeInfoList");
+     confirmNoticeFun(allEquipNo);//初始化确认和待确认
 }
 
-function initnoticeHTML(index, newNotice) {
-    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\">" + "<div class=\"item-media " + newNotice + "\"><img src=\"/image/notice/" + index + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">Billie Jean</div>" + "<div class=\"item-after\">15:22</div>" + "</div>" + "<div class=\"item-text\">Lorem pulvinar lacus.</div>" + "</div>" + "</a>" + "</li>";
-    $(".noticeInfoList").append(domHTML);
-}
 
 function ajaxRequestXml_notice(className_child, className_parent) {
 
-    $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gwFixeddateNotice", {
-        data: {
-            // tableName: 'gw_historicalNotice where Format(Date(),"yyyy/mm/dd") = Left(callTime,10) order by callTime desc',
-        },
-        async: false
-    })).done(function(n, l) {
+    var jsonString = {str: ':撤防',equip_no: allEquipNo,timeStr: getDateTimeNotice(0)};
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/getCallRecord?"+$.param(jsonString))).done(function(n) {
         let rt = n.HttpData;
-        if (rt.code == 200 && rt.data) {
-            rt.data.forEach(function(item, index) {
-                inithistoryInfoHTML_notice(item, className_child, className_parent);
+        if (rt.code == 200 && rt.data.length>=1) {
+            var dt = rt.data;
+            dt.forEach(function(item,index){
+               inithistoryInfoHTML_all(item, className_child, className_parent);                                  
             });
+           
         }
     }).fail(function(e) {});
 }
 
-function inithistoryInfoHTML_notice(obj, className_child, className_parent) {
 
-    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "'>" + "<div class=\"item-media " + (obj.confirmTime ? 1 : className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
-    $("." + className_parent).append(domHTML);
-    $(".noticeInfoList  li a,.msg_comfig").unbind();
-    $(".noticeInfoList  li a").bind("click", function() {
-        var that = $(this),thisObj = JSON.parse($(this).attr("data_obj"));
-        $(".msgFloor label").text(getFloor(obj.set_no));
-        $(".msgPosition label").text(thisObj.position);
-        $(".msgCallTime label").text(thisObj.callTime.replace("T", " "));
-        $(".alertMSG").toggle(500);
-        thisObj.confirmTime ? $(".msg_comfig").css({
-            "pointer-events": "none"
-        }).text(thisObj.userName + " 已确认").attr("data_id", thisObj.id) : $(".msg_comfig").css({
-            "pointer-events": "visible"
-        }).text("确认通知").attr("data_id", thisObj.id);
-        //确认按钮
-        $(".msg_comfig").bind("click", function() {
-            $(".alertMSG").slideUp(500);
-            //插入数据库
-            $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_BatchUpdate", {
-                data: {
-                    getDataTable: "gw_historicalNotice",
-                    cellDataList: "userName='" + window.localStorage.userName + "',confirmTime='" + getDateTime_res(0) + "'",
-                    ifDataList: "id=" + $(this).attr("data_id")
-                },
-                async: false
-            })).done(function(n, l) {
-                let rt = n.HttpData;
-                if (rt.code == 200 && rt.data) {
-                    thisObj.confirmTime = getDateTime_res(0);
-                    thisObj.userName = window.localStorage.userName;
-                    that.attr("data_obj", JSON.stringify(thisObj)).find("div.item-media").removeClass("newNotice");
-                }
-            }).fail(function(e) {});
-        });
-    });
+
+//处理实时快照日期
+function jusdTime(timeVal){
+    let str = timeVal.split(".")[1];
+    if(!str) return timeVal+".000000";
+    if(str.length<6)
+    {
+        str = str+ "000000".substring(0, 6 - str.length);
+    }
+    else if(str.length>6)
+    {
+        str = str.subString(0,6);
+    }
+    return timeVal.split(".")[0]+str;
 }

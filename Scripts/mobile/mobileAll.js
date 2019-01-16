@@ -1,5 +1,5 @@
 ﻿//移动端js主入口
-var setHomeTime,setHomeTime0,setHomeTime1,setHomeTime2,setHomeTime3,setHomeTime4;
+var setHomeTime, setHomeTime0, setHomeTime1, setHomeTime2, setHomeTime3, setHomeTime4;
 var myApp = new Framework7({
     // App root element
     root: '#app',
@@ -96,13 +96,13 @@ var myApp = new Framework7({
     }, {
         path: '/electManager/',
         url: '/Views/Mobile/Ipad/electManager.html',
-    },{
-		path:'/scenceCus/',
-		url: '/Views/Mobile/Ipad/scenceCus.html',
-	},{
-		path:'/sysOverview/',
-		url: '/Views/Mobile/Ipad/sysOverview.html',
-	}],
+    }, {
+        path: '/scenceCus/',
+        url: '/Views/Mobile/Ipad/scenceCus.html',
+    }, {
+        path: '/sysOverview/',
+        url: '/Views/Mobile/Ipad/sysOverview.html',
+    }],
     on: {
         pageInit: function(page) {
             $(".tabbar").removeClass("displayNone");
@@ -113,8 +113,7 @@ var myApp = new Framework7({
             clearInterval(setHomeTime3);
             clearInterval(setHomeTime4);
         },
-        popupOpen: function(popup) {
-        },
+        popupOpen: function(popup) {},
         init: function() {}
     },
 });
@@ -122,9 +121,8 @@ var mainView = myApp.views.create('.view-main');
 //web接口地址
 var service = "/GWService.asmx";
 var $$ = Framework7.$;
-
+window.localStorage.timeVal = getDateTimeNotice(0);
 loadNameMobile();
-
 $$(document).on('ajaxError', function() {
     myApp.dialog.create({
         title: "",
@@ -134,6 +132,7 @@ $$(document).on('ajaxError', function() {
         }]
     }).open();
 });
+
 function onPages() {
     if (!$(".navbar").hasClass("navbar-hidden")) {
         $(".navbar").addClass("navbar-hidden");
@@ -143,6 +142,7 @@ function onPages() {
         $(".toolbar").removeClass("toolbar-hidden");
     }
 }
+
 function JQajaxo(_type, _url, _asycn, _data, _success) {
     var ajaxs = $.ajax({
         type: _type,
@@ -175,6 +175,7 @@ function JQajaxo(_type, _url, _asycn, _data, _success) {
         }
     });
 }
+
 function ajaxService(_type, _url, _asycn, _data, _success, _error) {
     var ajaxs = $.ajax({
         type: _type,
@@ -396,6 +397,7 @@ function Control_SetItem_List(equips, num) {
     }
     return equipBool;
 }
+
 function getValueByKey(str, key) {
     var urlSearchSplit = str.split('&');
     for (var i = 0; i < urlSearchSplit.length; i++) {
@@ -443,6 +445,7 @@ function loadNameMobile() {
             "complete": _complete
         };
         $.fn.axpost(jsonData);
+
         function _success(dt) {
             var codeString = dt.HttpData;
             if (codeString.code == 200) {
@@ -451,25 +454,33 @@ function loadNameMobile() {
                 window.localStorage.userName = '';
             }
         }
+
         function _error(e) {
             window.localStorage.userName = '';
             myJavaFuntion.OpenLocalUrl("login");
         }
+
         function _complete(XMLHttpRequest, status) {
             if (window.localStorage.userName != "" && window.localStorage.userName != null) {
                 $("#userName").html("我(" + window.localStorage.userName + ")");
-                InitEnsure();AppShows();onHomePage();$("#app").css("visibility","visible");
+                InitEnsure();
+                AppShows();
+                onHomePage();
+                $("#app").css("visibility", "visible");
                 initWebSocket(); //socket
                 //初始化状态值-房间有无人
-                yxpHome();
-                pushInfoMessage();
-                setHomeTime =setInterval(function(){yxpHome();},5000);
+                // yxpHome();
+                // pushInfoMessage();
+                // setHomeTime = setInterval(function() {
+                //     yxpHome();
+                // }, 2000);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }
         }
     }, 100);
 }
+
 function pageLists() {
     $(".page_list").find("a").each(function() {
         if ($(this).attr("href") != "#") {
@@ -508,18 +519,25 @@ function BackSystemInfor(phoneName, phoneModel, phoneVersion) {
 //获取推送ID
 function BackPushID(data) {
     // 先删除记录
-    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/set_DeleteTableData",{ getDataTable: 'GW_PushMessage',tableVlue: "name = '"+window.localStorage.userName+"'"})).done(function(dt) { 
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/set_DeleteTableData", {
+        getDataTable: 'GW_PushMessage',
+        tableVlue: "name = '" + window.localStorage.userName + "'"
+    })).done(function(dt) {
         //插入新记录
         insertPushMessage();
     }).fail(function(e) {
-         //插入新记录
-         insertPushMessage();
+        //插入新记录
+        insertPushMessage();
     });
-    function insertPushMessage(){
+
+    function insertPushMessage() {
         $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_InsertNewTable", {
-            data: { getDataTable: 'GW_PushMessage(id,name,phoneName,phoneModel,phoneVersion)',tableVlue: "values('"+data+"','"+window.localStorage.userName+"','"+window.localStorage.phoneName+"','"+window.localStorage.phoneModel+"','"+window.localStorage.phoneVersion+"')"},
+            data: {
+                getDataTable: 'GW_PushMessage(id,name,phoneName,phoneModel,phoneVersion)',
+                tableVlue: "values('" + data + "','" + window.localStorage.userName + "','" + window.localStorage.phoneName + "','" + window.localStorage.phoneModel + "','" + window.localStorage.phoneVersion + "')"
+            },
             async: false
-        })).done(function(dt) {}).fail(function(e) {});               
+        })).done(function(dt) {}).fail(function(e) {});
     }
 }
 //推送消息
@@ -563,6 +581,7 @@ function onAppCacheClear() {
         }]
     }).open();
 }
+
 function AppCacheClearCallback(dt) {
     if (dt == "true") {
         location.reload();
@@ -586,6 +605,7 @@ function AppCacheClearCallback(dt) {
         // }).open();
     }
 }
+
 function toolbarActive(ids) {
     $(".toolbar-inner").find("a").each(function() {
         if ($(this).hasClass("active")) {
@@ -602,6 +622,7 @@ function toolbarActive(ids) {
         $("#" + ids).find("i").addClass("icon-" + cls + "_a");
     }
 }
+
 function toolbarActiveImg(ids) {
     $(".toolbar-inner a").each(function() {
         $(this).removeClass("active");
@@ -650,6 +671,7 @@ function onAbout() {
     }
     JQajaxo("get", _url, true, "", _success);
 }
+
 function backss() {
     var mainView = myApp.addView('.view-main');
     var pages = new Array();
@@ -937,6 +959,7 @@ function rd(n, m) {
     var c = m - n + 1;
     return Math.floor(Math.random() * c + n);
 }
+
 function TimeJSONToString2(dt) {
     var timeDate = new Date(dt * 1000).format("yyyy-MM-dd hh:mm:ss");
     return timeDate.toLocaleString();
@@ -957,6 +980,7 @@ Date.prototype.format = function(fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
 function evil(fn) {
     var Fn = Function; //一个变量指向Function，防止有些前端编译工具报错
     return new Fn('return ' + fn)();
@@ -1023,23 +1047,21 @@ function get_no(dt, set_equip, set_no, values) {
             userName: window.localStorage.userName,
         },
         success: function(data) {
-            var dt = $(data).find('DataTable'); //返回XML格式的DataTable
-            if (dt.find("equip_no").html() != "") {
-                if (values == "") 
-                  onSetCommand11(dt, set_equipOld, dt.find("main_instruction").html(), dt.find("minor_instruction").html(), dt.find("value").html());
-                else 
-                  onSetCommand11(dt, set_equipOld, dt.find("main_instruction").html(), dt.find("minor_instruction").html(), values);
+            var result = $(data).find('DataTable'); //返回XML格式的DataTable
+            if (result.find("equip_no").html() != "") {
+                if (values == "") onSetCommand11(dt, set_equipOld, result.find("main_instruction").html(), result.find("minor_instruction").html(), result.find("value").html());
+                else onSetCommand11(dt, set_equipOld, result.find("main_instruction").html(), result.find("minor_instruction").html(), values);
             } else {
                 alertMsgError.open();
             }
         },
-        error: function(e){
+        error: function(e) {
             alert(e);
         }
     });
 }
+
 function onSetCommand11(dt, equip_no, main_instr, mino_instr, valueset) {
-    // console.log(equip_no + "," + main_instr + "," + mino_instr + "," + valueset);
     $.ajax({
         type: "POST",
         url: "/GWService.asmx/SetupsCommand",
@@ -1084,6 +1106,7 @@ $.fn.isOnScreen = function() {
     bounds.bottom = bounds.top + this.outerHeight();
     return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
 };
+
 function _errorfSet(that) {
     if ($(that).hasClass("volumebtn1") || $(that).hasClass("volumebtn2") || $(that).hasClass("volumebtn3") || $(that).hasClass("volumebtn4")) {} else if ($(that).attr("id") == "viewsSave") //照相
         $(that).attr("disabled", false);
@@ -1120,138 +1143,113 @@ function loadJs(url, callback, id) {
     }
 }
 //创建websocket
-var viewClass="", userName = window.localStorage.userName,fileUrl = "c:\\MsgChat";
+var viewClass = "",
+    userName = window.localStorage.userName,
+    fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-
-    url = "ws://10.8.80.1:8001?" + value;
-    // url = "ws://192.168.0.152:8001?" + value;
+    // url = "ws://10.8.80.1:8001?" + value;
+    url = "ws://192.168.3.117:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(encodeURI(url));
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     // else console.log("浏览器太旧，不支持");
 }
+
 function initWebSocket() {
     createws("userName=" + window.localStorage.userName + "&key=" + window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey);
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
-    ws.onopen = function(e) {     
+    ws.onopen = function(e) {
         if (ws != null) {
             // console.log("websocket connected");
-            try{
+            try {
                 var inputInfo = document.getElementById("inputInfo").value.trim();
                 if (inputInfo == "") {
                     return;
                 }
-                inputInfo = {sendName: window.localStorage.userName,receiveName:window.localStorage.receiveUserName,msg: inputInfo,time: GetDateStrValue(0)};//window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
+                inputInfo = {
+                    sendName: window.localStorage.userName,
+                    receiveName: window.localStorage.receiveUserName,
+                    msg: inputInfo,
+                    time: GetDateStrValue(0)
+                }; //window.localStorage.userName + "@" + window.localStorage.receiveUserName + ":::" + inputInfo;
                 try {
                     ws.send(JSON.stringify(inputInfo));
                 } catch (e) {
                     initWebSocket();
                     send_msg();
                 }
-                document.getElementById("inputInfo").value = "";                
-            }catch(e){}
-
+                document.getElementById("inputInfo").value = "";
+            } catch (e) {}
         } else {
             myApp.dialog.alert("连接服务错误...");
         }
-
     };
     //接受服务器响应数据时触发onmessage事件
     ws.onmessage = function(event) {
-
-
         var dt = JSON.parse(event.data);
-        var fileUrl,sendUser,receiveUser,DateTime,concentext; 
-        if (dt.sendName == window.localStorage.userName){
+        var fileUrl, sendUser, receiveUser, DateTime, concentext;
+        if (dt.sendName == window.localStorage.userName) {
             writeFile("c:\\MsgChat", dt.sendName, dt.receiveName, GetDateStr(0, 0), event.data, "");
-
-        }else{
-
-            var value=dt;
-            var times=value.time.substring(11,16)
-
-            var html= "<div class='pannel-chat-info' >" +
-                        "           <div class='chart-person'>" +
-                        "               <img src='/Image/Ipad/person_img.png' />" +
-                        "           </div>" +
-                        "           <div class='chart-content'>" +
-                        "               " + dt.msg + "" +
-                        "           </div>" +
-                        "       </div>";
-
-            var receName=$("#chatOtherInfoId").attr("recename");//消息列表
-            var receNames=$("#chatOtherContactId").attr("receNames");//人员列表
-
-            var hasClass,hasId;
-
-            hasId=$("#"+value.sendName).hasClass('active');
-            hasClass=$("."+value.sendName).hasClass('active');//人员列表
-
-            var nameArr=[];
+        } else {
+            var value = dt;
+            var times = value.time.substring(11, 16)
+            var html = "<div class='pannel-chat-info' >" + "           <div class='chart-person'>" + "               <img src='/Image/Ipad/person_img.png' />" + "           </div>" + "           <div class='chart-content'>" + "               " + dt.msg + "" + "           </div>" + "       </div>";
+            var receName = $("#chatOtherInfoId").attr("recename"); //消息列表
+            var receNames = $("#chatOtherContactId").attr("receNames"); //人员列表
+            var hasClass, hasId;
+            hasId = $("#" + value.sendName).hasClass('active');
+            hasClass = $("." + value.sendName).hasClass('active'); //人员列表
+            var nameArr = [];
             $("#mesList li").each(function(index, el) {
-                var str= $(this).attr("class");
-                nameArr.push(str)   
-            }); 
-
-            if(nameArr.indexOf(value.sendName)==-1&&nameArr.indexOf(value.sendName+" active")==-1){
-
-                var html='<li onclick="loadThisMesage(this,\''+value.sendName+'\')" class="'+value.sendName+'">'+
-                        '<div><img src="../../Image/Ipad/person_img.png" /></div>'+
-                        '<p class="item-title">'+value.sendName+' <label>'+times+'</label></p>'+
-                        '<span class="con">'+dt.msg+'</span>'+
-                        '<font ><span class="num">0</span></font>'+
-                    '</li>';
-                $("#mesList").append(html);     
-
+                var str = $(this).attr("class");
+                nameArr.push(str)
+            });
+            if (nameArr.indexOf(value.sendName) == -1 && nameArr.indexOf(value.sendName + " active") == -1) {
+                var html = '<li onclick="loadThisMesage(this,\'' + value.sendName + '\')" class="' + value.sendName + '">' + '<div><img src="../../Image/Ipad/person_img.png" /></div>' + '<p class="item-title">' + value.sendName + ' <label>' + times + '</label></p>' + '<span class="con">' + dt.msg + '</span>' + '<font ><span class="num">0</span></font>' + '</li>';
+                $("#mesList").append(html);
             }
-
-            if(receName==value.sendName&&hasClass){
+            if (receName == value.sendName && hasClass) {
                 $("#chatOtherInfoId").append(html);
                 $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
                 //消息列表
-                $("."+value.sendName).find(".item-title label").html(times)
-                $("."+value.sendName).find(".con").html(dt.msg)
-            }else{
-                $("."+value.sendName).find(".item-title label").html(times)
-                $("."+value.sendName).find(".con").html(dt.msg)
-                var num=parseInt($("."+value.sendName).find(".num").text());
-                if(num==0){
-                    $("."+value.sendName).find("font").show().find(".num").text(num+1);
-                }
-                else if(num<99){
-                     $("."+value.sendName).find(".num").text(num+1);
+                $("." + value.sendName).find(".item-title label").html(times)
+                $("." + value.sendName).find(".con").html(dt.msg)
+            } else {
+                $("." + value.sendName).find(".item-title label").html(times)
+                $("." + value.sendName).find(".con").html(dt.msg)
+                var num = parseInt($("." + value.sendName).find(".num").text());
+                if (num == 0) {
+                    $("." + value.sendName).find("font").show().find(".num").text(num + 1);
+                } else if (num < 99) {
+                    $("." + value.sendName).find(".num").text(num + 1);
                 }
             }
-
-            if(receNames==value.sendName&&hasId){
+            if (receNames == value.sendName && hasId) {
                 $("#chatOtherContactId").append(html);
                 $("#chatOtherContactId").scrollTop($("#chatOtherContactId")[0].scrollHeight);
             }
-
-
-
         }
-
         try {
             //判断接收者是否选中发送者或者是发送者本人页面，是则在版面显示信息
             $(".shortContainer>section").addClass(viewClass);
-            var received_msg,old_msg, msg_board = document.getElementsByClassName(viewClass)[0],messageView = document.getElementsByClassName("messageSection")[0];
+            var received_msg, old_msg, msg_board = document.getElementsByClassName(viewClass)[0],
+                messageView = document.getElementsByClassName("messageSection")[0];
             if (msg_board) {
                 if (dt.sendName == window.localStorage.userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
-                else received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' +dt.msg + "</span></p>"; //新信息
+                else received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
                 addRecord(msg_board, received_msg);
             }
-            if(messageView)
-             {
-
-                $(".messageInfoList li").each(function(index){
-                    if($(this).find(".item-title").text() == dt.sendName)
-                    {
+            if (messageView) {
+                $(".messageInfoList li").each(function(index) {
+                    if ($(this).find(".item-title").text() == dt.sendName) {
+                        $(this).find(".item-media").addClass("newNotice");
                         $(this).find(".item-after").text(dt.time);
                         $(this).find(".item-text").text(dt.msg);
+                        window.localStorage.setItem(dt.sendName,1);
+
                     }
                 });
-             }
+            }
         } catch (e) {
             //推送
             myApp.dialog.alert('222');
@@ -1262,12 +1260,11 @@ function initWebSocket() {
     };
     //服务器处理异常，通常在服务器里try-catch发生异常时或者连接异常时触发onerror事件
     ws.onerror = function(err) {
-         myApp.dialog.alert('err');
+        // myApp.dialog.alert('err');
         // console.log("error: " + err);
     };
     //websocket连接关闭时触发onclose事件
     ws.onclose = function(event) {
-      
         // console.log("close reason: " + event.reason);
         try {
             document.getElementsByClassName("inputInfo")[0].innerHTML = "";
@@ -1285,10 +1282,10 @@ function writeFile(fileUrl, sendUser, receiveUser, DateTime, concentext) {
             concentext: concentext
         },
         async: false
-    })).done(function(n) {}).fail(function(e){});
+    })).done(function(n) {}).fail(function(e) {});
 }
 //读记录
-function readerFile(path,isFlag) {
+function readerFile(path, isFlag) {
     $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/readUrlRecord", {
         data: {
             Url: path,
@@ -1297,14 +1294,12 @@ function readerFile(path,isFlag) {
     })).done(function(n) {
         let rt = n.HttpData.concenTxt;
         formatRecord(rt);
-    }).fail(function(e){
-
-        if(isFlag){
+    }).fail(function(e) {
+        if (isFlag) {
             var filUrlStr = result.split("\\");
-            readerFile(path,false);
+            readerFile(path, false);
         }
     });
-
 }
 //处理日期
 function addZero(n) {
@@ -1328,14 +1323,12 @@ function formatRecord(str) {
     var strArray = str.split("<br />");
     var received_msg, msg_board = document.getElementsByClassName(viewClass)[0];
     strArray.forEach(function(item, index) {
-        if(item)
-        {
+        if (item) {
             let dt = JSON.parse(item);
             if (dt.sendName == window.localStorage.userName) {
                 received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
                 addRecord(msg_board, received_msg);
-            }
-            else {
+            } else {
                 received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>";
                 addRecord(msg_board, received_msg);
             }
@@ -1406,37 +1399,32 @@ function publicAjaxData(equip_no_0) {
     }
 }
 //温度处理
-function temperatureHandle(parentId,className,equip_noPublic,set_noPublic){
-
+function temperatureHandle(parentId, className, equip_noPublic, set_noPublic) {
     var value;
-    if(className =="qjkt4_yl_zj" || className =="qjkt4_yl_jx")
-     value  = parseInt($(parentId+" .wd_conditioner1 i").text());
-    else
-     value  = parseInt($(parentId+" .wd_conditioner i").text());  
-
-    if(className == "kt1_yl_zj" || className == "kt2_yl_zj" || className == "kt3_yl_zj" || className == "kt4_yl_zj" || className == "kt5_yl_zj" || className =="qjkt4_yl_zj")
-    {
-      if(value <34) {value++;}
-    }
-    else
-    {
-      if(value >16) {value--;}
+    if (className == "qjkt4_yl_zj" || className == "qjkt4_yl_jx") value = parseInt($(parentId + " .wd_conditioner1 i").text());
+    else value = parseInt($(parentId + " .wd_conditioner i").text());
+    if (className == "kt1_yl_zj" || className == "kt2_yl_zj" || className == "kt3_yl_zj" || className == "kt4_yl_zj" || className == "kt5_yl_zj" || className == "qjkt4_yl_zj") {
+        if (value < 34) {
+            value++;
+        }
+    } else {
+        if (value > 16) {
+            value--;
+        }
     }
     get_no("", equip_noPublic, set_noPublic, value);
-    if(className =="qjkt4_yl_zj" || className =="qjkt4_yl_jx")
-      $(parentId+" .wd_conditioner1 i").html(value);
-    else
-      $(parentId+" .wd_conditioner i").html(value);
-  
+    if (className == "qjkt4_yl_zj" || className == "qjkt4_yl_jx") $(parentId + " .wd_conditioner1 i").html(value);
+    else $(parentId + " .wd_conditioner i").html(value);
 }
 //空调控制风速
 function airConditionerControl(parentId, windSpeedLevel) {
     $(parentId + " .conditioner_view_p1 em[windSpeedIndex='" + windSpeedLevel + "']").addClass("selectFontWhite").siblings("em").removeClass("selectFontWhite");
 }
-function airConditionerModul(parentId, windSpeedLevel) {
 
+function airConditionerModul(parentId, windSpeedLevel) {
     $(parentId + " .conditioner_view_p2 i[windSpeedIndex='" + windSpeedLevel + "']").addClass("selectFontWhite").siblings("i").removeClass("selectFontWhite");
 }
+
 function returnIndex(className) {
     var windspeedIndex = parseInt($(className).attr("windSpeedIndex"));
     windspeedIndex++;
@@ -1446,248 +1434,338 @@ function returnIndex(className) {
     return windspeedIndex;
 }
 //遥信表
-function getStatus(){ //检测实时状态，1为开，0为关
+function getStatus() { //检测实时状态，1为开，0为关
     var jsonData = {
         "url": "/api/real/equip_item_state",
-        "data":{ equip_no: equipNo_1,ycp_no: ycp_no_1},
+        "data": {
+            equip_no: equipNo_1,
+            ycp_no: ycp_no_1
+        },
         "success": _successfYxp,
         "error": _errorfYxp,
         "complete": _completefYxp
     };
     jQuery.axpost(jsonData);
-    function _successfYxp(data) {  
-      var resultJs = data.HttpData; 
-      if(resultJs.code == 200)
-      {
-         //设备号 50 ，状态 开--
-      }
-    }
-    function _errorfYxp(e) {}
-    function _completefYxp(XMLHttpRequest, status) { }   
 
+    function _successfYxp(data) {
+        var resultJs = data.HttpData;
+        if (resultJs.code == 200) {
+            //设备号 50 ，状态 开--
+        }
+    }
+
+    function _errorfYxp(e) {}
+
+    function _completefYxp(XMLHttpRequest, status) {}
 }
+var allEquipNo = 22;
+
 function inithistoryInfoHTML_all(obj, className_child, className_parent) {
-    var domHTML = "<li>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='"+JSON.stringify(obj)+"'>" + "<div class=\"item-media " + (obj.confirmTime ? 1 : className_child) + "\"><img src=\"/image/notice/" + obj.set_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.callTime.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.position + "</div>" + "</div>" + "</a>" + "</li>";
-    $("." + className_parent).prepend(domHTML);
-    $(".noticeInfoList  li a,.msg_comfig").unbind();
-    $(".noticeInfoList  li a").bind("click", function() {
+    var domHTML = "<li dataTime='" + obj.time + "'>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "' >" + "<div class=\"item-media " + (!obj.confirmname ? className_child : 1) + "\"><img src=\"/image/notice/" + obj.ycyx_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.time.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.event + "</div>" + "</div>" + "</a>" + "</li>";
+    $(className_parent).prepend(domHTML);
+    $(".noticeInfoList  li a,.allInfoList li a,.swimmingInfoList li a,.msg_comfig").unbind();
+    $(".noticeInfoList  li a,.allInfoList li a,.swimmingInfoList li a").bind("click", function() {
         var that = $(this),
-            thisObj = JSON.parse($(this).attr("data_obj"));
-        $(".msgFloor label").text(getFloor(obj.set_no));
-        $(".msgPosition label").text(thisObj.position);
-        $(".msgCallTime label").text(thisObj.callTime.replace("T", " "));
+            thisObj = JSON.parse($(this).attr("data_obj")),
+            getName = thisObj.confirmname;
+        $(".msgFloor label").text(getFloor(obj.ycyx_no));
+        $(".msgPosition label").text(thisObj.event);
+        $(".msgCallTime label").text(thisObj.time.replace("T", " "));
         $(".alertMSG").toggle(500);
-        thisObj.confirmTime ? $(".msg_comfig").css({
-            "pointer-events": "none"
-        }).text(thisObj.userName + " 已确认").attr("data_id", thisObj.id) : $(".msg_comfig").css({
-            "pointer-events": "visible"
-        }).text("确认通知").attr("data_id", thisObj.id);
+        if (getName) {
+            $(".msg_comfig").css({
+                "pointer-events": "none"
+            }).text(getName + " 已确认");
+        } else {
+            $(".msg_comfig").css({
+                "pointer-events": "visible"
+            }).text("确认通知");
+        }
         //确认按钮
+        $(".msg_comfig").unbind();
         $(".msg_comfig").bind("click", function() {
             $(".alertMSG").slideUp(500);
             //插入数据库
-            $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/set_BatchUpdate", {
-                data: {
-                    tableName: "gw_historicalNotice",
-                    cellDataList: "userName='" + window.localStorage.userName + "',confirmTime='" + getDateTime_res(0) + "'",
-                    ifDataList: "id=" + $(this).attr("data_id")
-                },
-                async: false
-            })).done(function(n, l) {
+            $.when(AlarmCenterContext.post("/api/event/real_evt", {
+                levels: "6"
+            })).done(function(n) {
                 let rt = n.HttpData;
-                if (rt.code == 200) {
-                    thisObj.confirmTime = getDateTime_res(0);
-                    thisObj.userName = window.localStorage.userName;
-                    that.attr("data_obj", JSON.stringify(thisObj)).find("div.item-media").removeClass("newNotice");
+                if (rt.code == 200 && rt.data) {
+                    rt.data.forEach(function(item, index) {
+                        var timeResult = item.Time.replace("T", " ");
+                        if (item.Equipno == obj.equip_no && item.Ycyxno == obj.ycyx_no) $.when(AlarmCenterContext.post("/api/event/confirm_evt", {
+                            msg: "已确认",
+                            shortmsg: true,
+                            telUser: "",
+                            evtname: item.EventMsg,
+                            time: timeResult,
+                            userName: window.localStorage.userName
+                        })).done(function(l) {
+                            let rt = l.HttpData;
+                            if (rt.code == 200 && rt.data) {
+                                infoHandle(obj.ycyx_no + "-是");
+                                thisObj.confirmname = window.localStorage.userName;
+                                that.attr("data_obj", JSON.stringify(thisObj)).find("div.item-media").removeClass("newNotice");
+                                confirmNoticeFun(allEquipNo); //初始化确认和待确认
+                            }
+                        }).fail(function(e) {});
+                    });
                 }
             }).fail(function(e) {});
         });
     });
 }
 // 通知待确认和已确认
-function confirmNotice(){
-        //插入数据库
-        $.when($.fn.XmlRequset.httpPost("/api/GWServiceWebAPI/gw_historical_notice", {
-            data: {},
-            async: false
-        })).done(function(n, l) {
-            let rt = n.HttpData;
-            if (rt.code == 200 && rt.data) {
-              let totalQuantity = rt.data.length,Confirmed = rt.data.filter(item=>{if(item.confirmTime) return item;}).length;
-              $(".toBeComfirm").text(totalQuantity-Confirmed);
-              $(".ComfirmContainer>label").text(Confirmed);
-            }
-        }).fail(function(e) {});
-}
-function getDateTime_res(AddDayCount){
-    var dd = new Date();
-    dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期 
-    var y = dd.getFullYear(),m = beforeAddZero(dd.getMonth() + 1),d = beforeAddZero(dd.getDate()),h = beforeAddZero(dd.getHours()),ms = beforeAddZero(dd.getMinutes()),s = beforeAddZero(dd.getSeconds());
-    return y + "-" + m + "-" + d +" "+h+":"+ms+":"+s;
+function confirmNoticeFun(equipNO) {
+    var jsonStringChild = {
+        str: ':撤防',
+        equip_no: equipNO,
+        timeStr: getDateTimeNotice(0)
+    };
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/getCallRecord?" + $.param(jsonStringChild))).done(function(n) {
+        let rt = n.HttpData;
+        if (rt.code == 200 && rt.data.length >= 1) {
+            var dt = rt.data,
+                unconfirmedNumber = 0;
+            dt.forEach(function(item, index) {
+                if (!item.confirmname) unconfirmedNumber++;
+            });
+            $(".toBeComfirm").text(unconfirmedNumber);
+            $(".ComfirmContainer>label").text(dt.length - unconfirmedNumber); //已确认
+        }
+    }).fail(function(e) {});
 }
 
-function beforeAddZero(val){
-  return val<10?('0'+val):val;
+function getDateTime_res(AddDayCount) {
+    var dd = new Date();
+    dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期 
+    var y = dd.getFullYear(),
+        m = beforeAddZero(dd.getMonth() + 1),
+        d = beforeAddZero(dd.getDate()),
+        h = beforeAddZero(dd.getHours()),
+        ms = beforeAddZero(dd.getMinutes()),
+        s = beforeAddZero(dd.getSeconds());
+    return y + "-" + m + "-" + d + " " + h + ":" + ms + ":" + s;
+}
+
+function getDateTimeNotice(AddDayCount) {
+    var dd = new Date();
+    dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期 
+    var y = dd.getFullYear(),
+        m = beforeAddZero(dd.getMonth() + 1),
+        d = beforeAddZero(dd.getDate());
+    return y + "-" + m + "-" + d + " 00:00:00.000";
+}
+
+function beforeAddZero(val) {
+    return val < 10 ? ('0' + val) : val;
 }
 //通知跳转
-function locationNotice(){
-    myApp.router.navigate('/notice/');    
+function locationNotice() {
+    myApp.router.navigate('/notice/');
 }
 //房间内部有无人
 function handleHomeState(index, judgePeople1, judgePeople2, judgePeople3) {
     if (judgePeople1 == "有人" || judgePeople2 == "有人" || judgePeople3 == "有人") {
-        $("#homeDeatils"+index).find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock"); //里面详情
+        $("#homeDeatils" + index).find("i.positionCenter").removeClass("icon-peopleNone").addClass("icon-peopleBlock"); //里面详情
         $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleNone").addClass("icon-peopleBlock");
     } else {
-        $("#homeDeatils"+index).find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone"); //里面详情
+        $("#homeDeatils" + index).find("i.positionCenter").removeClass("icon-peopleBlock").addClass("icon-peopleNone"); //里面详情
         $(".homeSection li:eq(" + index + ") a").find("i").removeClass("icon-peopleBlock").addClass("icon-peopleNone");
     }
 }
 //遥信遥测
 function yxpHome() {
-    $.ajax({
-        type: "POST",
-        url: "/api/real/equip_item_state",
-        timeout: 5000,
-        headers: {
-            Authorization: window.localStorage.ac_appkey + '-' + window.localStorage.ac_infokey
-        },
-        data: {
-            equip_no: '22',//'300'
-        },
-        success: function(data) {
-            //房间有无人
-            try{
-                var yxpItem = data.HttpData.data.YXItemDict;
-                handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
-                handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
-                handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
-                handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
-                handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
-                //是否有信息发送
-                infoHandle("300-"+yxpItem["300"].m_YXState.toString().trim()); 
-                infoHandle("301-"+yxpItem["301"].m_YXState.toString().trim()); 
-                infoHandle("302-"+yxpItem["302"].m_YXState.toString().trim());
-                infoHandle("303-"+yxpItem["303"].m_YXState.toString().trim()); 
-                infoHandle("304-"+yxpItem["304"].m_YXState.toString().trim()); 
-                infoHandle("305-"+yxpItem["305"].m_YXState.toString().trim());
-                infoHandle("306-"+yxpItem["306"].m_YXState.toString().trim());
-                infoHandle("307-"+yxpItem["307"].m_YXState.toString().trim()); 
-                infoHandle("308-"+yxpItem["308"].m_YXState.toString().trim()); 
-                infoHandle("309-"+yxpItem["309"].m_YXState.toString().trim()); 
-                infoHandle("310-"+yxpItem["310"].m_YXState.toString().trim()); 
-                infoHandle("311-"+yxpItem["311"].m_YXState.toString().trim()); 
-                infoHandle("312-"+yxpItem["312"].m_YXState.toString().trim()); 
-                infoHandle("313-"+yxpItem["313"].m_YXState.toString().trim()); 
-                infoHandle("314-"+yxpItem["314"].m_YXState.toString().trim()); 
-                infoHandle("315-"+yxpItem["315"].m_YXState.toString().trim()); 
-                // infoHandle("100-"+yxpItem["100"].m_YXState.toString().trim()); 
-            }catch(e){} //客房5
-        }
-    });
-}
-
-// 信息处理 --- 插入数据库信息，如果是通知页面，则查询；如果是历史记录，则查询
-function infoHandle(val){ 
-
-  switch(val){
-    case "300-是": insertNoticeHistory("300","客房1呼叫");get_no("",300,500,"");break;
-    case "301-是": insertNoticeHistory("301","客房2呼叫");get_no("",300,501,"");break;
-    case "302-是": insertNoticeHistory("302","客房3呼叫");get_no("",300,502,"");break;
-    case "303-是": insertNoticeHistory("303","客房4呼叫");get_no("",300,503,"");break;
-    case "304-是": insertNoticeHistory("304","客房5呼叫");get_no("",300,504,"");break;
-    case "305-是": insertNoticeHistory("305","贵宾室1呼叫");get_no("",300,505,"");break;
-    case "306-是": insertNoticeHistory("306","贵宾室2呼叫");get_no("",300,506,"");break;
-    case "307-是": insertNoticeHistory("307","茶室呼叫");get_no("",300,507,"");break;
-    case "308-是": insertNoticeHistory("308","酒窖呼叫");get_no("",300,508,"");break;
-    case "309-是": insertNoticeHistory("309","高尔夫室呼叫");get_no("",300,509,"");break;
-    case "310-是": insertNoticeHistory("310","IMAX影院呼叫");get_no("",300,510,"");break;
-    case "311-是": insertNoticeHistory("311","KTV呼叫");get_no("",300,511,"");break;
-    case "312-是": insertNoticeHistory("312","棋牌室呼叫");get_no("",300,512,"");break;
-    case "313-是": insertNoticeHistory("313","乒乓球室呼叫");get_no("",300,513,"");break;
-    case "314-是": insertNoticeHistory("314","SPA1呼叫");get_no("",300,514,"");break;
-    case "315-是": insertNoticeHistory("315","SPA2呼叫");get_no("",300,515,"");break;
-    // case "100-撤防": insertNoticeHistory("22","测试");get_no("",22,2,"");break;
-    default: break;
-  }
-}
-
-function insertNoticeHistory(set_no,str){
-
-   
-    var jsonString = {userName: window.localStorage.userName,set_no: set_no, position: str,callTime: getDateTime_res(0)};
-
-    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/insertNoticeRecord",jsonString)).done(function(n) {
-        let rt = n.HttpData;
-        if (rt.code == 200 && rt.data) {
-            let idStr = $(".page-current").attr("id");
-            if(idStr == "notice"){
-                inithistoryInfoHTML_all(jsonString, "newNotice", "noticeInfoList");
-            }
-            else if(idStr == "historyInfo"){
-                if($("#allInfo").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "allInfo");
-                else if($("#guestRoom1").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom1");
-                else if($("#guestRoom2").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom2");
-                else if($("#guestRoom3").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom3");
-                else if($("#guestRoom4").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom4");
-                else if($("#guestRoom5").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom5");
-                else if($("#guestRoom6").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom6");
-                else if($("#guestRoom7").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom7");
-                else if($("#guestRoom8").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom8");
-                else if($("#guestRoom9").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom9");
-                else if($("#guestRoom10").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom10");
-                else if($("#guestRoom11").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom11");
-                else if($("#guestRoom12").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom12");
-                else if($("#guestRoom13").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom13");
-                else if($("#guestRoom14").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom14");
-                else if($("#guestRoom15").hasClass("tab-active")) inithistoryInfoHTML_all(jsonString, "newNotice", "guestRoom15");
-
-            }
-        }
+    //有人无人
+    $.when(AlarmCenterContext.post("/api/real/equip_item_state", {
+        equip_no: allEquipNo
+    })).done(function(n) {
+        //房间有无人
+        try {
+            var yxpItem = n.HttpData.data.YXItemDict;
+            handleHomeState(0, yxpItem["33"].m_YXState, yxpItem["34"].m_YXState, ""); //客房1
+            handleHomeState(1, yxpItem["68"].m_YXState, yxpItem["69"].m_YXState, ""); //客房2
+            handleHomeState(2, yxpItem["103"].m_YXState, yxpItem["104"].m_YXState, ""); //客房3
+            handleHomeState(3, yxpItem["164"].m_YXState, yxpItem["165"].m_YXState, yxpItem["166"].m_YXState); //客房4
+            handleHomeState(4, yxpItem["199"].m_YXState, yxpItem["200"].m_YXState, "");
+        } catch (e) {} //客房5
     }).fail(function(e) {});
+    //检测通知确认状态
+    addEventListenerNoticeStatus();
+    judgeNewData(allEquipNo);
+}
+// 信息处理 --- 插入数据库信息，如果是通知页面，则查询；如果是历史记录，则查询
+function infoHandle(val) {
+    switch (val) {
+        case "300-是":
+            get_no("notice", 300, 500, "");
+            break; //insertNoticeHistory(300,"客房1呼叫");
+        case "301-是":
+            get_no("notice", 300, 501, "");
+            break; //insertNoticeHistory(301,"客房2呼叫");
+        case "302-是":
+            get_no("notice", 300, 502, "");
+            break; //insertNoticeHistory(302,"客房3呼叫");
+        case "303-是":
+            get_no("notice", 300, 503, "");
+            break; //insertNoticeHistory(303,"客房4呼叫");
+        case "304-是":
+            get_no("notice", 300, 504, "");
+            break; //insertNoticeHistory(304,"客房5呼叫");
+        case "305-是":
+            get_no("notice", 300, 505, "");
+            break; //insertNoticeHistory(305,"贵宾室1呼叫");
+        case "306-是":
+            get_no("notice", 300, 506, "");
+            break; //insertNoticeHistory(306,"贵宾室2呼叫");
+        case "307-是":
+            get_no("notice", 300, 507, "");
+            break; //insertNoticeHistory(307,"茶室呼叫");
+        case "308-是":
+            get_no("notice", 300, 508, "");
+            break; //insertNoticeHistory(308,"酒窖呼叫");
+        case "309-是":
+            get_no("notice", 300, 509, "");
+            break; //insertNoticeHistory(309,"高尔夫室呼叫");
+        case "310-是":
+            get_no("notice", 300, 510, "");
+            break; //insertNoticeHistory(310,"IMAX影院呼叫");
+        case "311-是":
+            get_no("notice", 300, 511, "");
+            break; //insertNoticeHistory(311,"KTV呼叫");
+        case "312-是":
+            get_no("notice", 300, 512, "");
+            break; //insertNoticeHistory(312,"棋牌室呼叫");
+        case "313-是":
+            get_no("notice", 300, 513, "");
+            break; //insertNoticeHistory(313,"乒乓球室呼叫");
+        case "314-是":
+            get_no("notice", 300, 514, "");
+            break; //insertNoticeHistory(314,"SPA1呼叫");
+        case "315-是":
+            get_no("notice", 300, 515, "");
+            break; //insertNoticeHistory(315,"SPA2呼叫");
+        case "100-是":
+            get_no("notice", 22, 2, "");
+            break; //insertNoticeHistory(100,"测试");
+        default:
+            break;
+    }
 }
 
-function pushInfoMessage(){
+function pushInfoMessage() {
     //推送 
     $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/gwPushGroupInfo?str=GWJPush.dll")).done(function(n) {
-            let rt = n.HttpData;
-            if (rt.code == 200) {
-                try{
-                  var data = JSON.parse(rt.data[0].Proc_parm);
-                  jpush.SetAlias(data.Audience.Alias.toString()); // 设置别名
-                  jpush.SetTags(data.Audience.Tag.toString()); //设置tag
-                  // jpush.SetAppId(data.masterSecret.toString(),data.AppKey.toString()); // id
-                }
-                catch(e){}
-            }
+        let rt = n.HttpData;
+        if (rt.code == 200) {
+            try {
+                var data = JSON.parse(rt.data[0].Proc_parm);
+                jpush.SetAlias(data.Audience.Alias.toString()); // 设置别名
+                jpush.SetTags(data.Audience.Tag.toString()); //设置tag
+                // jpush.SetAppId(data.masterSecret.toString(),data.AppKey.toString()); // id
+            } catch (e) {}
+        }
     }).fail(function(e) {});
 }
-
 Array.prototype.indexOf = function(val) {
-	for (var i = 0; i < this.length; i++) {
-		if (this[i] == val) return i;
-	}
-	return -1;
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i;
+    }
+    return -1;
 };
-
 Array.prototype.remove = function(val) {
-	var index = this.indexOf(val);
-	if (index > -1) {
-		this.splice(index, 1);
-	}
+    var index = this.indexOf(val);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
 };
+//返回楼层
+function getFloor(val) {
+    var result = parseInt(val);
+    if (result == 300 || result == 301 || result == 302 || result == 303 || result == 304 || result == 314 || result == 315) return "49";
+    else if (result == 309 || result == 310 || result == 311 || result == 312 || result == 313) return "48";
+    else if (result == 305 || result == 306 || result == 307 || result == 308) return "47";
+}
+//更新是否确认状态
+function addEventListenerNoticeStatus() {
+    let jsonString = {
+        str: ':撤防',
+        equip_no: allEquipNo,
+        timeStr: getDateTimeNotice(0)
+    };
+    $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/getCallRecord?" + $.param(jsonString))).done(function(n, l) {
+        let rt = n.HttpData;
+        if (rt.code == 200 && rt.data) {
+            var result = rt.data,idStr = $(".page-current").attr("id"),dom = $(".historyInfoContainer a.tab-link-active");
+            if (idStr == "notice")
+                $(".noticeInfoList li").each(function(index) {
+                    var item = $(this),objThis = JSON.parse(item.find("a").attr("data_obj"));
+                    result.forEach(function(itemChild, indexChild) {
+                        if (objThis.equip_no == itemChild.equip_no && objThis.ycyx_no == itemChild.ycyx_no && item.find(".item-media").hasClass("newNotice") && itemChild.confirmname && itemChild.time == item.attr("datatime")) {
+                            item.find(".newNotice").removeClass("newNotice");
+                            objThis.confirmname = itemChild.confirmname;
+                            item.find("a").attr("data_obj", JSON.stringify(objThis));
+                        }
+                    });
+                });
+            else if(idStr == "historyInfo")
+                $(dom.attr("href")+">div>ul>li").each(function(index) {
+                    var item = $(this),objThis = JSON.parse(item.find("a").attr("data_obj"));
+                    result.forEach(function(itemChild, indexChild) {
+                        if (objThis.equip_no == itemChild.equip_no && objThis.ycyx_no == itemChild.ycyx_no && item.find(".item-media").hasClass("newNotice") && itemChild.confirmname && itemChild.time == item.attr("datatime")) {
+                            item.find(".newNotice").removeClass("newNotice");
+                            objThis.confirmname = itemChild.confirmname;
+                            item.find("a").attr("data_obj", JSON.stringify(objThis));
+                        }
+                    });
+                });
+            // 更新待确认和已确认
+            var dt = rt.data,
+                unconfirmedNumber = 0;
+            dt.forEach(function(item, index) {
+                if (!item.confirmname) unconfirmedNumber++;
+            });
+            $(".toBeComfirm").text(unconfirmedNumber);
+            $(".ComfirmContainer>label").text(dt.length - unconfirmedNumber); //已确认
 
+        }
+    }).fail(function(e) {});
+}
+//是否插入新数据
+function judgeNewData(equipNO) {
+    console.log($(".noticeInfoList li").length);
+    var idStr = $(".page-current").attr("id"),dom = $(".historyInfoContainer a.tab-link-active");
+    // myApp.dialog.alert($(dom.attr("href")+">div>ul>li").length);
+    if ((idStr == "notice" && $(".noticeInfoList li").length >= 0) || (idStr == "historyInfo" && $(dom.attr("href")+">div>ul>li").length > 0)) {
+        let timeVal = "";
+        if(idStr == "notice" && $(".noticeInfoList li").length == 0)
+            timeVal = getDateTimeNotice(0);
+        else
+            idStr == "notice"?timeVal =$(".noticeInfoList li:eq(0)").attr("dataTime").replace("T", " "):timeVal = $(dom.attr("href")+">div>ul>li:eq(0)").attr("dataTime").replace("T", " ");
+        jsonString = {
+            str: ':撤防',
+            equip_no: equipNO,
+            timeStr: timeVal,
+        };
+        $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/getCallRecord?" + $.param(jsonString))).done(function(n) {
+            let rt = n.HttpData;
+            if (rt.code == 200 && rt.data.length >= 1) {
+                var dt = rt.data;
+                dt.forEach(function(item, index) {
+                    if (idStr == "notice") {
 
- //返回楼层
- function getFloor(val){
-  var result = parseInt(val);
-  if(result == 300 || result == 301 || result == 302 || result == 303 || result == 304 || result == 314 || result == 315)
-    return "49";
-  else if(result == 309 || result == 310 || result == 311 || result == 312 || result == 313)
-    return "48";
-  else if(result == 305 || result == 306 || result == 307 || result == 308)
-    return "47";
- }
+                        inithistoryInfoHTML_all(item, "newNotice", ".noticeInfoList");
+                    }
+                    else if(idStr == "historyInfo")
+                        {  historyInfoFun(item);}
 
-
-
+                });
+                confirmNoticeFun(allEquipNo); //初始化确认和待确认
+            }
+        }).fail(function(e) {});
+    }
+}
+function historyInfoFun(item){
+    let dom = $(".historyInfoContainer a.tab-link-active");
+    inithistoryInfoHTML_all(item, "newNotice", dom.attr("href")+">div>ul");
+}

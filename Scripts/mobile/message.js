@@ -8,9 +8,7 @@ function Message() {
   
   readyFile();
 
-  //  readyFile(fileUrl);
-   // 通知待确认和已确认
-    confirmNotice();
+  confirmNoticeFun(allEquipNo);//初始化确认和待确认
 }
 //读取文件夹结构
 function readyFile() {
@@ -77,9 +75,10 @@ function readerTxt(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
 }
 //初始化界面HTML
 function initmessageHTML(receive,chatTime,txt){
+  
   var domHTML ="<li>"+
                 "<a href=\"/shortMessage/?"+receive+"\" class=\"item-content\" >"+
-                  "<div class=\"item-media\"><img src=\"/image/ic_launcher.png\" width=\"60\"/></div>"+
+                  "<div class=\"item-media "+(parseInt(window.localStorage.getItem(receive))?"newNotice":1)+"\"><img src=\"/image/ic_launcher.png\" width=\"60\"/></div>"+
                   "<div class=\"item-inner\">"+
                     "<div class=\"item-title-row\">"+
                       "<div class=\"item-title\">"+receive+"</div>"+
