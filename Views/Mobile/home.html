@@ -225,10 +225,11 @@
 							<img src="../../Image/Ipad/electManager_light.png" />
 							<span class="tabbar-label">机电管理</span>
 						</a>
-						<a href="/serviceCall/" class="link no-animation" id="serviceCallTool">
+						<a href="/serviceCall/" class="link no-animation serverCallCircle" id="serviceCallTool">
 							<img src="../../Image/Ipad/serviceCall_dark.png" />
 							<img src="../../Image/Ipad/serviceCall_light.png" />
 							<span class="tabbar-label">服务呼叫</span>
+
 						</a>
 						<a href="/infoComm/" class="link no-animation" id="infoCommTool">
 							<img src="../../Image/Ipad/infoComm_dark.png" />
@@ -260,12 +261,6 @@
 		<!-- 首页js-->
 		<script type="text/javascript" src="/Scripts/mobile/home.js"></script>
 		<!-- 移动端入口js-->
-		<script type="text/javascript" src="/Scripts/mobile/mobileAll.js"></script>
-		<script type="text/javascript" src="/Scripts/mobile/PageJs.js"></script>
-		<!-- 插件-->
-		<script type="text/javascript" src="/Scripts/mobile/plugin/appPopup.js"></script>
-        <!-- 全屏设置 -->
-		<script type="text/javascript" src="/Scripts/plug/1.5.0/onorientationchange.js"></script>
 		<script type="text/javascript">
 			var sUserAgent = navigator.userAgent.toLowerCase(),sUserAgentFlag = true;
 			if(sUserAgent.match(/ipad/i) == "ipad" || sUserAgent.match(/ipad/i) == "Ipad") {
@@ -274,12 +269,14 @@
 			} else {
 				$("body").removeClass().addClass("ipadSetViews");
 				sUserAgentFlag = false;
-				
-
-				// 检测是否呼叫
-				// sendNotice(1005,1);
 			}
-
-		</script>		
+		</script>			
+		<script type="text/javascript" src="/Scripts/mobile/mobileAll.js"></script>
+		<script type="text/javascript" src="/Scripts/mobile/PageJs.js"></script>
+		<!-- 插件-->
+		<script type="text/javascript" src="/Scripts/mobile/plugin/appPopup.js"></script>
+        <!-- 全屏设置 -->
+		<!-- <script type="text/javascript" src="/Scripts/plug/1.5.0/onorientationchange.js"></script> -->
+	
 	</body>
 </html>

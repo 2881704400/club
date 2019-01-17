@@ -23,14 +23,14 @@ function ajaxRequestXml_history(num, className_child, className_parent) {
     $(".swimmingInfoList,.allInfoList").html(" ");
     // 请求 
     if(parseInt(num) == 1)
-        var jsonString = {str: ':撤防',equip_no: allEquipNo,timeStr: getDateTimeNotice(-30)},url = "/api/GWServiceWebAPI/getCallRecord?"+$.param(jsonString);
+        var jsonString = {str: publicStr,equip_no: allEquipNo,timeStr: getDateTimeNotice(-30)},url = "/api/GWServiceWebAPI/getCallRecord?"+$.param(jsonString);
     else
-        var jsonString = {str: ':撤防',equip_no: allEquipNo,set_no: num,timeStr: getDateTimeNotice(-30)},url = "/api/GWServiceWebAPI/getFixedCallRecord?"+$.param(jsonString);
+        var jsonString = {str: publicStr,equip_no: allEquipNo,set_no: num,timeStr: getDateTimeNotice(-30)},url = "/api/GWServiceWebAPI/getFixedCallRecord?"+$.param(jsonString);
     $.when(AlarmCenterContext.post(url)).done(function(n) {
         let rt = n.HttpData;
         if (rt.code == 200) {
             rt.data.forEach(function(item, index) {
-                domHTMLHistoryInfo = "<li dataTime='"+item.time+"'>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='"+JSON.stringify(item)+"' onclick='inithistoryInfoHTML_all_0(this)'>" + "<div class=\"item-media " +  (!item.confirmname?className_child:1) + "\"><img src=\"/image/notice/" + item.ycyx_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\" style=\"font-size: 14px;\">" + item.time.replace("T"," ") + "</div>" + "</div>" + "<div class=\"item-text\">" + item.event + "</div>" + "</div>" + "</a>" + "</li>" + domHTMLHistoryInfo;
+                domHTMLHistoryInfo = "<li dataTime='"+item.time+"'>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='"+JSON.stringify(item)+"' onclick='inithistoryInfoHTML_all_0(this)'>" + "<div class=\"item-media " +  (!item.confirmname?className_child:1) + "\"><img src=\"/image/notice/" + item.ycyx_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\" style=\"font-size: 14px;\">" + item.time.replace("T"," ") + "</div>" + "</div>" + "<div class=\"item-text\">" + getCallAddress(item.event) + "</div>" + "</div>" + "</a>" + "</li>" + domHTMLHistoryInfo;
             });
             myApp.dialog.close();
 

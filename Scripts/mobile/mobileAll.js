@@ -469,11 +469,11 @@ function loadNameMobile() {
                 $("#app").css("visibility", "visible");
                 initWebSocket(); //socket
                 //初始化状态值-房间有无人
-                // yxpHome();
-                // pushInfoMessage();
-                // setHomeTime = setInterval(function() {
-                //     yxpHome();
-                // }, 2000);
+                yxpHome();
+                pushInfoMessage();
+                setHomeTime = setInterval(function() {
+                    yxpHome();
+                }, setInterTimeValue);
             } else {
                 myJavaFuntion.OpenLocalUrl("login");
             }
@@ -583,27 +583,7 @@ function onAppCacheClear() {
 }
 
 function AppCacheClearCallback(dt) {
-    if (dt == "true") {
-        location.reload();
-        // myApp.dialog.create({
-        //     title: "",
-        //     text: '清空成功！',
-        //     buttons: [{
-        //         text: '确定',
-        //         onClick: function() {
-        //             location.reload();
-        //         }
-        //     }]
-        // }).open();
-    } else {
-        // myApp.dialog.create({
-        //     title: "",
-        //     text: '清空失败！',
-        //     buttons: [{
-        //         text: '确定'
-        //     }]
-        // }).open();
-    }
+    if (dt == "true") {location.reload();} else {}
 }
 
 function toolbarActive(ids) {
@@ -1148,8 +1128,8 @@ var viewClass = "",
     fileUrl = "c:\\MsgChat";
 
 function createws(value) {
-    // url = "ws://10.8.80.1:8001?" + value;
-    url = "ws://192.168.3.117:8001?" + value;
+    url = "ws://10.8.80.1:8001?" + value;
+    // url = "ws://192.168.0.152:8001?" + value;
     if ('WebSocket' in window) ws = new WebSocket(encodeURI(url));
     else if ('MOzWebSocket' in window) ws = new MozWebSocket(url);
     // else console.log("浏览器太旧，不支持");
@@ -1160,7 +1140,7 @@ function initWebSocket() {
     //成功建立WebSocket连接时触发onopen事件，通常客户端发送数据都是放在open事件里面
     ws.onopen = function(e) {
         if (ws != null) {
-            // console.log("websocket connected");
+            console.log("websocket connected");
             try {
                 var inputInfo = document.getElementById("inputInfo").value.trim();
                 if (inputInfo == "") {
@@ -1201,13 +1181,19 @@ function initWebSocket() {
             hasClass = $("." + value.sendName).hasClass('active'); //人员列表
             var nameArr = [];
             $("#mesList li").each(function(index, el) {
-                var str = $(this).attr("class");
+                var str = $(this).attr("dataId");
                 nameArr.push(str)
             });
-            if (nameArr.indexOf(value.sendName) == -1 && nameArr.indexOf(value.sendName + " active") == -1) {
-                var html = '<li onclick="loadThisMesage(this,\'' + value.sendName + '\')" class="' + value.sendName + '">' + '<div><img src="../../Image/Ipad/person_img.png" /></div>' + '<p class="item-title">' + value.sendName + ' <label>' + times + '</label></p>' + '<span class="con">' + dt.msg + '</span>' + '<font ><span class="num">0</span></font>' + '</li>';
+            if(!nameArr.some(function(computer){return computer == value.sendName;}))
+           {
+             var html = '<li onclick="loadThisMesage(this,\'' + value.sendName + '\')" class="' + value.sendName + '">' + '<div><img src="../../Image/Ipad/person_img.png" /></div>' + '<p class="item-title">' + value.sendName + ' <label>' + times + '</label></p>' + '<span class="con">' + dt.msg + '</span>' + '<font ><span class="num">0</span></font>' + '</li>';
                 $("#mesList").append(html);
-            }
+           }
+            // if (nameArr.indexOf(value.sendName) == -1 && nameArr.indexOf(value.sendName + " active") == -1) {
+            //     var html = '<li onclick="loadThisMesage(this,\'' + value.sendName + '\')" class="' + value.sendName + '">' + '<div><img src="../../Image/Ipad/person_img.png" /></div>' + '<p class="item-title">' + value.sendName + ' <label>' + times + '</label></p>' + '<span class="con">' + dt.msg + '</span>' + '<font ><span class="num">0</span></font>' + '</li>';
+            //     $("#mesList").append(html);
+            // }
+            
             if (receName == value.sendName && hasClass) {
                 $("#chatOtherInfoId").append(html);
                 $("#chatOtherInfoId").scrollTop($("#chatOtherInfoId")[0].scrollHeight);
@@ -1223,6 +1209,8 @@ function initWebSocket() {
                 } else if (num < 99) {
                     $("." + value.sendName).find(".num").text(num + 1);
                 }
+                window.localStorage.setItem(value.sendName,1);
+                $("."+value.sendName).addClass("newNotice");
             }
             if (receNames == value.sendName && hasId) {
                 $("#chatOtherContactId").append(html);
@@ -1234,11 +1222,15 @@ function initWebSocket() {
             $(".shortContainer>section").addClass(viewClass);
             var received_msg, old_msg, msg_board = document.getElementsByClassName(viewClass)[0],
                 messageView = document.getElementsByClassName("messageSection")[0];
-            if (msg_board) {
+            //底部菜单添加红点
+ 
+            //聊天界面添加信息
+            if (msg_board && viewClass.split("-").indexOf(dt.sendName) != -1 && viewClass.split("-").indexOf(dt.receiveName) != -1) {
                 if (dt.sendName == window.localStorage.userName) received_msg = '<p class="img_right"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
                 else received_msg = '<p class="img_left"><img src="/image/ic_launcher.png" /><span>' + dt.msg + "</span></p>"; //新信息
                 addRecord(msg_board, received_msg);
             }
+            //再列表页面实时更新
             if (messageView) {
                 $(".messageInfoList li").each(function(index) {
                     if ($(this).find(".item-title").text() == dt.sendName) {
@@ -1246,13 +1238,12 @@ function initWebSocket() {
                         $(this).find(".item-after").text(dt.time);
                         $(this).find(".item-text").text(dt.msg);
                         window.localStorage.setItem(dt.sendName,1);
-
                     }
                 });
             }
         } catch (e) {
             //推送
-            myApp.dialog.alert('222');
+           
             try {
                 myJavaFun.GetSystemInfor();
             } catch (ex) {}
@@ -1458,10 +1449,10 @@ function getStatus() { //检测实时状态，1为开，0为关
 
     function _completefYxp(XMLHttpRequest, status) {}
 }
-var allEquipNo = 22;
+var allEquipNo = 300,levels = 6,setInterTimeValue = 5000,publicStr = ':呼叫';
 
 function inithistoryInfoHTML_all(obj, className_child, className_parent) {
-    var domHTML = "<li dataTime='" + obj.time + "'>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "' >" + "<div class=\"item-media " + (!obj.confirmname ? className_child : 1) + "\"><img src=\"/image/notice/" + obj.ycyx_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.time.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + obj.event + "</div>" + "</div>" + "</a>" + "</li>";
+    var domHTML = "<li dataTime='" + obj.time + "'>" + "<a href=\"#\" class=\"item-link item-content\" data_obj='" + JSON.stringify(obj) + "' >" + "<div class=\"item-media " + (!obj.confirmname ? className_child : 1) + "\"><img src=\"/image/notice/" + obj.ycyx_no + ".png\" width=\"60\"/></div>" + "<div class=\"item-inner\">" + "<div class=\"item-title-row\">" + "<div class=\"item-title\">呼叫通知</div>" + "<div class=\"item-after\">" + obj.time.substr(-8) + "</div>" + "</div>" + "<div class=\"item-text\">" + getCallAddress(obj.event) + "</div>" + "</div>" + "</a>" + "</li>";
     $(className_parent).prepend(domHTML);
     $(".noticeInfoList  li a,.allInfoList li a,.swimmingInfoList li a,.msg_comfig").unbind();
     $(".noticeInfoList  li a,.allInfoList li a,.swimmingInfoList li a").bind("click", function() {
@@ -1487,7 +1478,7 @@ function inithistoryInfoHTML_all(obj, className_child, className_parent) {
             $(".alertMSG").slideUp(500);
             //插入数据库
             $.when(AlarmCenterContext.post("/api/event/real_evt", {
-                levels: "6"
+                levels: levels
             })).done(function(n) {
                 let rt = n.HttpData;
                 if (rt.code == 200 && rt.data) {
@@ -1518,7 +1509,7 @@ function inithistoryInfoHTML_all(obj, className_child, className_parent) {
 // 通知待确认和已确认
 function confirmNoticeFun(equipNO) {
     var jsonStringChild = {
-        str: ':撤防',
+        str: publicStr,
         equip_no: equipNO,
         timeStr: getDateTimeNotice(0)
     };
@@ -1688,16 +1679,23 @@ function getFloor(val) {
 }
 //更新是否确认状态
 function addEventListenerNoticeStatus() {
-    let jsonString = {
-        str: ':撤防',
-        equip_no: allEquipNo,
-        timeStr: getDateTimeNotice(0)
-    };
+
+
+    let jsonString = {str: publicStr, equip_no: allEquipNo, timeStr: getDateTimeNotice(0) };
     $.when(AlarmCenterContext.post("/api/GWServiceWebAPI/getCallRecord?" + $.param(jsonString))).done(function(n, l) {
+       if(!sUserAgentFlag)
+       {
+        // Phone
+        
+        $("#noticeTool").removeClass("serverCallCircle");//移除底部红点
         let rt = n.HttpData;
         if (rt.code == 200 && rt.data) {
             var result = rt.data,idStr = $(".page-current").attr("id"),dom = $(".historyInfoContainer a.tab-link-active");
-            if (idStr == "notice")
+            result.forEach(function(itemChild, indexChild) {
+                if (itemChild.equip_no == allEquipNo  && !itemChild.confirmname )
+                  {$("#noticeTool").addClass("serverCallCircle");isCircle = false;return;}
+            });
+            if (idStr == "notice") //通知页面
                 $(".noticeInfoList li").each(function(index) {
                     var item = $(this),objThis = JSON.parse(item.find("a").attr("data_obj"));
                     result.forEach(function(itemChild, indexChild) {
@@ -1708,7 +1706,7 @@ function addEventListenerNoticeStatus() {
                         }
                     });
                 });
-            else if(idStr == "historyInfo")
+            else if(idStr == "historyInfo")  //历史记录页面
                 $(dom.attr("href")+">div>ul>li").each(function(index) {
                     var item = $(this),objThis = JSON.parse(item.find("a").attr("data_obj"));
                     result.forEach(function(itemChild, indexChild) {
@@ -1727,15 +1725,74 @@ function addEventListenerNoticeStatus() {
             });
             $(".toBeComfirm").text(unconfirmedNumber);
             $(".ComfirmContainer>label").text(dt.length - unconfirmedNumber); //已确认
+           }
+        }
+        else
+        {
+            //iPad
+                var roomYcKey = {
+                    /*点：个数-是否-时间*/
+                    '100': '0-0-00:00',
+                    '300': '0-0-00:00',
+                    '301': '0-0-00:00',
+                    '302': '0-0-00:00',
+                    '303': '0-0-00:00',
+                    '304': '0-0-00:00',
+                    '305': '0-0-00:00',
+                    '306': '0-0-00:00',
+                    '307': '0-0-00:00',
+                    '308': '0-0-00:00',
+                    '309': '0-0-00:00',
+                    '310': '0-0-00:00',
+                    '311': '0-0-00:00',
+                    '312': '0-0-00:00',
+                    '313': '0-0-00:00',
+                    '314': '0-0-00:00',
+                    '315': '0-0-00:00'
+                };
+            var dat = n.HttpData.data,lg = dat.length;
+            if (lg > 0) {
+                for (var i = 0; i < lg; i++) {
+                    var value = dat[i],str = roomYcKey[value.ycyx_no],num = parseInt(str.split("-")[0]),time;
+                    if (!value.confirmname) {
+                        num++;
+                        time = value.time.substring(10, 16);
+                    }
+                    roomYcKey[value.ycyx_no] = [num, str.split("-")[1], time].join("-");
+                }
+                var id = 100;//$(".bg-dark").attr("id");
+                if (window.localStorage.checkId != "" && window.localStorage.checkId && (window.localStorage.checkId == id)) {
+                    try{timerLoad(window.localStorage.checkId);}catch(e){}
+                }
+            }
+            //移除底部红点
+            $("#serviceCallTool").removeClass("serverCallCircle");
+            for (var value in roomYcKey) {
+                var str = roomYcKey[value].split("-");
+                if (str[0] < 1) {
+                    $("#" + value).find(".nums").text(0);
+                    $("#" + value).find("font").hide();
+                    $("#" + value).find(".sub").text("暂无新呼叫待处理");
+                    var myDate = new Date();
+                    var hours = (myDate.getHours()) < 10 ? ("0" + myDate.getHours()) : myDate.getHours();
+                    var min = (myDate.getMinutes()) < 10 ? ("0" + myDate.getMinutes()) : myDate.getMinutes();
+                    $("#" + value).find("label").text(hours + ':' + min);
+                } else {
+                    let time = str[2].replace("T","");
+                    $("#" + value).find("font").show().find(".nums").text(str[0]);
+                    $("#" + value).find(".sub").text("您有新的呼叫待确认");
+                    $("#" + value).find("label").text(time);
+                    $("#serviceCallTool").addClass("serverCallCircle");
+                }
+            }
 
         }
     }).fail(function(e) {});
 }
 //是否插入新数据
 function judgeNewData(equipNO) {
-    console.log($(".noticeInfoList li").length);
+
     var idStr = $(".page-current").attr("id"),dom = $(".historyInfoContainer a.tab-link-active");
-    // myApp.dialog.alert($(dom.attr("href")+">div>ul>li").length);
     if ((idStr == "notice" && $(".noticeInfoList li").length >= 0) || (idStr == "historyInfo" && $(dom.attr("href")+">div>ul>li").length > 0)) {
         let timeVal = "";
         if(idStr == "notice" && $(".noticeInfoList li").length == 0)
@@ -1743,7 +1800,7 @@ function judgeNewData(equipNO) {
         else
             idStr == "notice"?timeVal =$(".noticeInfoList li:eq(0)").attr("dataTime").replace("T", " "):timeVal = $(dom.attr("href")+">div>ul>li:eq(0)").attr("dataTime").replace("T", " ");
         jsonString = {
-            str: ':撤防',
+            str: publicStr,
             equip_no: equipNO,
             timeStr: timeVal,
         };
@@ -1768,4 +1825,12 @@ function judgeNewData(equipNO) {
 function historyInfoFun(item){
     let dom = $(".historyInfoContainer a.tab-link-active");
     inithistoryInfoHTML_all(item, "newNotice", dom.attr("href")+">div>ul");
+}
+
+//返回正确呼叫地点
+function getCallAddress(val){
+
+
+    return val.split("-")[1].split("-")[0]+"呼叫";
+
 }

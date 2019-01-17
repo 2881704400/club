@@ -30,9 +30,9 @@ $$(document).on("page:beforein", ".page[data-page='serviceCall']", function (e) 
     initPageJS('serviceCall', '/Scripts/Ipad/');
 });
 // 服务呼叫
-$$(document).on("page:afterout", ".page[data-page='serviceCall']", function (e) {
-    clearTimeout(callTimer);
-});
+// $$(document).on("page:afterout", ".page[data-page='serviceCall']", function (e) {
+//     clearTimeout(callTimer);
+// });
 // 服务员排班
 $$(document).on("page:beforein", ".page[data-page='serviceSchedu']", function (e) {
     initPageJS('serviceSchedu', '/Scripts/Ipad/');

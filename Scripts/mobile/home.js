@@ -1,17 +1,10 @@
 ﻿//首页事件
 function onHomePage() {
-    // myApp.router.navigate("/infoComm/")
+    // myApp.router.navigate("/serviceCall/")
     $(".tabbar").css("top", window.screen.height + "px");
 	$('html').removeClass('with-statusbar-overlay').addClass("with-statusbar");
     if (sUserAgentFlag)
     {
-//      toolbarActiveImg("ipadHomeTool")
-//      fiveHalfPieChart('fiveHalfChartId');
-//      bgMusicPieChart('bgMusicId', 28);
-//      electManagerPieChart('electManagerId', 28);
-//      roomCallPieChart('roomCallId');
-//      infoCommPieChart('infoCommId');
-//      sceneCustomHuanChart('sceneCustomId');
 		$(".mobileUser").hide();
 		$(".mobileSet").hide();
 		$(".ipadSet").show();
@@ -40,6 +33,12 @@ function onHomePage() {
         $('.homeConfirm p:eq(0)').text("服务员 " + window.localStorage.userName);
 
      }
+
+    try {
+        myJavaFun.setOrientation();
+    } catch (ex) {}
+
+
 }
 function goPage(url,dom){
 	$(dom).find("img").eq(0).hide();

@@ -109,3 +109,25 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
   -webkit-box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
   box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
 }
+
+.serverCallCircle:after{    content: "";
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    right: 31%;
+    background: #EE5863;}
+
+.newNotice:after {
+    content: "";
+    display: inline-block;
+    background: #EE5863;
+    padding: 6px;
+    border-radius: 50%;
+    outline: none;
+    position: absolute;
+    left: 15%;
+    top: 15%;
+}

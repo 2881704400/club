@@ -157,3 +157,6 @@
 .userlistContainer>div.list-group{display: none;}
 .userlistContainer li.list-group-title{color: #666!important;}
 .userListView ul li>a{color: #000;}
+
+/*底部红点*/
+.serverCallCircle:after{    content: ""; width: 10px; height: 10px; display: inline-block; border-radius: 50%; position: absolute; top: 10%; right: 31%; background: #EE5863;}

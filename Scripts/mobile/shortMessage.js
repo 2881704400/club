@@ -25,7 +25,7 @@ function shortMessage() {
         }, 300);
     })
      window.localStorage.setItem(receiveUser,0);
-
+     // $("#infoCommTool,#MessageTool").addClass("serverCallCircle");
   
     viewClass = window.localStorage.userName + "-" + receiveUser;
     readyFileTxt1(window.localStorage.userName, receiveUser);

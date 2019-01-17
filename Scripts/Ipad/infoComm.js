@@ -210,16 +210,10 @@ function readerTxtList(fileUrlVal,sendUser,receiveUser,DateTime,isFlase) {
 }
 function initmessageHTMLList(arrStr,sendUser){
 
-
 		var value=JSON.parse(arrStr);
-
-
-		// arrStr.replace(/<f7-userName:>|<f7-time:>|<f7-Content:>/g," ").split(" ");
-		// var name=value[1];
-		// var date=value[2];
 		var time=value.time.substring(11,16);
 		var content=value.msg;
-		var html='<li onclick="loadThisMesage(this,\''+sendUser+'\')" class="'+sendUser+'">'+
+		var html='<li onclick="loadThisMesage(this,\''+sendUser+'\')" class="'+sendUser+' '+(parseInt(window.localStorage.getItem(sendUser))?"newNotice":1)+'"  dataId="'+sendUser+'">'+
 					'<div><img src="../../Image/Ipad/person_img.png" /></div>'+
 					'<p class="item-title">'+sendUser+' <label>'+time+'</label></p>'+
 					'<span class="con">'+content+'</span>'+
@@ -239,6 +233,16 @@ function loadThisMesage(dom,name){
 
 	window.localStorage.receiveUserName=name;
 	readyFileTxt(window.localStorage.userName,name,'#chatOtherInfoId');
+	window.localStorage.setItem(name,0);
+	$("."+name).removeClass("newNotice"); //清除头像红点
+
+	// var circleArray = [];
+	// $("#mesList li").each(function(index, el) {
+	//     var str = $(this).attr("dataId");
+	//     circleArray.push(str)
+	// });
+	// if(!circleArray.some(function(computer){return window.localStorage.getItem(computer) == 1;}))
+	//    $("#infoCommTool,#MessageTool").addClass("serverCallCircle"); //清除菜单栏红点
 }
 
 
@@ -360,10 +364,6 @@ function initmessageHTML(arrStr,dom){
 		}else{
 			continue;
 		}
-		
-
-
-
 		var name=value.sendName;
 		// var date=value[2];
 		var time=value.time.substring(11,16);
